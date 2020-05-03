@@ -66,3 +66,19 @@ gem "friendly_id", "~> 5.3"
 gem "activestorage-validator", "~> 0.1.3"
 
 gem "devise", "~> 4.7"
+
+gem "bootstrap", "~> 4.4"
+
+gem "font-awesome-rails", "~> 4.7"
+
+gem "jquery-rails", "~> 4.3"
+
+gem "faker", "~> 2.11"
+
+gem "cookies_eu", "~> 1.7"
+
+gem "jquery-ui-rails", "~> 6.0"
+
+gem "bootstrap4-datetime-picker-rails", "~> 0.3.1"
+
+gem "flag-icons-rails", "~> 3.4"

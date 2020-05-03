@@ -1,0 +1,120 @@
+<nav id="navbar" class="navbar navbar-dark navbar-expand-lg">
+
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag("/images/logo_navbar.png", class: "img-fluid" ) %>
+  <% end %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+    <ul class="navbar-nav mx-auto">
+      
+      <% if user_signed_in? %>
+
+          <% if current_user.admin? %>
+            <li class="nav-item adventpro">
+              <%= link_to "Admin Page", rails_admin.dashboard_path, class: "nav-link font-weight-bold"  %>
+            </li>
+          <% end %>
+
+            <% if current_user.picture.attached? %>
+              <li class="nav-item adventpro">
+                <%= link_to(edit_user_registration_path, remote: true, class: "nav-link") do %>
+                  <%= image_tag(current_user.picture, height: 18, width: 18, style: "border-radius:20px;") %>
+                  My Account
+                <% end %>
+            <% else %>
+              <li class="nav-item adventpro">
+                <%= link_to(edit_user_registration_path, remote: true, class: "nav-link") do %>
+                  <%= fa_icon "user" %>
+                  My Account
+                 <% end %>
+              </li>
+            <% end %>
+
+          <% unless current_user.orders.empty? %>
+            <li class="nav-item adventpro">
+              <%= link_to orders_path, class: "nav-link" do %>
+                  <%= fa_icon "plane" %>
+                  My Bookings
+              <% end %>
+            </li>
+          <% end %>
+
+          <li class="nav-item adventpro">
+            <%= link_to cart_path(@cart), class: "nav-link" do %>
+                <%= fa_icon "shopping-cart" %>
+                <span id="my-cart-counter">
+                  <%= render partial: "layouts/cart-counter" %>
+                </span>
+            <% end %>
+          </li>
+
+          <li class="nav-item adventpro">
+            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                <%= fa_icon "sign-out" %>
+                Log Out
+            <% end %>
+          </li>
+
+      <% else %>
+
+        <li class="nav-item adventpro">
+          <%= link_to new_user_registration_path, class: "nav-link", remote: true do %>
+                <%= fa_icon "user-plus" %>
+                Create an Account
+          <% end %>
+        </li>
+
+        <li class="nav-item adventpro">
+          <%= link_to user_session_path, remote: true, class: "nav-link" do %>
+              <%= fa_icon "sign-in" %>
+              Log In
+          <% end %>
+        </li>
+
+      <% end %>
+    
+    </ul>
+
+    <ul class="navbar-nav ml-0">
+
+    <% if I18n.locale == :fr %>
+
+      <li class="nav-item">
+        <%= link_to({:locale=> nil}, class:"nav-link mx-5") do %>
+          <%= flag_icon(:gb, class: "rounded") %>
+        <% end %>
+      </li>
+    
+    <% else %>
+
+      <li class="nav-item">
+        <%= link_to({:locale=>'fr'}, class:"nav-link mx-5") do %>
+          <%= flag_icon(:fr, class:"rounded") %>
+        <% end %>
+      </li> 
+      
+    <% end %>
+
+      <li class="nav-item adventpro">
+        <%= link_to("https://www.facebook.com/magicbusworld", class: "nav-link mx-1", target: "_blank")  do %>
+          <%= fa_icon "facebook-square lg" %>
+        <% end %>
+      </li>
+
+      <li class="nav-item adventpro">
+        <%= link_to("https://www.instagram.com/magicbusworld/", class:"nav-link mx-1", target: "_blank") do %>
+          <%= fa_icon "instagram lg" %>
+        <% end %>
+      </li>
+      
+    </ul>
+
+  </div>
+</nav>
+
+

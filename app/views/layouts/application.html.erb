@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MagicbusV2</title>
+
+    <title>Magicbus</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= favicon_link_tag '/images/icon_logo.ico' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script> 
+
+    <meta name="turbolinks-cache-control" content="no-cache">
+
+    <%= yield(:head_tags) %>
+
   </head>
 
   <body>
+
+    <div id="login-form">
+
+    </div>
+
+    <%= render "layouts/navbar" %>
+
+    <%= render "layouts/notice" %>
+
+    <%= render 'cookies_eu/consent_banner' %>
+
     <%= yield %>
+
+    <% unless current_page?(root_path) %>
+      <%= render "layouts/footer" %>
+    <% end %>
+
   </body>
 </html>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'story/index'
+  get 'discover/index'
   get 'home/index'
   devise_for :users
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -15,9 +17,9 @@ Rails.application.routes.draw do
   get 'travel/sort-trips-date/:id' => 'travel#sort_trips_date'
   get 'travel/sort-trips-theme/:id' => 'travel#sort_trips_theme'
 
-  resources :trips
+  resources :trips, :path => 'travel'
   resources :travellers
-  resources :places
+  resources :places, :path => 'share'
   resources :orders
   resources :carts
 end
