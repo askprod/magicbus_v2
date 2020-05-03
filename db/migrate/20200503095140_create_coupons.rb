@@ -4,7 +4,7 @@ class CreateCoupons < ActiveRecord::Migration[5.2]
         t.string :code
         t.integer :remaining_uses
         t.integer :reduction_percentage
-        t.date :expity_date
+        t.date :expiry_date
       t.timestamps
     end
   end
