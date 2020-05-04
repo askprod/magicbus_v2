@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_141750) do
+ActiveRecord::Schema.define(version: 2020_05_04_132022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,22 @@ ActiveRecord::Schema.define(version: 2020_05_03_141750) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cart_trips", force: :cascade do |t|
+    t.integer "cart_id"
+    t.integer "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
     t.integer "traveller_quantity", default: 1
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["slug"], name: "index_carts_on_slug", unique: true
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -83,10 +92,12 @@ ActiveRecord::Schema.define(version: 2020_05_03_141750) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
     t.integer "total_price"
     t.boolean "payment_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -98,6 +109,8 @@ ActiveRecord::Schema.define(version: 2020_05_03_141750) do
     t.boolean "secret_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_places_on_user_id"
   end
 
   create_table "themes", force: :cascade do |t|
@@ -140,9 +153,11 @@ ActiveRecord::Schema.define(version: 2020_05_03_141750) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "places", "users"
 end

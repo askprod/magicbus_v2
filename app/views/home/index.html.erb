@@ -1,94 +1,93 @@
+<div>
 
-    <div>
+    <%= video_tag "/videos/home_video.mp4", playsinline: :playsinline, autoplay: :autoplay, loop: :loop, muted: :muted, id: "home_video" %>
     
-        <%= video_tag "/videos/home_video.mp4", playsinline: :playsinline, autoplay: :autoplay, loop: :loop, muted: :muted, id: "home_video" %>
-        
-        <div id="grayfilter" class="stop-flickering">
-        
-            <div class="maintitle-container text-center">
-                
-                <div class="container-fluid travel-animate mx-auto">
-                    <%= render "layouts/travel_basics_svg" %>
-                </div>
+    <div id="grayfilter" class="stop-flickering">
+    
+        <div class="maintitle-container text-center">
+            
+            <div class="container-fluid travel-animate mx-auto">
+                <%= render "layouts/travel_basics_svg" %>
+            </div>
 
-                <div class="container mainpageblock">
+            <div class="container mainpageblock">
 
-                    <div class="row">
+                <div class="row">
 
-                        <div class="col">
-                            <%= link_to discover_index_path do %>
-                                <div class="categoryWrapper stop-flickering">
-                                    <h2 class="annietelescope">DISCOVER</h2>  
-                                    <button>
+                    <div class="col">
+                        <%= link_to discover_path do %>
+                            <div class="categoryWrapper stop-flickering">
+                                <h2 class="annietelescope">DISCOVER</h2>  
+                                <button>
+                                <span>
                                     <span>
-                                        <span>
-                                        <span class="adventpro" data-attr-span="About the MagicBus project !">
-                                            About the MagicBus project ! 
-                                        </span>
-                                        </span>
+                                    <span class="adventpro" data-attr-span="About the MagicBus project !">
+                                        About the MagicBus project ! 
                                     </span>
-                                    </button>
-                                </div>
-                            <% end %>
-                        </div>
+                                    </span>
+                                </span>
+                                </button>
+                            </div>
+                        <% end %>
+                    </div>
 
-                        <div class="col">
-                            <%= link_to story_index_path do %>
-                                <div class="categoryWrapper stop-flickering">
-                                    <h2 class="annietelescope">STORY</h2>  
-                                    <button>
+                    <div class="col">
+                        <%= link_to story_path do %>
+                            <div class="categoryWrapper stop-flickering">
+                                <h2 class="annietelescope">STORY</h2>  
+                                <button>
+                                <span>
                                     <span>
-                                        <span>
-                                        <span class="adventpro" data-attr-span="About the MagicBus project !">
-                                            About the MagicBus project ! 
-                                        </span>
-                                        </span>
+                                    <span class="adventpro" data-attr-span="About the MagicBus project !">
+                                        About the MagicBus project ! 
                                     </span>
-                                    </button>
-                                </div>
-                            <% end %>
-                        </div>
+                                    </span>
+                                </span>
+                                </button>
+                            </div>
+                        <% end %>
+                    </div>
 
-                        <div class="col">
-                            <%= link_to places_path do %>
-                                <div class="categoryWrapper stop-flickering">
-                                    <h2 class="annietelescope">SHARE</h2>
-                                    <button>
+                    <div class="col">
+                        <%= link_to places_path do %>
+                            <div class="categoryWrapper stop-flickering">
+                                <h2 class="annietelescope">SHARE</h2>
+                                <button>
+                                <span>
                                     <span>
-                                        <span>
-                                        <span class="adventpro" data-attr-span="With the MagicCommunity !">
-                                        Give us a hand for the future !
-                                        </span>
-                                        </span>
+                                    <span class="adventpro" data-attr-span="With the MagicCommunity !">
+                                    Give us a hand for the future !
                                     </span>
-                                    </button>
-                                </div>
-                            <% end %>
-                        </div>
+                                    </span>
+                                </span>
+                                </button>
+                            </div>
+                        <% end %>
+                    </div>
 
-                        <div class="col">
-                            <%= link_to trips_path do %>
-                                <div class="categoryWrapper stop-flickering">
-                                    <h2 class="annietelescope">TRAVEL</h2>
-                                    <button>
+                    <div class="col">
+                        <%= link_to trips_path do %>
+                            <div class="categoryWrapper stop-flickering">
+                                <h2 class="annietelescope">TRAVEL</h2>
+                                <button>
+                                <span>
                                     <span>
-                                        <span>
-                                        <span class="adventpro" data-attr-span="Book your trip with MagicBus !">
-                                            Book your trip with MagicBus !
-                                        </span>
-                                        </span>
+                                    <span class="adventpro" data-attr-span="Book your trip with MagicBus !">
+                                        Book your trip with MagicBus !
                                     </span>
-                                    </button>
-                                </div>
-                            <% end %>
-                        </div>
-
+                                    </span>
+                                </span>
+                                </button>
+                            </div>
+                        <% end %>
                     </div>
 
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
 <script>
 var path = document.querySelector('.travel-animate path');

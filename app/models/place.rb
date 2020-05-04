@@ -4,7 +4,7 @@ class Place < ApplicationRecord
     has_one_attached :image_three
     belongs_to :user, optional: true
 
-    validates_presence_of :name, :anecdote, unless: :secret_is_true?
+    validates_presence_of :name, :description, unless: :secret_is_true?
     validates_presence_of :longitude, :latitude
     validates :image_one, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
     validates :image_two, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
@@ -35,13 +35,13 @@ class Place < ApplicationRecord
     end
 
     def secret_is_true?
-        self.secret == true
+        self.secret_status == true
     end
 
     def capitalize_attributes
         if self.name 
             self.name = name.titleize
-            self.anecdote = capitalize_sentences(anecdote)
+            self.description = capitalize_sentences(description)
         end
     end
 

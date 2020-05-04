@@ -1,17 +1,150 @@
-<%= form_with(model: place, local: true) do |form| %>
-  <% if place.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(place.errors.count, "error") %> prohibited this place from being saved:</h2>
+<div class="card login-form">
+      
+  <h1 class="card-header adventpro yellow text-center display-5">Add a Spot</h1>
 
-      <ul>
-      <% place.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="card-body">
+    <div id="close-button">
+  </div>
+
+  <%= form_with(model: place, remote: true) do |form| %>
+  
+  <div class="row text-center">
+
+    <div class="col-md-8 mx-auto">
+      <div id="map2"></div>
     </div>
+
+<div class="col-lg-4 my-auto">
+  
+  <input id="maps-search-input" class="controls form-control border border-warning rounded" type="text" placeholder="Search Map. ex: 'Paris'">
+
+  <div class="form-group m-0 pt-3">
+    <%= form.label :secret_status, "Is this a Secret Spot?", class: "small" %>
+    <%= form.check_box :secret_status, {id: "checkbox1"}, "true", "false" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_field :name, :maxlength => 25, class: "form-control form-control-sm input-sm rounded border", placeholder: "Name" %>
+  </div>
+
+  <div class="form-group">
+      <%= form.text_field :description, class: "rounded border form-control form-control-sm", placeholder: "Description" %>
+  </div>
+
+  <%if place.image_one.attached? || place.image_two.attached? || place.image_three.attached? %>
+      <p>Current Pictures:</p>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <% if place.image_one.attached? %>
+    1: <%= image_tag(place.image_one, size: "50x50")%>
+  <% end %>
+
+  <% if place.image_two.attached? %>
+    2: <%= image_tag(place.image_two, size: "50x50")%>
+  <% end %>
+
+  <% if place.image_three.attached? %>
+    3: <%= image_tag(place.image_three, size: "50x50")%>
+  <% end %>
+
+  <div class="form-group">
+    <div class="custom-file my-1">
+      <%= form.file_field :image_one, class:"custom-file-input", id:"fileOne" %>
+      <%= form.label :pictures, "Picture 1", class:"custom-file-label form-control-sm", for:"fileOne" %>
+    </div>
+
+    <div class="custom-file my-1">
+      <%= form.file_field :image_two, class:"custom-file-input", id:"fileTwo" %>
+      <%= form.label :pictures, "Picture 2", class:"custom-file-label form-control-sm", for:"fileTwo" %>
+    </div>
+
+    <div class="custom-file my-1">
+      <%= form.file_field :image_three, class:"custom-file-input", id:"fileThree" %>
+      <%= form.label :pictures, "Picture 3", class:"custom-file-label form-control-sm", for:"fileThree" %>
+    </div>
   </div>
-<% end %>
+
+  <div class="hidden">
+    <div class="col">
+      <%= form.label :latitude %>
+      <%= form.text_field :latitude, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :longitude %>
+      <%= form.text_field :longitude, class: "form-control" %>
+    </div>
+  </div>
+
+  <p style="font-size: 10px;">Don't forget to place your spot on the map!</p>
+  
+  <div class="">
+    <%= form.submit "Share with MagicBus", class: "btn btn-stylised shadow py-3", id:"spot-submit" %>
+  </div>
+
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+
+  <% end %>
+
+  </div>
+
+</div>
+
+<script>
+// Show name of file when uploading images
+$('.custom-file-input').on('change', function() { 
+   let fileName = $(this).val().split('\\').pop(); 
+   $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    if( $('#checkbox1').is(':checked') ){
+      $('#place_name').attr('disabled', 'disabled');
+      $('#place_description').attr('disabled', 'disabled');
+      $('#place_name').val('');
+      $('#place_description').val('');
+      $('#fileOne').attr('disabled', 'disabled');
+      $('#fileTwo').attr('disabled', 'disabled');
+      $('#fileThree').attr('disabled', 'disabled');
+      $('#fileOne').trigger('reset');
+      $('.custom-file-label[for="fileOne"]').html('Picture 1');
+      $('#fileOne').trigger('reset');
+      $('.custom-file-label[for="fileTwo"]').html('Picture 2');
+      $('#fileOne').trigger('reset');
+      $('.custom-file-label[for="fileThree"]').html('Picture 3');
+    };
+});
+
+$(document).ready(function(){
+    $('#checkbox1').change(function(){
+        if(this.checked){
+            $('#place_name').attr('disabled', 'disabled');
+            $('#place_description').attr('disabled', 'disabled');
+            $('#place_name').val('');
+            $('#place_description').val('');
+            $('#fileOne').attr('disabled', 'disabled');
+            $('#fileTwo').attr('disabled', 'disabled');
+            $('#fileThree').attr('disabled', 'disabled');
+            $('#fileOne').trigger('reset');
+            $('.custom-file-label[for="fileOne"]').html('Picture 1');
+            $('#fileOne').trigger('reset');
+            $('.custom-file-label[for="fileTwo"]').html('Picture 2');
+            $('#fileOne').trigger('reset');
+            $('.custom-file-label[for="fileThree"]').html('Picture 3');
+        } else {
+            $('#place_name').removeAttr('disabled');
+            $('#place_description').removeAttr('disabled');
+            $('#fileOne').removeAttr('disabled');
+            $('#fileTwo').removeAttr('disabled');
+            $('#fileThree').removeAttr('disabled');
+        }
+    });
+});
+</script>
+
+<script>
+$(document).on("keydown", "#maps-search-input", function(event) { 
+    return event.key != "Enter";
+});
+</script>

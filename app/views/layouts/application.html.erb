@@ -13,6 +13,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials[:google_maps_api_key]}&libraries=places" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script> 
 
     <meta name="turbolinks-cache-control" content="no-cache">

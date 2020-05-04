@@ -5,6 +5,10 @@ class PlacesController < ApplicationController
   # GET /places.json
   def index
     @places = Place.all
+    
+    if user_signed_in?
+      @user_places = Place.where(user_id: current_user.id)
+    end
   end
 
   # GET /places/1
@@ -28,10 +32,11 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.save
-        format.html { redirect_to @place, notice: 'Place was successfully created.' }
-        format.json { render :show, status: :created, location: @place }
+        format.js
+        flash[:notice] = "Spot created successfully."
       else
-        format.html { render :new }
+        format.js { render :new }
+        flash.now[:alert] = @place.errors.full_messages.join(', ') if @place.errors.any?
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
@@ -42,11 +47,12 @@ class PlacesController < ApplicationController
   def update
     respond_to do |format|
       if @place.update(place_params)
-        format.html { redirect_to @place, notice: 'Place was successfully updated.' }
-        format.json { render :show, status: :ok, location: @place }
+        format.js
+        flash[:notice] = "Spot updated successfully."
       else
-        format.html { render :edit }
-        format.json { render json: @place.errors, status: :unprocessable_entity }
+        format.js { render :edit, :locals => {:place => @place} }
+        flash.now[:alert] = @place.errors.full_messages.join(', ') if @place.errors.any?
+        format.json { render json: @traveller.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +75,6 @@ class PlacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def place_params
-      params.fetch(:place, {})
+      params.require(:place).permit(:user_id, :secret_status, :name, :latitude, :longitude, :description, :approved, :image_one, :image_two, :image_three)
     end
 end

@@ -82,3 +82,7 @@ gem "jquery-ui-rails", "~> 6.0"
 gem "bootstrap4-datetime-picker-rails", "~> 0.3.1"
 
 gem "flag-icons-rails", "~> 3.4"
+
+gem "rails-i18n", "~> 5.1"
+
+gem "rails_admin", "~> 2.0"

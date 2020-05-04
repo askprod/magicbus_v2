@@ -1,25 +1,223 @@
-<p id="notice"><%= notice %></p>
+<section>
+  <div>
+    <%= image_tag "/images/bus-font.jpg", class: "image-cover" %>
+  </div>
 
-<h1>Places</h1>
+  <div>
+    <h1 class="title-box text-center">
+      Share Your Tips
+    </h1>
+  </div>
+</section>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220"><path fill="#ffd700" fill-opacity="1" d="M0,160L60,133.3C120,107,240,53,360,42.7C480,32,600,64,720,96C840,128,960,160,1080,165.3C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
 
-  <tbody>
-    <% @places.each do |place| %>
-      <tr>
-        <td><%= link_to 'Show', place %></td>
-        <td><%= link_to 'Edit', edit_place_path(place) %></td>
-        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<section>
+
+  <div class="container-fluid text-center" style="background-color: #ffd700;">
+
+    <%= render "share" %>
+
+    <% if user_signed_in? %>
+        <div class="container-fluid text-center" style="background-color: #ffd700;">
+          <%= link_to "Share a Spot!", new_place_path, class:"btn btn-stylised", remote: true %>
+        </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <div class="container-fluid">
+        <div id="map" class="mx-auto my-2"></div>
+    </div>
 
-<%= link_to 'New Place', new_place_path %>
+    <div class="row my-2 justify-content-center">
+
+      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+        <div class="row no-gutters">
+          <div class="col-2">
+            <%= image_tag("/images/marker-yellow.png", class: "m-auto", size: "40x40") %>
+          </div>
+          <div class="col-6 m-auto">
+            <p class="small m-0">Shared Spot</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+        <div class="row no-gutters">
+          <div class="col-2">
+            <%= image_tag("/images/marker-red.png", class: "m-auto", size: "40x40") %>
+          </div>
+          <div class="col-6 m-auto">
+            <p class="small m-0">Waiting for Approval</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+        <div class="row no-gutters">
+          <div class="col-2">
+            <%= image_tag("/images/marker-blue.png", class: "m-auto", size: "40x40") %>
+          </div>
+          <div class="col-6 m-auto">
+            <p class="small m-0">Secret Spot</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+        <div class="row no-gutters">
+          <div class="col-2">
+            <%= image_tag("/images/cluster.png", class: "m-auto", size: "40x40") %>
+          </div>
+          <div class="col-6 m-auto">
+            <p class="small m-0">Cluster of Spots</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <% if user_signed_in? %>
+    <p class="display-4">Your Shared Spots</p>
+
+    <div class="row justify-content-center">
+
+      <% @user_places.each do |spot| %>
+        <div class="card col-lg-2 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+          
+          <div class="card-header py-1">
+            <% if spot.secret_status == true %>
+              <p class="small my-auto">Secret Spot</p>
+            <% elsif spot.approved_status == true %>
+              <p class="small my-auto"><%= spot.name %></p>
+            <% else %>
+              <p class="small my-auto">Waiting for Approval</p>
+            <% end %>
+
+            <%= link_to spot, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
+              <p class="mb-0" style="font-size: 10px; color: black;">X</p>
+            <% end %>
+          </div>
+
+          <div class="row h-100 no-gutters my-auto">
+            <div class="col-3 px-1 my-auto">
+              <% if spot.secret_status == true %>
+                <%= image_tag("/images/marker-blue.png", size: "30x30") %>
+              <% elsif spot.approved_status == true %>
+                <%= image_tag("/images/marker-yellow.png", size: "30x30") %>
+              <% else %>
+                <%= image_tag("/images/marker-red.png", size: "30x30") %>
+              <% end %>
+            </div>
+
+            <div class="col-9 my-auto py-2">
+
+              <div class="row no-gutters">
+                <div class="col px-1">
+                  <a class="btn btn-info btn-block center-map-point">View</a>
+                  <%= hidden_field_tag :spot_latitude, spot.latitude %>
+                  <%= hidden_field_tag :spot_longitude, spot.longitude %>
+                </div>
+
+                <% unless spot.approved_status == true %>
+                  <div class="col px-1">
+                    <%= link_to edit_place_path(spot), remote: true, class: "btn btn-warning btn-block" do %>
+                      <p class="mb-0">Edit</p>
+                    <% end %>              
+                  </div>
+                <% end %>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+
+    </div>
+    <% end %>
+
+  </div>
+
+<% if user_signed_in? %>
+    <div class="container-fluid text-center" style="background-color: #ffd700;">
+      <%= link_to "Share a Spot!", new_place_path, class:"btn btn-stylised", remote: true %>
+    </div>
+<% end %>
+
+</section>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 280"><path fill="#ffd700" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,224C480,256,600,256,720,224C840,192,960,128,1080,101.3C1200,75,1320,85,1380,90.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+
+<script>
+  var locations = [
+    <% @places.each do |place| %>
+      {lat: <%= place.latitude %>, lng: <%= place.longitude %>},
+    <% end %>
+  ]
+
+  var names = [
+    <% @places.each do |place| %>
+      "<%= place.name %>",
+    <% end %>
+  ]
+
+  var anecdotes = [
+    <% @places.each do |place| %>
+      "<%= place.description %>",
+    <% end %>
+  ]
+
+  var approvals = [
+    <% @places.each do |place| %>
+      <%= place.approved_status %>,
+    <% end %>
+  ]
+
+  var secrets = [
+    <% @places.each do |place| %>
+      <%= place.secret_status %>,
+    <% end %>
+  ]
+
+  var blobOne = [
+    <% @places.each do |place| %>
+      <% if place.image_one.attached? %>
+        "<%= rails_blob_url(place.image_one) %>",
+      <% else %>
+        undefined,
+      <% end %>
+    <% end %>
+  ]
+
+  var blobTwo = [
+    <% @places.each do |place| %>
+      <% if place.image_two.attached? %>
+      "<%= rails_blob_url(place.image_two) %>",
+      <% else %>
+        undefined,
+      <% end %>
+    <% end %>
+  ]
+
+  var blobThree = [
+    <% @places.each do |place| %>
+      <% if place.image_three.attached? %>
+        "<%= rails_blob_url(place.image_three) %>",
+      <% else %>
+        undefined,
+      <% end %>
+    <% end %>
+  ]
+</script>
+
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+          initPlacesMap();
+        });
+    </script>
+<% end %> 
+
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

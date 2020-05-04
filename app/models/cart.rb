@@ -4,15 +4,13 @@ class Cart < ApplicationRecord
 
     belongs_to :user
     has_many :travellers
-    # has_many :cart_trips
-    # has_many :trips, :through => :cart_trips
+    has_many :cart_trips
+    has_many :trips, :through => :cart_trips
 
-    validates :name, presence: true
-
-    before_save :set_cart_name
+    before_save :set_cart_name, on: :create
 
     def set_cart_name
-        mail = self.email_address.slice(0..(str.index('@')))
-        self.name ||= "#{mail}-#{rand(1..9)}#{rand(1..9)}#{rand(1..9)}#{rand(1..9)}"
+        name = "#{User.find(self.user_id).email.split('@')[0]}-#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}"
+        self.name ||= name
     end
 end
