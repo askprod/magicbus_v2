@@ -44,4 +44,8 @@ class ApplicationController < ActionController::Base
             end
         end
     end
+
+    def active_journey
+        Journey.find_by(status: true).present?
+    end
 end

@@ -13,12 +13,14 @@ Rails.application.routes.draw do
     post 'promo_code', to: 'cart#check_promo_code'
     delete 'promo_code', to: 'cart#destroy_promo_code'
 
-    get 'travel/find_city_ids/:id' => 'travel#find_city_ids'
-    get 'travel/sort-trips-country/:id' => 'travel#sort_trips_country'
-    get 'travel/sort-trips-date/:id' => 'travel#sort_trips_date'
-    get 'travel/sort-trips-theme/:id' => 'travel#sort_trips_theme'
+    get 'travel/sort-trips-country/:id' => 'trips#sort_trips_country'
+    get 'travel/sort-trips-date/:id' => 'trips#sort_trips_date'
+    get 'travel/sort-trips-theme/:id' => 'trips#sort_trips_theme'
 
-    resources :trips, :path => 'travel'
+    resources :trips, :path => 'travel' do
+      post 'add_to_cart', on: :collection
+      post 'remove_from_cart', on: :collection
+    end
     resources :travellers
     resources :places, :path => 'share'
     resources :orders

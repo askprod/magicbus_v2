@@ -1,0 +1,35 @@
+<div id="trip<%= trip.id %>" class="my-2" style="background-image: url('<%= rails_blob_url(trip.picture)%>'); background-size: cover; background-position: center;">
+    <div class="text-block-cart adventpro py-3">
+
+        <div class="row text-center justify-content-center">
+            <div class="col-3 my-auto">
+                <p>Week <%= trip.week %></p>
+                <p class="small"><%= trip.name %></p>
+            </div>
+
+            <div class="col-3 my-auto">
+                <p class="small">Departure<p> 
+                <p><%= departure_city(trip) %></p> 
+                <p><%= trip.departure_date %></p>
+            </div>
+
+            <div class="col-3 my-auto">
+                <p class="small">Arrival</p> 
+                <p><%= arrival_city(trip) %></p> 
+                <p><%= trip.arrival_date %></p>
+            </div>
+
+            <div class="col-3 my-auto">
+                <p><%= trip.price %>€</p>
+                <p class="small">per traveller</p>
+            </div>
+        </div>
+
+        <div class="row text-center justify-content-center py-2">
+            <div class="col my-auto">
+                <%= button_to "Delete", {:controller => "trips", :action => "remove_from_cart", :trip_id => trip.id}, {class: "btn btn-danger", remote: true} %>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -11,3 +11,11 @@ User.create!(
             password:"adminpassword123*", 
             terms_and_conditions: true, admin: true
             )
+
+Journey.create!(status: true)
+
+themes = ["Mountain", "Sea", "Coast", "Forest", "Woodland", "Jungle"]
+
+themes.each do |theme_name|
+    Theme.create!(name: theme_name)
+end

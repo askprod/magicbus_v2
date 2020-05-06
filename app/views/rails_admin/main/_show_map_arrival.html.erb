@@ -1,0 +1,25 @@
+<%- field = local_assigns[:field] %>
+<div class="ra-google-map-container" id="google_maps_arrival" style="width:100%; min-height:350px"></div>
+
+<script type="text/javascript">
+
+  showMapArrival();
+
+  var map = {};
+  var markers;
+
+  function showMapArrival() {
+    var myOptions = {
+      zoom: 15,
+      center: new google.maps.LatLng(<%= field.value['location']['latitude'] %>, <%= field.value['location']['longitude'] %>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: false
+    };
+    map = new google.maps.Map(document.getElementById("google_maps_arrival"), myOptions);
+
+    new google.maps.Marker({
+      position: new google.maps.LatLng(<%= field.value['location']['latitude'] %>, <%= field.value['location']['longitude'] %>),
+      map: map
+    });
+  }
+</script>

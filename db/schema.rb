@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_132022) do
+ActiveRecord::Schema.define(version: 2020_05_06_074809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_132022) do
   end
 
   create_table "journeys", force: :cascade do |t|
+    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -119,6 +120,13 @@ ActiveRecord::Schema.define(version: 2020_05_04_132022) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "themes_trips", id: false, force: :cascade do |t|
+    t.bigint "theme_id", null: false
+    t.bigint "trip_id", null: false
+    t.index ["theme_id", "trip_id"], name: "index_themes_trips_on_theme_id_and_trip_id"
+    t.index ["trip_id", "theme_id"], name: "index_themes_trips_on_trip_id_and_theme_id"
+  end
+
   create_table "travellers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -135,14 +143,17 @@ ActiveRecord::Schema.define(version: 2020_05_04_132022) do
   create_table "trips", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "arrival_location"
-    t.string "departure_location"
+    t.jsonb "arrival_location"
+    t.jsonb "departure_location"
     t.date "departure_date"
     t.date "arrival_date"
     t.integer "price"
     t.integer "week"
+    t.time "meetup_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "journey_id"
+    t.index ["journey_id"], name: "index_trips_on_journey_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -160,4 +171,5 @@ ActiveRecord::Schema.define(version: 2020_05_04_132022) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "places", "users"
+  add_foreign_key "trips", "journeys"
 end

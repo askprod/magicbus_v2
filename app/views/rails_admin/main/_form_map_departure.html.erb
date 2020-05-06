@@ -1,0 +1,83 @@
+<%= form.send :text_field, nil, name:'_search', id: "trip_departure_address_search", class: 'form-control', style: 'width: 100%; border-radius: 0;', value: '' %>
+<div class="ra-google-map-container" id="trip_departure_address" style="width:100%; min-height:350px"></div>
+<%= form.send :hidden_field, field.method_name, id: "trip_departure_location", value: form.object.departure_location.to_json %>
+
+<script type="text/javascript">
+
+  initMapDeparture();
+  
+  var map_departure;
+  var markers_departure;
+  
+  function initMapDeparture() {
+    markers_departure = [];
+    var myOptions = {
+      zoom: 4,
+      center: new google.maps.LatLng(48.866667, 2.333333),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: false
+    };
+    map_departure = new google.maps.Map(document.getElementById("trip_departure_address"), myOptions);
+    document.getElementById("trip_departure_address_search").value = '';
+    initializeAutocomplete('trip_departure_address_search');
+    function initializeAutocomplete(id) {
+      var element = document.getElementById(id);
+      if (element) {
+        var autocomplete_departure = new google.maps.places.Autocomplete(element, {types: ['geocode']});
+        google.maps.event.addListener(autocomplete_departure, 'place_changed', onPlaceChangedDeparture);
+      }
+    }
+    updateMarkerDeparture();
+  }
+
+  function onPlaceChangedDeparture() {
+    cleanAllMarkersDeparture();
+    var final_datas = {}
+    var place = this.getPlace();
+
+    if (place.length == 0) {
+      return;
+    }
+
+    var location = place.geometry.location;
+    final_datas.location = {
+      latitude: location.lat(),
+      longitude: location.lng()
+    };
+    final_datas.formatted_address = place.formatted_address;
+    for (var i in place.address_components) {
+      var component = place.address_components[i];
+      for (var j in component.types) {
+        final_datas[component.types[j]] = component.long_name;
+      }
+    }
+    document.getElementById("trip_departure_location").value = JSON.stringify(final_datas);
+    updateMarkerDeparture();
+  }
+
+  function updateMarkerDeparture() {
+    if (document.getElementById("trip_departure_location").value.length > 10) {
+      var json = JSON.parse(document.getElementById("trip_departure_location").value);
+      if (json.location) {
+        var marker_departure = new google.maps.Marker({
+          position: new google.maps.LatLng(json.location.latitude, json.location.longitude),
+          map: map_departure,
+          animation: google.maps.Animation.BOUNCE,
+        });
+        markers_departure.push(marker_departure);
+        map_departure.setCenter(new google.maps.LatLng(json.location.latitude, json.location.longitude));
+        map_departure.setZoom(15);
+
+        if(document.getElementById("trip_departure_address_search").value.length == 0){
+          document.getElementById("trip_departure_address_search").value = json.formatted_address;
+        }
+      }
+    }
+  }
+
+  function cleanAllMarkersDeparture() {
+    for (var i = 0; i < markers_departure.length; i++) {
+      markers_departure[i].setMap(null);
+    }
+  }
+</script>

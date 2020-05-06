@@ -1,24 +1,15 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
-  # GET /carts
-  # GET /carts.json
-  def index
-    @carts = Cart.all
-  end
-
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @current_cart_items = @cart.trips.order(:week)
   end
 
   # GET /carts/new
   def new
     @cart = Cart.new
-  end
-
-  # GET /carts/1/edit
-  def edit
   end
 
   # POST /carts

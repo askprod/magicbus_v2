@@ -1,0 +1,4 @@
+$('#cart').html("<%= escape_javascript(render(:partial => 'layouts/cart')).html_safe %>");
+$('#my-cart-counter').html("<%= escape_javascript(render(:partial => 'layouts/cart-counter')).html_safe %>");
+$("#trips-sort").html("<%= escape_javascript(render partial: 'trips', locals: { trips: @trips } ) %>"); 
+$("#trip<%= @ajax_trip %>").fadeIn("slow");

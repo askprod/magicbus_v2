@@ -1,0 +1,2 @@
+$("#trips-sort").html("<%= escape_javascript(render partial: 'trips', locals: { trips: @sort_by_dates } ) %>"); 
+$("#dates-sort").html("<%= escape_javascript(render partial: 'dates_sort') %>"); 

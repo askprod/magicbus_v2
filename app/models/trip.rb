@@ -8,6 +8,6 @@ class Trip < ApplicationRecord
     has_many :carts, through: :cart_trips
 
     validates :picture, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..3.megabytes }
-    validates :price, :themes,  :arrival_date, :departure_date, :departure_city, :arrival_city, :name, :description, :week, :meetup_time, :departure_address, :arrival_address, :picture, presence: true 
+    validates :price, :themes,  :arrival_date, :departure_date, :departure_location, :arrival_location, :name, :description, :week, :meetup_time, :picture, presence: true 
     validates_uniqueness_of :week, scope: :journey
 end

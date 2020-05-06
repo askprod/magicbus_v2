@@ -1,64 +1,96 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
-  # GET /trips
-  # GET /trips.json
   def index
-    @trips = Trip.all
+    @cart_items = CartTrip.where(cart_id: @cart.id)
+    @countries_list = Trip.all.pluck(:departure_location).map{|v|v['country']}.uniq.prepend("All")
+    @thematics_list = Theme.all.select{|v| v.trips.count > 0 == true}.map{|v| v.name}.prepend("All")
+    
+    if active_journey
+      @trips = Journey.find_by(status: true).trips.order(:week)
+    end
   end
 
-  # GET /trips/1
-  # GET /trips/1.json
-  def show
-  end
+  def add_to_cart
+    #For js render
+    @ajax_trip = Trip.find(params[:trip_id]).id
 
-  # GET /trips/new
-  def new
-    @trip = Trip.new
-  end
+    @trip = Trip.find(params[:trip_id])
+    @cart_items = CartTrip.where(cart_id: @cart.id)
 
-  # GET /trips/1/edit
-  def edit
-  end
-
-  # POST /trips
-  # POST /trips.json
-  def create
-    @trip = Trip.new(trip_params)
+    new_cart_item = CartTrip.create!(cart_id: @cart.id, trip_id:(params[:trip_id]))
+    new_cart_item.save
 
     respond_to do |format|
-      if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
+      format.js {render layout: false}
+      format.html{redirect_to travel_index_path}
+    end
+  end
+
+  def remove_from_cart
+    #For js render
+    @ajax_trip = Trip.find(params[:trip_id]).id
+    
+    @trip = Trip.find(params[:trip_id])
+    @trips = Journey.find_by(status: true).trips.order(:week)
+    @cart_items = CartTrip.where(cart_id: @cart.id)
+
+    find_cart_item = CartTrip.where(cart_id: @cart.id, trip_id: (params[:trip_id]))
+    find_cart_item.delete_all
+
+    respond_to do |format|
+        format.js
+        format.html{redirect_to cart_path(@cart)}
+    end
+  end
+
+  def sort_trips_country
+    if params[:id] == "All"
+      @sort_by_countries = Journey.find_by(status: true).trips.order(:week)
+    else
+      country = params[:id]
+      @sort_by_countries = Trip.where("departure_location->>'country' = ?", "#{country}").order(:week)
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def sort_trips_theme
+    if params[:id] == "All"
+      @sort_by_themes = Journey.find_by(status: true).trips.order(:week)
+    else
+      theme = Theme.find_by(name: params[:id]).id
+      @sort_by_themes = Trip.joins(:themes).where(themes: {id: theme})
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def sort_trips_date
+      if params[:id] == "reset"
+        @sort_by_dates = Journey.find_by(status: true).trips.order(:week)
+
+        respond_to do |format|
+          format.js { render "sort_trips_reset.js.erb" }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+        start_date = params[:id].split('+').first
+        end_date = params[:id].split('+').last
 
-  # PATCH/PUT /trips/1
-  # PATCH/PUT /trips/1.json
-  def update
-    respond_to do |format|
-      if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
-      else
-        format.html { render :edit }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+        if start_date == 'undefined' || end_date == 'undefined'
+          @sort_by_dates = Journey.find_by(status: true).trips.order(:week)
+        else
+          @sort_by_dates = Trip.where("departure_date::date >= '#{start_date}' ").where("arrival_date::date <= '#{end_date}' ")
+        end
 
-  # DELETE /trips/1
-  # DELETE /trips/1.json
-  def destroy
-    @trip.destroy
-    respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+        respond_to do |format|
+            format.js
+          end
+      end
   end
 
   private

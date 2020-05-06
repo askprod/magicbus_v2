@@ -354,7 +354,9 @@ function initPlacesMap() {
       
         // Setup the click event listeners: simply set the map to Chicago.
         controlUI.addEventListener('click', function() {
-            infowindow.close();
+            if (infowindow) {
+                infowindow.close();
+            }
             map.fitBounds(bounds);
         });
       

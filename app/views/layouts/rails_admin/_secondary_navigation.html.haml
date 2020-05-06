@@ -1,0 +1,15 @@
+%ul.nav.navbar-nav.navbar-right.root_links
+  - actions(:root).select(&:show_in_navigation).each do |action|
+    %li= link_to t('Google Analytics'), "https://analytics.google.com/analytics/web/", target: "_blank"
+    %li= link_to t('Stripe Dashboard'), "https://dashboard.stripe.com/dashboard", target: "_blank"
+    %li= link_to t('Gmail'), "https://mail.google.com", target: "_blank"
+    %li= link_to t('Google API Console'), "https://console.cloud.google.com/apis", target: "_blank"
+    %li= link_to t('Heroku Dashboard'), "https://dashboard.heroku.com/apps", target: "_blank"
+    %li= link_to t('Mailjet Dashboard'), "https://app.mailjet.com/dashboard", target: "_blank"
+  - if main_app_root_path = (main_app.root_path rescue false)
+    %li= link_to t('Back to Website'), main_app_root_path, style: "font-weight: bold;"
+  - if _current_user
+    - if user_link = edit_user_link
+      %li.edit_user_root_link= user_link
+    - if logout_path.present?
+      %li= link_to content_tag('span', t('admin.misc.log_out'), class: 'label label-danger'), logout_path, method: logout_method

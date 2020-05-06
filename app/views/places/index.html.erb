@@ -20,7 +20,7 @@
 
     <% if user_signed_in? %>
         <div class="container-fluid text-center" style="background-color: #ffd700;">
-          <%= link_to "Share a Spot!", new_place_path, class:"btn btn-stylised", remote: true %>
+          <%= button_to "Share a Spot!", new_place_path, method: :get, class:"btn btn-stylised", remote: true %>
         </div>
     <% end %>
 
@@ -93,7 +93,7 @@
               <p class="small my-auto">Waiting for Approval</p>
             <% end %>
 
-            <%= link_to spot, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
+            <%= button_to spot, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
               <p class="mb-0" style="font-size: 10px; color: black;">X</p>
             <% end %>
           </div>
@@ -120,7 +120,7 @@
 
                 <% unless spot.approved_status == true %>
                   <div class="col px-1">
-                    <%= link_to edit_place_path(spot), remote: true, class: "btn btn-warning btn-block" do %>
+                    <%= button_to edit_place_path(spot), method: :get, remote: true, class: "btn btn-warning btn-block" do %>
                       <p class="mb-0">Edit</p>
                     <% end %>              
                   </div>
@@ -141,7 +141,7 @@
 
 <% if user_signed_in? %>
     <div class="container-fluid text-center" style="background-color: #ffd700;">
-      <%= link_to "Share a Spot!", new_place_path, class:"btn btn-stylised", remote: true %>
+      <%= button_to "Share a Spot!", new_place_path, method: :get, class:"btn btn-stylised", remote: true %>
     </div>
 <% end %>
 

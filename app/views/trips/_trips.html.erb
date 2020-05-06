@@ -1,0 +1,46 @@
+<% trips.each do |trip| %>
+    <% unless user_signed_in? && current_user.cart.trips.include?(trip) %>
+    <div class="trip-content" id="trip<%= trip.id %>">
+
+        <div class="circleBase type2"> 
+            <span class="small"><b><%= departure_city(trip)%></b></span>
+        </div>
+        
+        <div class="image-container-travel">
+
+            <div>
+                <%= image_tag(trip.picture, class: "trip-picture") %>
+            </div>
+
+            <div class="text-block-week adventpro">
+                <p>WEEK <%= trip.week %> : <%= trip.name %></p>
+                Departure: <%= departure_city(trip) %> - <%= trip.departure_date.strftime("%d.%m.%Y") %>
+                <br>
+                Arrival: <%= arrival_city(trip) %> - <%= trip.arrival_date.strftime("%d.%m.%Y") %>
+                <p>Seats Remaining: TO CODE</p>
+                <span class="trip-days"><%= (trip.arrival_date - trip.departure_date).to_i %> <span class="small">days</span></span>
+                <span class="trip-price"><%= trip.price %>€</span>                  
+            </div>
+
+            <button class="btn btn-stylised btn-details" type="button" data-toggle="collapse" data-target="#collapse<%= trip.week %>" aria-expanded="false" aria-controls="collapseExample">
+                More Details
+            </button>
+
+        </div>
+
+        <div class="contaier-fluid collapse" id="collapse<%= trip.week %>">
+            <div class="text-block-description">
+                <p><%= trip.description %></p>
+                    <% if user_signed_in? %>
+                        <div class="container text-center">                     
+                            <%= button_to "Add to Cart", {:controller => "trips", :action => "add_to_cart", :trip_id => trip.id}, {class: "btn btn-stylised", remote: true} %>
+                        </div>
+                    <% end %>
+            </div>
+        </div>
+
+    </div>
+    
+    <% end %>
+
+<% end %>
