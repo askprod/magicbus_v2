@@ -21,9 +21,12 @@ Rails.application.routes.draw do
       post 'add_to_cart', on: :collection
       post 'remove_from_cart', on: :collection
     end
+
+    resources :carts
     resources :travellers
     resources :places, :path => 'share'
     resources :orders
-    resources :carts
+    resources :food_restrictions
+    resources :food_diets
   end
 end

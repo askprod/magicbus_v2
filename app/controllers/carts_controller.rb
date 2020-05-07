@@ -5,41 +5,23 @@ class CartsController < ApplicationController
   # GET /carts/1.json
   def show
     @current_cart_items = @cart.trips.order(:week)
+    @travellers_count = @cart.travellers.count
+
+    @current_cart_items = @cart.trips.order(:week)
+
+    @insured_travellers = @cart.travellers.where(insurance_status: true).count
+    @insurance_price = @insured_travellers * 15
+
+    vegan_id = FoodDiet.find_by(name: "Vegan").id
+    @vegan_travellers = @cart.travellers.map{|traveller| traveller.food_diets.ids}.flatten.count(vegan_id)
+    @food_deduction =  @vegan_travellers * 30
+
+    @total_price = (total_price(@current_cart_items) * @travellers_count + @insurance_price) - @food_deduction
   end
 
   # GET /carts/new
   def new
     @cart = Cart.new
-  end
-
-  # POST /carts
-  # POST /carts.json
-  def create
-    @cart = Cart.new(cart_params)
-
-    respond_to do |format|
-      if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
-        format.json { render :show, status: :created, location: @cart }
-      else
-        format.html { render :new }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /carts/1
-  # PATCH/PUT /carts/1.json
-  def update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cart }
-      else
-        format.html { render :edit }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /carts/1
@@ -55,7 +37,7 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find(params[:id])
+      @cart = Cart.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

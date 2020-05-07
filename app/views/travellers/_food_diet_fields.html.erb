@@ -1,0 +1,30 @@
+<div class='nested-fields row no-gutters'>
+  <div class="field col-9">
+    <%= f.text_field :name, placeholder: "Describe your Diet", class: "form-control rounded border" %>
+  </div>
+  <div class="col-3">
+    <%= link_to_remove_association "Remove", f, class: "btn btn-stylised adventpro" %>
+  </div>
+</div>
+
+<script>
+$(function() {
+  $('#food_diets').on('cocoon:after-insert', function() {
+    check_to_hide_or_show_add_link();
+  });
+
+  $('#food_diets').on('cocoon:after-remove', function() {
+    check_to_hide_or_show_add_link();
+  });
+
+  check_to_hide_or_show_add_link();
+
+  function check_to_hide_or_show_add_link() {
+    if ($('#food_diets .nested-fields').length == 3) {
+      $('#food_diets .links').hide();
+    } else {
+      $('#food_diets .links').show();
+    }
+  }
+})
+</script>

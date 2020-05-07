@@ -1,17 +1,161 @@
-<%= form_with(model: traveller, local: true) do |form| %>
-  <% if traveller.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(traveller.errors.count, "error") %> prohibited this traveller from being saved:</h2>
+  <div class="card login-form">
+        
+    <h1 class="card-header adventpro yellow text-center display-5">Add a Traveller</h1>
 
-      <ul>
-      <% traveller.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="card-body">
+      <div id="close-button">
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+        <%= form_with(model: traveller, remote: true) do |form| %>
+
+          <div class="container">
+
+            <div class="col-sm text-center">
+              <%= form.label "Insurance", class: "h3" %>
+              <%= form.label :insurance, "Yes", value: "true" %>
+              <%= form.radio_button :insurance_status, true %>
+              <%= form.label :insurance, "No", value: "false" %>
+              <%= form.radio_button :insurance_status, false %>
+            </div>
+
+            <%= form.hidden_field :cart_id, :value => @current_user.cart.id %>
+
+            <div class="row">
+              <div class="col-sm form-group">
+                <%= form.label "First Name", class: "small" %>
+                <%= form.text_field :first_name, class: "rounded border" %>
+              </div>
+
+              <div class="col-sm form-group">
+                <%= form.label "Last Name", class: "small" %>
+                <%= form.text_field :last_name, class: "rounded border" %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <%= form.label "Email", class: "small" %>
+                <%= form.text_field :email_address, class: "rounded border" %>
+              </div>
+              
+              <div class="col-sm">
+                <%= form.label "Address", class: "small" %>
+                <%= form.text_field :address, class: "rounded border" %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <%= form.label "ZIP Code", class: "small" %>
+                <%= form.text_field :zip_code, class: "rounded border" %>  
+              </div>
+
+              <div class="col-sm">  
+                <%= form.label "Birth Date", class: "small" %>
+                <%= form.date_field :birth_date, class: "form-control rounded border" %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <%= form.label "Nationality", class: "small" %>
+                <%= form.select :nationality, @nationalities_list.collect {|p| p }, {include_blank: true}, class: "form-control rounded border" %>
+              </div>
+
+              <div class="col-sm">
+                <%= form.label "Phone", class: "small" %>
+                <%= form.telephone_field :phone_number, class: "form-control rounded border" %>
+              </div>
+            </div>
+
+            <br>
+
+            <p class="small">To help us organize meals during your trip, please fill in the next forms accordingly. We will take everything into account while cooking.<p>
+            <p class="small">Please note that in the case of Vegan diets, we will not provide meals throughout the duration of the trips.<p>
+            <p class="small">We will deduct 30€ per vegan traveller.</p>
+
+            <div class="row">
+            
+              <div class="col-sm-6 text-center">
+                <%= form.label "Food Restrictions", class: "small" %>
+                <%= form.select :food_restriction_ids, @food_restrictions_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
+
+                <div id='food_restrictions'>
+                  <%= form.fields_for :food_restrictions do |ff| %>
+                    <%= render 'food_restriction_fields', :f => ff %>
+                  <% end %>
+                  <div class='links' style='display: none;'>
+                    <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro" %>
+                  </div>
+                </div>
+
+              </div> 
+
+              <div class="col-sm-6 text-center">
+                <%= form.label "Food Diets", class: "small" %>
+                <%= form.select :food_diet_ids, @food_diets_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
+
+                <div id='food_diets'>
+                  <%= form.fields_for :food_diets do |ff| %>
+                    <%= render 'food_diet_fields', :f => ff %>
+                  <% end %>
+                  <div class='links' style='display: none;'>
+                    <%= link_to_add_association 'Add', form, :food_diets, class: "btn btn-stylised adventpro" %>
+                  </div>
+                </div>
+
+              </div> 
+
+            </div>
+
+            <br>
+
+            <div class="actions">
+              <%= form.submit "Save Traveller", class: "mb-3 btn btn-lg btn-stylised btn-block adventpro" %>
+            </div>
+          </div>
+
+    </div>
   </div>
+
 <% end %>
+
+<script>
+$( document ).ready(function() {
+    if ($("#traveller_food_diet_ids :selected").text() == 'Other') {
+        $('#food_diets .links').show();
+    }
+    else 
+      $('#food_diets .links').hide(); 
+      $('#food_diets .nested-fields').remove();
+});
+
+$( document ).ready(function() {
+    if ($("#traveller_food_restriction_ids :selected").text() == 'Other') {
+        $('#food_restrictions .links').show();
+    }
+    else 
+      $('#food_restrictions .links').hide(); 
+      $('#food_restrictions .nested-fields').remove();
+});
+
+$('#traveller_food_restriction_ids').change(function() {
+    if ($("#traveller_food_restriction_ids :selected").text() == 'Other') {
+        $('#food_restrictions .links').show();
+    }
+    else 
+      $('#food_restrictions .links').hide(); 
+      $('#food_restrictions .nested-fields').remove();
+});
+
+$('#traveller_food_diet_ids').change(function() {
+    if ($("#traveller_food_diet_ids :selected").text() == 'Other') {
+        $('#food_diets .links').show();
+    }
+    else 
+      $('#food_diets .links').hide(); 
+      $('#food_diets .nested-fields').remove();
+});
+</script>
+
+

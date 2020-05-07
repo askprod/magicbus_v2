@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_074809) do
+ActiveRecord::Schema.define(version: 2020_05_07_094136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,14 +63,25 @@ ActiveRecord::Schema.define(version: 2020_05_06_074809) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "diet_travellers", force: :cascade do |t|
+    t.bigint "traveller_id"
+    t.bigint "food_diet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_diet_id"], name: "index_diet_travellers_on_food_diet_id"
+    t.index ["traveller_id"], name: "index_diet_travellers_on_traveller_id"
+  end
+
   create_table "food_diets", force: :cascade do |t|
-    t.string "type"
+    t.boolean "approved_status", default: false
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "food_restrictions", force: :cascade do |t|
-    t.string "type"
+    t.boolean "approved_status", default: false
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,7 +106,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_074809) do
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "total_price"
-    t.boolean "payment_status"
+    t.boolean "payment_status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -112,6 +123,15 @@ ActiveRecord::Schema.define(version: 2020_05_06_074809) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_places_on_user_id"
+  end
+
+  create_table "restriction_travellers", force: :cascade do |t|
+    t.bigint "traveller_id"
+    t.bigint "food_restriction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_restriction_id"], name: "index_restriction_travellers_on_food_restriction_id"
+    t.index ["traveller_id"], name: "index_restriction_travellers_on_traveller_id"
   end
 
   create_table "themes", force: :cascade do |t|
@@ -131,11 +151,21 @@ ActiveRecord::Schema.define(version: 2020_05_06_074809) do
     t.string "first_name"
     t.string "last_name"
     t.string "email_address"
+    t.string "nationality"
     t.string "address"
     t.string "zip_code"
     t.date "birth_date"
     t.integer "phone_number"
     t.boolean "insurance_status"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_travellers_on_cart_id"
+  end
+
+  create_table "trip_travellers", force: :cascade do |t|
+    t.integer "trip_id"
+    t.integer "traveller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

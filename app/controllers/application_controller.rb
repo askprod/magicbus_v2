@@ -48,4 +48,12 @@ class ApplicationController < ActionController::Base
     def active_journey
         Journey.find_by(status: true).present?
     end
+
+    def total_price(items)
+        total = 0
+        items.each do |item|
+            total += item.price
+        end
+        return total
+    end
 end

@@ -1,5 +1,6 @@
 class TravellersController < ApplicationController
   before_action :set_traveller, only: [:show, :edit, :update, :destroy]
+  before_action :set_lists
 
   # GET /travellers
   # GET /travellers.json
@@ -28,10 +29,11 @@ class TravellersController < ApplicationController
 
     respond_to do |format|
       if @traveller.save
-        format.html { redirect_to @traveller, notice: 'Traveller was successfully created.' }
-        format.json { render :show, status: :created, location: @traveller }
+        format.js
+        flash[:notice] = "Traveller created successfully."
       else
-        format.html { render :new }
+        format.js { render :new }
+        flash.now[:alert] = @traveller.errors.full_messages.join(', ') if @traveller.errors.any?
         format.json { render json: @traveller.errors, status: :unprocessable_entity }
       end
     end
@@ -62,6 +64,13 @@ class TravellersController < ApplicationController
   end
 
   private
+
+    def set_lists
+      @nationalities_list = JSON.parse(File.read('app/assets/json/nationalities.json'))
+      @food_diets_list = FoodDiet.where(approved_status: true)
+      @food_restrictions_list = FoodRestriction.where(approved_status: true)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_traveller
       @traveller = Traveller.find(params[:id])
@@ -69,6 +78,6 @@ class TravellersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def traveller_params
-      params.fetch(:traveller, {})
+      params.require(:traveller).permit(:insurance_status, :cart_id, :first_name, :last_name, :address, :phone_number, :zip_code, :birth_date, :nationality, :email_address, :food_restriction_ids, :food_diet_ids,  food_restrictions_attributes: [:id, :name, :_destroy], food_diets_attributes: [:id, :name, :_destroy])
     end
 end

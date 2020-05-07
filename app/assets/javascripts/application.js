@@ -14,18 +14,15 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
-
 //= require moment
 // If you require timezone data (see moment-timezone-rails for additional file options)
 //= require moment-timezone-with-data
 //= require tempusdominus-bootstrap-4
-
 //= require activestorage
-//= require_tree .
+//= require cocoon
 //= require cookies_eu
-
-// Navbar scrolling animation
-
+//= require turbolinks
+//= require_tree .
 
 // Petite croix pour cacher fênetres AJAX de connection/inscription/edit
 $(document).on("click", "#close-button", function(){

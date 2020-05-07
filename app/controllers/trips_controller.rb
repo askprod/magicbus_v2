@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  after_action :delete_travellers_if_empty
 
   def index
     @cart_items = CartTrip.where(cart_id: @cart.id)
@@ -103,4 +104,10 @@ class TripsController < ApplicationController
     def trip_params
       params.fetch(:trip, {})
     end
+    
+    def delete_travellers_if_empty
+      if @cart.trips.empty?
+        @cart.travellers.destroy_all
+      end
+  end
 end

@@ -282,24 +282,6 @@ body#devise
     max-height: 600px;
 }
 
-.cart-stripe {
-  color: white;
-  text-align: center;
-  z-index: 5;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.87);
-  position: fixed;
-  float: right;
-  top: 10%;
-  right: 2%;
-  height: min-content;
-  width: 31%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  overflow: scroll;
-  max-height: 600px;
-}
-
 @media (max-width: 720px) {
   .cart {
     width: 90%;

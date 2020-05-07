@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @user_orders = User.find(1).orders
   end
 
   # GET /orders/1
@@ -69,6 +69,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.fetch(:order, {})
+      params.require(:order).permit(:total_price).merge(user_id: current_user.id)
     end
 end

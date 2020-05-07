@@ -3,7 +3,7 @@
   <% if @current_cart_items.count == 0 %>
 
   <div class="container-fluid top-margin">
-      <h1 class="text-center adventpro">Your Cart is empty! Please chose some trips on the <%= link_to "TRAVEL page", travel_index_path, class:"yellow" %></h1>
+      <h1 class="text-center adventpro">Your Cart is empty! Please chose some trips on the <%= link_to "TRAVEL page", trips_path, class:"yellow" %></h1>
   </div>
 
   <% else %>
@@ -11,10 +11,7 @@
   <div class="container-fluid top-margin">
     <div class="row">
 
-    
-
     <div class="col-sm-8">
-      <%= form_for(:order, :url => orders_path, :method => :post, :html=> {:id => 'my-form'})  do |form| %>
 
       <div class="container">
         <h2>The Trips you are booking for:</h2>
@@ -23,24 +20,24 @@
           <%= render partial: 'trips', :locals => { :trip => trip } %>
         <% end %>
       </div>
-
-      <% @cart.trips.each do |trip| %>
-        <%= form.hidden_field :trip_ids, multiple: true, value: trip.id %>
-      <% end %>
       
-      <%= form.hidden_field :total_price, value: @total_price %>
-      <%= form.hidden_field :promo_code, value: @current_promo_code%>
-
       <div class="container">
         <h2>Your Travellers:</h2>
-
+        Total Travellers: <%= @travellers_count %>
+          <%= button_to "Add Traveller", new_traveller_path, method: :get, remote: true %>
+        <% unless @cart.travellers.count == 0 %>
+          <% @cart.travellers.each do |traveller| %>
+            <div class="py-2">
+              <%= render "travellers/traveller_info", traveller: traveller %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
     <div class="col-sm-4">
+      <%= render "layouts/create_order" %>
     </div>
-
-      <% end %>
 
     </div>
   </div>
