@@ -61,6 +61,36 @@ class OrdersController < ApplicationController
     end
   end
 
+  def new_payment
+    @order = Order.find(params[:order_id])
+    
+    @payment_intent = Stripe::PaymentIntent.create(
+      amount: @order.total_price * 100,
+      currency: 'eur',
+      payment_method_types: params['card'],
+      metadata: {integration_check: 'accept_a_payment'},
+  )
+  end
+
+  def create_payment
+    @order = Order.find(params[:order_id])
+    @payment_intent = Stripe::PaymentIntent.retrieve(params[:payment_intent_id])
+
+    if @payment_intent.status == "succeeded"
+        charge = @payment_intent.charges.data.first
+        card = charge.payment_method_details.card
+
+        @order.update!(payment_status: true)
+        @order.save
+
+        flash[:alert] = "Your Order has been purchased."
+        redirect_to orders_path
+    else
+        flash[:alert] = "Your Order was unsuccessful. Please try again."
+        redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

@@ -1384,3 +1384,93 @@ input[type=file][readonly] {
   pointer-events: none;
 /* touch-action: none; */
 }
+
+.group-stripe {
+  background: white;
+  box-shadow: 0 1px 3px 0 rgba(93, 89, 49, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#payment-form label {
+  color: rgb(170, 170, 136);
+  font-weight: 300;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+#payment-form .group-stripe label:not(:last-child) {
+  border-bottom: 1px solid #F0F5FA;
+}
+
+#payment-form label > span {
+  width: 35%;
+  text-align: right;
+  padding-right: 15px;
+}
+
+#payment-form .field {
+  background: transparent;
+  font-weight: 300;
+  border: 0;
+  color: #31325F;
+  outline: none;
+  flex: 1;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: text;
+}
+
+#payment-form .field::placeholder {
+  color: #CFD7E0;
+}
+
+.stripe-button {
+  background: rgb(233, 213, 32);
+  color: white;
+  box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  border: 0;
+  font-size: 15px;
+  font-weight: 400;
+  width: 50%;
+  height: 40px;
+  line-height: 38px;
+  outline: none;
+}
+
+#payment-stripe button:focus {
+  background: #555ABF;
+}
+
+#payment-stripe button:active {
+  background: #43458B;
+}
+
+.outcome {
+  float: left;
+  width: 100%;
+  padding-top: 8px;
+  min-height: 24px;
+  text-align: center;
+}
+
+.success.visible,
+#card-errors.visible {
+  display: inline;
+}
+
+div#card-errors {
+  display: none;
+}
+
+.success {
+  color: #666EE8;
+}
+
+.success .token {
+  font-weight: 500;
+  font-size: 13px;
+}

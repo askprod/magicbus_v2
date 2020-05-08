@@ -89,3 +89,5 @@ gem "rails_admin", "~> 2.0"
 
 
 gem "cocoon", "~> 1.2"
+
+gem "stripe", "~> 5.21"

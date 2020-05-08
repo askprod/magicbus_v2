@@ -22,10 +22,14 @@ Rails.application.routes.draw do
       post 'remove_from_cart', on: :collection
     end
 
+    resources :orders do
+      get 'new_payment', to: 'orders#new_payment'
+      post 'new_payment', to: 'orders#create_payment'
+    end
+
     resources :carts
     resources :travellers
     resources :places, :path => 'share'
-    resources :orders
     resources :food_restrictions
     resources :food_diets
   end

@@ -23,6 +23,15 @@
       <div id="validatecart">
         <%= form_for(:order, :url => orders_path, :method => :post)  do |f| %>
           <%= f.hidden_field :total_price, value: @total_price %>
+
+          <% @cart.travellers.each do |traveller| %>
+            <%= f.hidden_field :traveller_ids, multiple: true, value: traveller.id %>
+          <% end %>
+
+          <% @cart.trips.each do |trip| %>
+            <%= f.hidden_field :trip_ids, multiple: true, value: trip.id %>
+          <% end %>
+
           <%= f.submit "Create Order", class: "btn btn-stylised btn-block py-3" %>
         <% end %>
       </div>

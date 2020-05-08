@@ -16,7 +16,13 @@
     <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials[:google_maps_api_key]}&libraries=places" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script> 
 
-    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= javascript_include_tag "https://js.stripe.com/v3/" %>
+
+    <% if Rails.env == 'development' %>
+        <%= tag :meta, name: "stripe-public-key", content: Rails.application.credentials.stripe_test[:publishable_key] %>
+    <% else %>
+        <%= tag :meta, name: "stripe-public-key", content: Rails.application.credentials.stripe_production[:publishable_key] %>
+    <% end %>
 
     <%= yield(:head_tags) %>
 

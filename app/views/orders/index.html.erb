@@ -3,7 +3,7 @@
 <h1>Orders</h1>
 
       <% @user_orders.each do |order| %>
-        <div class="card col-lg-2 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+        <div class="card col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
           
           <div class="card-header py-1">
             
@@ -38,7 +38,13 @@
             </div>
           </div>
 
+          <div class="row h-100 no-gutters my-auto">
+            <%= link_to "Pay", order_new_payment_path(order), remote: true %>
+          </div>
+
         </div>
+
+      </div>
       <% end %>
 <br>
 
