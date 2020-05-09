@@ -28,6 +28,11 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+
+        params[:order][:traveller_ids].each do |traveller|
+          Traveller.find(traveller).update!(cart_id: nil, order_id: @order.id)
+        end
+
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -99,6 +104,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:total_price).merge(user_id: current_user.id)
+      params.require(:order).permit(:total_price, :traveller_ids, :trip_ids).merge(user_id: current_user.id)
     end
 end

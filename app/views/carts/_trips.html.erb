@@ -10,13 +10,13 @@
             <div class="col-3 my-auto">
                 <p class="small">Departure<p> 
                 <p><%= departure_city(trip) %></p> 
-                <p><%= trip.departure_date %></p>
+                <p><%= trip.departure_date.to_formatted_s(:long_ordinal) %></p>
             </div>
 
             <div class="col-3 my-auto">
                 <p class="small">Arrival</p> 
                 <p><%= arrival_city(trip) %></p> 
-                <p><%= trip.arrival_date %></p>
+                <p><%= trip.arrival_date.to_formatted_s(:long_ordinal) %></p>
             </div>
 
             <div class="col-3 my-auto">
@@ -25,9 +25,9 @@
             </div>
         </div>
 
-        <div class="row text-center justify-content-center py-2">
+        <div class="row text-center justify-content-center py-1">
             <div class="col my-auto">
-                <%= button_to "Delete", {:controller => "trips", :action => "remove_from_cart", :trip_id => trip.id}, {class: "btn btn-danger", remote: true} %>
+                <%= button_to "Remove from Cart", {:controller => "trips", :action => "remove_from_cart", :trip_id => trip.id}, {class: "btn btn-danger", remote: true} %>
             </div>
         </div>
 

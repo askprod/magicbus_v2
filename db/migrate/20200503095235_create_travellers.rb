@@ -11,6 +11,7 @@ class CreateTravellers < ActiveRecord::Migration[5.2]
         t.integer :phone_number
         t.boolean :insurance_status
         t.references :cart, index: true
+        t.references :order, index: true
       t.timestamps
     end
   end

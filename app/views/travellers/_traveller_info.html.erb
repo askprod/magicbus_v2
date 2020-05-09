@@ -1,68 +1,36 @@
 <div class="traveller-info">
-  
-  <div class="row text-center no-gutters p-2">
-
-    <div class="col-sm-3 my-auto">
-      <p><b><%= traveller.first_name %> <%= traveller.last_name %></b></p>
-      <p class="small"><%= traveller.email_address %></p>
-    </div>
-
-    <div class="col-sm-9 my-auto py-3">
-      <div class="row no-gutters">
-
-      <div class="col">
-        <p class="small">Insurance:</p>
-        <% if traveller.insurance_status == true %>
-          <p>Yes</p>
-        <% else %>
-          <p>No</p>
-        <% end %>
-      </div>
-
-      <div class="col">
-        <p class="small">Special Diet:</p>
-        <% if traveller.food_diets.nil? %>
-          <p>None</p>
-        <% else %>
-          <p><%= traveller.food_diets.name %></p>
-        <% end %> 
-      </div>
-
-      <div class="col">
-        <p class="small">Food Restriction:</p>
-        <% if traveller.food_restrictions.nil? %>
-          <p>None</p>
-        <% else %>
-          <p><%= traveller.food_restrictions.name %></p>
-        <% end %>
-      </div>
-
-      <div class="col my-auto">
-        <%= fa_icon "check lg" %>
-      </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row text-center no-gutters py-2">
-    <div class="col px-2">
-      <%= link_to edit_traveller_path(traveller), remote: true, class: "btn btn-primary btn-block" do %>
-        <p>Edit</p>
+  <div class="card m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+    
+    <div class="card-header py-1">
+      <p class="small my-auto"><%= traveller.first_name %>, <%= traveller.last_name %></p>
+      <%= button_to traveller, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
+        <p class="mb-0" style="font-size: 10px; color: black;">X</p>
       <% end %>
     </div>
 
-    <div class="col px-2">
-      <p class="btn btn-info btn-block">More Info</p>
+    <div class="row h-100 no-gutters my-auto">
+      <div class="col-12 my-auto py-2">
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-4 px-1">
+            <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              More Info
+            </button>
+          </div>
+
+          <div class="col-4 px-1">
+            <%= button_to edit_traveller_path(traveller), method: :get, remote: true, class: "btn btn-warning btn-block" do %>
+              <p class="mb-0">Edit</p>
+            <% end %>              
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="col px-2">
-      <%= link_to traveller, method: :delete, class: "btn btn-danger btn-block" do %>
-        <p>Delete</p>
-      <% end %>
+    <div class="collapse" id="collapseExample">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
     </div>
+    
   </div>
-
 </div>
-

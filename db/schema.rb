@@ -158,9 +158,11 @@ ActiveRecord::Schema.define(version: 2020_05_07_094136) do
     t.integer "phone_number"
     t.boolean "insurance_status"
     t.bigint "cart_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_travellers_on_cart_id"
+    t.index ["order_id"], name: "index_travellers_on_order_id"
   end
 
   create_table "trip_travellers", force: :cascade do |t|

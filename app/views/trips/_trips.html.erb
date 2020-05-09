@@ -14,10 +14,10 @@
 
             <div class="text-block-week adventpro">
                 <p>WEEK <%= trip.week %> : <%= trip.name %></p>
-                Departure: <%= departure_city(trip) %> - <%= trip.departure_date.strftime("%d.%m.%Y") %>
+                Departure: <%= departure_city(trip) %> - <%= trip.departure_date.to_formatted_s(:long_ordinal) %>
                 <br>
-                Arrival: <%= arrival_city(trip) %> - <%= trip.arrival_date.strftime("%d.%m.%Y") %>
-                <p>Seats Remaining: TO CODE</p>
+                Arrival: <%= arrival_city(trip) %> - <%= trip.arrival_date.to_formatted_s(:long_ordinal) %>
+                <p>Seats Remaining: <%= trip.remaining_seats_count %></p>
                 <span class="trip-days"><%= (trip.arrival_date - trip.departure_date).to_i %> <span class="small">days</span></span>
                 <span class="trip-price"><%= trip.price %>€</span>                  
             </div>
@@ -31,9 +31,17 @@
         <div class="contaier-fluid collapse" id="collapse<%= trip.week %>">
             <div class="text-block-description">
                 <p><%= trip.description %></p>
-                    <% if user_signed_in? %>
+                    <% if user_signed_in? && trip.remaining_seats_count == 0 %>
+                        <div class="container text-center">                     
+                            <p class="btn btn-stylised">This Trip is full!</p>
+                        </div>
+                    <% elsif user_signed_in? %>
                         <div class="container text-center">                     
                             <%= button_to "Add to Cart", {:controller => "trips", :action => "add_to_cart", :trip_id => trip.id}, {class: "btn btn-stylised", remote: true} %>
+                        </div>
+                    <% else %>
+                        <div class="container text-center">                     
+                            <%= link_to "Book this Trip", user_session_path, class: "btn btn-stylised", remote: true %>
                         </div>
                     <% end %>
             </div>

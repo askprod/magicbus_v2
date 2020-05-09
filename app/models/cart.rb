@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
     friendly_id :name, use: :slugged
 
     belongs_to :user
-    has_many :travellers
+    has_many :travellers, dependent: :destroy
     has_many :cart_trips
     has_many :trips, :through => :cart_trips
 

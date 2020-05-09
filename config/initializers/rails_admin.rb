@@ -1,6 +1,6 @@
 RailsAdmin.config do |config|
 
-  config.excluded_models = ["TravelledPlace", "TravelTheme"]
+  config.excluded_models = ["TravelTheme", "CartTrip", "DietTraveller", "RestrictionTraveller"]
 
   config.model 'FoodDiet' do
     navigation_label "Data"
@@ -10,12 +10,6 @@ RailsAdmin.config do |config|
   config.model 'FoodRestriction' do
     navigation_label "Data"
     label "Food Restrictions"
-  end
-
-  config.model 'CartTrip' do
-    navigation_label "Users"
-    parent Cart
-    label "Cart Trips"
   end
 
   config.model 'Cart' do
@@ -128,8 +122,7 @@ RailsAdmin.config do |config|
       field :id
       field :total_price
       field :created_at
-      field :number_of_travellers
-      field :trips
+      field :travellers
     end
   end
 
@@ -213,10 +206,7 @@ RailsAdmin.config do |config|
 
   config.actions do
 
-    dashboard do
-      except ['ActiveStorage::Blob']    
-    end          
-          
+    dashboard          
     index                     
     new
     export
