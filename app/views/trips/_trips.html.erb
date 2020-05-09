@@ -31,7 +31,7 @@
         <div class="contaier-fluid collapse" id="collapse<%= trip.week %>">
             <div class="text-block-description">
                 <p><%= trip.description %></p>
-                    <% if user_signed_in? && trip.remaining_seats_count == 0 %>
+                    <% if user_signed_in? && trip.is_full? %>
                         <div class="container text-center">                     
                             <p class="btn btn-stylised">This Trip is full!</p>
                         </div>

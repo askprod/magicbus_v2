@@ -1,10 +1,11 @@
 <div class='nested-fields row no-gutters'>
-  <div class="field col-9">
+  <div class="field form-group col-11 my-1">
     <%= f.text_field :name, placeholder: "Describe your Diet", class: "form-control rounded border" %>
   </div>
-  <div class="col-3">
-    <%= link_to_remove_association "Remove", f, class: "btn btn-stylised adventpro" %>
-  </div>
+  <div class="col-1">
+    <%= link_to_remove_association f, class: "btn btn-stylised adventpro my-1" do %>
+      <%= fa_icon "times" %>
+    <% end %>  </div>
 </div>
 
 <script>

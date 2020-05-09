@@ -23,46 +23,46 @@
             <div class="row">
               <div class="col-sm form-group">
                 <%= form.label "First Name", class: "small" %>
-                <%= form.text_field :first_name, class: "rounded border" %>
+                <%= form.text_field :first_name, class: "form-control rounded border" %>
               </div>
 
               <div class="col-sm form-group">
                 <%= form.label "Last Name", class: "small" %>
-                <%= form.text_field :last_name, class: "rounded border" %>
+                <%= form.text_field :last_name, class: "form-control rounded border" %>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-sm">
+              <div class="col-sm form-group">
                 <%= form.label "Email", class: "small" %>
-                <%= form.text_field :email_address, class: "rounded border" %>
+                <%= form.text_field :email_address, class: "form-control rounded border" %>
               </div>
               
-              <div class="col-sm">
+              <div class="col-sm form-group">
                 <%= form.label "Address", class: "small" %>
-                <%= form.text_field :address, class: "rounded border" %>
+                <%= form.text_field :address, class: "form-control rounded border" %>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-sm">
+              <div class="col-sm form-group">
                 <%= form.label "ZIP Code", class: "small" %>
-                <%= form.text_field :zip_code, class: "rounded border" %>  
+                <%= form.text_field :zip_code, class: "form-control rounded border" %>  
               </div>
 
-              <div class="col-sm">  
+              <div class="col-sm form-group">  
                 <%= form.label "Birth Date", class: "small" %>
                 <%= form.date_field :birth_date, class: "form-control rounded border" %>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-sm">
+              <div class="col-sm form-group">
                 <%= form.label "Nationality", class: "small" %>
                 <%= form.select :nationality, @nationalities_list.collect {|p| p }, {include_blank: true}, class: "form-control rounded border" %>
               </div>
 
-              <div class="col-sm">
+              <div class="col-sm form-group">
                 <%= form.label "Phone", class: "small" %>
                 <%= form.telephone_field :phone_number, class: "form-control rounded border" %>
               </div>
@@ -85,7 +85,7 @@
                     <%= render 'food_restriction_fields', :f => ff %>
                   <% end %>
                   <div class='links' style='display: none;'>
-                    <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro" %>
+                    <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro my-2" %>
                   </div>
                 </div>
 
@@ -100,7 +100,7 @@
                     <%= render 'food_diet_fields', :f => ff %>
                   <% end %>
                   <div class='links' style='display: none;'>
-                    <%= link_to_add_association 'Add', form, :food_diets, class: "btn btn-stylised adventpro" %>
+                    <%= link_to_add_association 'Add', form, :food_diets, class: "btn btn-stylised adventpro my-2" %>
                   </div>
                 </div>
 

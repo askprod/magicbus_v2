@@ -6,11 +6,11 @@
     <div id="close-button"></div>
 
     <%= order.total_price %>
-    <%= order.trips.each do |trip| %>
+    <% order.trips.each do |trip| %>
         <% trip.week %>
     <% end %>
-    <%= order.travellers.each do |traveller| %>
-        <%= traveller.first_name %> <%= traveller.last name %>
+    <% order.travellers.each do |traveller| %>
+        <%= traveller.first_name %> <%= traveller.last_name %>
     <% end %>
 
     <%= form_with url: order_new_payment_path(order), local: true, id: "payment-form", data: { payment_intent_id: @payment_intent.client_secret } do |form| %>
@@ -71,7 +71,7 @@
 
         <div class="container-fluid text-center">
             <%= form.hidden_field :payment_intent_id, value: @payment_intent.id %>
-            <button type="submit" class="stripe-button">Submit Payment</button>  
+            <button type="submit" class="stripe-button"><b>Pay <%= order.total_price %>€</b></button>  
         </div>
     <% end %>
     

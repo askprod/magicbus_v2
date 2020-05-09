@@ -27,7 +27,7 @@
 
         <div class="row text-center justify-content-center py-1">
             <div class="col my-auto">
-                <%= button_to "Remove from Cart", {:controller => "trips", :action => "remove_from_cart", :trip_id => trip.id}, {class: "btn btn-danger", remote: true} %>
+                <%= button_to "Remove from Cart", {:controller => "trips", :action => "remove_from_cart", :trip_id => trip.id, :response_type => "html"}, {class: "btn btn-danger", remote: true} %>
             </div>
         </div>
 

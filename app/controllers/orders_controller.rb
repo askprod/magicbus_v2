@@ -26,17 +26,18 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
 
+    if @order.valid?
+      params[:order][:traveller_ids].each do |traveller|
+        Traveller.find(traveller).update!(cart_id: nil, order_id: @order.id)
+      end
+    end
+
     respond_to do |format|
       if @order.save
-
-        params[:order][:traveller_ids].each do |traveller|
-          Traveller.find(traveller).update!(cart_id: nil, order_id: @order.id)
-        end
-
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { redirect_to @cart, alert: @order.errors.full_messages.join(', ') }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -104,6 +105,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:total_price, :traveller_ids, :trip_ids).merge(user_id: current_user.id)
+      params.require(:order).permit(:total_price, traveller_ids: [], trip_ids: []).merge(user_id: current_user.id)
     end
 end

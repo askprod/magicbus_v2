@@ -42,9 +42,10 @@
 
     <%= yield %>
 
-    <% unless current_page?(root_path) %>
-      <%= render "layouts/footer" %>
-    <% end %>
-
   </body>
+
+  <% unless current_page?(root_path) %>
+    <%= render "layouts/footer" %>
+  <% end %>
+
 </html>

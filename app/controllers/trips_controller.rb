@@ -39,9 +39,14 @@ class TripsController < ApplicationController
     find_cart_item = CartTrip.where(cart_id: @cart.id, trip_id: (params[:trip_id]))
     find_cart_item.delete_all
 
-    respond_to do |format|
+    if params[:response_type] == "html"
+      respond_to do |format|
+          format.html{redirect_to cart_path(@cart)}
+      end
+    else
+      respond_to do |format|
         format.js
-        format.html{redirect_to cart_path(@cart)}
+      end
     end
   end
 

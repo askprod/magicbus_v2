@@ -1,6 +1,6 @@
 <div class="card login-form">
       
-  <h1 class="card-header adventpro yellow text-center display-5">Add a Spot</h1>
+  <h1 class="card-header adventpro yellow text-center display-5">Share a Spot</h1>
 
   <div class="card-body">
     <div id="close-button">
@@ -16,7 +16,7 @@
 
 <div class="col-lg-4 my-auto">
   
-  <input id="maps-search-input" class="controls form-control border border-warning rounded" type="text" placeholder="Search Map. ex: 'Paris'">
+  <input id="maps-search-input" class="controls form-control border border-warning rounded mt-3" type="text" placeholder="Search Map. ex: 'Paris'">
 
   <div class="form-group m-0 pt-3">
     <%= form.label :secret_status, "Is this a Secret Spot?", class: "small" %>
@@ -64,20 +64,14 @@
     </div>
   </div>
 
-  <div class="hidden">
-    <div class="col">
-      <%= form.label :latitude %>
-      <%= form.text_field :latitude, class: "form-control" %>
-    </div>
-    <div class="col">
-      <%= form.label :longitude %>
-      <%= form.text_field :longitude, class: "form-control" %>
-    </div>
+  <div class="d-none">
+    <%= form.text_field :latitude, class: "form-control" %>
+    <%= form.text_field :longitude, class: "form-control" %>
   </div>
 
   <p style="font-size: 10px;">Don't forget to place your spot on the map!</p>
   
-  <div class="">
+  <div class="mb-3">
     <%= form.submit "Share with MagicBus", class: "btn btn-stylised shadow py-3", id:"spot-submit" %>
   </div>
 

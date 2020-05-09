@@ -206,7 +206,9 @@ RailsAdmin.config do |config|
 
   config.actions do
 
-    dashboard          
+    dashboard
+    require_relative "#{Rails.root}/lib/rails_admin/config/actions/dashboard.rb"
+          
     index                     
     new
     export
@@ -214,7 +216,7 @@ RailsAdmin.config do |config|
     show
     edit
     delete
-    show_in_app
+    # show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
