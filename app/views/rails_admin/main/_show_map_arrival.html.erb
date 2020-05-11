@@ -1,11 +1,10 @@
-<%- field = local_assigns[:field] %>
 <div class="ra-google-map-container" id="google_maps_arrival" style="width:100%; min-height:350px"></div>
 
 <script type="text/javascript">
 
   showMapArrival();
 
-  var map = {};
+  var map;
   var markers;
 
   function showMapArrival() {

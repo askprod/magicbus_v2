@@ -17,16 +17,15 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create, :edit, :update, :destroy] do
       get 'new_payment', to: 'orders#new_payment'
       post 'new_payment', to: 'orders#create_payment'
+      get 'promo_code', to: 'orders#promo_code'
+      post 'promo_code', to: 'orders#check_promo_code'
+      delete 'promo_code', to: 'orders#destroy_promo_code'
     end
 
     resources :carts, only: [:show]
     resources :travellers, only: [:new, :create, :edit, :update, :destroy]
     resources :places, :path => 'share', only: [:index, :new, :create, :edit, :update, :destroy]
   end
-
-  get 'promo_code', to: 'cart#promo_code'
-  post 'promo_code', to: 'cart#check_promo_code'
-  delete 'promo_code', to: 'cart#destroy_promo_code'
 
   get 'travel/sort-trips-country/:id' => 'trips#sort_trips_country'
   get 'travel/sort-trips-date/:id' => 'trips#sort_trips_date'

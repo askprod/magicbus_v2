@@ -22,22 +22,68 @@
             %td
               - count = @count[abstract_model.model.name]
               - percent = count > 0 ? (@max <= 1 ? count : ((Math.log(count+1) * 100.0) / Math.log(@max+1)).to_i) : -1
-              .progress{style: "margin-bottom:0px", class: "progress-#{get_indicator(percent)} #{active && 'active progress-striped'}"  }
-                .progress-bar.animate-width-to{:class => "progress-bar-#{get_indicator(percent)}", :'data-animate-length' => ([1.0, percent].max.to_i * 20), :'data-animate-width-to' => "#{[2.0, percent].max.to_i}%", style: "width:2%"}
+              .progress{style: "margin-bottom:0px", class: "progress-danger active progress-striped"}
+                .progress-bar.animate-width-to{:class => "progress-bar-danger", :'data-animate-length' => ([1.0, percent].max.to_i * 20), :'data-animate-width-to' => "#{[3.0, percent].max.to_i}%", style: "width:2%"}
                   = @count[abstract_model.model.name]
             %td.links
               %ul.inline.list-inline= menu_for :collection, abstract_model, nil, true
-      %tr{class: "Hello"}
+      
+      %tr{class: "even link"}
         %td
-          %span.show= "Total Revenue"
+          %span.show= "Approved Spots"
         %td
         %td
-          - count = Order.all.pluck(:total_price).sum
+          - count = Place.where(approved_status: true).count
           - percent = count > 0 ? (@max <= 1 ? count : ((Math.log(count+1) * 100.0) / Math.log(@max+1)).to_i) : -1
-          .progress{style: "margin-bottom:0px", class: "progress-#{get_indicator(percent)} active progress-striped"  }
-            .progress-bar.animate-width-to{:class => "progress-bar-#{get_indicator(percent)}", :'data-animate-length' => (20), :'data-animate-width-to' => "#{Order.all.pluck(:total_price).sum}", style: "width:2%"}
-              = "#{Order.all.pluck(:total_price).sum}€"
-        %td.links
+          .progress{style: "margin-bottom:0px", class: "progress-info active progress-striped"}
+            .progress-bar.animate-width-to{:class => "progress-bar-info", :'data-animate-length' => ([1.0, percent].max.to_i * 20), :'data-animate-width-to' => "#{[3.0, percent].max.to_i}%", style: "width:2%"}
+              = "#{count}"
+
+      %tr{class: "even link"}
+        %td
+          %span.show= "Unapproved Spots"
+        %td
+        %td
+          - count = Place.where(approved_status: false).count
+          - percent = count > 0 ? (@max <= 1 ? count : ((Math.log(count+1) * 100.0) / Math.log(@max+1)).to_i) : -1
+          .progress{style: "margin-bottom:0px", class: "progress-info active progress-striped"}
+            .progress-bar.animate-width-to{:class => "progress-bar-info", :'data-animate-length' => ([1.0, percent].max.to_i * 20), :'data-animate-width-to' => "#{[3.0, percent].max.to_i}%", style: "width:2%"}
+              = "#{count}"
+
+
+      %tr{class: "even link"}
+        %td
+          %span.show= "Paid Orders"
+        %td
+        %td
+          - count = Order.where(payment_status: true).count
+          - percent = count > 0 ? (@max <= 1 ? count : ((Math.log(count+1) * 100.0) / Math.log(@max+1)).to_i) : -1
+          .progress{style: "margin-bottom:0px", class: "progress-warning active progress-striped"}
+            .progress-bar.animate-width-to{:class => "progress-bar-warning", :'data-animate-length' => ([1.0, percent].max.to_i * 20), :'data-animate-width-to' => "#{[3.0, percent].max.to_i}%", style: "width:2%"}
+              = "#{count}"
+
+      %tr{class: "even link"}
+        %td
+          %span.show= "Paid Travellers"
+        %td
+        %td
+          - count = Order.where(payment_status: true).map{|order| order.travellers}.count
+          - percent = count > 0 ? (@max <= 1 ? count : ((Math.log(count+1) * 100.0) / Math.log(@max+1)).to_i) : -1
+          .progress{style: "margin-bottom:0px", class: "progress-warning active progress-striped"}
+            .progress-bar.animate-width-to{:class => "progress-bar-warning", :'data-animate-length' => ([1.0, percent].max.to_i * 20), :'data-animate-width-to' => "#{[3.0, percent].max.to_i}%", style: "width:2%"}
+              = "#{count}"
+
+      %tr{class: "even link"}
+        %td
+          %span.show= "Approx. Revenue"
+        %td
+        %td
+          - count = Order.where(payment_status: true).pluck(:total_price).sum
+          - percent = count > 0 ? (@max <= 1 ? count : ((Math.log(count+1) * 100.0) / Math.log(@max+1)).to_i) : -1
+          .progress{style: "margin-bottom:0px", class: "progress-success active progress-striped"}
+            .progress-bar.animate-width-to{:class => "progress-bar-success", :'data-animate-length' => (5), :'data-animate-width-to' => "100%", style: "width:2%"}
+              = "#{count}€"
+      %tr{class: "even link"}
 - if @auditing_adapter && authorized?(:history_index)
   #block-tables.block
     .content

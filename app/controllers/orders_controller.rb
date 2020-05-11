@@ -71,8 +71,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:order_id])
     
     @payment_intent = Stripe::PaymentIntent.create(
-      amount: @order.total_price * 100,
+      amount: @order.total_price_calc * 100,
       currency: 'eur',
+      description: "Order N°#{@order.id}",
       payment_method_types: params['card'],
       metadata: {integration_check: 'accept_a_payment'},
   )
@@ -83,18 +84,44 @@ class OrdersController < ApplicationController
     @payment_intent = Stripe::PaymentIntent.retrieve(params[:payment_intent_id])
 
     if @payment_intent.status == "succeeded"
-        charge = @payment_intent.charges.data.first
-        card = charge.payment_method_details.card
+        id = @payment_intent.id
 
-        @order.update!(payment_status: true)
+        @order.update!(payment_status: true, payment_fingerprint: id)
         @order.save
 
-        flash[:alert] = "Your Order has been purchased."
+        flash[:notice] = "Thank you! Your Order has been purchased."
         redirect_to orders_path
     else
         flash[:alert] = "Your Order was unsuccessful. Please try again."
-        redirect_to root_path
+        redirect_to orders_path
     end
+  end
+
+  def promo_code
+    @order = Order.find(params[:order_id])
+  end
+
+  def check_promo_code
+      @order = Order.find(params[:order_id])
+      @promo_code = params[:promo_code].upcase
+      @coupon = Coupon.find_by(code: @promo_code)
+      
+      respond_to do |format|
+        if @coupon && @coupon.is_usable?
+          @coupon.orders << @order
+          format.js
+          flash[:notice] = "Your promo code has been applied."  
+        else
+            format.js { render :promo_code }
+            flash[:alert] = "The promo code you have enterred is not valid."    
+        end
+      end
+  end
+
+  def destroy_promo_code
+      # @cart.update!(promo_code: nil)
+      # redirect_to @cart
+      # flash[:notice] = "You promo code has been deleted."
   end
 
   private

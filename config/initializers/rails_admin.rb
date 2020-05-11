@@ -90,23 +90,34 @@ RailsAdmin.config do |config|
       field :picture
       field :themes
     end 
+
+    show do 
+      field :name
+      field :description
+      field :journey
+      field :week
+      field :price
+      field :departure_date
+      field :departure_location do
+        pretty_value do
+          bindings[:view].render partial: 'show_map_departure', locals: {field: self}
+        end
+      end
+      field :arrival_date
+      field :arrival_location do
+        pretty_value do
+          bindings[:view].render partial: 'show_map_arrival', locals: {field: self}
+        end
+      end
+      field :meetup_time
+      field :picture
+      field :themes
+    end 
     
     configure :description, :text do
       html_attributes do
         {:maxlength => 200}
       end
-    end
-
-    configure :themes do
-      help 'At least one required. !! NO ERROR MESSAGES !!'
-    end
-
-    configure :departure_country do
-      partial "specific_country"
-    end
-    
-    configure :departure_city do
-      partial "specific_city"
     end
 
   end

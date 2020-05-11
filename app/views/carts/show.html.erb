@@ -3,7 +3,14 @@
   <% if @current_cart_items.count == 0 %>
 
   <div class="container-fluid top-margin">
-      <h1 class="text-center adventpro">Your Cart is empty! Please chose some trips on the <%= link_to "TRAVEL page", trips_path, class:"yellow" %></h1>
+    <div class="card mx-auto col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+      <div class="card-header py-1">
+        <p class="h1 my-auto text-center">Your Cart is Empty</p>
+      </div>
+      <div class="text-center">
+        <%= link_to "Book a Trip", trips_path, class: "btn btn-stylised border border-warning my-4" %>
+      </div>
+    </div>
   </div>
 
   <% else %>

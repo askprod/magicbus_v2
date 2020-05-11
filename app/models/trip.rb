@@ -6,7 +6,7 @@ class Trip < ApplicationRecord
     has_and_belongs_to_many :themes
     has_many :cart_trips
     has_many :carts, through: :cart_trips
-    has_many :order_trips
+    has_many :order_trips, dependent: :destroy
     has_many :orders, through: :order_trips
 
     validates :picture, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..3.megabytes }
@@ -21,6 +21,6 @@ class Trip < ApplicationRecord
     end
 
     def is_full?
-        return true if self.remaining_seats_count == 0
+        self.remaining_seats_count <= 0
     end
 end

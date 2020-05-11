@@ -106,6 +106,7 @@ $cookies-eu-mobile: 'max-width: 767px';
       margin-top: 35%;
   }
  }
+
  .giveyouglory {
      font-family: 'GiveYouGlory'
  }
@@ -130,9 +131,9 @@ $cookies-eu-mobile: 'max-width: 767px';
   #navbar {
     z-index: 6;
     height: 10%;
-    position: fixed; /* Make it stick/fixed */
-    top: 0; /* Stay on top */
-    width: 100%; /* Full width */
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
     background-image: linear-gradient(rgba(0, 0, 0, 0.685), rgba(0, 0, 0, 0));
     transition: all 1s;
   }
@@ -148,8 +149,6 @@ $cookies-eu-mobile: 'max-width: 767px';
       background-color: black;
     }
   }
-
-
 
   .navbar-brand>img {
     max-width: 200px;
@@ -219,11 +218,6 @@ $cookies-eu-mobile: 'max-width: 767px';
   font-size: 3vw;
 }
 
-.form-signin {
-    margin-top: 50vh;
-    transform: translateY(30%);
-}
-
 .btn-stylised {
     text-align: center;
     background-color:rgb(253, 233, 48);
@@ -253,11 +247,6 @@ $cookies-eu-mobile: 'max-width: 767px';
   background-color:rgb(255, 217, 0);
 }
 
-.form-login {
-    margin-top: 50vh;
-    transform: translateY(30%);
-}
-
 .cart {
     color: white;
     text-align: center;
@@ -266,7 +255,7 @@ $cookies-eu-mobile: 'max-width: 767px';
     background-color: rgba(0, 0, 0, 0.87);
     position: fixed;
     float: right;
-    top: 10%;
+    top: 12%;
     right: 2%;
     height: min-content;
     width: 30%;
@@ -309,34 +298,6 @@ $cookies-eu-mobile: 'max-width: 767px';
   background-color : #cccccc;
   top: 0;
   width: 100%;
-}
-
-.margin-t-30{
-  margin-top: 30px;
-}
-
-.stripe-checkout {
-  color: white;
-  text-align: center;
-  z-index: 5;
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.87);
-  position: fixed;
-  float: right;
-  top: 100px;
-  right: 50px;
-  height: min-content;
-  min-width: 35%;
-  width: min-content;
-  padding: 20px;
-}
-
-.stripe-checkout .viewMore[aria-expanded="false"]:before{
-  content:"[ View More ]";
-}
-
-.stripe-checkout .viewMore[aria-expanded="true"]:before{
-  content:"[ View Less ]";
 }
 
 .container-fluid.trips {
@@ -638,19 +599,6 @@ $cookies-eu-mobile: 'max-width: 767px';
     from { width: 0;  }
 }
 
-// check if removable?
-
-// div.info {
-//     position: absolute;
-//     z-index: 999;
-//     width: 200px;
-//     height: 100px;
-//     display: none;
-//     background-color: #fff;
-//     border: 3px solid #ebebeb;
-//     padding: 10px;
-// }
-
 button.gm-ui-hover-effect
 {
     display: none !important;
@@ -684,63 +632,6 @@ section {
   height: 500px;
   width: 80%;
   margin: 0 auto;
-}
-
-/* Hover effect for tiles on discover page */
-
-.grid {
-	position: relative;
-	margin: 0 auto;
-	padding: 1em 0 4em;
-	max-width: 1000px;
-	list-style: none;
-	text-align: center;
-}
-
-/* Common style */
-.grid figure {
-	position: relative;
-	float: left;
-	overflow: hidden;
-	margin: 10px 1%;
-	min-width: 320px;
-	max-width: 480px;
-	max-height: 360px;
-	width: 48%;
-	background: #3085a3;
-	text-align: center;
-	cursor: pointer;
-}
-
-.grid figure img {
-	position: relative;
-	display: block;
-	min-height: 100%;
-	max-width: 100%;
-	opacity: 0.8;
-}
-
-.grid figure figcaption {
-	padding: 2em;
-	color: #fff;
-	text-transform: uppercase;
-	font-size: 1.25em;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-}
-
-.grid figure figcaption::before,
-.grid figure figcaption::after {
-	pointer-events: none;
-}
-
-.grid figure figcaption,
-.grid figure figcaption > a {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
 }
 
 /* Hover effect on tiles, discover page */
@@ -875,17 +766,6 @@ section {
   z-index:6;
 }
 
-.min-add-btn {
-  width:100%;
-  margin:20px auto;
-}
-
-#travellers-count {
-  font-size: 22px;
-  margin: 20px;
-  font-weight: 700;
-}
-
 .traveller-info {
   width: 100%;
   height: 10%;
@@ -896,22 +776,6 @@ section {
 .traveller-info p {
   margin: 0;
   }
-
-.traveller-fill {
-  width: 100%;
-  height: 10%;
-  background-color: rgb(233, 213, 32);
-  border: solid 1px rgb(255, 153, 0);
-  border-radius: 0.2em;
-}
-
-.traveller-fill p {
-margin: 0;
-}
-
-.top-margin {
-  margin-top: 10%;
-}
 
 /*==================== 
 	Footer 
@@ -1074,4 +938,8 @@ div#card-errors {
 .success .token {
   font-weight: 500;
   font-size: 13px;
+}
+
+.top-margin {
+  margin-top: 10rem;
 }
