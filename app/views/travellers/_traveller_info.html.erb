@@ -2,27 +2,28 @@
   <div class="card m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
     
     <div class="card-header py-1">
-      <p class="small my-auto"><%= traveller.first_name %>, <%= traveller.last_name %></p>
-      <%= button_to traveller, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
-        <p class="mb-0" style="font-size: 10px; color: black;">X</p>
-      <% end %>
+      <p class="h6 my-auto"><b><%= traveller.first_name %> <%= traveller.last_name.upcase %></b></p>
     </div>
 
     <div class="row h-100 no-gutters my-auto">
       <div class="col-12 my-auto py-2">
 
+        Nom <%= traveller.first_name %>
+
         <div class="row no-gutters justify-content-center">
-          <div class="col-4 px-1">
-            <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              More Info
-            </button>
-          </div>
 
           <div class="col-4 px-1">
             <%= button_to edit_traveller_path(traveller), method: :get, remote: true, class: "btn btn-warning btn-block" do %>
               <p class="mb-0">Edit</p>
             <% end %>              
           </div>
+          
+          <div class="col-4 px-1">
+            <%= button_to traveller, method: :delete, class:"btn btn-danger btn-block" do %>
+              <p class="mb-0">Remove</p>
+            <% end %>
+          </div>
+        
         </div>
 
       </div>

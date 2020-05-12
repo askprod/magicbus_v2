@@ -5,7 +5,7 @@ class Place < ApplicationRecord
     belongs_to :user, optional: true
 
     validates_presence_of :name, :description, unless: :secret_is_true?
-    validates_presence_of :longitude, :latitude
+    validates_presence_of :location
     validates :image_one, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
     validates :image_two, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
     validates :image_three, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
@@ -21,10 +21,10 @@ class Place < ApplicationRecord
     end
     
     def longitude_latitude_closeness
-        existing_latitudes = Place.all.pluck(:latitude)
-        existing_longitudes = Place.all.pluck(:longitude)
-        new_latitude = self.latitude.round(4)
-        new_longitude = self.longitude.round(4)
+        existing_latitudes = Place.all.pluck(:location).map{|x| x['lat']}
+        existing_longitudes = Place.all.pluck(:location).map{|x| x['lng']}
+        new_latitude = self.location['lat'].round(4)
+        new_longitude = self.location['lng'].round(4)
 
         check_latitudes = existing_latitudes.map{|v| v.round(4) == new_latitude}.include?(true)
         check_longitudes = existing_longitudes.map{|v| v.round(4) == new_longitude}.include?(true)

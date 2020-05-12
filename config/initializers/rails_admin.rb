@@ -150,6 +150,23 @@ RailsAdmin.config do |config|
       field :name
       field :description
     end
+
+    show do 
+      field :user
+      field :name
+      field :description
+      field :approved_status
+      field :secret_status
+      field :location do
+        pretty_value do
+          bindings[:view].render partial: 'spot_info', locals: {field: self}
+        end
+      end
+      field :image_one
+      field :image_two
+      field :image_three
+    end
+    
   end
 
   config.model 'Journey' do

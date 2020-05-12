@@ -1,0 +1,47 @@
+<div class="ra-google-map-container" id="google_maps_spot" style="width:100%; min-height:350px"></div>
+
+<script type="text/javascript">
+
+  showSpot();
+
+  var map;
+  var markers;
+
+  function showSpot() {
+    var myOptions = {
+      zoom: 8,
+      center: new google.maps.LatLng(<%=field.value['lat']%>, <%=field.value['lng']%>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: false
+    };
+    
+    map = new google.maps.Map(document.getElementById("google_maps_spot"), myOptions);
+
+    var infowindow = new google.maps.InfoWindow;
+    var geocoder = new google.maps.Geocoder;
+    geocodeLatLng(geocoder, map, infowindow);
+
+    function geocodeLatLng(geocoder, map, infowindow) {
+    var input = {lat:<%=field.value['lat']%>, lng:<%=field.value['lng']%>};
+    console.log(input)
+
+    geocoder.geocode({'location': input}, function(results, status) {
+    if (status === 'OK') {
+      if (results[0]) {
+        map.setZoom(11);
+        var marker = new google.maps.Marker({
+          position: input,
+          map: map
+        });
+        infowindow.setContent(results[0].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        window.alert('No Results Found');
+      }
+    } else {
+      window.alert('Geocoder Failed: ' + status);
+    }
+    });
+  }
+  }
+</script>

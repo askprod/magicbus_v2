@@ -64,10 +64,7 @@
     </div>
   </div>
 
-  <div class="d-none">
-    <%= form.text_field :latitude, class: "form-control" %>
-    <%= form.text_field :longitude, class: "form-control" %>
-  </div>
+  <%= form.text_field :location, value: form.object.location.to_json %>
 
   <p style="font-size: 10px;">Don't forget to place your spot on the map!</p>
   
