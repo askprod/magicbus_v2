@@ -4,7 +4,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @user_orders = User.find(1).orders
+    @recent_orders = User.find(current_user.id).orders.where(payment_status: false)
+    @paid_orders = User.find(current_user.id).orders.where(payment_status: true)
   end
 
   # GET /orders/1

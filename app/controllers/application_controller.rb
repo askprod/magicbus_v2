@@ -45,8 +45,8 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def active_journey
-        Journey.find_by(status: true).present?
+    def active_season
+        Season.find_by(status: true).present?
     end
 
     def total_price(items)

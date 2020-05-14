@@ -15,79 +15,23 @@
 
   <% else %>
 
-    <% @user_orders.each do |order| %>
-      <div class="card col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
-        
-        <div class="card-header py-1">
-          
-          <p class="small my-auto">Order <%= order.id %>: <%= order.total_price_calc %>€</p>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="recent-orders-tab" data-toggle="tab" href="#recent-orders" role="tab" aria-controls="home" aria-selected="true">Recent Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="paid-orders-tab" data-toggle="tab" href="#paid-orders" role="tab" aria-controls="profile" aria-selected="false">Paid Orders</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="recent-orders" role="tabpanel" aria-labelledby="home-tab">
+      <%= render "orders/recent_orders" %>
+    </div>
 
-          <% if order.payment_status == false %>
-            <%= button_to order, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
-              <p class="mb-0" style="font-size: 10px; color: black;">Delete X</p>
-            <% end %>
-          <% else %>
-            <button class="btn btn-success position-absolute m-1 px-1 py-0" style="top:0; right:0;">
-              <p class="mb-0" style="font-size: 10px; color: black;">Paid ✓</p>
-            </button>
-          <% end %>
-        </div>
-
-        <div class="row h-100 no-gutters my-auto">
-
-          <div class="col-12 my-auto py-2">
-
-            <div class="row no-gutters">
-              <div class="col px-1">
-                <%= button_to order, class:"btn btn-info btn-block", style:"top:0; right:0;" do %>
-                  <p class="mb-0">More Info</p>
-                <% end %>
-              </div>
-
-              <% unless order.payment_status == true %>
-                <div class="col px-1">
-                  <%= button_to edit_order_path(order), method: :get, remote: true, class: "btn btn-warning btn-block" do %>
-                    <p class="mb-0">Edit</p>
-                  <% end %>              
-                </div>
-              <% end %>
-
-            </div>
-
-          </div>
-        </div>
-
-        <% if order.payment_status == false %>
-
-            <% if order.coupon %>
-
-              <div>Current Code: <%= order.coupon.code %>
-              <div><%= order.coupon.reduction_percentage %>% Reduction</div>
-
-            <% else %>
-
-              <div class="container-fluid my-5">
-                <%= link_to order_promo_code_path(order), class: "btn btn-stylised", remote: true do %>
-                <p class="small my-auto">Enter Promo Code</p>
-                <% end %>
-              </div>
-
-            <% end %>
-
-          <div class="col text-center">
-            <%= link_to order_new_payment_path(order), remote: true, class:"btn btn-stylised w-50 my-2 border border-warning" do %>
-              <p class="m-0">Pay with <%= image_tag "/images/stripe-card-logo2.png", class:"img-fluid", size: "65" %></p>
-            <% end %>
-          </div>
-
-          <% elsif order.payment_status == true %>
-          <div class="row h-100 no-gutters my-auto">
-            <p class="btn btn-stylised">View Invoice</p>
-          </div>   
-        <% end %>   
-
-      </div>
-    <% end %>
+    <div class="tab-pane fade" id="paid-orders" role="tabpanel" aria-labelledby="profile-tab">
+      <%= render "orders/paid_orders" %>
+    </div>
+  </div>
 
   <% end %>
 

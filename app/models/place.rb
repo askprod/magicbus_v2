@@ -4,7 +4,7 @@ class Place < ApplicationRecord
     has_one_attached :image_three
     belongs_to :user, optional: true
 
-    validates_presence_of :name, :description, unless: :secret_is_true?
+    validates_presence_of :name, :description
     validates_presence_of :location
     validates :image_one, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
     validates :image_two, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
@@ -15,9 +15,19 @@ class Place < ApplicationRecord
     before_save :capitalize_attributes
 
     def spot_limit
-        if User.find(self.user.id).places.count >= 10
-            self.errors.add(:base, "You can't share more than 10 spots for now.")
+        unless self.is_a_visitor?
+            if User.find(self.user.id).places.count >= 10
+                self.errors.add(:base, "You can't share more than 10 Spots for now.")
+            end
+        else
+            unless Place.where(user_id: nil).last.created_at < Time.now - 1.minutes
+                self.errors.add(:base, "Visitors are limited to sharing Spots. Try again later.")
+            end
         end
+    end
+
+    def is_a_visitor?
+        !User.exists?(self.user_id)
     end
     
     def longitude_latitude_closeness
@@ -32,10 +42,6 @@ class Place < ApplicationRecord
         if check_longitudes == true && check_latitudes == true
             self.errors.add(:base, "A Spot has already been shared here. Try another location.")
         end
-    end
-
-    def secret_is_true?
-        self.secret_status == true
     end
 
     def capitalize_attributes

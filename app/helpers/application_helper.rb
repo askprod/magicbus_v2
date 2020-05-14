@@ -1,6 +1,6 @@
 module ApplicationHelper
-    def active_journey
-        Journey.find_by(status: true).present?
+    def active_season
+        Season.find_by(status: true).present?
     end    
 
     def departure_city(trip)

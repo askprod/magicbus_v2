@@ -21,7 +21,7 @@ module RailsAdmin
               @history = @auditing_adapter && @auditing_adapter.latest(@action.auditing_versions_limit) || []
               if @action.statistics?
                 @abstract_models = RailsAdmin::Config.visible_models(controller: self).collect(&:abstract_model)
-                @dashboard_models = [AbstractModel.new(User), AbstractModel.new(Journey), AbstractModel.new(Trip)]
+                @dashboard_models = [AbstractModel.new(User), AbstractModel.new(Season), AbstractModel.new(Trip)]
 
                 @most_recent_created = {}
                 @count = {}

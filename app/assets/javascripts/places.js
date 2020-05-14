@@ -373,11 +373,10 @@ function initPlacesMap() {
     // Select your spot and click View to center that spot on the map
     $(document).ready(function(){
         $(".center-map-point").click(function(){
-            var spotLat = $(this).siblings("#spot_latitude").val();
-            var spotLong = $(this).siblings("#spot_longitude").val();
+            var spotLocation = JSON.parse($(this).siblings("#spot_location").val());
             var elmnt = document.getElementById("map");
 
-            var point = new google.maps.LatLng(spotLat, spotLong);
+            var point = new google.maps.LatLng(spotLocation);
             map.setCenter(point);
             map.setZoom(8);
             elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' })

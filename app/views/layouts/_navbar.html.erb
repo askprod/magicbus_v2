@@ -10,95 +10,109 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
-    <ul class="navbar-nav mx-auto">
-      
-      <% if user_signed_in? %>
+    <ul class="navbar-nav">
 
-          <% if current_user.admin? %>
-            <li class="nav-item adventpro">
-              <%= link_to "Admin Page", rails_admin.dashboard_path, class: "nav-link font-weight-bold"  %>
-            </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link adventpro" href="#" id="navbarDropdownNavigation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Navigation
+          <%= fa_icon "caret-down" %>
+        </a>
+        <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownNavigation">
+          <%= link_to discover_path, class:"dropdown-item m-0 adventpro text-center" do %>
+            Discover
           <% end %>
+          <%= link_to story_path, class:"dropdown-item m-0 adventpro text-center" do %>
+            Story
+          <% end %>
+          <%= link_to places_path, class:"dropdown-item m-0 adventpro text-center" do %>
+            Share
+          <% end %>
+          <%= link_to trips_path, class:"dropdown-item m-0 adventpro text-center" do %>
+            Travel
+          <% end %>
+        </div>
+      </li>
 
-            <% if current_user.picture.attached? %>
-              <li class="nav-item adventpro">
-                <%= link_to(edit_user_registration_path, remote: true, class: "nav-link") do %>
-                  <%= image_tag(current_user.picture, height: 18, width: 18, style: "border-radius:20px;") %>
-                  My Account
+      <li class="nav-item dropdown">
+        <a class="nav-link adventpro" href="#" id="navbarDropdownMagicMe" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if user_signed_in? && current_user.picture.attached? %>
+                <%= image_tag(current_user.picture, height: 18, width: 18, style: "border-radius:20px;") %>
+                MagicMe
+                <%= fa_icon "caret-down" %>
+          <% else %>
+                <%= fa_icon "user" %>
+                MagicMe
+                <%= fa_icon "caret-down" %>
+          <% end %>
+        </a>
+
+        <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownMagicMe">
+
+          <% if user_signed_in? %>
+
+            <%= link_to(edit_user_registration_path, remote: true, class:"dropdown-item m-0 adventpro text-center") do %>
+              My Account
+            <% end %>
+
+            <% unless current_user.orders.empty? %>
+                <%= link_to orders_path, class:"dropdown-item m-0 adventpro text-center" do %>
+                    My Bookings
                 <% end %>
-            <% else %>
-              <li class="nav-item adventpro">
-                <%= link_to(edit_user_registration_path, remote: true, class: "nav-link") do %>
-                  <%= fa_icon "user" %>
-                  My Account
-                 <% end %>
-              </li>
             <% end %>
 
-          <% unless current_user.orders.empty? %>
-            <li class="nav-item adventpro">
-              <%= link_to orders_path, class: "nav-link" do %>
-                  <%= fa_icon "plane" %>
-                  My Bookings
-              <% end %>
-            </li>
-          <% end %>
-
-          <li class="nav-item adventpro">
-            <%= link_to cart_path(@cart), class: "nav-link" do %>
-                <%= fa_icon "shopping-cart" %>
-                <span id="my-cart-counter">
-                  <%= render partial: "layouts/cart-counter" %>
-                </span>
+            <%= link_to cart_path(@cart), class:"dropdown-item m-0 adventpro text-center" do %>
+              <span id="my-cart-counter">
+                <%= render partial: "layouts/cart-counter" %>
+              </span>
             <% end %>
-          </li>
 
-          <li class="nav-item adventpro">
-            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-                <%= fa_icon "sign-out" %>
+            <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item m-0 adventpro text-center" do %>
                 Log Out
             <% end %>
-          </li>
 
-      <% else %>
+          <% else %>
 
-        <li class="nav-item adventpro">
-          <%= link_to new_user_registration_path, class: "nav-link", remote: true do %>
-                <%= fa_icon "user-plus" %>
-                Create an Account
+            <%= link_to new_user_registration_path, class:"dropdown-item m-0 adventpro text-center", remote: true do %>
+                  Create an Account
+            <% end %>
+
+            <%= link_to user_session_path, remote: true, class:"dropdown-item m-0 adventpro text-center" do %>
+                Log In
+            <% end %>
+
           <% end %>
-        </li>
 
-        <li class="nav-item adventpro">
-          <%= link_to user_session_path, remote: true, class: "nav-link" do %>
-              <%= fa_icon "sign-in" %>
-              Log In
-          <% end %>
-        </li>
+        </div>
 
-      <% end %>
-    
+      </li>
+
     </ul>
 
-    <ul class="navbar-nav ml-0">
+    <ul class="navbar-nav ml-auto ml-0">
 
-    <% if I18n.locale == :fr %>
+      <% if user_signed_in? && current_user.admin? %>
+          <%= link_to rails_admin.dashboard_path, class: "btn btn-danger my-auto m-2" do %>
+            <span class="m-0 adventpro">ADMIN PAGE</span>
+          <% end %>
+      <% end %>
 
-      <li class="nav-item">
-        <%= link_to({:locale=> nil}, class:"nav-link mx-5") do %>
-          <%= flag_icon(:gb, class: "rounded") %>
-        <% end %>
-      </li>
-    
-    <% else %>
+      <%= link_to trips_path, class:"form-inline btn btn-stylised border border-warning my-auto" do %>
+        <span class="m-0 adventpro">BOOK NOW</span>
+      <% end %>
 
-      <li class="nav-item">
-        <%= link_to({:locale=>'fr'}, class:"nav-link mx-5") do %>
-          <%= flag_icon(:fr, class:"rounded") %>
-        <% end %>
-      </li> 
-      
-    <% end %>
+      <% if I18n.locale == :fr %>
+        <li class="nav-item">
+          <%= link_to({:locale=> nil}, class:"nav-link mx-5") do %>
+            <%= flag_icon(:gb, class: "rounded") %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to({:locale=>'fr'}, class:"nav-link mx-5") do %>
+            <%= flag_icon(:fr, class:"rounded") %>
+          <% end %>
+        </li> 
+      <% end %>
 
       <li class="nav-item adventpro">
         <%= link_to("https://www.facebook.com/magicbusworld", class: "nav-link mx-1", target: "_blank")  do %>
@@ -111,7 +125,7 @@
           <%= fa_icon "instagram lg" %>
         <% end %>
       </li>
-      
+
     </ul>
 
   </div>

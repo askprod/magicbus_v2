@@ -61,12 +61,12 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Trip' do
-    parent Journey
+    parent Season
 
     list do
-      sort_by "journey_id, week"
+      sort_by "season_id, week"
       sort_reverse :false
-      field :journey_id
+      field :season_id
       field :name
       field :week
       field :price
@@ -75,7 +75,7 @@ RailsAdmin.config do |config|
     create do 
       field :name
       field :description
-      field :journey
+      field :season
       field :week
       field :price
       field :departure_date
@@ -94,7 +94,7 @@ RailsAdmin.config do |config|
     show do 
       field :name
       field :description
-      field :journey
+      field :season
       field :week
       field :price
       field :departure_date
@@ -124,6 +124,10 @@ RailsAdmin.config do |config|
 
   config.model 'Traveller' do
     parent User
+
+    list do
+      field :is_over_18?, :boolean
+    end
   end
 
   config.model 'Order' do
@@ -144,11 +148,26 @@ RailsAdmin.config do |config|
 
     list do
       sort_by :approved_status
-      field :approved_status
-      field :user
-      field :secret_status
-      field :name
-      field :description
+      field :approved_status do
+        label "Approved?"
+        column_width 100
+      end
+      field :secret_status do 
+        label "Secret?"
+        column_width 80
+      end 
+      field :is_a_visitor?, :boolean do
+        label "Visitor?"
+      end
+      field :user do
+        column_width 80
+      end
+      field :name do
+        column_width 80
+      end
+      field :description do
+        column_width 100
+      end
     end
 
     show do 
@@ -169,7 +188,7 @@ RailsAdmin.config do |config|
     
   end
 
-  config.model 'Journey' do
+  config.model 'Season' do
     navigation_label "Travels"
     weight -4
 

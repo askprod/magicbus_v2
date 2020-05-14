@@ -86,21 +86,6 @@
             <p class="small">We will deduct 30€ per vegan traveller.</p>
 
             <div class="row">
-            
-              <div class="col-sm-6 text-center">
-                <%= form.label "Food Restrictions", class: "small" %>
-                <%= form.select :food_restriction_ids, @food_restrictions_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
-
-                <div id='food_restrictions'>
-                  <%= form.fields_for :food_restrictions do |ff| %>
-                    <%= render 'food_restriction_fields', :f => ff %>
-                  <% end %>
-                  <div class='links' style='display: none;'>
-                    <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro my-2" %>
-                  </div>
-                </div>
-
-              </div> 
 
               <div class="col-sm-6 text-center">
                 <%= form.label "Food Diets", class: "small" %>
@@ -112,6 +97,21 @@
                   <% end %>
                   <div class='links' style='display: none;'>
                     <%= link_to_add_association 'Add', form, :food_diets, class: "btn btn-stylised adventpro my-2" %>
+                  </div>
+                </div>
+                
+              </div> 
+            
+              <div class="col-sm-6 text-center">
+                <%= form.label "Food Restrictions", class: "small" %>
+                <%= form.select :food_restriction_ids, @food_restrictions_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
+
+                <div id='food_restrictions'>
+                  <%= form.fields_for :food_restrictions do |ff| %>
+                    <%= render 'food_restriction_fields', :f => ff %>
+                  <% end %>
+                  <div class='links' style='display: none;'>
+                    <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro my-2" %>
                   </div>
                 </div>
 

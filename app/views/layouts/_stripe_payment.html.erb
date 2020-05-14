@@ -1,17 +1,12 @@
 <div class="card login-form">
     
-<h1 class="card-header adventpro yellow text-center display-5">Order <%= order.id %> Payment</h1>
+<h1 class="card-header adventpro yellow text-center display-5">Payment 
+<br>
+<span class="small h6">Order <%= order.name %></span>
+</h1>
 
 <div class="card-body">
     <div id="close-button"></div>
-
-    <%= order.total_price %>
-    <% order.trips.each do |trip| %>
-        <% trip.week %>
-    <% end %>
-    <% order.travellers.each do |traveller| %>
-        <%= traveller.first_name %> <%= traveller.last_name %>
-    <% end %>
 
     <%= form_with url: order_new_payment_path(order), local: true, id: "payment-form", data: { payment_intent_id: @payment_intent.client_secret } do |form| %>
 

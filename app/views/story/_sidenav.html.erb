@@ -1,0 +1,64 @@
+<div id="side-menu" class="sidenav">
+    <ul>
+        <li>
+            <a href="#once-upon-time" class="active">Once Upon a Time</a>
+        </li>
+        <li>
+            <a href="#idea-new-zealand" class="small">1. An idea born in New-Zealand</a>
+        </li>
+        <li>
+            <a href="#a-concept-canada" class="small">2. A concept developed in Canada</a>
+        </li>
+        <li>
+            <a href="#made-for-europe" class="small">3. A project made for Europe</a>
+        </li>
+        <li>
+            <a href="#magic-people">The MagicPeople</a>
+        </li>
+        <li>
+            <a href="#our-sponsors">Our Sponsors</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+$(document).ready(function () {
+    $(document).on("scroll", onScroll);
+    
+    //smoothscroll
+    $('a[href^="#"]').on('click', function (e) {
+        e.preventDefault();
+        $(document).off("scroll");
+        
+        $('a').each(function () {
+            $(this).removeClass('active');
+        })
+        $(this).addClass('active');
+      
+        var target = this.hash,
+            menu = target;
+        $target = $(target);
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top+2
+        }, 500, 'swing', function () {
+            window.location.hash = target;
+            $(document).on("scroll", onScroll);
+        });
+    });
+});
+
+function onScroll(event){
+    var scrollPos = $(document).scrollTop();
+    $('#side-menu a').each(function () {
+        var currLink = $(this);
+        var refElement = $(currLink.attr("href"));
+        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+            $('#side-menu ul li a').removeClass("active");
+            currLink.addClass("active");
+        }
+        else{
+            currLink.removeClass("active");
+        }
+    });
+}
+</script>

@@ -7,6 +7,7 @@ class CreateTravellers < ActiveRecord::Migration[5.2]
         t.string :nationality
         t.string :address
         t.string :zip_code
+        t.integer :age_on_create
         t.date :birth_date
         t.integer :phone_number
         t.boolean :insurance_status

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_152213) do
+ActiveRecord::Schema.define(version: 2020_05_13_125421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,12 +96,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_152213) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "journeys", force: :cascade do |t|
-    t.boolean "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_trips", force: :cascade do |t|
     t.integer "order_id"
     t.integer "trip_id"
@@ -111,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_152213) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "name"
     t.integer "total_price"
     t.boolean "payment_status", default: false
     t.string "payment_fingerprint"
@@ -142,6 +137,12 @@ ActiveRecord::Schema.define(version: 2020_05_10_152213) do
     t.index ["traveller_id"], name: "index_restriction_travellers_on_traveller_id"
   end
 
+  create_table "seasons", force: :cascade do |t|
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "themes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -162,6 +163,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_152213) do
     t.string "nationality"
     t.string "address"
     t.string "zip_code"
+    t.integer "age_on_create"
     t.date "birth_date"
     t.integer "phone_number"
     t.boolean "insurance_status"
@@ -185,8 +187,8 @@ ActiveRecord::Schema.define(version: 2020_05_10_152213) do
     t.time "meetup_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "journey_id"
-    t.index ["journey_id"], name: "index_trips_on_journey_id"
+    t.bigint "season_id"
+    t.index ["season_id"], name: "index_trips_on_season_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -205,5 +207,5 @@ ActiveRecord::Schema.define(version: 2020_05_10_152213) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "orders", "coupons"
   add_foreign_key "places", "users"
-  add_foreign_key "trips", "journeys"
+  add_foreign_key "trips", "seasons"
 end

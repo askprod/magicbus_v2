@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <%= form.text_field :location, value: form.object.location.to_json %>
+  <%= form.hidden_field :location, value: form.object.location.to_json %>
 
   <p style="font-size: 10px;">Don't forget to place your spot on the map!</p>
   
@@ -72,7 +72,11 @@
     <%= form.submit "Share with MagicBus", class: "btn btn-stylised shadow py-3", id:"spot-submit" %>
   </div>
 
-  <%= form.hidden_field :user_id, :value => current_user.id %>
+  <% if user_signed_in? %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+  <% else %>
+    <%= form.hidden_field :user_id, :value => nil %>
+  <% end %>
 
   <% end %>
 
@@ -85,52 +89,6 @@
 $('.custom-file-input').on('change', function() { 
    let fileName = $(this).val().split('\\').pop(); 
    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
-});
-</script>
-
-<script>
-$(document).ready(function(){
-    if( $('#checkbox1').is(':checked') ){
-      $('#place_name').attr('disabled', 'disabled');
-      $('#place_description').attr('disabled', 'disabled');
-      $('#place_name').val('');
-      $('#place_description').val('');
-      $('#fileOne').attr('disabled', 'disabled');
-      $('#fileTwo').attr('disabled', 'disabled');
-      $('#fileThree').attr('disabled', 'disabled');
-      $('#fileOne').trigger('reset');
-      $('.custom-file-label[for="fileOne"]').html('Picture 1');
-      $('#fileOne').trigger('reset');
-      $('.custom-file-label[for="fileTwo"]').html('Picture 2');
-      $('#fileOne').trigger('reset');
-      $('.custom-file-label[for="fileThree"]').html('Picture 3');
-    };
-});
-
-$(document).ready(function(){
-    $('#checkbox1').change(function(){
-        if(this.checked){
-            $('#place_name').attr('disabled', 'disabled');
-            $('#place_description').attr('disabled', 'disabled');
-            $('#place_name').val('');
-            $('#place_description').val('');
-            $('#fileOne').attr('disabled', 'disabled');
-            $('#fileTwo').attr('disabled', 'disabled');
-            $('#fileThree').attr('disabled', 'disabled');
-            $('#fileOne').trigger('reset');
-            $('.custom-file-label[for="fileOne"]').html('Picture 1');
-            $('#fileOne').trigger('reset');
-            $('.custom-file-label[for="fileTwo"]').html('Picture 2');
-            $('#fileOne').trigger('reset');
-            $('.custom-file-label[for="fileThree"]').html('Picture 3');
-        } else {
-            $('#place_name').removeAttr('disabled');
-            $('#place_description').removeAttr('disabled');
-            $('#fileOne').removeAttr('disabled');
-            $('#fileTwo').removeAttr('disabled');
-            $('#fileThree').removeAttr('disabled');
-        }
-    });
 });
 </script>
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class JourneyTest < ActiveSupport::TestCase
+class SeasonTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -279,7 +279,9 @@ codeAddress();
 
 
   var startPoint = trips[0].departure
-  var endPoint = trips[trips.length-1].departure
+//   console.log(startPoint)
+  var endPoint = trips[trips.length-1].arrival
+//   console.log(endPoint)
   var steps = []
   for (var y = 1; y < trips.length - 1; y++) {
     var currentElement = trips[y];
@@ -295,6 +297,7 @@ codeAddress();
       waypoints: steps,
       travelMode: 'DRIVING'
     };
+    // console.log(steps)
     directionsService.route(requestRoute, function(result, status) {
       if (status == 'OK') {
         directionsRenderer.setDirections(result);

@@ -104,7 +104,7 @@ $cookies-eu-mobile: 'max-width: 767px';
  @media (max-width: 450px) {
     .maintitle-container {
       margin-top: 35%;
-  }
+    }
  }
 
  .giveyouglory {
@@ -942,4 +942,95 @@ div#card-errors {
 
 .top-margin {
   margin-top: 10rem;
+}
+
+.navbar-nav > li > .dropdown-menu { 
+  background-color: rgba(0, 0, 0, 0.76); 
+  border: solid 2px black;
+}
+
+.navbar-nav > li > .dropdown-menu > a:hover { 
+  background-color: rgb(0, 0, 0); 
+  color: rgb(233, 213, 32)
+}
+
+@media (min-width: 992px) {
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform:translateY(0rem);
+    opacity: 1;
+  }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+}
+
+
+/* The sidebar menu */
+.sidenav {
+  width: 13%;
+  margin-right: 2%;
+  position: fixed; 
+  z-index: 3;
+  top: 25%; 
+  right: 0;
+  background-color: rgba(17, 17, 17, 0); 
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.sidenav a {
+  width: 100%;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #000000;
+  display: block;
+}
+
+.sidenav a.active {
+  font-weight: 800;
+}
+
+@media (max-width: 700px) {
+  .sidenav {
+    display: none;
+  }
 }
