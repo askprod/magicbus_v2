@@ -1,0 +1,13 @@
+<div class="card col-sm-4 col-10 m-1 border-warning px-0 border shadow-sm my-2 text-center" style="background:#ffe475; line-height: 0.3em;"> 
+
+    <div class="card-header py-1 mb-3 text-center h4">
+        <%= traveller.first_name %> <%= traveller.last_name %>
+    </div>
+
+    <p><%= traveller.email_address %></p>
+    <p><%= traveller.nationality %></p>
+    <p><%= traveller.address %> <%= traveller.zip_code %></p>
+    <p><%= traveller.birth_date.to_formatted_s(:long_ordinal) %></p>
+    <p><%= traveller.phone_number %></p>
+    <p><%= traveller.insurance_status %> <%= traveller.food_diets.name %> <%= traveller.food_restrictions.name %></p>
+</div>

@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
 
   config.model 'FoodRestriction' do
     navigation_label "Data"
-    label "Food Restrictions"
+    label "Food Allergies"
   end
 
   config.model 'Cart' do
@@ -126,7 +126,9 @@ RailsAdmin.config do |config|
     parent User
 
     list do
-      field :is_over_18?, :boolean
+      field :is_over_18?, :boolean do
+        label ">18"
+      end
     end
   end
 

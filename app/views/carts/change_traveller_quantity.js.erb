@@ -1,0 +1,5 @@
+<% unless @cart.errors.any? %>
+$("#travellers-count").html("<%= @cart.number_of_travellers %>");
+<% end %>
+$('#alert').html("<%= escape_javascript(render(:partial => 'layouts/notice')).html_safe %>").hide().show();
+

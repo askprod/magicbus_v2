@@ -10,6 +10,7 @@
 
     <%= form_with url: order_new_payment_path(order), local: true, id: "payment-form", data: { payment_intent_id: @payment_intent.client_secret } do |form| %>
 
+        Billing Details:
         <div class="group-stripe">
             <label>
                 <span>Email</span>

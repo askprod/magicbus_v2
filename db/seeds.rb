@@ -25,9 +25,9 @@ when "development"
         Theme.create!(name: theme_name)
     end
     
-    User.create!(email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
+    User.create!(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
     5.times do |index|
-        User.create!(email:"mail#{index}@mail.com", password:"password", terms_and_conditions: true, admin: false)
+        User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email:"mail#{index}@mail.com", password:"password", terms_and_conditions: true, admin: false)
     end
 
     Season.create!(status: true)

@@ -34,6 +34,25 @@ class CartsController < ApplicationController
     end
   end
 
+  def change_traveller_quantity
+    @cart = Cart.friendly.find(params[:cart_id])
+
+    if params["button"]["increment"]
+      @cart.increment(:number_of_travellers)
+    elsif params["button"]["decrement"]
+      @cart.decrement(:number_of_travellers)
+    end
+
+    respond_to do |format|
+      if @cart.save
+        format.js
+      else
+        format.js
+        flash.now[:alert] = @cart.errors.full_messages.join
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart

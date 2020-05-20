@@ -19,8 +19,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @cart_items = CartTrip.where(cart_id: @cart.id)
 
-    new_cart_item = CartTrip.create!(cart_id: @cart.id, trip_id:(params[:trip_id]))
-    new_cart_item.save
+    @cart.trips << @trip
 
     respond_to do |format|
       format.js {render layout: false}
@@ -36,8 +35,7 @@ class TripsController < ApplicationController
     @trips = Season.find_by(status: true).trips.order(:week)
     @cart_items = CartTrip.where(cart_id: @cart.id)
 
-    find_cart_item = CartTrip.where(cart_id: @cart.id, trip_id: (params[:trip_id]))
-    find_cart_item.delete_all
+    @cart.trips.delete(@trip)
 
     if params[:response_type] == "html"
       respond_to do |format|

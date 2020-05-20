@@ -1,0 +1,113 @@
+<div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+          <tr class="top">
+            <td colspan="4">
+              <table>
+                <tr>
+                  <td class="title">
+                    <%= image_tag image_url('/images/black_logo.png', class:"img-fluid") %>
+                  </td>
+
+                  <td>
+                    Order #: <b><%= @order.name %></b>
+                    <br>
+                    Created: <b><%= @order.created_at.strftime('%d/%m/%Y') %></b>
+                    <br>
+                    Status: <span class="btn btn-success">Paid</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr class="information">
+            <td colspan="4">
+              <table>
+                <tr>
+                  <td>
+                    <b>SARL MagicBus</b><br>
+                    Adresse 1<br>
+                    <i class="far fa-envelope"></i>Email<br>
+                    <i class="fas fa-phone"></i>Telephone
+                  </td>
+
+                  <td>
+                    <b>Customer Name</b><br>
+                    <i class="far fa-envelope"></i>Email<br>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr class="heading">
+            <td>Stripe</td>
+            <td colspan="2"></td>
+            <td class="right"></td>
+          </tr>
+
+          <tr class="details">
+            <td><b>Payment Id:</b> <%= @order.payment_fingerprint%></td>
+          </tr>
+
+          <tr class="heading">
+            <td>Item</td>
+            <td class="right">Price</td>
+            <td class="right">Qty</td>
+            <td>Total</td>
+          </tr>
+
+          <% @order.trips.each do |trip| %>
+            <tr class="item">
+                <td>
+                    <%= trip.name %><br>
+                    <small><%= trip.description %></small>
+                </td>
+
+                <td class="right">
+                    <%= trip.price %>
+                </td>
+
+                <td class="right">
+                    x <%= @order.travellers.count %>
+                </td>
+
+                <td>
+                    <%= @order.total_price %>
+                </td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <td colspan="4"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>Subtotal</b></td>
+            <td><%= @order.total_price %></td>
+          </tr>
+
+          <% if @order.coupon_id?%>
+          <tr>
+            <td colspan="2"></td>
+            <td><b>Discount (<%= @order.coupon.reduction_percentage %>%)</b></td>
+            <td>- AMOUNT</td>
+          </tr>
+          <% end %>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>TAXES %%</b></td>
+            <td>+ ??</td>
+          </tr>
+
+          <tr class="heading">
+            <td colspan="2"></td>
+            <td><b>TOTAL:</b></td>
+            <td>
+               <b><%= @order.total_price %></b>
+            </td>
+          </tr>
+        </table>
+    </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_125421) do
+ActiveRecord::Schema.define(version: 2020_05_19_064723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_125421) do
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name"
+    t.integer "number_of_travellers", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -112,7 +113,9 @@ ActiveRecord::Schema.define(version: 2020_05_13_125421) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "coupon_id"
+    t.string "slug"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["slug"], name: "index_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -157,6 +160,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_125421) do
   end
 
   create_table "travellers", force: :cascade do |t|
+    t.string "gender"
     t.string "first_name"
     t.string "last_name"
     t.string "email_address"
@@ -200,6 +204,8 @@ ActiveRecord::Schema.define(version: 2020_05_13_125421) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

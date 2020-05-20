@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
     before_action :set_cart
     before_action :set_locale
     before_action :set_cache_headers
-  
-    private
+
     protected
 
     def set_cache_headers
@@ -25,7 +24,7 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :terms_and_conditions) }
+        devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :terms_and_conditions) }
         devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :picture) }
     end
 

@@ -94,3 +94,7 @@ gem "stripe", "~> 5.21"
 gem "mini_magick", "~> 4.10"
 
 gem 'rails-erd', group: :development
+
+gem 'wicked_pdf', "~> 1.4.0"
+
+gem 'wkhtmltopdf-binary'

@@ -20,7 +20,7 @@ class Place < ApplicationRecord
                 self.errors.add(:base, "You can't share more than 10 Spots for now.")
             end
         else
-            unless Place.where(user_id: nil).last.created_at < Time.now - 1.minutes
+            unless Place.where(user_id: nil).last.created_at < Time.now - 15.seconds
                 self.errors.add(:base, "Visitors are limited to sharing Spots. Try again later.")
             end
         end

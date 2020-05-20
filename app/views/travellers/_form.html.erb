@@ -29,6 +29,14 @@
               </div>
             </div>
 
+            <div class="col-sm form-group">
+              <%= form.label "Gender", class: "small" %>
+              <%= form.label :gender, "Male" %>
+              <%= form.radio_button :gender, "Male", class: "form-control rounded border" %>
+              <%= form.label :gender, "Female" %>
+              <%= form.radio_button :gender, "Female", class: "form-control rounded border" %>
+            </div>
+
             <%= form.hidden_field :cart_id, :value => @current_user.cart.id %>
 
             <div class="row">
@@ -103,7 +111,7 @@
               </div> 
             
               <div class="col-sm-6 text-center">
-                <%= form.label "Food Restrictions", class: "small" %>
+                <%= form.label "Food Allergies", class: "small" %>
                 <%= form.select :food_restriction_ids, @food_restrictions_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
 
                 <div id='food_restrictions'>

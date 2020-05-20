@@ -14,6 +14,7 @@ class Traveller < ApplicationRecord
     after_create :set_current_age
   
     validates :first_name, :last_name, :address, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
+    validates_inclusion_of :gender, :in => ["Male", "Female"]
     validates_inclusion_of :insurance_status, :in => [true, false]
     validates_format_of :email_address, with: Devise.email_regexp
     validate :check_number_of_travellers_per_trip, on: :create
@@ -51,7 +52,7 @@ class Traveller < ApplicationRecord
     def check_number_of_travellers_per_trip
       self.cart.trips.each do |trip|
         if trip.is_full?
-          self.errors.add(:base, "Trip #{trip.name} has no seats left.")
+          self.errors.add(:base, " #{trip.name} has no seats left.")
         end
       end
     end

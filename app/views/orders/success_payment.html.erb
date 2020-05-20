@@ -1,0 +1,18 @@
+<div class="container-fluid top-margin">
+    <div class="card mx-auto col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+        <div class="card-header py-1 text-center">
+            <p class="h1 my-auto text-center text-success">Your payment was successful!</p>
+            <%= fa_icon "check-circle 4x", class: "text-success" %>
+        </div>
+        <div class="text-center">
+            <p>Your reservation number is: <span class="font-weight-bold"><%= @order.name %></span></p>
+            <p>You will receive an e-mail shortly on:</p>
+            <p class="font-weight-bold"><%= current_user.email %></p>
+            <p>Please bring a copy with you when you board the bus.<p>
+            <p class="small mx-4">Don't forget to check your mail's spam folder as some email providers might unfotunately consider it as so.</p>
+            <%= link_to "View PDF", "#", class: "btn btn-stylised border border-warning my-4" %>
+            <br>
+            <%= link_to "Back to My Orders", orders_path, class: "btn btn-stylised border border-warning my-4" %>
+        </div>
+    </div>
+</div>

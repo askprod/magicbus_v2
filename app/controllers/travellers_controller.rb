@@ -56,9 +56,11 @@ class TravellersController < ApplicationController
   # DELETE /travellers/1
   # DELETE /travellers/1.json
   def destroy
+    @cart = Traveller.find(params[:id]).cart
     @traveller.destroy
+
     respond_to do |format|
-      format.html { redirect_to travellers_url, notice: 'Traveller was successfully destroyed.' }
+      format.html { redirect_to cart_path(@cart), notice: 'Traveller was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -78,6 +80,6 @@ class TravellersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def traveller_params
-      params.require(:traveller).permit(:insurance_status, :cart_id, :first_name, :last_name, :address, :phone_number, :zip_code, :birth_date, :nationality, :email_address, :food_restriction_ids, :food_diet_ids,  food_restrictions_attributes: [:id, :name, :_destroy], food_diets_attributes: [:id, :name, :_destroy])
+      params.require(:traveller).permit(:gender, :insurance_status, :cart_id, :first_name, :last_name, :address, :phone_number, :zip_code, :birth_date, :nationality, :email_address, :food_restriction_ids, :food_diet_ids,  food_restrictions_attributes: [:id, :name, :_destroy], food_diets_attributes: [:id, :name, :_destroy])
     end
 end

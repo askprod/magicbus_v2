@@ -33,83 +33,83 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link adventpro" href="#" id="navbarDropdownMagicMe" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% if user_signed_in? && current_user.picture.attached? %>
-                <%= image_tag(current_user.picture, height: 18, width: 18, style: "border-radius:20px;") %>
-                MagicMe
-                <%= fa_icon "caret-down" %>
-          <% else %>
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link adventpro" href="#" id="navbarDropdownMagicMe" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.picture.attached? %>
+                  <%= image_tag(current_user.picture, height: 18, width: 18, style: "border-radius:20px;") %>
+              <% else %>
                 <%= fa_icon "user" %>
-                MagicMe
+              <% end %>
+                Magic<%= current_user.first_name %>
                 <%= fa_icon "caret-down" %>
-          <% end %>
-        </a>
+          </a>
 
-        <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownMagicMe">
+          <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownMagicMe">
+              <%= link_to(edit_user_registration_path, remote: true, class:"dropdown-item m-0 adventpro text-center") do %>
+                My Account
+              <% end %>
 
-          <% if user_signed_in? %>
+              <% unless current_user.orders.empty? %>
+                  <%= link_to orders_path, class:"dropdown-item m-0 adventpro text-center" do %>
+                      My Bookings
+                  <% end %>
+              <% end %>
 
-            <%= link_to(edit_user_registration_path, remote: true, class:"dropdown-item m-0 adventpro text-center") do %>
-              My Account
-            <% end %>
-
-            <% unless current_user.orders.empty? %>
-                <%= link_to orders_path, class:"dropdown-item m-0 adventpro text-center" do %>
-                    My Bookings
-                <% end %>
-            <% end %>
-
-            <%= link_to cart_path(@cart), class:"dropdown-item m-0 adventpro text-center" do %>
-              <span id="my-cart-counter">
-                <%= render partial: "layouts/cart-counter" %>
-              </span>
-            <% end %>
-
-            <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item m-0 adventpro text-center" do %>
-                Log Out
-            <% end %>
-
-          <% else %>
-
-            <%= link_to new_user_registration_path, class:"dropdown-item m-0 adventpro text-center", remote: true do %>
-                  Create an Account
-            <% end %>
-
-            <%= link_to user_session_path, remote: true, class:"dropdown-item m-0 adventpro text-center" do %>
-                Log In
-            <% end %>
-
-          <% end %>
-
-        </div>
-
-      </li>
+              <%= link_to cart_path(@cart), class:"dropdown-item m-0 adventpro text-center" do %>
+                <span id="my-cart-counter">
+                  <%= render partial: "layouts/cart-counter" %>
+                </span>
+              <% end %>
+          </div>
+        </li>
+      <% end %>
 
     </ul>
 
     <ul class="navbar-nav ml-auto ml-0">
 
-      <% if user_signed_in? && current_user.admin? %>
-          <%= link_to rails_admin.dashboard_path, class: "btn btn-danger my-auto m-2" do %>
-            <span class="m-0 adventpro">ADMIN PAGE</span>
+      <% if user_signed_in? %>
+        <li class="nav-item adventpro">
+          <%= link_to destroy_user_session_path, class:"nav-link mx-1", method: :delete do %>
+            <span class="m-0">Log Out</span>
           <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item adventpro">
+        <%= link_to new_user_registration_path, class:"nav-link mx-1", remote: true do %>
+            <span class="m-0">Create an Account</span>
+        <% end %>
+        </li>
+        <li class="nav-item adventpro">
+        <%= link_to user_session_path, class:"nav-link mx-1", remote: true do %>
+            <span class="m-0">Log In</span>
+        <% end %>
+        </li>
       <% end %>
 
-      <%= link_to trips_path, class:"form-inline btn btn-stylised border border-warning my-auto" do %>
-        <span class="m-0 adventpro">BOOK NOW</span>
-      <% end %>
+      <div class="mx-5">
+        <% if user_signed_in? && current_user.admin? %>
+            <%= link_to rails_admin.dashboard_path, class: "btn btn-danger my-auto" do %>
+              <span class="m-0 adventpro">ADMIN PAGE</span>
+            <% end %>
+        <% end %>
+
+        <%= link_to trips_path, class:"form-inline btn btn-stylised border border-warning my-auto" do %>
+          <span class="m-0 adventpro">BOOK NOW</span>
+        <% end %>
+      </div>
 
       <% if I18n.locale == :fr %>
         <li class="nav-item">
-          <%= link_to({:locale=> nil}, class:"nav-link mx-5") do %>
-            <%= flag_icon(:gb, class: "rounded") %>
+          <%= link_to({:locale=> nil}, class:"nav-link mx-1") do %>
+            <%= flag_icon(:gb) %>
           <% end %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to({:locale=>'fr'}, class:"nav-link mx-5") do %>
-            <%= flag_icon(:fr, class:"rounded") %>
+          <%= link_to({:locale=>'fr'}, class:"nav-link mx-1") do %>
+            <%= flag_icon(:fr) %>
           <% end %>
         </li> 
       <% end %>

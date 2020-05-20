@@ -261,7 +261,11 @@ $cookies-eu-mobile: 'max-width: 767px';
     width: 30%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
+
+    // ATTENTION NAVIGATEUR
     overflow: scroll;
+    // ATTENTION
+    
     max-height: 600px;
 }
 
@@ -1033,4 +1037,12 @@ div#card-errors {
   .sidenav {
     display: none;
   }
+}
+
+#myTab a.nav-link {
+  color: black;
+}
+
+#myTab a.nav-link.active {
+  color: black;
 }

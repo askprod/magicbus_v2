@@ -1,49 +1,46 @@
-<% @recent_orders.each do |order| %>
-    <div class="card col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+<div class="row justify-content-center mt-3">
+
+    <% @recent_orders.each do |order| %>
+        <div class="card col-9 m-1 border-warning px-0 border shadow-sm my-2" style="background:#ffe475;">
+        
+            <div class="card-header py-1 text-center">
+                <p class="h5 my-auto">Order <%= order.name %>: <%= order.total_price_calc %>€</p>
+                <%= button_to order, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
+                    <%= fa_icon "trash" %>
+                <% end %>
+            </div>
+
+            <div class="row h-100 no-gutters my-auto justify-content-center">
+                <% order.travellers.each do |traveller| %>
+                    <%= render "orders/traveller", traveller: traveller %>
+                <% end %>
+            </div>
+
+            <div class="row h-100 no-gutters my-auto justify-content-center">
+                <div class="col-9 my-auto py-2">       
+                    <% order.trips.each do |trip| %>
+                        <%= render "orders/trip", trip: trip %>
+                    <% end %>
+                </div>
+            </div>
+
+            <% if order.coupon %>
+                <div>Current Code: <%= order.coupon.code %>
+                <div><%= order.coupon.reduction_percentage %>% Reduction</div>
+            <% else %>
+                <div class="container-fluid my-1 text-center">
+                    <%= link_to order_promo_code_path(order), class: "btn btn-stylised", remote: true do %>
+                        <p class="small my-auto">Enter Promo Code</p>
+                    <% end %>
+                </div>
+            <% end %>
+
+            <div class="col text-center">
+                <%= link_to order_new_payment_path(order), remote: true, class:"btn btn-stylised w-50 my-2 border border-warning" do %>
+                    <p class="m-0">Pay with <%= image_tag "/images/stripe-card-logo2.png", class:"img-fluid", size: "65" %></p>
+                <% end %>
+            </div>
     
-    <div class="card-header py-1">
-        <p class="small my-auto">Order <%= order.name %>: <%= order.total_price_calc %>€</p>
-        <%= button_to order, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
-            <p class="mb-0" style="font-size: 10px; color: black;">Delete X</p>
-        <% end %>
-    </div>
-
-    <div class="row h-100 no-gutters my-auto">
-
-        <div class="col-12 my-auto py-2">
-
-        <div class="row no-gutters">
-            <div class="col px-1">
-            <%= button_to order, class:"btn btn-info btn-block", style:"top:0; right:0;" do %>
-                <p class="mb-0">More Info</p>
-            <% end %>
-            </div>
         </div>
-
-        </div>
-    </div>
-
-        <% if order.coupon %>
-
-            <div>Current Code: <%= order.coupon.code %>
-            <div><%= order.coupon.reduction_percentage %>% Reduction</div>
-
-        <% else %>
-
-            <div class="container-fluid my-5">
-            <%= link_to order_promo_code_path(order), class: "btn btn-stylised", remote: true do %>
-            <p class="small my-auto">Enter Promo Code</p>
-            <% end %>
-            </div>
-
-        <% end %>
-
-        <div class="col text-center">
-        <%= link_to order_new_payment_path(order), remote: true, class:"btn btn-stylised w-50 my-2 border border-warning" do %>
-            <p class="m-0">Pay with <%= image_tag "/images/stripe-card-logo2.png", class:"img-fluid", size: "65" %></p>
-        <% end %>
-        </div>
- 
-
-    </div>
-<% end %>
+    <% end %>
+</div>

@@ -17,10 +17,10 @@
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="recent-orders-tab" data-toggle="tab" href="#recent-orders" role="tab" aria-controls="home" aria-selected="true">Recent Orders</a>
+      <a class="nav-link active" id="recent-orders-tab" data-toggle="tab" href="#recent-orders" role="tab" aria-controls="home" aria-selected="true">OnGoing Orders (<%= @recent_orders.count %>)</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="paid-orders-tab" data-toggle="tab" href="#paid-orders" role="tab" aria-controls="profile" aria-selected="false">Paid Orders</a>
+      <a class="nav-link" id="paid-orders-tab" data-toggle="tab" href="#paid-orders" role="tab" aria-controls="profile" aria-selected="false">Paid Orders (<%= @paid_orders.count %>)</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">

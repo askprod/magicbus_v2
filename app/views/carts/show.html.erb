@@ -30,11 +30,13 @@
       
       <div class="container text-center">
         <h2>Your Travellers:</h2>
-        <%= button_to "Add Traveller", new_traveller_path, class: "btn btn-stylised", method: :get, remote: true %>
-        <% unless @cart.travellers.count == 0 %>
-          <% @cart.travellers.each do |traveller| %>
+
+        <% @cart.number_of_travellers.times do |traveller_index| %>
+          <% if !@cart.travellers.order(:id)[traveller_index].present? %>
+            <%= button_to "Add Traveller", new_traveller_path, class: "btn btn-stylised", id: "form_traveller_#{traveller_index}", method: :get, remote: true %>
+          <% else %>
             <div class="py-2">
-              <%= render "travellers/traveller_info", traveller: traveller %>
+              <%= render "travellers/traveller_info", traveller: @cart.travellers.order(:id)[traveller_index] %>
             </div>
           <% end %>
         <% end %>

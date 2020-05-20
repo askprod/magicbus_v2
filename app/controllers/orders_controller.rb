@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
@@ -11,6 +11,19 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order = Order.friendly.find(params[:id])
+
+    respond_to do |format|
+        format.pdf do
+            render pdf: "Order No. #{@order.name}",
+            page_size: 'A4',
+            template: "orders/show.html.erb",
+            layout: "pdf.html",
+            lowquality: true,
+            zoom: 1,
+            dpi: 75
+        end
+    end
   end
 
   # GET /orders/new
@@ -90,12 +103,21 @@ class OrdersController < ApplicationController
         @order.update!(payment_status: true, payment_fingerprint: id)
         @order.save
 
-        flash[:notice] = "Thank you! Your Order has been purchased."
-        redirect_to orders_path
+        redirect_to order_success_payment_path(@order)
+        session[:order_page] = true
+        flash[:notice] = "Your Order was successful!"
     else
         flash[:alert] = "Your Order was unsuccessful. Please try again."
         redirect_to orders_path
     end
+  end
+
+  def success_payment
+    @order = Order.friendly.find(params[:order_id])
+    if session[:order_page].blank?
+      redirect_to orders_path
+    end
+      session.delete(:order_page)
   end
 
   def promo_code
