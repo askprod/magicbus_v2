@@ -54,4 +54,15 @@ when "production"
         Theme.create!(name: theme_name)
     end
 
+    FoodRestriction.create!(name: "Other", approved_status: true)
+    FoodRestriction.create!(name: "Sesame", approved_status: true)
+    FoodRestriction.create!(name: "Lactose Intolerance", approved_status: true)
+    FoodRestriction.create!(name: "Peanuts", approved_status: true)
+    FoodRestriction.create!(name: "Diabetic", approved_status: true)
+    FoodRestriction.create!(name: "Gluten", approved_status: true)
+    FoodRestriction.create!(name: "Halal", approved_status: true)
+    FoodDiet.create!(name: "Other", approved_status: true)
+    FoodDiet.create!(name: "Vegan", approved_status: true)
+    FoodDiet.create!(name: "Vegetarian", approved_status: true)
+    
 end
