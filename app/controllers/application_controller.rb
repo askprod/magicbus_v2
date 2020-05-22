@@ -30,7 +30,6 @@ class ApplicationController < ActionController::Base
 
     def set_cart
         if user_signed_in? && current_user.cart == nil
-            # name = "#{current_user.email.split('@')[0]}-#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}"
             Cart.create!(user_id: current_user.id)
             @cart = Cart.find_by(user_id: current_user.id)
         elsif user_signed_in?

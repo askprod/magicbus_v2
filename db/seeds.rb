@@ -47,7 +47,7 @@ when "development"
 
 when "production"
 
-    User.create!(email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
+    User.create!(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
     
     themes = ["Mountain", "Sea", "Coast", "Forest", "Woodland", "Jungle"]
     themes.each do |theme_name|
