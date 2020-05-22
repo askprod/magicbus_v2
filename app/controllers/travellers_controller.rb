@@ -44,11 +44,9 @@ class TravellersController < ApplicationController
   def update
     respond_to do |format|
       if @traveller.update(traveller_params)
-        format.html { redirect_to @traveller, notice: 'Traveller was successfully updated.' }
-        format.json { render :show, status: :ok, location: @traveller }
+        format.html { redirect_to cart_path(@cart.friendly_id), notice: 'Traveller was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @traveller.errors, status: :unprocessable_entity }
       end
     end
   end

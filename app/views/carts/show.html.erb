@@ -8,7 +8,7 @@
         <p class="h1 my-auto text-center">Your Cart is Empty</p>
       </div>
       <div class="text-center">
-        <%= link_to "Book a Trip", trips_path, class: "btn btn-stylised border border-warning my-4" %>
+        <%= link_to "Book a Trip", trips_path, class: "adventpro btn btn-stylised border border-warning my-4" %>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
     <div class="col-sm-8">
 
       <div class="container">
-        <h2 class="h1 text-center adventpro mb-5">Your Trips:</h2>
+        <h2 class="h1 text-center dincondensed mb-2">Your Trips</h2>
 
         <% @current_cart_items.each do |trip| %>
           <%= render partial: 'trips', :locals => { :trip => trip } %>
@@ -29,11 +29,11 @@
       </div>
       
       <div class="container text-center">
-        <h2>Your Travellers:</h2>
+        <h2 class="h1 text-center dincondensed mb-2 mt-4">Your Travellers</h2>
 
         <% @cart.number_of_travellers.times do |traveller_index| %>
           <% if !@cart.travellers.order(:id)[traveller_index].present? %>
-            <%= button_to "Add Traveller", new_traveller_path, class: "btn btn-stylised", id: "form_traveller_#{traveller_index}", method: :get, remote: true %>
+              <%= render "travellers/traveller_fill", traveller_index: traveller_index %>
           <% else %>
             <div class="py-2">
               <%= render "travellers/traveller_info", traveller: @cart.travellers.order(:id)[traveller_index] %>

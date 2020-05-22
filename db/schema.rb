@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_064723) do
     t.string "zip_code"
     t.integer "age_on_create"
     t.date "birth_date"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.boolean "insurance_status"
     t.bigint "cart_id"
     t.bigint "order_id"

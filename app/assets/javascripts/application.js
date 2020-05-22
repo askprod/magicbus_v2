@@ -21,6 +21,8 @@
 //= require activestorage
 //= require cocoon
 //= require cookies_eu
+//= require intlTelInput
+//= require libphonenumber/utils
 //= require turbolinks
 //= require_tree .
 

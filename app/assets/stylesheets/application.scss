@@ -4,6 +4,7 @@
 @import "font-awesome";
 @import 'cookies_eu';
 @import "flag-icon";
+@import "intlTelInput";
 
 @font-face {
     font-family: 'GiveYouGlory';
@@ -19,6 +20,11 @@
     font-family: 'AdventPro';
     src: font-url('AdventPro.ttf');
  }
+
+ @font-face {
+  font-family: 'DinCondensed';
+  src: font-url('DINCondensed.ttf');
+}
 
 $cookies-eu-background-color: rgb(233, 213, 32);
 $cookies-eu-border-color: rgb(233, 186, 32);
@@ -87,6 +93,14 @@ $cookies-eu-mobile: 'max-width: 767px';
   padding: 0 10%;
 }
 
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  line-height: 1.6em;
+}
+
 .home-page {
     position: absolute;
     top: 0px;
@@ -111,12 +125,20 @@ $cookies-eu-mobile: 'max-width: 767px';
      font-family: 'GiveYouGlory'
  }
 
+ .dincondensed {
+   font-family: 'DinCondensed';
+ }
+
  .adventpro {
      font-family: 'AdventPro'
  }
 
  .annietelescope {
      font-family: 'AnnieUseYourTelescope'
+ }
+
+ .helvetica {
+   font-family: Arial, Helvetica, sans-serif;
  }
 
  .yellow {
@@ -616,14 +638,10 @@ section {
 .title-box {
   margin-top: 3%;
   margin-bottom: 30px;
-  font-family: 'AdventPro';
   font-size: 4em;
-  font-weight: 800;
-  letter-spacing: 0.2em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   line-height: 2.2em;
-  text-shadow: 2px 8px 6px rgba(92, 86, 0, 0.438),
-  0px -5px 35px rgba(255, 217, 0, 0.767);
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), color-stop(50%, rgba(0,0,0,.5)), to(rgba(0,0,0,1)));
 }
 
 #video-section {
@@ -634,8 +652,16 @@ section {
 
 #discover-video  {
   height: 500px;
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  #discover-video  {
+    height: 500px;
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 
 /* Hover effect on tiles, discover page */
@@ -1045,4 +1071,13 @@ div#card-errors {
 
 #myTab a.nav-link.active {
   color: black;
+}
+
+line {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid rgb(233, 213, 32);
+  margin: 1em 0;
+  padding: 0;
 }

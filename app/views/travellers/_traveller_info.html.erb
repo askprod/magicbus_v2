@@ -8,17 +8,19 @@
     <div class="row h-100 no-gutters my-auto">
       <div class="col-12 my-auto py-2">
 
-        Nom <%= traveller.first_name %>
+        <p><%= traveller.email_address %></p>
+        <p><%= traveller.phone_number %></p>
+        <p>Insurance: <%= traveller.insurance_status %>
 
         <div class="row no-gutters justify-content-center">
 
-          <div class="col-4 px-1">
+          <div class="col-sm-3 px-1">
             <%= button_to edit_traveller_path(traveller), method: :get, remote: true, class: "btn btn-warning btn-block" do %>
               <p class="mb-0">Edit</p>
             <% end %>              
           </div>
           
-          <div class="col-4 px-1">
+          <div class="col-sm-3 my-1 px-1">
             <%= button_to traveller, method: :delete, class:"btn btn-danger btn-block" do %>
               <p class="mb-0">Remove</p>
             <% end %>

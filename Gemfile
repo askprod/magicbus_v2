@@ -98,3 +98,7 @@ gem 'rails-erd', group: :development
 gem 'wicked_pdf', "~> 1.4.0"
 
 gem 'wkhtmltopdf-binary'
+
+gem 'intl-tel-input-rails'
+
+gem "google-cloud-storage"

@@ -10,31 +10,28 @@
 
           <div class="container">
 
-            <div class="container-fluid">
-              <div class="card mx-auto col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
-                <div class="card-header py-1">
-                  <p class="h3 my-auto text-center">Travel Insurance</p>
-                  <p class="small my-auto text-center">Text</p>
-                </div>
-                <div class="btn-group-toggle row no-gutters">
-                  <div class="col m-2">
-                  <%= form.label :insurance, "Yes", id:"yes-btn", class:"btn btn-block btn-secondary", for: "traveller_insurance_status_true" %>
-                  <%= form.radio_button :insurance_status, true, class: "d-none" %>
-                  </div>
-                  <div class="col m-2">
-                  <%= form.label :insurance, "No", id:"no-btn", class:"btn btn-block btn-secondary", for: "traveller_insurance_status_false"  %>
-                  <%= form.radio_button :insurance_status, false, class: "d-none" %>
-                  </div>
-                </div>
+              <p class="h3 my-auto text-center">Would this Traveller like to subscribe to the <b>Travel Insurance</b>?</p>
+              <p class="small my-auto text-center">Travel insurance quick explanation..</p>
+            
+            <div class="btn-group-toggle row no-gutters justify-content-center">
+              <div class="col-sm-2 m-2">
+                <%= form.label :insurance, "Yes", id:"yes-btn", class:"btn btn-block btn-secondary", for: "traveller_insurance_status_true" %>
+                <%= form.radio_button :insurance_status, true, class: "d-none" %>
+              </div>
+
+              <div class="col-sm-2 m-2">
+                <%= form.label :insurance, "No", id:"no-btn", class:"btn btn-block btn-secondary", for: "traveller_insurance_status_false"  %>
+                <%= form.radio_button :insurance_status, false, class: "d-none" %>
               </div>
             </div>
 
-            <div class="col-sm form-group">
-              <%= form.label "Gender", class: "small" %>
-              <%= form.label :gender, "Male" %>
-              <%= form.radio_button :gender, "Male", class: "form-control rounded border" %>
-              <%= form.label :gender, "Female" %>
-              <%= form.radio_button :gender, "Female", class: "form-control rounded border" %>
+            <line/>
+
+            <div class="row justify-content-center">
+              <div class="col-sm-4 form-group text-center">
+                <%= form.label "Gender", class: "small" %>
+                <%= form.select :gender, ['Male', 'Female', 'Other'], {include_blank: "Select"}, class: "form-control rounded border" %>
+              </div>
             </div>
 
             <%= form.hidden_field :cart_id, :value => @current_user.cart.id %>
@@ -78,20 +75,25 @@
             <div class="row">
               <div class="col-sm form-group">
                 <%= form.label "Nationality", class: "small" %>
-                <%= form.select :nationality, @nationalities_list.collect {|p| p }, {include_blank: true}, class: "form-control rounded border" %>
+                <%= form.select :nationality, @nationalities_list.collect {|p| p }, {include_blank: "Select"}, class: "form-control rounded border" %>
               </div>
 
               <div class="col-sm form-group">
                 <%= form.label "Phone", class: "small" %>
+                <br>
                 <%= form.telephone_field :phone_number, class: "form-control rounded border" %>
               </div>
             </div>
 
-            <br>
+            <line/>
 
-            <p class="small">To help us organize meals during your trip, please fill in the next forms accordingly. We will take everything into account while cooking.<p>
-            <p class="small">Please note that in the case of Vegan diets, we will not provide meals throughout the duration of the trips.<p>
-            <p class="small">We will deduct 30€ per vegan traveller.</p>
+            <div class="text-center">
+              <p class="small">To help us organize meals during your trip, please fill in the next forms accordingly. We will take everything into account while cooking.
+              <br>
+              Please note that in the case of Vegan diets, we will not provide meals throughout the duration of the trips.
+              <br>
+              We will deduct 30€ per vegan traveller.</p>
+            </div>
 
             <div class="row">
 
@@ -127,7 +129,7 @@
 
             </div>
 
-            <br>
+            <line/>
 
             <div class="actions">
               <%= form.submit "Save Traveller", class: "mb-3 btn btn-lg btn-stylised btn-block adventpro" %>
@@ -186,6 +188,17 @@ $(document).ready(function(){
       $("#no-btn").addClass('btn-danger');
       }
   });
+});
+</script>
+
+<script>
+$("#traveller_phone_number").intlTelInput({
+    formatOnInit: true,
+    separateDialCode: true,
+});
+
+$("form").submit(function() {
+    $("#traveller_phone_number").val($("#traveller_phone_number").intlTelInput("getNumber"));
 });
 </script>
 

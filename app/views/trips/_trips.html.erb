@@ -1,5 +1,5 @@
 <% trips.each do |trip| %>
-    <% unless user_signed_in? && current_user.cart.trips.include?(trip) %>
+    <% unless user_signed_in? && current_user.cart.present? && current_user.cart.trips.include?(trip) %>
     <div class="trip-content" id="trip<%= trip.id %>">
 
         <div class="circleBase type2"> 
