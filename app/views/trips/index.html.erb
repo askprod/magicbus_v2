@@ -81,7 +81,7 @@
 
 <script>    
     var trips = [
-        <%= if @trips %>
+        <% if @trips %>
             <% @trips.each do |trip| %>
                 {id: "<%= trip.id %>", week: "<%= trip.week %>", departure: "<%= departure_city(trip) %> <%= departure_country(trip) %>", arrival: "<%= arrival_city(trip) %>", name: "<%= trip.name %>"},
             <% end %>
