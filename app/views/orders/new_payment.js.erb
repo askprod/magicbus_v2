@@ -4,7 +4,7 @@ $(document).ready(function() {
     const form = document.querySelector("#payment-form")
         if (form == null) { return }
 
-    const stripe = Stripe("pk_test_EBkoqYHCFkUVadPJ5yrPUOte00bP1U7Lyo");
+    const stripe = Stripe.api_key;
     const elements = stripe.elements()
     
     const elementStyles = {

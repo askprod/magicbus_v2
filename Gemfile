@@ -89,8 +89,6 @@ gem "rails_admin", "~> 2.0"
 
 gem "cocoon", "~> 1.2"
 
-gem "stripe", "~> 5.21"
-
 gem "mini_magick", "~> 4.10"
 
 gem 'rails-erd', group: :development
@@ -102,3 +100,5 @@ gem 'wkhtmltopdf-binary'
 gem 'intl-tel-input-rails'
 
 gem "google-cloud-storage"
+
+gem "stripe", "~> 5.21"
