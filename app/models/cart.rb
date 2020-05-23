@@ -5,9 +5,13 @@ class Cart < ApplicationRecord
     MAX_TRAVELLERS_PER_CART = 8
 
     belongs_to :user
-    has_many :travellers, dependent: :destroy
+    has_many :travellers, dependent: :destroy,
+        after_add: :update_expiration_time,
+        after_remove: :update_expiration_time
     has_many :cart_trips
-    has_many :trips, through: :cart_trips, after_remove: :check_if_cart_is_empty
+    has_many :trips, through: :cart_trips, 
+        after_remove: [:check_if_cart_is_empty, :update_expiration_time],
+        after_add: :update_expiration_time
 
     before_save :set_cart_name, on: :create
     after_create :update_slug
@@ -38,7 +42,12 @@ class Cart < ApplicationRecord
 
     def clear_cart
         self.update_attribute(:number_of_travellers, 1)
+        self.update_attribute(:expires_at, nil)
         self.trips.delete_all
+    end
+
+    def update_expiration_time(obj)
+        self.update(expires_at: Time.now + 1.hour)
     end
 
     def is_full?

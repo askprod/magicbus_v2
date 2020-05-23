@@ -10,12 +10,17 @@ class Order < ApplicationRecord
 
     before_save :empty_cart
     after_create :set_order_name 
+    after_create :set_expiration_time
 
     validates :travellers, presence: true
     validates :trips, presence: true
 
     def empty_cart
         self.user.cart.clear_cart
+    end
+
+    def set_expiration_time
+        self.update(expires_at: Time.now + 1.day)
     end
 
     def set_order_name
