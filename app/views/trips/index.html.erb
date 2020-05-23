@@ -64,20 +64,30 @@
         <%= render partial: "trips", locals: {trips: @trips} %>
     </div>
 
+    <% provide :head_tags do %>
+        <meta name='turbolinks-visit-control' content='reload'>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                initMap();
+            });
+        </script>
+    <% end %> 
+
     <% else %>
 
-    <h1>No travels programmed yet. Please come back later!</h1>
+    <div class="container-fluid top-margin">
+        <div class="card mx-auto col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+        <div class="card-header py-1">
+            <p class="h1 my-auto text-center">No Trips programmed yet!</p>
+        </div>
+        <div class="text-center my-3">
+            <p class="small">Come back later!</p>
+            <%= link_to "Home", root_path, class: "adventpro btn btn-stylised border border-warning" %>
+        </div>
+        </div>
+    </div>
 
 <% end %>
-
-<% provide :head_tags do %>
-    <meta name='turbolinks-visit-control' content='reload'>
-    <script>
-        document.addEventListener("DOMContentLoaded", function(){
-            initMap();
-        });
-    </script>
-<% end %> 
 
 <script>    
     var trips = [

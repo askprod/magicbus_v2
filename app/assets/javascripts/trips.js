@@ -246,117 +246,143 @@ function initMap() {
   // Create an array of alphabetical characters used to label the markers.
   var labels = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!-';
 
-function codeAddress() {
+    if (typeof trips !== 'undefined') {
+        function codeAddress() {
 
-    var tripIndex = 0
-    var newPlace = new google.maps.places.PlacesService(map)
+            var tripIndex = 0
+            var newPlace = new google.maps.places.PlacesService(map)
 
-    function next() {
-        if (tripIndex < trips.length) {
-            var city = JSON.stringify(trips[tripIndex].departure)
-            // var country = JSON.stringify(trips[tripIndex].country)
-            var search = {query: city, fields: ['geometry'],}    
-            ++tripIndex;
+            function next() {
+                if (tripIndex < trips.length) {
+                    var city = JSON.stringify(trips[tripIndex].departure)
+                    var search = {query: city, fields: ['geometry'],}    
+                    ++tripIndex;
 
-            newPlace.findPlaceFromQuery(search, function(results, status){
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    if (results != null) {
-                        createBusMarker(results[0]);
-                    }; 
-                } else {
-                    console.log(status)
-                };
-                setTimeout(function(){
-                    next();
-                }, 150);
+                    newPlace.findPlaceFromQuery(search, function(results, status){
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            if (results != null) {
+                                createBusMarker(results[0]);
+                            }; 
+                        } else {
+                            console.log(status)
+                        };
+                        setTimeout(function(){
+                            next();
+                        }, 150);
+                    });
+                }
+            }
+            next();
+        }
+
+        codeAddress();
+
+        var startPoint = trips[0].departure
+        var endPoint = trips[trips.length-1].arrival
+        var steps = []
+
+        for (var y = 1; y < trips.length; y++) {
+            var currentElement = trips[y];
+            steps.push ({
+            location: currentElement.departure,
+            stopover: true});
+            };
+
+        function calcRoute() {
+            var requestRoute = {
+            origin: startPoint,
+            destination: endPoint,
+            waypoints: steps,
+            travelMode: 'DRIVING'
+            };
+            directionsService.route(requestRoute, function(result, status) {
+            if (status == 'OK') {
+                directionsRenderer.setDirections(result);
+            }
             });
         }
-    }
-    next();
-}
 
-codeAddress();
+        calcRoute();
 
+        var iconRound = {
+            url: '../images/marker-yellow-big.png', // url
+            scaledSize: new google.maps.Size(60, 60), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(30, 50), // anchor
+            labelOrigin: new google.maps.Point(30, 25)
+        };
 
-  var startPoint = trips[0].departure
-//   console.log(startPoint)
-  var endPoint = trips[trips.length-1].arrival
-//   console.log(endPoint)
-  var steps = []
-  for (var y = 1; y < trips.length - 1; y++) {
-    var currentElement = trips[y];
-    steps.push ({
-      location: currentElement.departure,
-      stopover: true});
-    }
+        var flagIcon = {
+            url: '../images/flag-arrival.png', // url
+            scaledSize: new google.maps.Size(60, 60), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(14, 50), // anchor
+            labelOrigin: new google.maps.Point(30, 25)
+        };
 
-  function calcRoute() {
-    var requestRoute = {
-      origin: startPoint,
-      destination: endPoint,
-      waypoints: steps,
-      travelMode: 'DRIVING'
-    };
-    // console.log(steps)
-    directionsService.route(requestRoute, function(result, status) {
-      if (status == 'OK') {
-        directionsRenderer.setDirections(result);
-      }
-    });
-  }
-
-  calcRoute();
-
-  var iconRound = {
-    url: '../images/marker-yellow-big.png', // url
-    scaledSize: new google.maps.Size(60, 60), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(30, 50), // anchor
-    labelOrigin: new google.maps.Point(30, 25)
-  };
-
-  function createBusMarker(place) {
-       var marker = new google.maps.Marker({
-           map: map,
-           animation: google.maps.Animation.DROP,
-           position: place.geometry.location,
-           name: trips[i % trips.length].name,
-           id: trips[i % trips.length].id,
-           label: {
-              color: 'black',
-              fontSize: '15px',
-              fontWeight: 'bold',
-              text: trips[i % trips.length].week,
-            },
-            icon: iconRound,
-         });
-        
-        var contentString = '<div id="content" class="gm-style-iw">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading" style="font-size: 15px;"> <b>' + marker.name + '</b></h1>'+
-            '<div id="bodyContent" style="font-size: 12px; line-height: 2px;">'+
-            '<p>' + '<span style="text-decoration: underline;">' + "from" + '</span>' + ": " + '<b>' + trips[i % trips.length].departure + '</b>' +'</p>'+
-            '<p>' + '<span style="text-decoration: underline;">' + "to" + '</span>' + ": " + '<b>' + trips[i % trips.length].arrival + '</b>' +' </p>'+
-            '</div>'+
-            '</div>';
-        
-        var infowindow = new google.maps.InfoWindow();
-
-         
-        google.maps.event.addListener(marker, 'click', function() {
-            if(!this.open){
-                infowindow.setContent(contentString);
-                infowindow.open(map, this);
-                this.open = true;
-            }
-            else {
-                infowindow.close();
-                this.open = false;
-            }
+        // Create last marker on map with flag
+        var arrival = JSON.stringify(trips[trips.length-1].arrival)
+        var newSearch = {query: arrival, fields: ['geometry'],}    
+        new google.maps.places.PlacesService(map).findPlaceFromQuery(newSearch, function(results, status){
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                if (results != null) {
+                    createLastMarker(results[0]);
+                }; 
+            } else {
+                console.log(status)
+            };
         });
 
-        i++;
+        function createLastMarker(place) {
+            new google.maps.Marker({
+                map: map,
+                animation: google.maps.Animation.DROP,
+                position: place.geometry.location,
+                icon: flagIcon,
+            });
+        }
 
+        function createBusMarker(place) {
+            var marker = new google.maps.Marker({
+                map: map,
+                animation: google.maps.Animation.DROP,
+                position: place.geometry.location,
+                name: trips[i % trips.length].name,
+                id: trips[i % trips.length].id,
+                label: {
+                    color: 'black',
+                    fontSize: '15px',
+                    fontWeight: 'bold',
+                    text: trips[i % trips.length].week,
+                    },
+                    icon: iconRound,
+                });
+                
+                var contentString = '<div id="content" class="gm-style-iw">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading" style="font-size: 15px;"> <b>' + marker.name + '</b></h1>'+
+                    '<div id="bodyContent" style="font-size: 12px; line-height: 2px;">'+
+                    '<p>' + '<span style="text-decoration: underline;">' + "from" + '</span>' + ": " + '<b>' + trips[i % trips.length].departure + '</b>' +'</p>'+
+                    '<p>' + '<span style="text-decoration: underline;">' + "to" + '</span>' + ": " + '<b>' + trips[i % trips.length].arrival + '</b>' +' </p>'+
+                    '</div>'+
+                    '</div>';
+                
+                var infowindow = new google.maps.InfoWindow();
+
+                
+                google.maps.event.addListener(marker, 'click', function() {
+                    if(!this.open){
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, this);
+                        this.open = true;
+                    }
+                    else {
+                        infowindow.close();
+                        this.open = false;
+                    }
+                });
+            i++;
+        }
     }
 }
