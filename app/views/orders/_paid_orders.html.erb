@@ -17,6 +17,9 @@
 
         <div class="col-12 my-auto py-2">
 
+            <p>Meetup Address: <%= order.trips.first.departure_location['formatted_address'] %></p>
+            <p>Meetup Time: <%= order.trips.first.meetup_time.to_s(:time) %></p>
+            <p class="small">The meetup time is an approximation. It is subject to change, in which case you will be notified.</p>
 
         </div>
       </div>

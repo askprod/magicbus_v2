@@ -9,11 +9,10 @@ function initMap() {
   mapTypeControl: false,
   styles: [
     {
-        "featureType": "all",
-        "elementType": "labels.text",
+        "elementType": "labels",
         "stylers": [
             {
-                "visibility": "off"
+                "visibility": "on"
             }
         ]
     },
@@ -31,7 +30,7 @@ function initMap() {
                 "lightness": 40
             },
             {
-                "visibility": "off"
+                "visibility": "on"
             }
         ]
     },
