@@ -102,3 +102,5 @@ gem 'intl-tel-input-rails'
 gem "google-cloud-storage"
 
 gem "stripe", "~> 5.21"
+
+gem "roo", "~> 2.8"

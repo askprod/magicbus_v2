@@ -26,6 +26,11 @@
   src: font-url('DINCondensed.ttf');
 }
 
+@font-face {
+  font-family: 'BrandonGrotesque';
+  src: font-url('BrandonGrotesque.ttf');
+}
+
 $cookies-eu-background-color: rgb(233, 213, 32);
 $cookies-eu-border-color: rgb(233, 186, 32);
 $cookies-eu-button-background-color: rgb(255, 196, 0);
@@ -141,6 +146,11 @@ p {
    font-family: Arial, Helvetica, sans-serif;
  }
 
+ .brandon-g {
+   font-family: 'BrandonGrotesque';
+   letter-spacing: 0.03em;
+ }
+
  .yellow {
      color: rgb(233, 213, 32)
  }
@@ -248,7 +258,7 @@ p {
 
 .btn-gradient {
   text-align: center;
-  background: radial-gradient(circle, rgba(253,233,48,1) 0%, rgba(253,204,48,1) 100%);
+  background: radial-gradient(circle, rgba(253,213,48,1) 0%, rgba(253,204,48,1) 100%);
   color: black !important;
   border: solid 1px;
   opacity: 1;
@@ -1079,5 +1089,17 @@ line {
   border: 0;
   border-top: 1px solid rgb(233, 213, 32);
   margin: 1em 0;
+  padding: 0;
+}
+
+blackline {
+  display: block;
+  width: 30%;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid rgb(219, 219, 219);
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 5%;
   padding: 0;
 }
