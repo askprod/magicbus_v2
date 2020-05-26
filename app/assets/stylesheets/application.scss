@@ -258,16 +258,14 @@ p {
 
 .btn-gradient {
   text-align: center;
-  background: radial-gradient(circle, rgba(253,213,48,1) 0%, rgba(253,204,48,1) 100%);
+  background: rgb(253, 233, 48);
   color: black !important;
-  border: solid 1px;
   opacity: 1;
   transition: 0.3s;
 }
 
 .btn-gradient:hover {
-  opacity: 0.9;
-  border: solid 3px;
+  opacity: 0.6;
 }
 
 .btn-arrow {
@@ -467,10 +465,14 @@ p {
     border: solid rgb(233, 213, 32) 2px;
 }
 
+.bus-map-container {
+  height: 500px;
+  width: 100%;
+}
 #bus-map {
-  border-radius: 0.5em;
-  width: 90%;
-  height: 80vh;
+  margin: auto;
+  height: 100%;
+  width: 80%;
 }
 
 #login-form {
@@ -1103,3 +1105,4 @@ blackline {
   margin-bottom: 5%;
   padding: 0;
 }
+

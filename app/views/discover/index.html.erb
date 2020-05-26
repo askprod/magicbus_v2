@@ -27,18 +27,17 @@
     <div id="whatwedo" class="container smaller-padding py-4">
         <%= render "what_we_do" %>
         <div class="container-fluid text-center pt-5">
-            <%= link_to trips_path, class: "btn btn-lg btn-gradient adventpro shadow-lg" do %>
-                <h3 class="font-weight-bold mb-0 py-3"><%= t("discover.book_a_trip") %></h3>
+            <%= link_to trips_path, class: "btn btn-lg btn-gradient brandon-g shadow-lg" do %>
+                <h3 class="mb-0 py-2"><%= t("discover.book_a_trip") %></h3>
             <% end %>
         </div>
     </div>
 
-    <blackline/>
 </section>
 
 <section>
 
-    <div class="container smaller-padding">
+    <div class="container smaller-padding mt-5">
         <div class="row no-gutters justify-content-center">       
             <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 border-warning shadow-lg mb-4" style="background:#ffe475;">
                 <div class="card-title mx-2 my-auto">
@@ -211,18 +210,18 @@
         <h1 class="text-center dincondensed"><%= t('discover.our_sponsors') %></h1>
         <div class="row no-gutters justify-content-center"> 
             <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-sm">
+                <div class="snip1577 shadow-lg bg-white">
                 <%= image_tag "/images/michelin.png", class: "img-fluid" %>
-                <div class="figcaption">
+                <div class="figcaption text-secondary">
                     <h3>MICHELIN</h3>
                     <h4>Roues et matériel</h4>
                 </div class="figcaption">
                 </div>
             </div>   
             <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-sm">
+                <div class="snip1577 shadow-lg bg-white">
                 <%= image_tag "/images/store.png", class: "img-fluid" %>
-                <div class="figcaption">
+                <div class="figcaption text-secondary">
                     <h3>ESPACE STORE</h3>
                     <h4>Store Extérieur</h4>
                 </div class="figcaption">

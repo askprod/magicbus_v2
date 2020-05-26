@@ -10,6 +10,10 @@
                 <%= render "layouts/travel_basics_svg" %>
             </div>
 
+            <div class="container yellow mt-2 annietelescope">
+            <h6><%= t('home.moving_hostel') %>!</h6>
+            </div>
+
             <div class="container mainpageblock">
 
                 <div class="row">
@@ -32,14 +36,14 @@
                     </div>
 
                     <div class="col">
-                        <%= link_to story_path do %>
+                        <%= link_to trips_path do %>
                             <div class="categoryWrapper stop-flickering">
-                                <h2 class="annietelescope"><%= t('home.story') %></h2>  
+                                <h2 class="annietelescope"><%= t('home.travel') %></h2>
                                 <button>
                                 <span>
                                     <span>
-                                    <span class="adventpro" data-attr-span="About the MagicBus project !">
-                                        <%= t('home.learn_more') %>
+                                    <span class="adventpro" data-attr-span="Book your trip with MagicBus !">
+                                        <%= t('home.book_trip') %>
                                     </span>
                                     </span>
                                 </span>
@@ -64,16 +68,16 @@
                             </div>
                         <% end %>
                     </div>
-
+                    
                     <div class="col">
-                        <%= link_to trips_path do %>
+                        <%= link_to story_path do %>
                             <div class="categoryWrapper stop-flickering">
-                                <h2 class="annietelescope"><%= t('home.travel') %></h2>
+                                <h2 class="annietelescope"><%= t('home.story') %></h2>  
                                 <button>
                                 <span>
                                     <span>
-                                    <span class="adventpro" data-attr-span="Book your trip with MagicBus !">
-                                        <%= t('home.book_trip') %>
+                                    <span class="adventpro" data-attr-span="About the MagicBus project !">
+                                        <%= t('home.learn_more') %>
                                     </span>
                                     </span>
                                 </span>

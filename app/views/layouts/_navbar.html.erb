@@ -10,28 +10,31 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mx-auto">
 
-      <li class="nav-item dropdown">
-        <a class="nav-link adventpro" href="#" id="navbarDropdownNavigation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Navigation
-          <%= fa_icon "caret-down" %>
-        </a>
-        <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownNavigation">
-          <%= link_to discover_path, class:"dropdown-item m-0 adventpro text-center" do %>
-            Discover
-          <% end %>
-          <%= link_to story_path, class:"dropdown-item m-0 adventpro text-center" do %>
-            Story
-          <% end %>
-          <%= link_to places_path, class:"dropdown-item m-0 adventpro text-center" do %>
-            Share
-          <% end %>
-          <%= link_to trips_path, class:"dropdown-item m-0 adventpro text-center" do %>
-            Travel
-          <% end %>
-        </div>
+      <li class="nav-item adventpro">
+        <%= link_to discover_path, class:"nav-link mx-4" do %>
+          <span class="m-0">Discover</span>
+        <% end %>
       </li>
+      <li class="nav-item adventpro">
+        <%= link_to trips_path, class:"nav-link mx-4" do %>
+          <span class="m-0">Travel</span>
+        <% end %>
+      </li>
+      <li class="nav-item adventpro">
+        <%= link_to places_path, class:"nav-link mx-4" do %>
+          <span class="m-0">Share</span>
+        <% end %>
+      </li>
+      <li class="nav-item adventpro">
+        <%= link_to story_path, class:"nav-link mx-4" do %>
+          <span class="m-0">Story</span>
+        <% end %>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-0">
 
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
@@ -41,51 +44,51 @@
               <% else %>
                 <%= fa_icon "user" %>
               <% end %>
-                Magic<%= current_user.first_name %>
+              Magic<%= current_user.first_name %>
+              <%= fa_icon "caret-down" %>
+          </a>
+
+          <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownMagicMe">
+            <%= link_to(edit_user_registration_path, remote: true, class:"dropdown-item m-0 adventpro text-center") do %>
+              My Account
+            <% end %>
+
+            <% unless current_user.orders.empty? %>
+                <%= link_to orders_path, class:"dropdown-item m-0 adventpro text-center" do %>
+                    My Bookings
+                <% end %>
+            <% end %>
+
+            <%= link_to cart_path(@cart), class:"dropdown-item m-0 adventpro text-center" do %>
+              <span id="my-cart-counter">
+                <%= render partial: "layouts/cart-counter" %>
+              </span>
+            <% end %>
+
+            <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item m-0 adventpro text-center" do %>
+              Log Out
+            <% end %>
+          </div>
+        </li>
+
+      <% else %>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link adventpro" href="#" id="navbarDropdownMagicMe" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Join Us
                 <%= fa_icon "caret-down" %>
           </a>
 
           <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownMagicMe">
-              <%= link_to(edit_user_registration_path, remote: true, class:"dropdown-item m-0 adventpro text-center") do %>
-                My Account
+              <%= link_to new_user_registration_path, class:"dropdown-item m-0 adventpro text-center", remote: true do %>
+                <span class="m-0">Create an Account</span>
               <% end %>
-
-              <% unless current_user.orders.empty? %>
-                  <%= link_to orders_path, class:"dropdown-item m-0 adventpro text-center" do %>
-                      My Bookings
-                  <% end %>
-              <% end %>
-
-              <%= link_to cart_path(@cart), class:"dropdown-item m-0 adventpro text-center" do %>
-                <span id="my-cart-counter">
-                  <%= render partial: "layouts/cart-counter" %>
-                </span>
+              <%= link_to user_session_path, class:"dropdown-item m-0 adventpro text-center", remote: true do %>
+                <span class="m-0">Log In</span>
               <% end %>
           </div>
         </li>
-      <% end %>
 
-    </ul>
-
-    <ul class="navbar-nav ml-auto ml-0">
-
-      <% if user_signed_in? %>
-        <li class="nav-item adventpro">
-          <%= link_to destroy_user_session_path, class:"nav-link mx-1", method: :delete do %>
-            <span class="m-0">Log Out</span>
-          <% end %>
-        </li>
-      <% else %>
-        <li class="nav-item adventpro">
-        <%= link_to new_user_registration_path, class:"nav-link mx-1", remote: true do %>
-            <span class="m-0">Create an Account</span>
-        <% end %>
-        </li>
-        <li class="nav-item adventpro">
-        <%= link_to user_session_path, class:"nav-link mx-1", remote: true do %>
-            <span class="m-0">Log In</span>
-        <% end %>
-        </li>
       <% end %>
 
       <div class="mx-5">
@@ -102,29 +105,17 @@
 
       <% if I18n.locale == :fr %>
         <li class="nav-item">
-          <%= link_to({:locale=> nil}, class:"nav-link mx-1") do %>
+          <%= link_to({:locale=> nil}, class:"nav-link mr-5") do %>
             <%= flag_icon(:gb) %>
           <% end %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to({:locale=>'fr'}, class:"nav-link mx-1") do %>
+          <%= link_to({:locale=>'fr'}, class:"nav-link mr-5") do %>
             <%= flag_icon(:fr) %>
           <% end %>
         </li> 
       <% end %>
-
-      <li class="nav-item adventpro">
-        <%= link_to("https://www.facebook.com/magicbusworld", class: "nav-link mx-1", target: "_blank")  do %>
-          <%= fa_icon "facebook-square lg" %>
-        <% end %>
-      </li>
-
-      <li class="nav-item adventpro">
-        <%= link_to("https://www.instagram.com/magicbusworld/", class:"nav-link mx-1", target: "_blank") do %>
-          <%= fa_icon "instagram lg" %>
-        <% end %>
-      </li>
 
     </ul>
 

@@ -31,6 +31,7 @@
 
 en:
   home:
+    moving_hostel: A moving hotel in Europe
     discover: DISCOVER
     about: About the MagicBus project
     story: STORY
@@ -56,7 +57,7 @@ en:
     a_concept: A CONCEPT DEVELOPED IN CANADA
     a_project: A PROJECT MADE FOR EUROPE
     an_idea: AN IDEA BORN IN NEW-ZEALAND
-    guardian_angels: OUR GUARDIAN ANGELS
+    guardian_angels: Our guardian angels
   share:
     share_your_tips: Share your tips
     share_spot: Share a Spot
