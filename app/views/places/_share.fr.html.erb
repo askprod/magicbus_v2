@@ -1,4 +1,4 @@
-<div class="container-fluid mx-auto">
+<div class="container-fluid">
     <div class="h1 font-weight-bold">
         MagicBus est un voyage en Europe hors des sentiers battus!
     </div>
@@ -7,7 +7,7 @@
     <p>En plus, tu peux cocher la case "secret spot" pour que ton spot reste secret!  Seuls les personnes étant dans le bus au moment où l'on approche ton lieu seront au courant (c'est seulement 8 personnes!).</p>
     
     <div class="container-fluid text-center">
-        <%= button_to "Share a Spot!", new_place_path, method: :get, class:"btn btn-stylised", remote: true %>
+        <%= button_to t('share.share_spot'), new_place_path, method: :get, class:"btn btn-stylised", remote: true %>
     </div>
     </div>
 </div>

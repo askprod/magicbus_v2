@@ -1,2 +1,69 @@
-fr: 
-  magicpeople: "Les Magiciens"
+fr:
+  home:
+    discover: DECOUVRE
+    about: A propos de MagicBus
+    story: HISTOIRE
+    learn_more: Le projet
+    share: PARTAGE
+    give_us_hand: Aide-nous avec des conseils
+    travel: VOYAGE
+    book_trip: Réserve ton voyage
+  general_forms:
+    name: Nom
+    description: Description
+  discover: 
+    what_is_magicbus: Qu'es-ce que Magicbus?
+    book_a_trip: RESERVER UN VOYAGE
+    number_of_trips: Voyages
+    number_of_users: Utilisateurs
+    number_of_travellers: Voyageurs
+    magicians: Les Magiciens
+    we_work_with: Avec qui nous travaillons
+    our_sponsors: Nos Sponsors
+  story: 
+    once_upon_a_time: Il était une fois...
+    a_concept: UN CONCEPT IMAGINE AU CANADA
+    a_project: UN PROJET FAIT POUR L'EUROPE
+    an_idea: UNE IDEE CONCUE EN NOUVELLE-ZELANDE
+    guardian_angels: NOS ANGES GUARDIENS
+  share:
+    share_your_tips: Partage tes conseils
+    share_spot: Partager un Spot
+    shared_spot: Spot partagé
+    waiting_approval: En attente de validation
+    secret_spot: Spot Secret
+    cluster_spots: Groupe de Spots
+    your_shared_spots: Tes Spots
+    share_another_spot: Partager un autre Spot  
+  travel:
+    travel_with_magicbus: Voyage avec MagicBus
+    sort_by_country: Trier par Pays
+    sort_by_theme: Trier par Theme
+    sort_by_dates: Trier par Dates
+    start_date: Date de départ
+    end_date: Date d'arrivée
+    reset_fields: Supprimer Recherche
+    no_trips_yet: Pas de voyages programmés pour l'instant
+    come_later: Revenez un peu plus tard
+    search: Rechercher
+  trips:
+    week: SEMAINE
+    departure: Départ
+    arrival: Arrivée
+    seats_remaining: Places restantes
+    only: seulement
+    left: restantes
+    days: jours
+    sold_out: SOLD OUT
+    more_details: Plus de Détails
+    trip_is_full: Ce voyage est complet
+    add_to_cart: Ajouter au Panier
+    book_trip: Reserver ce Voyage
+  share_form:
+    is_secret: C'est un secret spot?
+    current_pictures: Photos
+    picture_1: Photo 1
+    picture_2: Photo 2
+    picture_3: Photo 3
+    dont_forget: N'oublie pas de placer ton point sur la carte
+    share_spot: Partager avec MagicBus

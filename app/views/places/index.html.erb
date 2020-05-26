@@ -5,7 +5,7 @@
 
   <div>
     <h1 class="title-box text-center dincondensed">
-      Share your tips
+      <%= t('share.share_your_tips') %>
     </h1>
   </div>
 
@@ -13,7 +13,7 @@
 
 </section>
 
-<div class="mt-2">
+<div class="container smaller-padding">
   <%= render "share" %>
 </div>
 
@@ -35,7 +35,7 @@
             <%= image_tag("/images/marker-yellow.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
-            <p class="small m-0">Shared Spot</p>
+            <p class="small m-0"><%= t('share.shared_spot') %></p>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
             <%= image_tag("/images/marker-red.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
-            <p class="small m-0">Waiting for Approval</p>
+            <p class="small m-0"><%= t('share.waiting_approval') %></p>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
             <%= image_tag("/images/marker-blue.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
-            <p class="small m-0">Secret Spot</p>
+            <p class="small m-0"><%= t('share.secret_spot') %></p>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
             <%= image_tag("/images/cluster.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
-            <p class="small m-0">Cluster of Spots</p>
+            <p class="small m-0"><%= t('share.cluster_spots') %></p>
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@
     <div class="card border-warning px-0 border shadow-sm" style="background:#ffe475;">
 
       <div class="card-header py-1">
-        <p class="h1 my-auto text-center">Your Shared Spots</p>
+        <p class="h1 my-auto text-center"><%= t('share.your_shared_spots') %></p>
       </div>
 
       <div class="row justify-content-center m-2">
@@ -91,11 +91,11 @@
             
             <div class="card-header py-1">
               <% if spot.secret_status == true %>
-                <p class="small my-auto">Secret Spot</p>
+                <p class="small my-auto"><%= t('share.secret_spot') %></p>
               <% elsif spot.approved_status == true %>
                 <p class="small my-auto"><%= spot.name %></p>
               <% else %>
-                <p class="small my-auto">Waiting for Approval</p>
+                <p class="small my-auto"><%= t('share.waiting_approval') %></p>
               <% end %>
 
               <div class="position-absolute" style="top: 0; right: 0;">
@@ -121,7 +121,7 @@
                   <% unless spot.approved_status == true || spot.secret_status == true %>
                     <div class="col">
                       <%= button_to edit_place_path(spot), method: :get, remote: true, class: "btn btn-warning" do %>
-                        <%= fa_icon "edit"%>
+                        <%= fa_icon "edit" %>
                       <% end %>              
                     </div>
 
@@ -137,7 +137,7 @@
           </div>
         <% end %>
     <div class="container-fluid text-center my-3">
-      <%= button_to "Share another Spot!", new_place_path, method: :get, class:"btn btn-stylised", remote: true %>
+      <%= button_to t('share.share_another_spot'), new_place_path, method: :get, class:"btn btn-stylised", remote: true %>
     </div>
       </div>
     </div>

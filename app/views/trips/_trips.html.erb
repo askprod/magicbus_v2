@@ -13,24 +13,24 @@
             </div>
 
             <div class="text-block-week adventpro">
-                <p>WEEK <%= trip.week %> : <%= trip.name %></p>
-                Departure: <%= departure_city(trip) %> - <%= trip.departure_date.to_formatted_s(:long_ordinal) %>
+                <p><%= t('trips.week') %> <%= trip.week %> : <%= trip.name %></p>
+                <%= t('trips.departure') %>: <%= departure_city(trip) %> - <%= trip.departure_date.to_formatted_s(:long_ordinal) %>
                 <br>
-                Arrival: <%= arrival_city(trip) %> - <%= trip.arrival_date.to_formatted_s(:long_ordinal) %>
-                <p>Seats Remaining: 
+                <%= t('trips.arrival') %>: <%= arrival_city(trip) %> - <%= trip.arrival_date.to_formatted_s(:long_ordinal) %>
+                <p><%= t('trips.seats_remaining') %>:
                     <% if trip.remaining_seats_count > 3 %>
                         <%= trip.remaining_seats_count %></p>
                     <% elsif trip.remaining_seats_count != 0 && trip.remaining_seats_count < 3 %>
-                        <span class="font-weight-bold text-danger">only <%= trip.remaining_seats_count %> left !</span></p>
+                        <span class="font-weight-bold text-danger"><%= t('trips.only') %> <%= trip.remaining_seats_count %> <%= t('travel.left') %>!</span></p>
                     <% elsif trip.remaining_seats_count == 0 %>
-                        <span class="font-weight-bold text-danger">SOLD OUT</span></p>
+                        <span class="font-weight-bold text-danger"><%= t('trips.sold_out') %></span></p>
                     <% end %>
-                <span class="trip-days"><%= (trip.arrival_date - trip.departure_date).to_i %> <span class="small">days</span></span>
+                <span class="trip-days"><%= (trip.arrival_date - trip.departure_date).to_i %> <span class="small"><%= t('trips.days') %></span></span>
                 <span class="trip-price"><%= trip.price %>€</span>                  
             </div>
 
             <button class="btn btn-stylised btn-details" type="button" data-toggle="collapse" data-target="#collapse<%= trip.week %>" aria-expanded="false" aria-controls="collapseExample">
-                More Details
+                <%= t('trips.more_details') %>
             </button>
 
         </div>
@@ -40,15 +40,15 @@
                 <p><%= trip.description %></p>
                     <% if user_signed_in? && trip.is_full? %>
                         <div class="container text-center">                     
-                            <p class="btn btn-stylised">This Trip is full!</p>
+                            <p class="btn btn-stylised"><%= t('trips.trip_is_full') %>!</p>
                         </div>
                     <% elsif user_signed_in? %>
                         <div class="container text-center">                     
-                            <%= button_to "Add to Cart", {:controller => "trips", :action => "add_to_cart", :trip_id => trip.id}, {class: "btn btn-stylised", remote: true} %>
+                            <%= button_to t('trips.add_to_cart'), {:controller => "trips", :action => "add_to_cart", :trip_id => trip.id}, {class: "btn btn-stylised", remote: true} %>
                         </div>
                     <% else %>
                         <div class="container text-center">                     
-                            <%= link_to "Book this Trip", user_session_path, class: "btn btn-stylised", remote: true %>
+                            <%= link_to t('trips.book_trip'), user_session_path, class: "btn btn-stylised", remote: true %>
                         </div>
                     <% end %>
             </div>

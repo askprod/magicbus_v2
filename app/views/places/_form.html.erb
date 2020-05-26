@@ -1,6 +1,6 @@
 <div class="card login-form">
       
-  <h1 class="card-header adventpro yellow text-center display-5">Share a Spot</h1>
+  <h1 class="card-header adventpro yellow text-center display-5"><%= t('share.share_spot') %></h1>
 
   <div class="card-body">
     <div id="close-button">
@@ -16,23 +16,23 @@
 
 <div class="col-lg-4 my-auto">
   
-  <input id="maps-search-input" class="controls form-control border border-warning rounded mt-3" type="text" placeholder="Search Map. ex: 'Paris'">
+  <input id="maps-search-input" class="controls form-control border border-warning rounded mt-3" type="text" placeholder="1 Rue Dupont, Paris">
 
   <div class="form-group m-0 pt-3">
-    <%= form.label :secret_status, "Is this a Secret Spot?", class: "small" %>
+    <%= form.label :secret_status, t('share_form.is_secret'), class: "small" %>
     <%= form.check_box :secret_status, {id: "checkbox1"}, "true", "false" %>
   </div>
 
   <div class="form-group">
-    <%= form.text_field :name, :maxlength => 25, class: "form-control form-control-sm input-sm rounded border", placeholder: "Name" %>
+    <%= form.text_field :name, :maxlength => 25, class: "form-control form-control-sm input-sm rounded border", placeholder: t('general_forms.name') %>
   </div>
 
   <div class="form-group">
-      <%= form.text_field :description, class: "rounded border form-control form-control-sm", placeholder: "Description" %>
+      <%= form.text_field :description, class: "rounded border form-control form-control-sm", placeholder: t('general_forms.description') %>
   </div>
 
   <%if place.image_one.attached? || place.image_two.attached? || place.image_three.attached? %>
-      <p>Current Pictures:</p>
+      <p><%= t('share_form.current_pictures') %>:</p>
   <% end %>
 
   <% if place.image_one.attached? %>
@@ -50,26 +50,26 @@
   <div class="form-group">
     <div class="custom-file my-1">
       <%= form.file_field :image_one, class:"custom-file-input", id:"fileOne" %>
-      <%= form.label :pictures, "Picture 1", class:"custom-file-label form-control-sm", for:"fileOne" %>
+      <%= form.label :pictures, t('share_form.picture_1'), class:"custom-file-label form-control-sm", for:"fileOne" %>
     </div>
 
     <div class="custom-file my-1">
       <%= form.file_field :image_two, class:"custom-file-input", id:"fileTwo" %>
-      <%= form.label :pictures, "Picture 2", class:"custom-file-label form-control-sm", for:"fileTwo" %>
+      <%= form.label :pictures, t('share_form.picture_2'), class:"custom-file-label form-control-sm", for:"fileTwo" %>
     </div>
 
     <div class="custom-file my-1">
       <%= form.file_field :image_three, class:"custom-file-input", id:"fileThree" %>
-      <%= form.label :pictures, "Picture 3", class:"custom-file-label form-control-sm", for:"fileThree" %>
+      <%= form.label :pictures, t('share_form.picture_3'), class:"custom-file-label form-control-sm", for:"fileThree" %>
     </div>
   </div>
 
   <%= form.hidden_field :location, value: form.object.location.to_json %>
 
-  <p style="font-size: 10px;">Don't forget to place your spot on the map!</p>
+  <p style="font-size: 10px;"><%= t('share_form.dont_forget') %>!</p>
   
   <div class="mb-3">
-    <%= form.submit "Share with MagicBus", class: "btn btn-stylised shadow py-3", id:"spot-submit" %>
+    <%= form.submit t('share_form.share_spot'), class: "btn btn-stylised shadow py-3", id:"spot-submit" %>
   </div>
 
   <% if user_signed_in? %>

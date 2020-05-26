@@ -100,6 +100,10 @@ class OrdersController < ApplicationController
     if @payment_intent.status == "succeeded"
         id = @payment_intent.id
 
+        if @order.coupon
+          @order.user.coupons << @order.coupon
+        end
+
         @order.update!(expires_at: nil, payment_status: true, payment_fingerprint: id)
         @order.save
 

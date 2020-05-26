@@ -1,5 +1,6 @@
 class Coupon < ApplicationRecord
     has_many :orders
+    belongs_to :user, optional: true
 
     validates :code, :remaining_uses, :expiry_date, :reduction_percentage, presence: :true
     validates :code, format: {with: /\A[A-Z0-9]+\z/, message: "only allows capital letters and numbers." }

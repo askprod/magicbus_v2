@@ -13,7 +13,7 @@
 
     <div>
         <h1 class="title-box text-center dincondensed">
-            Travel with MagicBus
+            <%= t('travel.travel_with_magicbus') %>
         </h1>
     </div>
 
@@ -43,21 +43,21 @@
             <div class="my-auto small yellow">OR</div>
             
             <div class="col-sm-3 border rounded shadow-sm mx-2 my-2 p-3">
-                <p>Sort by Country</p>
+                <p><%= t('travel.sort_by_country') %></p>
                 <%= select :country, :select, @countries_list.map {|v| [ v ] }, {}, class: "form-control rounded border my-5" %>
             </div>
 
             <div class="my-auto small yellow">OR</div>
 
             <div class="col-sm-3 border rounded shadow-sm mx-2 my-2 p-3">
-                <p>Sort by Theme</p>
+                <p><%= t('travel.sort_by_theme') %></p>
                 <%= select :theme, :select, @thematics_list.map {|v| [ v ] }, {}, class: "form-control rounded border my-5" %>
             </div>
 
         </div>
 
         <div class="text-center">
-            <button id="date-reset" class="btn btn-stylised shadow-sm my-3">Reset Fields</button>
+            <button id="date-reset" class="btn btn-stylised shadow-sm my-3"><%= t('travel.reset_fields') %></button>
         </div>
 
     </div>
@@ -80,10 +80,10 @@
     <div class="container-fluid top-margin">
         <div class="card mx-auto col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
         <div class="card-header py-1">
-            <p class="h1 my-auto text-center">No Trips programmed yet!</p>
+            <p class="h1 my-auto text-center"><%= t('travel.no_trips_yet') %>!</p>
         </div>
         <div class="text-center my-3">
-            <p class="small">Come back later!</p>
+            <p class="small"><%= t('travel.come_later') %>.</p>
             <%= link_to "Home", root_path, class: "adventpro btn btn-stylised border border-warning" %>
         </div>
         </div>

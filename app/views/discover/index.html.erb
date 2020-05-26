@@ -7,7 +7,7 @@
 
     <div>
         <h1 class="title-box text-center dincondensed">
-            What is MagicBus?
+           <%= t('discover.what_is_magicbus') %>
         </h1>
     </div>
 
@@ -24,11 +24,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250"><path fill="#ffd700" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,224C480,256,600,256,720,224C840,192,960,128,1080,101.3C1200,75,1320,85,1380,90.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
 
 <section>
-    <div id="whatwedo" class="container small-padding py-4">
+    <div id="whatwedo" class="container smaller-padding py-4">
         <%= render "what_we_do" %>
         <div class="container-fluid text-center pt-5">
             <%= link_to trips_path, class: "btn btn-lg btn-gradient adventpro shadow-lg" do %>
-                <h3 class="font-weight-bold mb-0 py-3">BOOK A TRIP WITH US</h3>
+                <h3 class="font-weight-bold mb-0 py-3"><%= t("discover.book_a_trip") %></h3>
             <% end %>
         </div>
     </div>
@@ -37,32 +37,35 @@
 </section>
 
 <section>
-    <div class="row no-gutters justify-content-center">       
-        <div class="card col-sm-3 mx-auto flex-row border-warning shadow-lg mb-4" style="background:#ffe475;">
-            <div class="card-title mx-2 my-auto">
-                <%= fa_icon "road 3x", class:"text-muted" %>
-            </div>
-            <div class="card-body text-right" style="background:#ffd62e;">
-                <h2><%= @total_trips %></h2><span class="small text-muted">Trips</span>
-            </div>
-        </div>
 
-        <div class="card col-sm-3 mx-auto flex-row border-warning shadow-lg mb-4" style="background:#ffe475;">
-            <div class="card-title mx-2 my-auto">
-                <%= fa_icon "user 3x", class:"text-muted" %>
+    <div class="container smaller-padding">
+        <div class="row no-gutters justify-content-center">       
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 border-warning shadow-lg mb-4" style="background:#ffe475;">
+                <div class="card-title mx-2 my-auto">
+                    <%= fa_icon "road 3x", class:"text-muted" %>
+                </div>
+                <div class="card-body text-right" style="background:#ffd62e;">
+                    <h2><%= @total_trips %></h2><span class="small text-muted"><%= t('discover.number_of_trips') %></span>
+                </div>
             </div>
-            <div class="card-body text-right" style="background:#ffd62e;">
-                <h2><%= @total_users %></h2><span class="small text-muted">Users</span>
-            </div>
-        </div>
 
-        <div class="card col-sm-3 mx-auto flex-row border-warning shadow-lg mb-4" style="background:#ffe475;">
-            <div class="card-title mx-2 my-auto">
-                <%= fa_icon "suitcase 3x", class:"text-muted" %>
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 border-warning shadow-lg mb-4" style="background:#ffe475;">
+                <div class="card-title mx-2 my-auto">
+                    <%= fa_icon "user 3x", class:"text-muted" %>
+                </div>
+                <div class="card-body text-right" style="background:#ffd62e;">
+                    <h2><%= @total_users %></h2><span class="small text-muted"><%= t('discover.number_of_users') %></span>
+                </div>
             </div>
-            <div class="card-body text-right" style="background:#ffd62e;">
-                <h2><%= @total_travellers %></h2><span class="small text-muted">Travellers</span>
-            </div> 
+
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 border-warning shadow-lg mb-4" style="background:#ffe475;">
+                <div class="card-title mx-2 my-auto">
+                    <%= fa_icon "suitcase 3x", class:"text-muted" %>
+                </div>
+                <div class="card-body text-right" style="background:#ffd62e;">
+                    <h2><%= @total_travellers %></h2><span class="small text-muted"><%= t('discover.number_of_travellers') %></span>
+                </div> 
+            </div>
         </div>
     </div>
 
@@ -70,10 +73,10 @@
 </section>
 
 <section id="magic-people">
-    <div class="container small-padding">
+    <div class="container smaller-padding">
 
-        <h1 class="text-center dincondensed">Les Magiciens</h1>
-        <h2 class="text-center brandon-g">Who we do it with</h2>
+        <h1 class="text-center dincondensed"><%= t('discover.magicians') %></h1>
+        <h2 class="text-center brandon-g"><%= t('discover.we_work_with') %></h2>
 
             <div class="row no-gutters"> 
             
@@ -205,7 +208,7 @@
 
 <section id="our-sponsors">
     <div class="container small-padding">
-        <h1 class="text-center dincondensed">Our Sponsors</h1>
+        <h1 class="text-center dincondensed"><%= t('discover.our_sponsors') %></h1>
         <div class="row no-gutters justify-content-center"> 
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :orders
   has_one :cart, dependent: :destroy
   has_many :places
+  has_many :coupons
 
   validates_acceptance_of :terms_and_conditions, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create
   validate :only_one_admin

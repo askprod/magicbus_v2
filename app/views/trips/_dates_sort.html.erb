@@ -1,18 +1,18 @@
-<p>Sort by Dates</p>
+<p><%= t('travel.sort_by_dates') %></p>
 <div class="input-group date mb-2" id="dateStart" data-target-input="nearest">
-    <input type="text" placeholder="Start Date"  class="form-control border datetimepicker-input" data-target="#dateStart" autocomplete="off">
+    <input type="text" placeholder="<%= t('travel.start_date') %>"  class="form-control border datetimepicker-input" data-target="#dateStart" autocomplete="off">
     <div class="input-group-append" data-target="#dateStart" data-toggle="datetimepicker">
     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
     </div>
 </div>
 <div class="input-group date" id="dateEnd" data-target-input="nearest">
-    <input type="text" placeholder="End Date" class="form-control border datetimepicker-input" data-target="#dateEnd" autocomplete="off">
+    <input type="text" placeholder="<%= t('travel.end_date') %>" class="form-control border datetimepicker-input" data-target="#dateEnd" autocomplete="off">
     <div class="input-group-append" data-target="#dateEnd" data-toggle="datetimepicker" placeholder="Hello">
     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
     </div>
 </div>
 <div class="row my-2">
-    <button id="date-search" class="btn btn-stylised col mx-3 shadow-sm">Search</button>
+    <button id="date-search" class="btn btn-stylised col mx-3 shadow-sm"><%= t('travel.search') %></button>
 </div>
 
 <script>

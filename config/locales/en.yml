@@ -30,5 +30,73 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  magicpeople: "The MagicPeople"
-  guardian_angels: "Our Guardian Angels"
+  home:
+    discover: DISCOVER
+    about: About the MagicBus project
+    story: STORY
+    learn_more: Learn more about us
+    share: SHARE
+    give_us_hand: Give us a hand for the future
+    travel: TRAVEL
+    book_trip: Book a trip with us
+  general_forms:
+    name: Name
+    description: Description
+  discover: 
+    what_is_magicbus: What is MagicBus?
+    book_a_trip: BOOK A TRIP
+    number_of_trips: Trips
+    number_of_users: Users
+    number_of_travellers: Travellers
+    magicians: The Magicians
+    we_work_with: Who we work with
+    our_sponsors: Our Sponsors
+  story: 
+    once_upon_a_time: Once upon a time...
+    a_concept: A CONCEPT DEVELOPED IN CANADA
+    a_project: A PROJECT MADE FOR EUROPE
+    an_idea: AN IDEA BORN IN NEW-ZEALAND
+    guardian_angels: OUR GUARDIAN ANGELS
+  share:
+    share_your_tips: Share your tips
+    share_spot: Share a Spot
+    shared_spot: Shared Spot
+    waiting_approval: Waiting for approval
+    secret_spot: Secret Spot
+    cluster_spots: Cluster of Spots
+    your_shared_spots: Your Spots
+    share_another_spot: Share another Spot
+  travel:
+    travel_with_magicbus: Travel with Magicbus
+    sort_by_country: Sort by Country
+    sort_by_theme: Sort by Theme
+    sort_by_dates: Sort by Dates
+    start_date: Start Date
+    end_date: End Date
+    reset_fields: Reset Fields
+    no_trips_yet: No trips programmed yet
+    come_later: Come back later
+    search: Search
+  trips:
+    week: WEEK
+    departure: Departure
+    arrival: Arrival
+    seats_remaining: Seats remaining
+    only: only
+    left: left
+    days: days
+    sold_out: SOLD OUT
+    more_details: More Details
+    trip_is_full: This Trip is full
+    add_to_cart: Add to Cart
+    book_trip: Book this Trip
+  share_form:
+    is_secret: Is this a secret spot?
+    current_pictures: Current pictures
+    picture_1: Picture 1
+    picture_2: Picture 2
+    picture_3: Picture 3
+    dont_forget: Don't forget to place your spot on the map
+    share_spot: Share with Magicbus
+
+
