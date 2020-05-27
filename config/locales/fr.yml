@@ -12,14 +12,27 @@ fr:
   general_forms:
     name: Nom
     description: Description
+  sidenav: 
+    concept: Le concept
+    team: L'équipe
+    sponsors: Les sponsors
+  team:
+    lisette: Fondatrice & Designer
+    bastien: Ingenieur
+    matthieu: Ingenieur
+    michel: Ingenieur
+    coralie: Community Manager
+    margot: Juriste
+    paul: Web Developper
+    fantine: Strategie & Communication
   discover: 
-    what_is_magicbus: Qu'es-ce que Magicbus?
-    book_a_trip: RESERVER UN VOYAGE
+    what_is_magicbus: MagicBus, c'est quoi?
+    book_a_trip: Réserver
     number_of_trips: Voyages
     number_of_users: Utilisateurs
     number_of_travellers: Voyageurs
     magicians: Les Magiciens
-    we_work_with: Avec qui nous travaillons
+    we_work_with: Avec qui on le fait
     our_sponsors: Nos Sponsors
   story: 
     once_upon_a_time: Il était une fois...

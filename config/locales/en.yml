@@ -31,7 +31,7 @@
 
 en:
   home:
-    moving_hostel: A moving hotel in Europe
+    moving_hostel: A moving hostel in Europe
     discover: DISCOVER
     about: About the MagicBus project
     story: STORY
@@ -43,9 +43,22 @@ en:
   general_forms:
     name: Name
     description: Description
+  sidenav: 
+    concept: The concept
+    team: The team
+    sponsors: Sponsors
+  team:
+    lisette: Founder & Designer
+    bastien: Engineer
+    matthieu: Engineer
+    michel: Engineer
+    coralie: Community Manager
+    margot: Legal Expert
+    paul: Web Developper
+    fantine: Communication Strategy
   discover: 
     what_is_magicbus: What is MagicBus?
-    book_a_trip: BOOK A TRIP
+    book_a_trip: Book Now
     number_of_trips: Trips
     number_of_users: Users
     number_of_travellers: Travellers

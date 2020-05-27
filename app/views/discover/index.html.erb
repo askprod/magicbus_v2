@@ -1,45 +1,38 @@
 <%= render "discover/sidenav" %>
 
-<section id="whatismagicbus">
+<section>
     <div>
         <%= image_tag "/images/chill.jpg", class: "image-cover" %>
     </div>
 
-    <div>
-        <h1 class="title-box text-center dincondensed">
-           <%= t('discover.what_is_magicbus') %>
-        </h1>
+    <div class="container smaller-margin mt-5">
+        <h1 class="first-title text-center"><%= t('discover.what_is_magicbus') %></h1>
     </div>
-
-<blackline/>
 
 </section>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200"><path fill="#ffd700" fill-opacity="1" d="M0,160L60,133.3C120,107,240,53,360,42.7C480,32,600,64,720,96C840,128,960,160,1080,165.3C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
 
-<section id="video-section">
-    <iframe src="https://vimeo.com/256330880" class="shadow my-auto" id="discover-video" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<section class="container pb-5" id="video-section">
+    <iframe src="https://vimeo.com/256330880" class="shadow" id="discover-video" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </section>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250"><path fill="#ffd700" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,224C480,256,600,256,720,224C840,192,960,128,1080,101.3C1200,75,1320,85,1380,90.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
-
 <section>
-    <div id="whatwedo" class="container smaller-padding py-4">
+    <div id="concept" class="container smallest-padding py-4 mt-5">
         <%= render "what_we_do" %>
         <div class="container-fluid text-center pt-5">
-            <%= link_to trips_path, class: "btn btn-lg btn-gradient brandon-g shadow-lg" do %>
-                <h3 class="mb-0 py-2"><%= t("discover.book_a_trip") %></h3>
+            <%= link_to trips_path, class: "btn btn-lg btn-gradient brandon-g" do %>
+                <h4 class="mb-0 p-2 adventpro"><%= t("discover.book_a_trip") %></h3>
             <% end %>
         </div>
     </div>
-
 </section>
 
 <section>
 
     <div class="container smaller-padding mt-5">
         <div class="row no-gutters justify-content-center">       
-            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 border-warning shadow-lg mb-4" style="background:#ffe475;">
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4" style="background:#ffe475;">
                 <div class="card-title mx-2 my-auto">
                     <%= fa_icon "road 3x", class:"text-muted" %>
                 </div>
@@ -48,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 border-warning shadow-lg mb-4" style="background:#ffe475;">
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4" style="background:#ffe475;">
                 <div class="card-title mx-2 my-auto">
                     <%= fa_icon "user 3x", class:"text-muted" %>
                 </div>
@@ -57,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 border-warning shadow-lg mb-4" style="background:#ffe475;">
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4" style="background:#ffe475;">
                 <div class="card-title mx-2 my-auto">
                     <%= fa_icon "suitcase 3x", class:"text-muted" %>
                 </div>
@@ -71,161 +64,130 @@
     <blackline/>
 </section>
 
-<section id="magic-people">
-    <div class="container smaller-padding">
+<section id="team">
+    <div class="container smaller-padding mb-5">
 
-        <h1 class="text-center dincondensed"><%= t('discover.magicians') %></h1>
-        <h2 class="text-center brandon-g"><%= t('discover.we_work_with') %></h2>
+        <h1 class="text-center first-title"><%= t('discover.magicians') %></h1>
+        <h2 class="text-center brandon-g mb-5"><%= t('discover.we_work_with') %>?</h2>
 
             <div class="row no-gutters"> 
             
             <div class="col-6 col-sm-4 col-md-3 p-2 ">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Lilly.jpg", class: "img-fluid" %>
                 <div class="figcaption">
                     <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h4><%= t('team.lisette')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
             
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Bastien.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Coco.jpg", class: "img-fluid" %>
                 <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h3>Coralie</h3>
+                    <h4><%= t('team.coralie')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
             
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Nicolas.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Michel.jpg", class: "img-fluid" %>
                 <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h3>Michel</h3>
+                    <h4><%= t('team.michel')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
             
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Paulo.jpg", class: "img-fluid" %>
                 <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h3>Paul</h3>
+                    <h4><%= t('team.paul')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
             
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Margot.jpg", class: "img-fluid" %>
                 <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h3>Margot</h3>
+                    <h4><%= t('team.margot')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
             
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Bastien.jpg", class: "img-fluid" %>
                 <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h3>Bastien</h3>
+                    <h4><%= t('team.bastien')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
             
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Fantine.jpg", class: "img-fluid" %>
                 <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h3>Fantine</h3>
+                    <h4><%= t('team.fantine')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
             
             <div class="col-6 col-sm-4 col-md-3 p-2">
                 <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
+                <%= image_tag "/images/photo_Matt.jpg", class: "img-fluid" %>
                 <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
+                    <h3>Matthieu</h3>
+                    <h4><%= t('team.matthieu')%></h4>
                 </div class="figcaption">
                 </div>
             </div>
-            
-            <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
-                <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
-                </div class="figcaption">
-                </div>
             </div>
-            
-            <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
-                <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
-                </div class="figcaption">
-                </div>
-            </div>
-            
-            <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
-                <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
-                </div class="figcaption">
-                </div>
-            </div>
-            
-            <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-sm">
-                <%= image_tag "/images/Lisette.jpg", class: "img-fluid" %>
-                <div class="figcaption">
-                    <h3>Lisette</h3>
-                    <h4>Founder & Designer</h4>
-                </div class="figcaption">
-                </div>
-            </div>
-
-        </div>
     </div>     
 
     <blackline/>   
 </section>
 
-<section id="our-sponsors">
+<section id="sponsors">
     <div class="container small-padding">
-        <h1 class="text-center dincondensed"><%= t('discover.our_sponsors') %></h1>
+        <h1 class="text-center first-title mb-5"><%= t('discover.our_sponsors') %></h1>
         <div class="row no-gutters justify-content-center"> 
-            <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-lg bg-white">
-                <%= image_tag "/images/michelin.png", class: "img-fluid" %>
-                <div class="figcaption text-secondary">
-                    <h3>MICHELIN</h3>
-                    <h4>Roues et matériel</h4>
-                </div class="figcaption">
-                </div>
+            <div class="col-6 col-sm-4 col-md-3 p-4">
+                <%= link_to "https://voyages.michelin.fr/", target: "_blank" do %>
+                    <div class="snip1577 shadow-sm bg-white rounded-circle text-center">
+                    <%= image_tag "/images/michelin.png", size: "300x300", class: "img-fluid" %>
+                    <div class="my-auto figcaption text-secondary">
+                    </div class="figcaption">
+                    </div>
+                <% end %>
             </div>   
-            <div class="col-6 col-sm-4 col-md-3 p-2">
-                <div class="snip1577 shadow-lg bg-white">
-                <%= image_tag "/images/store.png", class: "img-fluid" %>
-                <div class="figcaption text-secondary">
-                    <h3>ESPACE STORE</h3>
-                    <h4>Store Extérieur</h4>
-                </div class="figcaption">
-                </div>
+            <div class="col-6 col-sm-4 col-md-3 p-4">
+                <%= link_to "https://www.espace-stores.fr/", target: "_blank" do %>
+                    <div class="snip1577 shadow-sm bg-white rounded-circle text-center">
+                    <%= image_tag "/images/store.png", size: "300x300", class: "img-fluid" %>
+                    <div class="figcaption text-secondary">
+                    </div class="figcaption">
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 p-4">
+                <%= link_to "https://www.instagram.com/lartisanducol/", target: "_blank" do %>
+                    <div class="snip1577 shadow-sm bg-white rounded-circle text-center">
+                    <%= image_tag "/images/artisanducol-sized.png", size: "300x300", class: "img-fluid" %>
+                    <div class="figcaption text-secondary">
+                    </div>
+                    </div class="figcaption">
+                    </div>
+                <% end %>
             </div>
         </div>
     </div>

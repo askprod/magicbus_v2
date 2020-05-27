@@ -11,10 +11,8 @@
         <%= image_tag "/images/bus-font.jpg", class: "image-cover" %>
     </div>
 
-    <div>
-        <h1 class="title-box text-center dincondensed">
-            <%= t('travel.travel_with_magicbus') %>
-        </h1>
+    <div class="container smaller-margin my-5">
+        <p class="h1 dincondensed text-center"><%= t('travel.travel_with_magicbus') %></p>
     </div>
 
     <blackline/>
@@ -28,20 +26,20 @@
     <div class="container">
         <div class="row justify-content-center text-center">
 
-            <div class="col-sm-3 border rounded shadow-sm mx-2 my-2 p-3" id="dates-sort">
+            <div class="col-sm-3 border rounded shadow-sm mx-3 my-2 p-3" id="dates-sort">
                 <%= render "trips/dates_sort" %>
             </div>
             
             <div class="my-auto small yellow">OR</div>
             
-            <div class="col-sm-3 border rounded shadow-sm mx-2 my-2 p-3">
+            <div class="col-sm-3 border rounded shadow-sm mx-3 my-2 p-3">
                 <p><%= t('travel.sort_by_country') %></p>
                 <%= select :country, :select, @countries_list.map {|v| [ v ] }, {}, class: "form-control rounded border my-5" %>
             </div>
 
             <div class="my-auto small yellow">OR</div>
 
-            <div class="col-sm-3 border rounded shadow-sm mx-2 my-2 p-3">
+            <div class="col-sm-3 border rounded shadow-sm mx-3 my-2 p-3">
                 <p><%= t('travel.sort_by_theme') %></p>
                 <%= select :theme, :select, @thematics_list.map {|v| [ v ] }, {}, class: "form-control rounded border my-5" %>
             </div>

@@ -30,14 +30,20 @@
 
         <% else %>
 
-            Number of Travellers: 
+            <div class="mb-3">
+            <p class="mb-3 h6">Number of Travellers:</p> 
             <%= form_for @cart, :url => cart_change_traveller_quantity_path(@cart), :html => {:method => :post}, remote: true do |f| %>
-                <%= f.button "-", value: "decrement" %>
-                <span id="travellers-count">
+                <%= f.button class: "btn btn-stylised", value: "decrement" do %>
+                    <%= fa_icon "minus" %>
+                <% end %>
+                <span class="h4 px-2" id="travellers-count">
                     <%= @cart.number_of_travellers %>
                 </span>
-                <%= f.button "+", value: "increment" %>
+                <%= f.button class:"btn btn-stylised", value: "increment" do %>
+                    <%= fa_icon "plus" %>
+                <% end %>
             <% end %>
+            </div>
             
             <div id="validatecart">
                 <%= link_to "Confirm", cart_path(@cart), class: "btn btn-stylised btn-block py-3" %>
