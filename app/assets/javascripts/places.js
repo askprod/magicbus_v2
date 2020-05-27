@@ -332,8 +332,8 @@ function initPlacesMap() {
 
         // Set CSS for the control border.
         var controlUI = document.createElement('div');
-        controlUI.style.backgroundColor = '#e9d520';
-        controlUI.style.border = '2px solid #fff';
+        controlUI.style.backgroundColor = 'rgb(150, 150, 150)';
+        controlUI.style.border = '1px solid #fff';
         controlUI.style.borderRadius = '3px';
         controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
         controlUI.style.cursor = 'pointer';
@@ -343,7 +343,7 @@ function initPlacesMap() {
       
         // Set CSS for the control interior.
         var controlText = document.createElement('div');
-        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.color = 'rgb(255,255,255)';
         controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
         controlText.style.fontSize = '12px';
         controlText.style.lineHeight = '38px';

@@ -1,18 +1,11 @@
-<div class="container-fluid">
-    <div class="h1 font-weight-bold">
-        MagicBus is about visiting Europe off the beaten tracks.
-    </div>
+<p><span class="font-weight-bold">MagicBus is about visiting Europe off the beaten tracks.</span>
+That's why we are building a travelling map based on experiences from travellers like you. In a couple of steps, you can participate to this map: just click on the button below!<p>
+<p>You can also tick the "secret spot" box, so that what you are sharing won't be public. Only people on the bus when we approach it will know (and that's only 8!)</p>
 
-    <p>That's why we are building a travelling map based on experiences from travellers like you. In a couple of steps, you can participate to this map: just click on the button below!<p>
-    <p>You can also tick the "secret spot" box, so that what you are sharing won't be public. Only people on the bus when we approach it will know (and that's only 8!)</p>
-
-    <div class="container-fluid text-center">
-        <%= button_to t('share.share_spot'), new_place_path, method: :get, class:"btn btn-lg btn-stylised", remote: true %>
-    </div>
-    </div>
+<div class="container-fluid text-center my-5">
+    <%= button_to new_place_path, method: :get, class: "btn btn-lg btn-gradient", remote: true do %>
+        <h4 class="mb-0 p-2 adventpro"><%= t("share.share_spot") %></h3>
+    <% end %>
 </div>
-</p>
 
-<p>
 
-</p>

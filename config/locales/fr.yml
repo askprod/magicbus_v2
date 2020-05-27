@@ -47,8 +47,8 @@ fr:
     waiting_approval: En attente de validation
     secret_spot: Spot Secret
     cluster_spots: Groupe de Spots
-    your_shared_spots: Tes Spots
-    share_another_spot: Partager un autre Spot  
+    your_shared_spots: Tes spots partagés
+    share_another_spot: Nouveau Spot  
   travel:
     travel_with_magicbus: Voyage avec MagicBus
     sort_by_country: Trier par Pays

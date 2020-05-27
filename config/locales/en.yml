@@ -78,8 +78,8 @@ en:
     waiting_approval: Waiting for approval
     secret_spot: Secret Spot
     cluster_spots: Cluster of Spots
-    your_shared_spots: Your Spots
-    share_another_spot: Share another Spot
+    your_shared_spots: Your shared spots
+    share_another_spot: New Spot
   travel:
     travel_with_magicbus: Travel with Magicbus
     sort_by_country: Sort by Country

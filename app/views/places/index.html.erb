@@ -3,15 +3,15 @@
     <%= image_tag "/images/bus-font.jpg", class: "image-cover" %>
   </div>
 
-  <div class="container smaller-margin my-5">
-      <p class="h1 dincondensed text-center"><%= t('share.share_your_tips') %></p>
+  <div class="container smaller-margin mt-5">
+      <h1 class="first-title text-center"><%= t('share.share_your_tips') %></h1>
   </div>
 
-  <blackline/>
+    <div class="blackline"></div>
 
 </section>
 
-<div class="container smaller-padding">
+<div class="container smallest-padding">
   <%= render "share" %>
 </div>
 
@@ -19,13 +19,13 @@
 
   <div class="container-fluid text-center">
         
-    <div class="container-fluid">
+    <div class="container small-padding">
         <div id="map" class="mx-auto my-2"></div>
     </div>
 
     <div class="row my-2 justify-content-center">
 
-      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+      <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
             <%= image_tag("/images/marker-yellow.png", class: "m-auto", size: "40x40") %>
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+      <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
             <%= image_tag("/images/marker-red.png", class: "m-auto", size: "40x40") %>
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+      <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
             <%= image_tag("/images/marker-blue.png", class: "m-auto", size: "40x40") %>
@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-sm-3 border-warning px-1 border shadow-sm mx-2" style="background:#ffe475;">
+      <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
             <%= image_tag("/images/cluster.png", class: "m-auto", size: "40x40") %>
@@ -73,28 +73,17 @@
 
     <% if user_signed_in? %>
 
-  <div class="container mt-4">
+  <div class="container small-padding mt-4">
 
-    <div class="card border-warning px-0 border shadow-sm" style="background:#ffe475;">
+      <h3 class="first-title text-center mt-5"><%= t('share.your_shared_spots') %></h3>
 
-      <div class="card-header py-1">
-        <p class="h1 my-auto text-center"><%= t('share.your_shared_spots') %></p>
-      </div>
+      <div class="blackline"></div>
 
       <div class="row justify-content-center m-2">
         <% @user_places.each do |spot| %>
-          <div class="card col-lg-2 m-2 border-warning px-0 border shadow-sm" style="background:#ffe475;">
-            
-            <div class="card-header py-1">
-              <% if spot.secret_status == true %>
-                <p class="small my-auto"><%= t('share.secret_spot') %></p>
-              <% elsif spot.approved_status == true %>
-                <p class="small my-auto"><%= spot.name %></p>
-              <% else %>
-                <p class="small my-auto"><%= t('share.waiting_approval') %></p>
-              <% end %>
-
-              <div class="position-absolute" style="top: 0; right: 0;">
+          <div class="card col-lg-2 m-2 px-0 shadow-sm border-0" style="background:#ffe475;">
+          
+              <div>
                 <% if spot.secret_status == true %>
                   <%= image_tag("/images/marker-blue.png", size: "25x25") %>
                 <% elsif spot.approved_status == true %>
@@ -103,7 +92,6 @@
                   <%= image_tag("/images/marker-red.png", size: "25x25") %>
                 <% end %>
               </div>
-            </div>
 
             <div class="row h-100 no-gutters my-auto py-2">
 
@@ -132,8 +120,10 @@
 
           </div>
         <% end %>
-    <div class="container-fluid text-center my-3">
-      <%= button_to t('share.share_another_spot'), new_place_path, method: :get, class:"btn btn-stylised", remote: true %>
+    <div class="container-fluid text-center mt-5">
+        <%= button_to new_place_path, method: :get, class: "btn btn-lg btn-gradient", remote: true do %>
+            <h5 class="mb-0 p-1 adventpro"><%= t("share.share_another_spot") %></h5>
+        <% end %>
     </div>
       </div>
     </div>
