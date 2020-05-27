@@ -5,7 +5,8 @@ class CartsController < ApplicationController
   # GET /carts/1.json
   def show
     @current_cart_items = @cart.trips.order(:week)
-    @travellers_count = @cart.travellers.count
+    @travellers_count = @cart.number_of_travellers
+    @total_trips_price = total_price(@current_cart_items)
 
     @current_cart_items = @cart.trips.order(:week)
 

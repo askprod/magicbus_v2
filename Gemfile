@@ -104,3 +104,5 @@ gem "google-cloud-storage"
 gem "stripe", "~> 5.21"
 
 gem "roo", "~> 2.8"
+
+gem "countries", "~> 3.0"

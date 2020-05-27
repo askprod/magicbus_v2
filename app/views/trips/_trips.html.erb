@@ -1,10 +1,6 @@
 <% trips.each do |trip| %>
     <% unless user_signed_in? && current_user.cart.present? && current_user.cart.trips.include?(trip) %>
     <div class="trip-content" id="trip<%= trip.id %>">
-
-        <div class="circleBase type2"> 
-            <span class="small"><b><%= departure_city(trip)%></b></span>
-        </div>
         
         <div class="image-container-travel">
 
@@ -13,11 +9,10 @@
             </div>
 
             <div class="text-block-week adventpro">
-                <p><%= t('trips.week') %> <%= trip.week %> : <%= trip.name %></p>
-                <%= t('trips.departure') %>: <%= departure_city(trip) %> - <%= trip.departure_date.to_formatted_s(:long_ordinal) %>
-                <br>
-                <%= t('trips.arrival') %>: <%= arrival_city(trip) %> - <%= trip.arrival_date.to_formatted_s(:long_ordinal) %>
-                <p><%= t('trips.seats_remaining') %>:
+                <h5 class="dincondensed mb-3"><%= t('trips.week') %> <%= trip.week %> : <%= trip.name %></h5>
+                <p style="line-height: 1px;"><span class="font-weight-bold"><%= t('trips.departure') %>:</span> <%= trip.departure_date.strftime("%d.%m.%Y") %> - <%= departure_city(trip) %> [<%= find_country_code(departure_country(trip)) %>]</p>
+                <p style="line-height: 1px;"><span class="font-weight-bold"><%= t('trips.arrival') %>:</span> <%= trip.arrival_date.strftime("%d.%m.%Y") %> - <%= arrival_city(trip) %> [<%= find_country_code(arrival_country(trip)) %>] </p>
+                <p><span class="font-weight-bold"><%= t('trips.seats_remaining') %>:</span>
                     <% if trip.remaining_seats_count > 3 %>
                         <%= trip.remaining_seats_count %></p>
                     <% elsif trip.remaining_seats_count != 0 && trip.remaining_seats_count < 3 %>
@@ -25,8 +20,8 @@
                     <% elsif trip.remaining_seats_count == 0 %>
                         <span class="font-weight-bold text-danger"><%= t('trips.sold_out') %></span></p>
                     <% end %>
-                <span class="trip-days"><%= (trip.arrival_date - trip.departure_date).to_i %> <span class="small"><%= t('trips.days') %></span></span>
-                <span class="trip-price"><%= trip.price %>€</span>                  
+                <h2 class="dincondensed float-right mx-4"><%= trip.price %>€</h2>   
+                <h2 class="dincondensed float-right mx-4"><%= (trip.arrival_date - trip.departure_date).to_i %> <%= t('trips.days') %></h2>             
             </div>
 
             <button class="btn btn-stylised btn-details" type="button" data-toggle="collapse" data-target="#collapse<%= trip.week %>" aria-expanded="false" aria-controls="collapseExample">

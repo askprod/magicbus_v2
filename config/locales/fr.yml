@@ -16,6 +16,8 @@ fr:
     concept: Le concept
     team: L'équipe
     sponsors: Les sponsors
+    story: Histoire
+    magicpeople: MagicPeople
   team:
     lisette: Fondatrice & Designer
     bastien: Ingenieur
@@ -39,6 +41,7 @@ fr:
     a_concept: UN CONCEPT IMAGINE AU CANADA
     a_project: UN PROJET FAIT POUR L'EUROPE
     an_idea: UNE IDEE CONCUE EN NOUVELLE-ZELANDE
+    magicpeople: MagicPeople
     guardian_angels: Nos anges gardiens
   share:
     share_your_tips: Partage tes conseils

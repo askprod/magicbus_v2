@@ -18,6 +18,10 @@ module ApplicationHelper
     def arrival_country(trip)
         trip.arrival_location['country']
     end
+
+    def find_country_code(country)
+        result = ISO3166::Country.find_country_by_name(country).alpha2
+    end
     
     def find_trip_id(x)
         Trip.find(x.trip_id)

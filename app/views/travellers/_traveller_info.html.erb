@@ -1,38 +1,33 @@
 <div class="traveller-info">
-  <div class="card m-1 px-0 shadow-sm" style="background:#ffe475; border:none;">
+  <div class="card m-1 px-0 shadow-sm" style="background:#7DBF93; border:none;">
     
     <div class="card-header py-1">
       <p class="h6 my-auto"><b><%= traveller.first_name %> <%= traveller.last_name.upcase %></b></p>
+      <%= button_to traveller, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
+          <%= fa_icon "trash" %>
+      <% end %>
     </div>
 
     <div class="row h-100 no-gutters my-auto">
       <div class="col-12 my-auto py-2">
-
-        <p><%= traveller.email_address %></p>
-        <p><%= traveller.phone_number %></p>
-        <p>Insurance: <%= traveller.insurance_status %>
-
-        <div class="row no-gutters justify-content-center">
-
-          <div class="col-sm-3 px-1">
-            <%= button_to edit_traveller_path(traveller), method: :get, remote: true, class: "btn btn-warning btn-block" do %>
-              <p class="mb-0">Edit</p>
-            <% end %>              
-          </div>
-          
-          <div class="col-sm-3 my-1 px-1">
-            <%= button_to traveller, method: :delete, class:"btn btn-danger btn-block" do %>
-              <p class="mb-0">Remove</p>
-            <% end %>
-          </div>
-        
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <p>First name: <%= traveller.first_name%>
         </div>
+          <div class="col-4">
+            <p>Last name: <%= traveller.last_name%>
+        </div>
+      </div>
+
+      <div class="row no-gutters justify-content-center">
+        <div class="col-sm-3 my-1 px-1">
+          <%= button_to edit_traveller_path(traveller), method: :get, remote: true, class: "btn btn-stylised btn-block" do %>
+            <p class="mb-0">Edit</p>
+          <% end %>              
+        </div>
+      </div>
 
       </div>
-    </div>
-
-    <div class="collapse" id="collapseExample">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
     </div>
     
   </div>

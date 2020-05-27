@@ -1,9 +1,7 @@
 <div class="traveller-info mb-3">
-  <div class="card m-1 px-0 shadow-sm" style="background:#ffe475; border:none;">
+  <div class="card m-1 px-0 shadow-sm" style="background:#cccccc; border:none;">
     
-    <div class="card-header py-1">
-      <p class="h6 my-auto"><b>Traveller #<%= traveller_index + 1 %></b></p>
-    </div>
+    <p class="h6 mt-4"><b>Traveller <%= traveller_index + 1 %></b></p>
 
     <div class="row h-100 no-gutters my-auto">
       <div class="col-12 my-auto py-2">
@@ -11,7 +9,7 @@
         <div class="row no-gutters justify-content-center">
 
           <div class="col-8 p-4">
-                <%= button_to "Add Information", new_traveller_path, class: "btn btn-stylised border border-warning", id: "form_traveller_#{traveller_index}", method: :get, remote: true %>
+                <%= button_to "Add Information", new_traveller_path, class: "btn btn-stylised", id: "form_traveller_#{traveller_index}", method: :get, remote: true %>
           </div> 
         
         </div>
