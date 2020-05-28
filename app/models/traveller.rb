@@ -1,4 +1,6 @@
 class Traveller < ApplicationRecord
+    attr_accessor :phone_validation
+
     belongs_to :cart, optional: true
     belongs_to :order, optional: true
 
@@ -20,6 +22,13 @@ class Traveller < ApplicationRecord
     validate :check_number_of_travellers_per_trip, on: :create
     validate :max_traveller_per_cart, on: :create
     validate :valid_birth_date
+    validate :valid_phone_number
+
+    def valid_phone_number
+      if self.phone_validation == "invalid"
+        self.errors.add(:phone_number, "is invalid")
+      end
+    end
 
     def valid_birth_date
       if self.birth_date

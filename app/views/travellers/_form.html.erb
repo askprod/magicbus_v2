@@ -66,9 +66,16 @@
                 <%= form.text_field :zip_code, class: "form-control rounded border" %>  
               </div>
 
-              <div class="col-sm form-group">  
+              <div class="col-sm form-group mb-0">  
                 <%= form.label "Birth Date", class: "small" %>
-                <%= form.date_field :birth_date, class: "form-control rounded border" %>
+                  <div class="form-group">
+                      <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                          <%= form.text_field :birth_date, class: "form-control datetimepicker-input", "data-target" => "#datetimepicker1" %>
+                          <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                  </div>
               </div>
             </div>
 
@@ -81,7 +88,11 @@
               <div class="col-sm form-group">
                 <%= form.label "Phone", class: "small" %>
                 <br>
-                <%= form.telephone_field :phone_number, class: "form-control rounded border" %>
+                <div class="d-flex flex-row">
+                  <%= form.telephone_field :phone_number, class: "form-control" %>
+                  <span class="input-group-text" id="validation-status"><%= fa_icon "question", class:"px-1" %></span>
+                </div>
+                <%= form.hidden_field :phone_validation, value: "" %>
               </div>
             </div>
 
@@ -193,13 +204,34 @@ $(document).ready(function(){
 
 <script>
 $("#traveller_phone_number").intlTelInput({
+    initialCountry: "FR",
     formatOnInit: true,
-    separateDialCode: true,
+    separateDialCode: false,
 });
 
-$("form").submit(function() {
-    $("#traveller_phone_number").val($("#traveller_phone_number").intlTelInput("getNumber"));
+$("#traveller_phone_number").change(function() {
+  var telInput = $("#traveller_phone_number");
+  var validInput = $("#validation-status");
+  var hiddenInput = $("#traveller_phone_validation");
+  if ($.trim(telInput.val())) {
+    if (telInput.intlTelInput("isValidNumber")) {
+      validInput.html("<%= escape_javascript(fa_icon "check", class:"text-success") %>");
+      hiddenInput.val("valid");
+    } else {
+      validInput.html("<%= escape_javascript(fa_icon "times", class:"text-danger") %>");
+      hiddenInput.val("invalid");
+    }
+  }
 });
 </script>
 
+<script>
+$(document).ready(function(){
+    $('#datetimepicker1').datetimepicker({
+      format: 'DD-MM-YYYY',
+      extraFormats: ['YYYY-MM-DD'],
+      allowInputToggle: true,
+    });
+});
+</script>
 

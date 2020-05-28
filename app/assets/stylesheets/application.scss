@@ -1103,11 +1103,19 @@ line {
   letter-spacing: 0.06em;
 }
 
-.second-title {
-
+.intl-tel-input {
+  width: 100%;
 }
 
-.third-title {
-
+#traveller_phone_number {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
+
+#validation-status {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 

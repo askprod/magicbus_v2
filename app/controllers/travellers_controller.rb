@@ -26,6 +26,7 @@ class TravellersController < ApplicationController
   # POST /travellers.json
   def create
     @traveller = Traveller.new(traveller_params)
+    @traveller.phone_validation = (traveller_params[:phone_validation])
 
     respond_to do |format|
       if @traveller.save
@@ -34,7 +35,6 @@ class TravellersController < ApplicationController
       else
         format.js { render :new }
         flash.now[:alert] = @traveller.errors.full_messages.join(', ') if @traveller.errors.any?
-        format.json { render json: @traveller.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,9 +44,10 @@ class TravellersController < ApplicationController
   def update
     respond_to do |format|
       if @traveller.update(traveller_params)
-        format.html { redirect_to cart_path(@cart.friendly_id), notice: 'Traveller was successfully updated.' }
+        format.js { redirect_to cart_path(@cart.friendly_id), notice: 'Traveller was successfully updated.' }
       else
-        format.html { render :edit }
+        format.js { render :edit }
+        flash.now[:alert] = @traveller.errors.full_messages.join(', ') if @traveller.errors.any?
       end
     end
   end
@@ -78,6 +79,6 @@ class TravellersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def traveller_params
-      params.require(:traveller).permit(:gender, :insurance_status, :cart_id, :first_name, :last_name, :address, :phone_number, :zip_code, :birth_date, :nationality, :email_address, :food_restriction_ids, :food_diet_ids,  food_restrictions_attributes: [:id, :name, :_destroy], food_diets_attributes: [:id, :name, :_destroy])
+      params.require(:traveller).permit(:phone_validation, :gender, :insurance_status, :cart_id, :first_name, :last_name, :address, :phone_number, :zip_code, :birth_date, :nationality, :email_address, :food_restriction_ids, :food_diet_ids,  food_restrictions_attributes: [:id, :name, :_destroy], food_diets_attributes: [:id, :name, :_destroy])
     end
 end
