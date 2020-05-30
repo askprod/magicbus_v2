@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validate :only_one_admin
   validates :first_name, :last_name, presence: true
   validates :picture, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
-  
+
   scope :admin, -> {where(admin: true)}
 
   before_save :capitalize_names

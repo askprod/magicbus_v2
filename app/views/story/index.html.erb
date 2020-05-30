@@ -5,71 +5,67 @@
         <%= image_tag "/images/chill.jpg", class: "image-cover" %>
     </div>
 
-    <div class="container smaller-margin mt-5">
+    <div class="container mt-5">
         <h1 class="first-title text-center"><%= t('story.once_upon_a_time') %></h1>
     </div>
 
   <div class="blackline"></div>
 </section>
 
-<div id="story">
-    <section>
+<section id="story">
 
-        <div id="idea-new-zealand" class="container smaller-padding py-4">
-            <h4 class="text-center brandon-g h6 font-weight-bold">1. <%= t('story.an_idea') %></h4>
+    <div class="container smaller-padding py-4">
+        <h4 class="text-center brandon-g h6 font-weight-bold">1. <%= t('story.an_idea') %></h4>
+
+        <div class="container p-0">
+            <%= image_tag "/images/story1.jpg", class: "story-img" %>
+        </div>
+
+        <%= render 'an_idea' %>
+
+    </div>
+
+    <div class="container smaller-padding py-4">
+        <h4 class="text-center brandon-g h6 font-weight-bold">2. <%= t('story.a_concept') %></h4>
 
             <div class="container p-0">
-                <%= image_tag "/images/story1.jpg", class: "story-img" %>
+                <%= image_tag "/images/story2.jpg", align: "top", class: "story-img-canada" %>
             </div>
 
-            <%= render 'an_idea' %>
+        <%= render 'a_concept' %>
 
-        </div>
+    </div>
 
-        <div id="a-concept-canada" class="container smaller-padding py-4">
-            <h4 class="text-center brandon-g h6 font-weight-bold">2. <%= t('story.a_concept') %></h4>
+    <div class="container smaller-padding py-4">
+        <h4 class="text-center brandon-g h6 font-weight-bold">3. <%= t('story.a_project') %></h4>
 
-                <div class="container p-0">
-                    <%= image_tag "/images/story2.jpg", align: "top", class: "story-img-canada" %>
-                </div>
+            <div class="container p-0">
+                <%= image_tag "/images/story3.jpg", class: "story-img" %>
+            </div>
 
-            <%= render 'a_concept' %>
+        <%= render 'a_project' %>
 
-        </div>
+    </div>
 
-        <div id="made-for-europe" class="container smaller-padding py-4">
-            <h4 class="text-center brandon-g h6 font-weight-bold">3. <%= t('story.a_project') %></h4>
+    <div class="blackline"></div>
+</section>
 
-                <div class="container p-0">
-                    <%= image_tag "/images/story3.jpg", class: "story-img" %>
-                </div>
+<section id="magic-people">
+    <div class="container smaller-padding">
+    
+        <h1 class="first-title text-center"><%= t('story.magicpeople') %></h1>
+        <h2 class="text-center brandon-g mt-3 mb-5"><%= t('story.guardian_angels') %></h2>
 
-            <%= render 'a_project' %>
-
-        </div>
-
-        <div class="blackline"></div>
-    </section>
-</div>
-
-<section>
-    <div id="magic-people">
-        <div class="container smaller-padding">
-        
-            <h1 class="first-title text-center"><%= t('story.magicpeople') %></h1>
-            <h2 class="text-center brandon-g mt-3 mb-5"><%= t('story.guardian_angels') %></h2>
-
-            <div class="text-center container smaller-padding">
-            <br><br>
-                <div class="row no-gutters justify-content-center">
-                    <% @xlsx.drop(1).in_groups_of(46) do |group| %>
-                        <div class="col-lg-4">
-                            <% group.each do |row| %>
-                                <p style="line-height: 0.5;"><%= row.to_a.join(" ") %></p>
-                            <% end %>
-                        </div>
-                    <% end %>
-                </div>
+        <div class="text-center container smaller-padding">
+        <br><br>
+            <div class="row no-gutters justify-content-center">
+                <% @xlsx.drop(1).in_groups_of(46) do |group| %>
+                    <div class="col-lg-4">
+                        <% group.each do |row| %>
+                            <p style="line-height: 0.5;"><%= row.to_a.join(" ") %></p>
+                        <% end %>
+                    </div>
+                <% end %>
             </div>
         </div>
     </div>

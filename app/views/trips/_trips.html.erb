@@ -1,56 +1,79 @@
 <% trips.each do |trip| %>
+
     <% unless user_signed_in? && current_user.cart.present? && current_user.cart.trips.include?(trip) %>
-    <div class="trip-content" id="trip<%= trip.id %>">
         
-        <div class="image-container-travel">
+        <div class="container smaller-padding my-2" id="trip<%= trip.id %>">
 
-            <div>
-                <%= image_tag(trip.picture, class: "trip-picture") %>
+            <div class="container trips-names px-0">
+                <div style="position: absolute; bottom: 0;">
+                    <%= arrival_city(trip) %>
+                </div>
+                <div style="position: absolute; top: 0;">
+                    <%=  departure_city(trip) %>
+                </div>
             </div>
 
-            <div class="text-block-week adventpro">
-                <h5 class="dincondensed mb-3"><%= t('trips.week') %> <%= trip.week %> : <%= trip.name %></h5>
-                <p style="line-height: 1px;"><span class="font-weight-bold"><%= t('trips.departure') %>:</span> <%= trip.departure_date.strftime("%d.%m.%Y") %> - <%= departure_city(trip) %> [<%= find_country_code(departure_country(trip)) %>]</p>
-                <p style="line-height: 1px;"><span class="font-weight-bold"><%= t('trips.arrival') %>:</span> <%= trip.arrival_date.strftime("%d.%m.%Y") %> - <%= arrival_city(trip) %> [<%= find_country_code(arrival_country(trip)) %>] </p>
-                <p><span class="font-weight-bold"><%= t('trips.seats_remaining') %>:</span>
-                    <% if trip.remaining_seats_count > 3 %>
-                        <%= trip.remaining_seats_count %></p>
-                    <% elsif trip.remaining_seats_count != 0 && trip.remaining_seats_count < 3 %>
-                        <span class="font-weight-bold text-danger"><%= t('trips.only') %> <%= trip.remaining_seats_count %> <%= t('travel.left') %>!</span></p>
-                    <% elsif trip.remaining_seats_count == 0 %>
-                        <span class="font-weight-bold text-danger"><%= t('trips.sold_out') %></span></p>
-                    <% end %>
-                <h2 class="dincondensed float-right mx-4"><%= trip.price %>€</h2>   
-                <h2 class="dincondensed float-right mx-4"><%= (trip.arrival_date - trip.departure_date).to_i %> <%= t('trips.days') %></h2>             
+            <div class="container trips-dots px-0" id="trip<%= trip.id %>-dot">
+                <div style="position: absolute; bottom: 0;">
+                    <%= fa_icon "circle" %>
+                </div>
+                <div class="dots-line"></div>
+                <div style="position: absolute; top: 0;">
+                    <%= fa_icon "circle" %>
+                </div>
             </div>
 
-            <button class="btn btn-stylised btn-details" type="button" data-toggle="collapse" data-target="#collapse<%= trip.week %>" aria-expanded="false" aria-controls="collapseExample">
-                <%= t('trips.more_details') %>
-            </button>
+            <div class="container trips px-0">
+                <div id="trip<%= trip.id %>-content">
+                    
+                    <div class="image-container-travel">
+                        
+                        <%= image_tag(trip.picture, class: "trip-picture") %>
 
+                        <div class="text-block-week adventpro">
+                            <h5 class="dincondensed mb-3"><%= t('trips.week') %> <%= trip.week %> : <%= trip.name %></h5>
+                            <p style="line-height: 1px;"><span class="font-weight-bold"><%= t('trips.departure') %>:</span> <%= trip.departure_date.strftime("%d.%m.%Y") %> - <%= departure_city(trip) %> [<%= find_country_code(departure_country(trip)) %>]</p>
+                            <p style="line-height: 1px;"><span class="font-weight-bold"><%= t('trips.arrival') %>:</span> <%= trip.arrival_date.strftime("%d.%m.%Y") %> - <%= arrival_city(trip) %> [<%= find_country_code(arrival_country(trip)) %>]</p>
+                            <p>
+                                <span class="font-weight-bold"><%= t('trips.seats_remaining') %>:</span>
+                                    <% if trip.remaining_seats_count > 3 %>
+                                        <%= trip.remaining_seats_count %>
+                                    <% elsif trip.remaining_seats_count != 0 && trip.remaining_seats_count < 3 %>
+                                        <span class="font-weight-bold text-danger"><%= t('trips.only') %> <%= trip.remaining_seats_count %> <%= t('travel.left') %>!</span>
+                                    <% elsif trip.remaining_seats_count == 0 %>
+                                        <span class="font-weight-bold text-danger"><%= t('trips.sold_out') %></span>
+                                    <% end %>
+                            </p>
+                            <h2 class="dincondensed float-right mx-4"><%= trip.price %>€</h2>   
+                            <h2 class="dincondensed float-right mx-4"><%= (trip.arrival_date - trip.departure_date).to_i %> <%= t('trips.days') %></h2>             
+                        </div>
+
+                        <button class="btn btn-stylised btn-details" type="button" data-toggle="collapse" data-target="#collapse<%= trip.week %>" aria-expanded="false" aria-controls="collapseExample">
+                            <%= t('trips.more_details') %>
+                        </button>
+
+                    </div>
+
+                    <div class="container-fluid collapse" id="collapse<%= trip.week %>">
+                        <div class="text-block-description">
+                            <p><%= trip.description %></p>
+                            <div class="container text-center">                     
+                                <% if user_signed_in? && trip.is_full? %>
+                                        <p class="btn btn-stylised"><%= t('trips.trip_is_full') %>!</p>
+                                <% elsif user_signed_in? %>
+                                        <%= button_to t('trips.add_to_cart'), {:controller => "trips", :action => "add_to_cart", :trip_id => trip.id}, {class: "btn btn-stylised", remote: true} %>
+                                <% else %>
+                                        <%= link_to t('trips.book_trip'), user_session_path, class: "btn btn-stylised", remote: true %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
         </div>
 
-        <div class="contaier-fluid collapse" id="collapse<%= trip.week %>">
-            <div class="text-block-description">
-                <p><%= trip.description %></p>
-                    <% if user_signed_in? && trip.is_full? %>
-                        <div class="container text-center">                     
-                            <p class="btn btn-stylised"><%= t('trips.trip_is_full') %>!</p>
-                        </div>
-                    <% elsif user_signed_in? %>
-                        <div class="container text-center">                     
-                            <%= button_to t('trips.add_to_cart'), {:controller => "trips", :action => "add_to_cart", :trip_id => trip.id}, {class: "btn btn-stylised", remote: true} %>
-                        </div>
-                    <% else %>
-                        <div class="container text-center">                     
-                            <%= link_to t('trips.book_trip'), user_session_path, class: "btn btn-stylised", remote: true %>
-                        </div>
-                    <% end %>
-            </div>
-        </div>
-
-    </div>
-    
     <% end %>
 
 <% end %>

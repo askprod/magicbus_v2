@@ -11,14 +11,20 @@
         <%= image_tag "/images/bus-font.jpg", class: "image-cover" %>
     </div>
 
-    <div class="container smaller-margin my-5">
+    <div class="container my-5">
         <h1 class="first-title text-center"><%= t('travel.travel_with_magicbus') %></h1>
+    </div>
+
+    <div class="blackline"></div>
+
+    <div class="container smallest-padding">
+        <%= @active_season.description %>
     </div>
     
 </section>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200"><path fill="#ffd700" fill-opacity="1" d="M0,160L60,133.3C120,107,240,53,360,42.7C480,32,600,64,720,96C840,128,960,160,1080,165.3C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
-
+<section>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200"><path fill="#ffd700" fill-opacity="1" d="M0,160L60,133.3C120,107,240,53,360,42.7C480,32,600,64,720,96C840,128,960,160,1080,165.3C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
 
     <div class="bus-map-container pb-4">
         <div id="bus-map"></div>
@@ -52,10 +58,11 @@
         </div>
 
     </div>
+</section>
 
-    <div class="container-fluid trips" id="trips-sort">
-        <%= render partial: "trips", locals: {trips: @trips} %>
-    </div>
+<section id="trips-sort">
+    <%= render partial: "trips", locals: {trips: @trips} %>
+</section>
 
     <% provide :head_tags do %>
         <meta name='turbolinks-visit-control' content='reload'>

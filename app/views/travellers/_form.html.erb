@@ -3,15 +3,14 @@
     <h1 class="card-header adventpro yellow text-center display-5">Add a Traveller</h1>
 
     <div class="card-body">
-      <div id="close-button">
-    </div>
+      <div id="close-button"></div>
 
         <%= form_with(model: traveller, remote: true) do |form| %>
 
           <div class="container">
 
-              <p class="h3 my-auto text-center">Would this Traveller like to subscribe to the <b>Travel Insurance</b>?</p>
-              <p class="small my-auto text-center">Travel insurance quick explanation..</p>
+            <p class="h3 my-auto text-center">Would this Traveller like to subscribe to the <b>Travel Insurance</b>?</p>
+            <p class="small my-auto text-center">Travel insurance quick explanation..</p>
             
             <div class="btn-group-toggle row no-gutters justify-content-center">
               <div class="col-sm-2 m-2">
@@ -25,7 +24,7 @@
               </div>
             </div>
 
-            <line/>
+            <div class="blackline"></div>
 
             <div class="row justify-content-center">
               <div class="col-sm-4 form-group text-center">
@@ -96,7 +95,7 @@
               </div>
             </div>
 
-            <line/>
+            <div class="blackline"></div>
 
             <div class="text-center">
               <p class="small">To help us organize meals during your trip, please fill in the next forms accordingly. We will take everything into account while cooking.
@@ -140,7 +139,7 @@
 
             </div>
 
-            <line/>
+            <div class="blackline"></div>
 
             <div class="actions">
               <%= form.submit "Save Traveller", class: "mb-3 btn btn-lg btn-stylised btn-block adventpro" %>
@@ -231,6 +230,7 @@ $(document).ready(function(){
       format: 'DD-MM-YYYY',
       extraFormats: ['YYYY-MM-DD'],
       allowInputToggle: true,
+      viewMode: 'years'
     });
 });
 </script>

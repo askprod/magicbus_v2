@@ -14,9 +14,16 @@ class Order < ApplicationRecord
 
     validates :travellers, presence: true
     validates :trips, presence: true
+    validate :only_one_pending_order, on: :create
 
     def empty_cart
         self.user.cart.clear_cart
+    end
+
+    def only_one_pending_order
+        if self.user.orders.where(payment_status: false).size > 0
+            errors.add(:base, "You can't have more than one pending Order at a time.")
+        end
     end
 
     def set_expiration_time

@@ -229,6 +229,8 @@ p {
    }
 
 .image-cover {
+    position: relative;
+    z-index: 1;
     width: 100vw;
     height: 70vh;
     display: flex;
@@ -339,21 +341,47 @@ p {
   width: 100%;
 }
 
-.container-fluid.trips {
-  width: 80%;
-  height: 100%;
-  bottom: 0%;
+.container.trips {
+  float: right;
+  width: 87%;
 }
 
-.trip-content {
-  margin-bottom: 3%;
+.container.trips-dots {
+  position: relative;
+  float: left;
+  width: 2%;
+  height: 300px;
 }
 
-@media (max-width: 700px) {
-  .container-fluid.trips {
-    width: 90%;
-    height: 100%;
-    bottom: 0%;
+.container.trips-names {
+  position: relative;
+  float: left;
+  width: 10%;
+  height: 300px;
+}
+
+.dots-line {
+  background-color: #000;
+  height: 280px;
+  width: 2px;
+  margin: 6px 6px;
+}
+
+@media (max-width: 1000px) {
+  .container.trips {
+    width: 100%;
+  }
+  
+  .container.trips-dots {
+    display: none;
+  }
+  
+  .container.trips-names {
+    display: none;
+  }
+  
+  .dots-line {
+    display: none;
   }
 }
 
@@ -1034,32 +1062,23 @@ div#card-errors {
 
 /* The sidebar menu */
 .sidenav {
-  width: 13%;
-  margin-right: 2%;
-  position: fixed; 
-  z-index: 3;
-  top: 25%; 
-  right: 0;
-  background-color: rgba(17, 17, 17, 0); 
-  overflow-x: hidden;
-  padding-top: 20px;
+  position: fixed;
+  right: 3%;
+  margin-top: 15%;
+  z-index: 1;
+  text-align: right;
 }
 
 .sidenav ul {
-  padding: 0;
   list-style-type: none;
 }
 
 .sidenav a {
-  width: 100%;
-  padding: 10px 0;
-  text-decoration: none;
   color: #000000;
-  display: block;
 }
 
-.sidenav a.active {
-  font-weight: 800;
+.sidenav a.active span {
+  color: rgb(233, 213, 32);
 }
 
 @media (max-width: 700px) {
@@ -1074,15 +1093,6 @@ div#card-errors {
 
 #myTab a.nav-link.active {
   color: black;
-}
-
-line {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid rgb(233, 213, 32);
-  margin: 1em 0;
-  padding: 0;
 }
 
 .blackline {

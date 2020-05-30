@@ -5,7 +5,7 @@
         <%= image_tag "/images/chill.jpg", class: "image-cover" %>
     </div>
 
-    <div class="container smaller-margin mt-5">
+    <div class="container mt-5">
         <h1 class="first-title text-center"><%= t('discover.what_is_magicbus') %></h1>
     </div>
 
@@ -17,8 +17,8 @@
     <iframe src="https://vimeo.com/256330880" class="shadow" id="discover-video" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </section>
 
-<section>
-    <div id="concept" class="container smallest-padding py-4 mt-5">
+<section id="concept">
+    <div class="container smallest-padding py-4 mt-5">
         <%= render "what_we_do" %>
         <div class="container-fluid text-center pt-5">
             <%= link_to trips_path, class: "btn btn-lg btn-gradient" do %>
