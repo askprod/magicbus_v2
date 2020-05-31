@@ -90,7 +90,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else 
       flash[:alert] = resource.errors.full_messages.first
     end
-    redirect_to new_user_registration_path
+    redirect_to new_user_registration_path, turbolinks: false
   end
 
   def response_to_edit_failure(resource)

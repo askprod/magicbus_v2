@@ -20,7 +20,11 @@ class ApplicationController < ActionController::Base
     end
 
     def default_url_options(options = {})
+        if [RailsAdmin].include?(self.class.parent)
+            { locale: nil }
+        else
         { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale  }
+        end
     end
 
     def configure_permitted_parameters

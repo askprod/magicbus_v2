@@ -1,6 +1,6 @@
 <div class="card login-form text-center">
 
-    <h1 class="card-header adventpro yellow text-center display-5">Join Us!</h1>
+    <h1 class="card-header adventpro yellow display-5">Join Us!</h1>
 
     <div class="card-body">
 
@@ -8,39 +8,48 @@
       </div>
       
         <%= form_for resource, as: resource_name, url: registration_path(resource_name), remote: true do |f| %>
-          <%= devise_error_messages! %>
-          <div class="form-group">
-              <%= f.label :first_name %><br />
+          
+        <div class="row">
+          <div class="col form-group">
+              <%= f.label :first_name, class:"small" %><br />
               <%= f.text_field :first_name, autofocus: true, class:"form-control" %>
           </div>
-          <div class="form-group">
-              <%= f.label :last_name %><br />
-              <%= f.text_field :last_name, autofocus: true, class:"form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :email, "Email", class: "adventpro" %><br />
+          <div class="col form-group">
+            <%= f.label :email, "Email", class:"small" %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
           </div>
-          <div class="form-group">
-            <%= f.label :password, "Mot de passe", class: "adventpro" %>
+        </div>
+
+        <div class="row">
+          <div class="col form-group">
+              <%= f.label :last_name, class:"small" %><br />
+              <%= f.text_field :last_name, autofocus: true, class:"form-control" %>
+          </div>
+          <div class="col form-group">
+            <%= f.label :password, class:"small" %>
             <% if @minimum_password_length %>
-            <em class="adventpro">(<%= @minimum_password_length %> caractères minimum)</em>
+            <em class="small">(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
             <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
           </div>
-          <div class="form-group">
-            <%= f.label :password_confirmation, "Confirmation", class: "adventpro" %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-          </div>
-          <div class="form-group">
+        </div>
+
+        <div class="row">
+          <div class="col form-group mt-4">
             <%= f.check_box :terms_and_conditions %>          
             <%= f.label :terms_and_conditions do %> 
               <span>I agree to the <%= link_to "Terms of Service", root_path, style: "color:black; text-decoration: underline;" %></span>
             <% end %>
           </div>
-          <div class="actions mt-5">
-            <%= f.submit "Créer mon compte", class: "btn btn-lg btn-stylised btn-block adventpro" %>
+          <div class="col form-group">
+            <%= f.label :password_confirmation, "Password Confirmation", class:"small" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
+        </div>
+
+        <div class="actions mt-1">
+          <%= f.submit "Create my account", class: "btn btn-lg btn-stylised btn-block adventpro" %>
+        </div>
 
     </div>
 </div>        

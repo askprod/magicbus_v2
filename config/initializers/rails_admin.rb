@@ -1,5 +1,7 @@
 RailsAdmin.config do |config|
 
+  config.parent_controller = '::ApplicationController'
+
   config.excluded_models = ["TravelTheme", "CartTrip", "DietTraveller", "RestrictionTraveller"]
 
   config.model 'FoodDiet' do

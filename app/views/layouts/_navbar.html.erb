@@ -11,7 +11,6 @@
   <div class="collapse navbar-collapse" id="navbarToggler">
 
     <ul class="navbar-nav mx-auto">
-
       <li class="nav-item adventpro">
         <%= link_to discover_path, class:"nav-link mx-4" do %>
           <span class="m-0">Discover</span>
@@ -37,6 +36,7 @@
     <ul class="navbar-nav ml-0">
 
       <% if user_signed_in? %>
+
         <li class="nav-item dropdown">
           <a class="nav-link adventpro" href="#" id="navbarDropdownMagicMe" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.picture.attached? %>
@@ -93,7 +93,7 @@
 
       <div class="mx-5">
         <% if user_signed_in? && current_user.admin? %>
-            <%= link_to rails_admin.dashboard_path, class: "btn btn-danger my-auto" do %>
+            <%= link_to rails_admin.dashboard_path(locale: nil), class: "btn btn-danger my-auto" do %>
               <span class="m-0 adventpro">ADMIN PAGE</span>
             <% end %>
         <% end %>
