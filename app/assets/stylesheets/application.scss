@@ -164,6 +164,14 @@ p {
     color: white;
     text-decoration: none;
   }
+
+  .pdf-btn {
+    color: blue !important;
+  }
+
+  .pdf-btn:hover {
+    text-decoration: underline !important;
+  }
   
   #navbar {
     z-index: 6;
@@ -286,7 +294,6 @@ p {
 
 .cart {
     color: white;
-    text-align: center;
     z-index: 5;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.87);
@@ -343,7 +350,7 @@ p {
 
 .container.trips {
   float: right;
-  width: 87%;
+  width: 82%;
 }
 
 .container.trips-dots {
@@ -356,7 +363,7 @@ p {
 .container.trips-names {
   position: relative;
   float: left;
-  width: 10%;
+  width: 15%;
   height: 300px;
 }
 
@@ -390,11 +397,11 @@ p {
 }
 
 .trip-picture {
-  max-height: 300px;
+  height: 300px;
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .trip-picture-small {
@@ -441,7 +448,6 @@ p {
   width: 100%;
   top: 100%;
   background-color: rgb(245, 245, 245);
-  padding: 5%;
 }
 
 .btn-book {
@@ -1142,4 +1148,13 @@ div#card-errors {
 
 #new-password-fields {
   border: 2px solid yellow;
+}
+
+.grey-heading {
+  width: 100%;
+  background-color: rgb(204, 204, 204);
+}
+
+.line-height-small p {
+  line-height: 5px;
 }

@@ -12,6 +12,7 @@ class Order < ApplicationRecord
     after_create :set_order_name 
     after_create :set_expiration_time
 
+    validates_acceptance_of :correct_information, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create
     validates :travellers, presence: true
     validates :trips, presence: true
     validate :only_one_pending_order, on: :create
@@ -31,12 +32,12 @@ class Order < ApplicationRecord
     end
 
     def set_order_name
-        order = self.id
+        order = sprintf('%02d', self.id)
         secure_random = SecureRandom.alphanumeric(4).upcase
         season = self.trips.first.season_id.to_s
         trips = self.trips.map{|t| t.week.to_s}.join("T")
         travellers = self.travellers.count.to_s
-        year = Time.now.year.to_s
+        year = Time.now.strftime('%y')
         
         self.update_attribute(:name, "#{order}OR#{secure_random}S#{season}T#{trips}V#{travellers}Y#{year}")
     end

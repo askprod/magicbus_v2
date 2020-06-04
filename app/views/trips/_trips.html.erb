@@ -2,13 +2,13 @@
 
     <% unless user_signed_in? && current_user.cart.present? && current_user.cart.trips.include?(trip) %>
         
-        <div class="container smaller-padding my-2" id="trip<%= trip.id %>">
+        <div class="container small-padding my-2" id="trip<%= trip.id %>">
 
             <div class="container trips-names px-0">
-                <div style="position: absolute; bottom: 0;">
+                <div class="mr-2" style="position: absolute; bottom: 0; right: 0; font-size: 15px;">
                     <%= arrival_city(trip) %>
                 </div>
-                <div style="position: absolute; top: 0;">
+                <div class="mr-2" style="position: absolute; top: 0; right: 0; font-size: 15px;">
                     <%=  departure_city(trip) %>
                 </div>
             </div>
@@ -54,8 +54,8 @@
 
                     </div>
 
-                    <div class="container-fluid collapse" id="collapse<%= trip.week %>">
-                        <div class="text-block-description">
+                    <div class="collapse" id="collapse<%= trip.week %>">
+                        <div class="text-block-description p-4">
                             <p><%= trip.description %></p>
                             <div class="container text-center">                     
                                 <% if user_signed_in? && trip.is_full? %>

@@ -1,50 +1,190 @@
+<% @recent_orders.each do |order| %>
+
 <div class="row justify-content-center mt-3">
-
-    <% @recent_orders.each do |order| %>
-        <div class="card col-9 m-1 px-0 shadow-lg rounded-lg my-2" style="background:#CACACA; border: none;">
-        
-            <div class="card-header py-1 text-center">
-                <p class="h5 my-auto">Order <%= order.name %>: <%= order.total_price_calc %>€</p>
-                <%= button_to order, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
-                    <%= fa_icon "trash" %>
-                <% end %>
-            </div>
-
-            <h2 class="text-center my-2 dincondensed">Travellers</h2>
-
-            <div class="row h-100 no-gutters my-auto justify-content-center">
-                <% order.travellers.each do |traveller| %>
-                    <%= render "orders/traveller", traveller: traveller %>
-                <% end %>
-            </div>
-
-            <h2 class="text-center my-2 dincondensed">MagicTrips</h2>
-
-            <div class="row h-100 no-gutters my-auto justify-content-center">
-                <div class="col-9 my-auto py-2">       
-                    <% order.trips.each do |trip| %>
-                        <%= render "orders/trip", trip: trip %>
-                    <% end %>
-                </div>
-            </div>
-
-            <% if order.coupon %>
-                <div>Current Code: <%= order.coupon.code %>
-                <div><%= order.coupon.reduction_percentage %>% Reduction</div>
-            <% else %>
-                <div class="container-fluid my-1 text-center">
-                    <%= link_to order_promo_code_path(order), class: "btn btn-stylised", remote: true do %>
-                        <p class="small my-auto">PROMO CODE</p>
-                    <% end %>
-                </div>
-            <% end %>
-
-            <div class="col text-center">
-                <%= link_to order_new_payment_path(order), remote: true, class:"btn btn-stylised w-50 my-2 border border-warning" do %>
-                    <p class="m-0">PAY</p>
-                <% end %>
-            </div>
-    
+    <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2" style="background:#ffe475;">
+      <div class="row no-gutters my-auto">
+        <div class="col-9">
+          <h4 class="mb-0 ml-4 adventpro font-weight-bold">Travellers Information</h4>
         </div>
+      </div>
+    </div>
+</div>
+
+<div class="row justify-content-center line-height-small">
+    <div class="col-8">
+        <% order.travellers.each_with_index do |traveller, index| %>
+            
+            <% index += 1 %>
+            <div class="grey-heading mt-5 mb-4">
+                <div class="row no-gutters">
+                    <div class="col-6">
+                        <h5 class="mb-0 py-2 pl-3">Traveller <%= index %></h5>
+                    </div>
+                    <div class="col-3 my-auto">
+                        <p class="font-weight-bold mb-0">Insurance:
+                        <% if traveller.insurance_status == true %>
+                            Yes</p>
+                        <% else %>
+                            No</p>
+                        <% end %>
+                    </div>
+                    <div class="col-3 my-auto">
+                        <p class="mb-0">Nourriture: OUI/NON</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="font-weight-bold">Name:</p>
+                        </div>
+                        <div class="col-9">
+                            <% if traveller.gender == "Male" %>
+                                <p>Mr.<%= traveller.last_name %>, <%= traveller.first_name %></p>
+                            <% else %>
+                                <p>Mrs. <%= traveller.last_name %>, <%= traveller.first_name %></p>
+                            <% end %>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="font-weight-bold">Email:</p>
+                        </div>
+                        <div class="col-9">
+                            <p><%= traveller.email_address %></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="font-weight-bold">Nationality:</p>
+                        </div>
+                        <div class="col-9">
+                            <p><%= traveller.nationality %></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="font-weight-bold">Phone:</p>
+                        </div>
+                        <div class="col-9">
+                            <p><%= traveller.phone_number %></p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="font-weight-bold">Address:</p>
+                        </div>
+                        <div class="col-9">
+                            <p><%= traveller.address %>, <%= traveller.zip_code %></p></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-weight-bold">Food Diets:</p>
+                        </div>
+                        <div class="col-8">
+                            <% if traveller.food_diets.empty?%>
+                                <p>None</p>
+                            <% else %>
+                                <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-weight-bold">Food Restrictions:</p>
+                        </div>
+                        <div class="col-8">
+                            <% if traveller.food_restrictions.empty?%>
+                                <p>None</p>
+                            <% else %>
+                                <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-weight-bold">Santé:</p>
+                        </div>
+                        <div class="col-8">
+                            <p>Santé</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-weight-bold">Commentaire:</p>
+                        </div>
+                        <div class="col-8">
+                            <p>Commentaire</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<div class="row justify-content-center my-4">
+    <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2" style="background:#ffe475;">
+      <div class="row no-gutters my-auto">
+        <div class="col-9">
+          <h4 class="mb-0 ml-4 adventpro font-weight-bold">Trips Information</h4>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="row h-100 no-gutters my-auto justify-content-center">
+    <div class="col-9 my-auto py-2">       
+        <% order.trips.each do |trip| %>
+            <%= render "orders/trip", trip: trip %>
+        <% end %>
+    </div>
+</div>
+
+<div class="container smaller-padding">
+<%= render "orders/specifications" %>
+</div>
+
+<% if order.coupon %>
+    <div>Current Code: <%= order.coupon.code %>
+    <div><%= order.coupon.reduction_percentage %>% Reduction</div>
+<% else %>
+    <div class="container-fluid my-1 text-center">
+        <%= link_to order_promo_code_path(order), class: "btn btn-stylised", remote: true do %>
+            <p class="small my-auto">PROMO CODE</p>
+        <% end %>
+    </div>
+<% end %>
+
+<div class="col text-center">
+    <%= link_to order_new_payment_path(order), remote: true, class:"btn btn-stylised w-50 my-2 border border-warning" do %>
+        <p class="m-0">PAY</p>
     <% end %>
 </div>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+

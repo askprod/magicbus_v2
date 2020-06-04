@@ -1,40 +1,22 @@
 <div class="row justify-content-center mt-3">
 
   <% @paid_orders.each do |order| %>
-    <div class="card col-9 m-1 border-warning px-0 border shadow-sm my-2" style="background:#ffe475;">
+    <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2 rounded-pill" style="background:#ffe475;">
       
-      <div class="card-header py-1">
-        
-        <p class="small my-auto">Order <%= order.name %>: <%= order.total_price_calc %>€</p>
+      <div class="row no-gutters my-auto">
 
-          <button class="btn btn-success position-absolute m-1 px-1 py-0" style="top:0; right:0;">
-            <%= fa_icon "check" %>
-          </button>
-
-      </div>
-
-      <div class="row h-100 no-gutters my-auto">
-
-        <div class="col-12 my-auto py-2">
-
-            <p>Meetup Address: <%= order.trips.first.departure_location['formatted_address'] %></p>
-            <p>Meetup Time: <%= order.trips.first.meetup_time.to_s(:time) %></p>
-            <p class="small">The meetup time is an approximation. It is subject to change, in which case you will be notified.</p>
-
+        <div class="col-9">
+          <p class="mb-0 ml-4">Order N°<span class="font-weight-bold"><%= order.name %></span>, paid on <span class="font-weight-bold"><%= order.paid_at.strftime("%d/%m/%Y") %></span> | Total: <span class="font-weight-bold"><%= order.total_price %>€</span> Tax incl.</p>
         </div>
-      </div>
 
-          <% if order.coupon %>
-
-            <div>Current Code: <%= order.coupon.code %>
-            <div><%= order.coupon.reduction_percentage %>% Reduction</div>
-
-          <% end %>
-
-        <div class="row h-100 no-gutters my-auto">
-          <%= link_to "PDF", order_path(order, format: :pdf), class: "btn btn-stylised" %>
+        <div class="col-1 my-auto small mx-2">
+          <%= link_to "Invoice EN", order_path(order, format: :pdf), class: "pdf-btn" %>
         </div>   
 
+        <div class="col-1 my-auto small mx-2">
+          <%= link_to "Facture FR", order_path(order, format: :pdf), class: "pdf-btn" %>
+        </div>   
+      </div>
 
     </div>
   <% end %>

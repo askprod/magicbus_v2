@@ -8,7 +8,7 @@
 
     <div class="show" id="collapse-cart">
 
-      <div class="container my-5">
+      <div class="container my-5 text-center">
           <p class="small"><%= @travellers_count %> Travellers<p> 
           <p><%= @total_trips_price %>€ per Traveller<p>
           <% if @insured_travellers > 0 %>
@@ -20,7 +20,7 @@
           <h1><span id="total-cart-price"><%= @total_price %></span> €</h1>
       </div>
 
-      <div id="validatecart">
+      <div id="validatecart" class="text-center">
         <%= form_for(:order, :url => orders_path, :method => :post)  do |f| %>
           <%= f.hidden_field :total_price, value: @total_price %>
 
@@ -32,7 +32,15 @@
             <%= f.hidden_field :trip_ids, multiple: true, value: trip.id %>
           <% end %>
 
-          <%= f.submit "Create Order", class: "btn btn-stylised mb-3" %>
+          <div class="form-check mx-3 mb-4">
+            <%= f.check_box :correct_information, class:"form-check-input" %>          
+            <%= f.label :correct_information, class:"form-check-label" do %> 
+              <span>I certify that the information provided concerning each traveller is correct and has been double-checked.</span>
+            <% end %>
+          </div>
+
+          <%= f.submit "Create Order", class: "btn btn-stylised btn-block py-3" %>
+
         <% end %>
       </div>
 

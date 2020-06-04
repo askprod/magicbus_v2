@@ -1,24 +1,25 @@
 <div id="trip<%= trip.id %>" class="my-2" style="background-image: url('<%= rails_blob_url(trip.picture)%>'); background-size: cover; background-position: center;">
-    <div class="text-block-cart adventpro py-3">
-        <div class="row text-center justify-content-center">
-            <div class="col-3 my-auto">
-                <p>Week <%= trip.week %></p>
+    <div class="text-block-cart py-5">
+        <div class="row no-gutters justify-content-center">
+            <div class="col-6 my-auto">
+                <h3 class="adventpro">Week <%= trip.week %></h3>
                 <p class="small"><%= trip.name %></p>
             </div>
-            <div class="col-3 my-auto">
-                <p class="small">Departure<p> 
-                <p><%= departure_city(trip) %></p> 
+            <div class="col-2 my-auto">
+                <h5 class="adventpro"><%= departure_city(trip) %><span class="h6 ml-3">[ <%= find_country_code(departure_country(trip)) %> ]</span></h5> 
                 <p><%= trip.departure_date.to_formatted_s(:long_ordinal) %></p>
             </div>
-            <div class="col-3 my-auto">
-                <p class="small">Arrival</p> 
-                <p><%= arrival_city(trip) %></p> 
-                <p><%= trip.arrival_date.to_formatted_s(:long_ordinal) %></p>
+            <div class="col-1 my-auto px-0 mx-0">
+                <%= fa_icon "chevron-right 2x", class:"px-0"%>
             </div>
-            <div class="col-3 my-auto">
-                <p><%= trip.price %>€</p>
-                <p class="small">per traveller</p>
+            <div class="col-2 my-auto">
+                <h5 class="adventpro"><%= arrival_city(trip) %><span class="h6 ml-3">[ <%= find_country_code(departure_country(trip)) %> ]</span></h5> 
+                <p><%= trip.arrival_date.to_formatted_s(:long_ordinal) %></p>
             </div>
         </div>
     </div>
+    <div class="text-block-description p-4">
+        <p><%= trip.description %></p>
+    </div>    
 </div>
+

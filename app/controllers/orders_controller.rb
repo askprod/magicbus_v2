@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.friendly.find(params[:id])
+    @vegan_id = FoodDiet.find_by(name_en: "Vegan").id
+    @order_trips = @order.trips.order(:week)
 
     respond_to do |format|
         format.pdf do
@@ -104,7 +106,7 @@ class OrdersController < ApplicationController
           @order.user.coupons << @order.coupon
         end
 
-        @order.update!(expires_at: nil, payment_status: true, payment_fingerprint: id)
+        @order.update!(paid_at: Time.now, expires_at: nil, payment_status: true, payment_fingerprint: id)
         @order.save
 
         redirect_to order_success_payment_path(@order)
@@ -159,6 +161,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:total_price, traveller_ids: [], trip_ids: []).merge(user_id: current_user.id)
+      params.require(:order).permit(:correct_information, :total_price, traveller_ids: [], trip_ids: []).merge(user_id: current_user.id)
     end
 end

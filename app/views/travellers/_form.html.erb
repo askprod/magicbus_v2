@@ -89,7 +89,7 @@
                 <br>
                 <div class="d-flex flex-row">
                   <%= form.telephone_field :phone_number, class: "form-control" %>
-                  <span class="input-group-text" id="validation-status"><%= fa_icon "question", class:"px-1" %></span>
+                  <span class="input-group-text" id="validation-status"><%= fa_icon "circle", class:"px-1" %></span>
                 </div>
                 <%= form.hidden_field :phone_validation, value: "" %>
               </div>
@@ -97,11 +97,9 @@
 
             <div class="blackline"></div>
 
-            <div class="text-center">
+            <div class="container small-padding text-center">
               <p class="small">To help us organize meals during your trip, please fill in the next forms accordingly. We will take everything into account while cooking.
-              <br>
               Please note that in the case of Vegan diets, we will not provide meals throughout the duration of the trips.
-              <br>
               We will deduct 30€ per vegan traveller.</p>
             </div>
 
@@ -141,6 +139,43 @@
 
             <div class="blackline"></div>
 
+            <div class="row">
+              <div class="col-sm form-group">
+                <%= form.label "Medical Condition Remarks", class: "small" %>
+                <%= form.text_field :medical_condition, class: "form-control rounded border" %>
+              </div>
+              
+              <div class="col-sm form-group">
+                <%= form.label "Other Comments", class: "small" %>
+                <%= form.text_field :additional_comment, class: "form-control rounded border" %>
+              </div>
+            </div>
+
+            <div class="blackline"></div>
+
+              <div class="form-check mx-5 my-3">
+                <%= form.check_box :valid_passport, class:"form-check-input", style:"margin-top: 7px;" %>          
+                <%= form.label :valid_passport, class:"form-check-label" do %> 
+                  <span class="small">I certify that this traveller is in possession of valid <span class="font-weight-bold">administrative documents</span> required for their stay in the countries concerned by this trip (up to date VISA, Passport, etc...). These documents will be requested upon arrival. If the traveller is not in possession of these documents, he/she will not be accepted on board, and will not be able to claim any refund or indemnity.</span>
+                <% end %>
+              </div>
+
+              <div class="form-check mx-5 my-3">
+                <%= form.check_box :sanitary_conditions, class:"form-check-input", style:"margin-top: 7px;" %>          
+                <%= form.label :sanitary_conditions, class:"form-check-label" do %> 
+                  <span class="small">I certify that this traveller meets the necessary <span class="font-weight-bold">health and sanitary conditions</span> required in the countries concerned by this trip.</span>
+                <% end %>
+              </div>
+
+              <div class="form-check mx-5 my-3" id="minor-checkbox" style="display: none;">
+                <%= form.check_box :accompanied_minor, class:"form-check-input", style:"margin-top: 7px;" %>          
+                <%= form.label :accompanied_minor, class:"form-check-label" do %> 
+                  <span class="small">I certify that this minor traveller will be accompanied by an adult. If this is not the case upon departure, this traveller will be refused, and will not be able to claim any refund or indemnity.</span>
+                <% end %>
+              </div>
+
+            <div class="blackline"></div>
+
             <div class="actions">
               <%= form.submit "Save Traveller", class: "mb-3 btn btn-lg btn-stylised btn-block adventpro" %>
             </div>
@@ -153,41 +188,45 @@
 
 <script>
 $( document ).ready(function() {
-    if ($("#traveller_food_diet_ids :selected").text() == 'Other') {
+var foodDietsSelected = $("#traveller_food_diet_ids :selected").text();
+var foodRestrictionsSelected = $("#traveller_food_restriction_ids :selected").text();
+var foodRestrictionsIds = $('#traveller_food_restriction_ids')
+var foodDietsIds = $('#traveller_food_diet_ids')
+
+    if (foodDietsSelected == 'Other')  {
         $('#food_diets .links').show();
     }
-    else 
+    else {
       $('#food_diets .links').hide(); 
       $('#food_diets .nested-fields').remove();
-});
-
-$( document ).ready(function() {
-    if ($("#traveller_food_restriction_ids :selected").text() == 'Other') {
+    }
+    if (foodRestrictionsSelected == 'Other') {
         $('#food_restrictions .links').show();
     }
-    else 
+    else {
       $('#food_restrictions .links').hide(); 
       $('#food_restrictions .nested-fields').remove();
-});
-
-$('#traveller_food_restriction_ids').change(function() {
-    if ($("#traveller_food_restriction_ids :selected").text() == 'Other') {
-        $('#food_restrictions .links').show();
     }
-    else 
-      $('#food_restrictions .links').hide(); 
-      $('#food_restrictions .nested-fields').remove();
+    foodRestrictionsIds.change(function() {
+        if (($("#traveller_food_restriction_ids :selected").text() == 'Other') || ($("#traveller_food_restriction_ids :selected").text() == 'Autre')) {
+            $('#food_restrictions .links').show();
+        }
+        else 
+          $('#food_restrictions .links').hide(); 
+          $('#food_restrictions .nested-fields').remove();
+    })
+    foodDietsIds.change(function() {
+        if (($("#traveller_food_diet_ids :selected").text() == 'Other') || ($("#traveller_food_diet_ids :selected").text() == 'Autre'))  {
+            $('#food_diets .links').show();
+        }
+        else 
+          $('#food_diets .links').hide(); 
+          $('#food_diets .nested-fields').remove();
+    })
 });
+</script>
 
-$('#traveller_food_diet_ids').change(function() {
-    if ($("#traveller_food_diet_ids :selected").text() == 'Other') {
-        $('#food_diets .links').show();
-    }
-    else 
-      $('#food_diets .links').hide(); 
-      $('#food_diets .nested-fields').remove();
-});
-
+<script>
 $(document).ready(function(){
   $(".btn-group-toggle input[type=radio]").change(function(){
     if ($(".btn-group-toggle input[type='radio']:checked").val() == "true") {
@@ -235,3 +274,15 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+$("#datetimepicker1").on("change.datetimepicker", function () {
+  var currentDate = moment()
+  var selectedDate = $("#datetimepicker1").datetimepicker('date');
+  var yearDiff = currentDate.diff(selectedDate, 'years')
+    if (yearDiff < 18) {
+      $('#minor-checkbox').show();
+    } else {
+      $('#minor-checkbox').hide();
+    };
+});
+</script>

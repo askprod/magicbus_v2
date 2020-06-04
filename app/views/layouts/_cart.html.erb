@@ -6,7 +6,7 @@
         </button>
     </div>
 
-    <div class="show" id="collapse-cart">
+    <div class="show text-center" id="collapse-cart">
 
         <% @cart_items.each do |trip| %>
             <div id="<%= dom_id(trip) %>" class="row justify-content-center no-gutters py-2 travel-cart-item m-3">
@@ -30,7 +30,7 @@
 
         <% else %>
 
-            <div class="mb-3">
+            <div class="mb-3 text-center">
             <p class="mb-3 h6">Number of Travellers:</p> 
             <%= form_for @cart, :url => cart_change_traveller_quantity_path(@cart), :html => {:method => :post}, remote: true do |f| %>
                 <%= f.button class: "btn btn-stylised", value: "decrement" do %>

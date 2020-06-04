@@ -5,6 +5,11 @@ class FoodDiet < ApplicationRecord
     before_save :titleize_name
 
     def titleize_name
-        self.name = self.name.titleize
+        self.name_fr = self.name_fr.titleize
+        self.name_en = self.name_en.titleize
+    end
+
+    def name
+        self.send("name_#{I18n.locale}")
     end
 end

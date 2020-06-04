@@ -195,3 +195,11 @@ background-color: #1d2124;
 .rtl table tr td:nth-child(2) {
   text-align: left;
 }
+
+/* Page 2 */
+
+.page-break { 
+  display: block; 
+  clear: both; 
+  page-break-after: always; 
+}

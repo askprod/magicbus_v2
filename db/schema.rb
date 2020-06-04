@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_054552) do
+ActiveRecord::Schema.define(version: 2020_06_03_114517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,14 +87,16 @@ ActiveRecord::Schema.define(version: 2020_05_29_054552) do
 
   create_table "food_diets", force: :cascade do |t|
     t.boolean "approved_status", default: false
-    t.string "name"
+    t.string "name_fr"
+    t.string "name_en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "food_restrictions", force: :cascade do |t|
     t.boolean "approved_status", default: false
-    t.string "name"
+    t.string "name_fr"
+    t.string "name_en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -128,6 +130,7 @@ ActiveRecord::Schema.define(version: 2020_05_29_054552) do
     t.bigint "coupon_id"
     t.string "slug"
     t.datetime "expires_at"
+    t.datetime "paid_at"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
     t.index ["slug"], name: "index_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -161,7 +164,8 @@ ActiveRecord::Schema.define(version: 2020_05_29_054552) do
   end
 
   create_table "themes", force: :cascade do |t|
-    t.string "name"
+    t.string "name_fr"
+    t.string "name_en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -181,9 +185,10 @@ ActiveRecord::Schema.define(version: 2020_05_29_054552) do
     t.string "nationality"
     t.string "address"
     t.string "zip_code"
-    t.integer "age_on_create"
     t.date "birth_date"
     t.string "phone_number"
+    t.string "medical_condition"
+    t.string "additional_comment"
     t.boolean "insurance_status"
     t.bigint "cart_id"
     t.bigint "order_id"

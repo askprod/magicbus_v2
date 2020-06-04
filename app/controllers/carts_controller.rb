@@ -13,7 +13,7 @@ class CartsController < ApplicationController
     @insured_travellers = @cart.travellers.where(insurance_status: true).count
     @insurance_price = @insured_travellers * 15
 
-    vegan_id = FoodDiet.find_by(name: "Vegan").id
+    vegan_id = FoodDiet.find_by(name_en: "Vegan").id
     @vegan_travellers = @cart.travellers.map{|traveller| traveller.food_diets.ids}.flatten.count(vegan_id)
     @food_deduction =  @vegan_travellers * 30
 

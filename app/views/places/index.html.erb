@@ -83,7 +83,11 @@
         <% @user_places.each do |spot| %>
           <div class="card col-lg-2 m-2 px-0 shadow-sm border-0" style="background:#ffe475;">
           
-              <div>
+              <div class="row no-gutters">
+                <div class="col-9 my-auto ml-2">
+                  <p class="mb-0" style="font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden"><%= spot.name %></p>
+                </div>
+                <div class="col-2">
                 <% if spot.secret_status == true %>
                   <%= image_tag("/images/marker-blue.png", size: "25x25") %>
                 <% elsif spot.approved_status == true %>
@@ -91,6 +95,7 @@
                 <% else %>
                   <%= image_tag("/images/marker-red.png", size: "25x25") %>
                 <% end %>
+                </div>
               </div>
 
             <div class="row h-100 no-gutters my-auto py-2">

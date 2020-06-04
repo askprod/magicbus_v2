@@ -9,22 +9,25 @@
 case Rails.env
 when "development"
 
-    FoodRestriction.create!(name: "Other", approved_status: true)
-    FoodRestriction.create!(name: "Sesame", approved_status: true)
-    FoodRestriction.create!(name: "Lactose Intolerance", approved_status: true)
-    FoodRestriction.create!(name: "Peanuts", approved_status: true)
-    FoodRestriction.create!(name: "Diabetic", approved_status: true)
-    FoodRestriction.create!(name: "Gluten", approved_status: true)
-    FoodRestriction.create!(name: "Halal", approved_status: true)
-    FoodDiet.create!(name: "Other", approved_status: true)
-    FoodDiet.create!(name: "Vegan", approved_status: true)
-    FoodDiet.create!(name: "Vegetarian", approved_status: true)
+    FoodRestriction.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
+    FoodRestriction.create!(name_en: "Sesame", name_fr: "Sésame", approved_status: true)
+    FoodRestriction.create!(name_en: "Lactose Intolerance", name_fr: "Intolérance au lactose", approved_status: true)
+    FoodRestriction.create!(name_en: "Nuts", name_fr: "Fruits à coque", approved_status: true)
+    FoodRestriction.create!(name_en: "Gluten", name_fr: "Gluten", approved_status: true)
+    FoodRestriction.create!(name_en: "Halal", name_fr: "Halal", approved_status: true)
     
-    themes = ["Mountain", "Sea", "Coast", "Forest", "Woodland", "Jungle"]
-    themes.each do |theme_name|
-        Theme.create!(name: theme_name)
-    end
+    FoodDiet.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
+    FoodDiet.create!(name_en: "Vegan", name_fr: "Vegan", approved_status: true)
+    FoodDiet.create!(name_en: "Vegetarian", name_fr: "Végétarien",  approved_status: true)
     
+    Theme.create!(name_en: "Mountain", name_fr: "Montagne")
+    Theme.create!(name_en: "Sea", name_fr: "Mer")
+    Theme.create!(name_en: "Ocean", name_fr: "Océan")
+    Theme.create!(name_en: "Coast", name_fr: "Côtes")
+    Theme.create!(name_en: "Forest", name_fr: "Forêt")
+    Theme.create!(name_en: "Woodland", name_fr: "Bois")
+    Theme.create!(name_en: "Jungle", name_fr: "Jungle")
+
     User.create!(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
     5.times do |index|
         User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email:"mail#{index}@mail.com", password:"password", terms_and_conditions: true, admin: false)
@@ -49,20 +52,23 @@ when "production"
 
     User.create!(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
     
-    themes = ["Mountain", "Sea", "Coast", "Forest", "Woodland", "Jungle"]
-    themes.each do |theme_name|
-        Theme.create!(name: theme_name)
-    end
+    Theme.create!(name_en: "Mountain", name_fr: "Montagne")
+    Theme.create!(name_en: "Sea", name_fr: "Mer")
+    Theme.create!(name_en: "Ocean", name_fr: "Océan")
+    Theme.create!(name_en: "Coast", name_fr: "Côtes")
+    Theme.create!(name_en: "Forest", name_fr: "Forêt")
+    Theme.create!(name_en: "Woodland", name_fr: "Bois")
+    Theme.create!(name_en: "Jungle", name_fr: "Jungle")
 
-    FoodRestriction.create!(name: "Other", approved_status: true)
-    FoodRestriction.create!(name: "Sesame", approved_status: true)
-    FoodRestriction.create!(name: "Lactose Intolerance", approved_status: true)
-    FoodRestriction.create!(name: "Peanuts", approved_status: true)
-    FoodRestriction.create!(name: "Diabetic", approved_status: true)
-    FoodRestriction.create!(name: "Gluten", approved_status: true)
-    FoodRestriction.create!(name: "Halal", approved_status: true)
-    FoodDiet.create!(name: "Other", approved_status: true)
-    FoodDiet.create!(name: "Vegan", approved_status: true)
-    FoodDiet.create!(name: "Vegetarian", approved_status: true)
+    FoodRestriction.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
+    FoodRestriction.create!(name_en: "Sesame", name_fr: "Sésame", approved_status: true)
+    FoodRestriction.create!(name_en: "Lactose Intolerance", name_fr: "Intolérance au lactose", approved_status: true)
+    FoodRestriction.create!(name_en: "Nuts", name_fr: "Fruits à coque", approved_status: true)
+    FoodRestriction.create!(name_en: "Gluten", name_fr: "Gluten", approved_status: true)
+    FoodRestriction.create!(name_en: "Halal", name_fr: "Halal", approved_status: true)
+    
+    FoodDiet.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
+    FoodDiet.create!(name_en: "Vegan", name_fr: "Vegan", approved_status: true)
+    FoodDiet.create!(name_en: "Vegetarian", name_fr: "Végétarien",  approved_status: true)
     
 end

@@ -13,16 +13,28 @@ class Traveller < ApplicationRecord
     accepts_nested_attributes_for :food_restrictions, allow_destroy: true, reject_if: :all_blank
   
     before_save :capitalize_attributes
-    after_create :set_current_age
-  
-    validates :first_name, :last_name, :address, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
+    
+    validates_acceptance_of :valid_passport, :allow_nil => false, :message => "has not been accepted.", :on => :create
+    validates_acceptance_of :sanitary_conditions, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create  
+    validates_acceptance_of :accompanied_minor, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create, unless: :is_over_18? 
     validates_inclusion_of :gender, :in => ["Male", "Female"]
     validates_inclusion_of :insurance_status, :in => [true, false]
     validates_format_of :email_address, with: Devise.email_regexp
+    validates :first_name, :last_name, :address, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
     validate :check_number_of_travellers_per_trip, on: :create
     validate :max_traveller_per_cart, on: :create
     validate :valid_birth_date
     validate :valid_phone_number
+    validate :traveller_is_over_ten
+
+    def traveller_is_over_ten
+      # 3650 days = 10 years
+      if self.birth_date
+        if Date.today.mjd - self.birth_date.mjd < 3653
+          self.errors.add(:base, "We do not accept travellers who are younger that 10 years old.")
+        end
+      end
+    end
 
     def valid_phone_number
       if self.phone_validation == "invalid"
@@ -37,19 +49,14 @@ class Traveller < ApplicationRecord
     end
 
     def is_over_18?
-      self.age_on_create > 18
+      birthday = self.birth_date
+      age = (DateTime.now - birthday) / 365.25
+      return age > 18
     end
 
     def capitalize_attributes
       self.first_name = first_name.capitalize
       self.last_name = last_name.titleize
-    end
-
-    def set_current_age
-      birthday = self.birth_date
-      age = (DateTime.now - birthday) / 365.25
-
-      self.update_attribute(:age_on_create, age.to_i)
     end
     
     def max_traveller_per_cart
