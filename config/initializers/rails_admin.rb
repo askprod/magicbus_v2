@@ -88,7 +88,6 @@ RailsAdmin.config do |config|
       field :arrival_location do
         partial "form_map_arrival"
       end
-      field :meetup_time
       field :picture
       field :themes
     end 
@@ -111,7 +110,6 @@ RailsAdmin.config do |config|
           bindings[:view].render partial: 'show_map_arrival', locals: {field: self}
         end
       end
-      field :meetup_time
       field :picture
       field :themes
     end 

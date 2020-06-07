@@ -9,7 +9,6 @@ class CreateTrips < ActiveRecord::Migration[5.2]
         t.date :arrival_date
         t.integer :price
         t.integer :week
-        t.time :meetup_time
       t.timestamps
     end
   end

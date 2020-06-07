@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :total_price
       t.boolean :payment_status, default: false
-      t.string :payment_fingerprint
+      t.jsonb :details
       t.timestamps
     end
   end

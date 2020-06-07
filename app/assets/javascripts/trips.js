@@ -304,7 +304,7 @@ function initMap() {
         calcRoute();
 
         var iconRound = {
-            url: '../images/marker-yellow-big.png', // url
+            url: '../images/marker_yellow_big.png', // url
             scaledSize: new google.maps.Size(60, 60), // scaled size
             origin: new google.maps.Point(0,0), // origin
             anchor: new google.maps.Point(30, 50), // anchor
@@ -312,7 +312,7 @@ function initMap() {
         };
 
         var flagIcon = {
-            url: '../images/flag-arrival.png', // url
+            url: '../images/marker_flag.png', // url
             scaledSize: new google.maps.Size(60, 60), // scaled size
             origin: new google.maps.Point(0,0), // origin
             anchor: new google.maps.Point(14, 50), // anchor

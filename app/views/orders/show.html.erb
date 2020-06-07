@@ -1,11 +1,11 @@
-<div class="invoice-box">
+<div class="invoice-box text-container">
   <table cellpadding="0" cellspacing="0">
     <tr class="top">
       <td colspan="4">
         <table>
           <tr>
             <td class="title">
-              <%= image_tag image_url('/images/black_logo.png', class:"img-fluid") %>
+              <%= image_tag image_url('/images/logo_black.png', class:"img-fluid") %>
             </td>
 
             <td>
@@ -47,7 +47,7 @@
     </tr>
 
     <tr class="details">
-      <td><b>Payment Id:</b> <%= @order.payment_fingerprint%></td>
+      <td><b>Payment Id:</b> <%= @order.details[0]['stripe']['payment_intent_id'] %></td>
     </tr>
 
     <tr class="heading">
@@ -114,198 +114,381 @@
 
 <div class="page-break"></div>
 
-<h1>CONTRAT DE VOYAGE FORFAIT TOURISTIQUE</h1>
+<div class="big-header">
+    <%= image_tag(image_url('/images/logo_round.png'), size: "180x180") %>
+    <p>CONTRAT DE VOYAGE</p>
+    <p>FORFAIT TOURISTIQUE</p>
+</div>
 
-<h1>1. IDENTIFICATION DES PARTIES</h1>
+<p class="main-titles">1. IDENTIFICATION DES PARTIES</h1>
 
-<h1>LE DETAILLANT</h1>
-<p>Nom: MagicBus</p>
-<p>Denomination sociale de l'entreprise: SARL MagicBus</p>
-<p>Numero d'Immatriculation: IM031190014</p>
-<p>Adresse: 31 residence du chateau, 31150 Fenouillet.</p>
-<p>06.59.09.11.65</p>
-<p>hello@magicbusworld.com</p>
+<div class="text-container">
+  <p class="secondary-titles">"LE DETAILLANT"</p>
+  <div class="p-text">
+    <p><span class="b">Nom:</span> MagicBus</p>
+    <p><span class="b">Dénomination sociale de l'entreprise:</span> SARL MagicBus</p>
+    <p><span class="b">N° Immatriculation:</span> IM031190014</p>
+    <p><span class="b">Adresse:</span> 31 Résidence du Château, 31150 Fenouillet.</p>
+    <p><span class="b">N° de télephone:</span> 06.59.09.11.65</p>
+    <p><span class="b">E-mail:</span> hello@magicbusworld.com</p>
+  </div>
+</div>
 
-<h1>"L'ORGANISATEUR" (si l'organisateur n'est pas le "detaillant")</h1>
-<p>Nom: MagicBus</p>
-<p>Denomination sociale de l'entreprise: SARL MagicBus, Immatriculation : IM031190014</p>
-<p>Adresse: 31 residence du chateau, 31150 Fenouillet.</p>
-<p>06.59.09.11.65</p>
-<p>hello@magicbusworld.com</p>
-
-<div class="page-break"></div>
-
-<h1>2. VOYAGEUR(S)</h1>
-<p>Client</p>
-<p>Nom *Nom du payant*</p>
-<p>Prénom *Prénom du payant*</p>
-<p>Date de naissance *Date de naissance du payant*</p>
-<p>Adresse *Adresse du payant*</p>
-<p>Code postal *CP du payant*</p>
-<p>*Adresse mail du payant*</p>
-
-<% @order.travellers.each_with_index do |traveller, index| %>
-  <% index += 1 %>
-    <p>Voyageur <%= index %>:</p>
-    <p>Nom: <%= traveller.first_name %></p>
-    <p>Prénom: <%= traveller.last_name %></p>
-    <p>Date de naissance: <%= traveller.birth_date %></p>
-<% end %>
-
-<p>La personne concluant le présent contrat accepte de transmeRre ses données dans le but de son exécu3on et garan3t qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.</p>
-<p>Les données sont conservées pendant une durée qui n’excède pas la durée nécessaire aux finalités suivantes:</p>
-<p>• Commande d’un séjour : les données nécessaires au traitement de votre commande seront conservées pendant la durée nécessaire à l’établissement d’un droit ou d’un contrat.</p>
-<p>• Ges3on de la rela3on commerciale : les données seront conservées (au plus tard) 3 ans à compter de la fin de la rela3on commerciale.</p>
-<p>Conformément à la législa3on en vigueur, vous disposez d’un droit d’accès, de rec3fica3on, de suppression et de portabilité des données personnelles vous concernant et d’un droit d’opposi3on pour raison légi3me à leur traitement.</p>
-<p>Pour exercer ces droits, vous devez adresser un courrier postal à l'adresse suivante : 31 résidence du château 31150 Fenouillet ou un courrier électronique à : hello@magicbusworld.com</p>
+<div class="text-container">
+  <p class="secondary-titles">"L'ORGANISATEUR"</p>
+  <div class=p-text>
+    <p><span class="b">Nom:</span> MagicBus</p>
+    <p><span class="b">Dénomination sociale de l'entreprise:</span> SARL MagicBus</p>
+    <P><span class="b">Immatriculation:</span> IM031190014</p>
+    <p><span class="b">Adresse:</span> 31 Résidence du Château, 31150 Fenouillet.</p>
+    <p><span class="b">N° de téléphone:</span> 06.59.09.11.65</p>
+    <p><span class="b">E-mail</span> hello@magicbusworld.com</p>
+  </div>
+</div>
 
 <div class="page-break"></div>
 
-<h1>3. INFORMATIONS VOYAGE</h1>
-<h1>INTITULE DU FORFAIT</h1>
-<p>Type: Séjour iWnérant</p>
-<p>Numéro: <%= @order.name %> 
-<p>Du <%= @order_trips.first.departure_date.strftime("%d-%m-%y") %> au <%= @order_trips.last.arrival_date.strftime("%d-%m-%y") %></p>
+<div class="small-header">
+    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <p>CONTRAT DE VOYAGE</p>
+    <p>FORFAIT TOURISTIQUE</p>
+</div>
 
-<h1>PAYS TRAVERSÉ(S)</h1> 
-<p><%= @order_trips.map{|x| x.departure_location['country']}.join(",") %></p>
+<p class="main-titles">2. VOYAGEUR(S)</p>
 
-<h1>TRANSPORT</h1>
-<p>- Caractéris+ques, moyen, catégorie</p>
-<p>Le transport pour rejoindre le bus à l’allée et rejoindre le domicile du client au retour ne sont pas pris en charge dans ce forfait.</p>
-<p>Le transport durant le voyage, depuis la récupéraWon du voyageurs au point de départ jusqu’au dépôt de ce dernier au point d’arrivé à la fin du séjour, est effectué en autobus.
-<p>- Départ</p>
-<p>Ville: <%= @order_trips.first.departure_location['locality'] %>, <%= @order_trips.first.departure_location['country'] %></p> 
-<p>Date: <%= @order_trips.first.departure_date.strftime("%d-%m-%y") %></p>
-<p>Heure non-connue au moment de l’établissement du contrat : heure approximaWve <%= @order_trips.first.meetup_time.strftime("%Hh%M") %></p>
-<p>Durée et lieu des escales ou correspondances non connues au moment de l’établissement du contrat, puisque les escales seront décidées sur place en collaboraWon avec les autres voyageurs. Il s’agit là d’un principe fondamental et typique du type de voyage proposé par l’entreprise MagicBus.</p>
-<p>- Retour</p>
-<p>Ville: <%= @order_trips.last.arrival_location['locality'] %>, <%= @order_trips.last.arrival_location['country'] %></p> 
-<p>Date: <%= @order_trips.last.arrival_date.strftime("%d-%m-%y") %></p>
-<p>Heure : NON CONNUE</p>
-<p>Durée et lieu des escales ou correspondances non connues au moment de l’établissement du contrat, puisque les escales seront décidées sur place en collaboraWon avec les autres voyageurs. Il s’agit là d’un principe fondamental et typique du type de voyage proposé par l’entreprise MagicBus.</p>
-<p>En temps uWle avant le début du voyage ou du séjour et conformément à l’arWcle L. 211-10 du Code du Tourisme, vous seront remis les documents nécessaires ainsi que les informaWons sur l’heure prévue de départ.</p>
+<div class="text-container">
+  <p class="secondary-titles">CLIENT</p>
+  <div class="p-text">
+    <p><span class="b">Nom:</span> <%= @order.details[0]['customer']['name'] %></p>
+    <p><span class="b">Date de naissance:</span> *Date de naissance du payant*</p>
+    <p><span class="b">Adresse:</span> <%= @order.details[0]['address']['line1'] %></p>
+    <p><span class="b">Code postal:</span> <%= @order.details[0]['address']['postal_code'] %></p>
+    <p><span class="b">E-mail:</span> <%= @order.details[0]['customer']['email'] %></p>
+  </div>
+</div>
 
-<h1>ITINERAIRE & HEBERGEMENT</h1>
-<p>Le forfait sélecWonné est un voyage en iWnérance, à bord d’un bus réaménagé en auberge de jeunesse dans lequel le(s) client(s) seront transporté(s) et logé(s) pour toute la durée du séjour. Les étapes sont improvisées à bord en collaboraWon avec les autres voyageurs.</p>
-<p> OUI Programme communiqué au client *à cocher automa3quement*</p>
-<p>Nombre de nuits : *Nbr de nuits* nuits hors transport</p>
-
-<h1>REPAS & SANTÉ</h1>
-<p>La parWcipaWon au pot commun, servant à l’achat des aliments nécessaires au peWt- déjeuner ainsi qu’à un repas par jour, est comprise dans le forfait par default. Il n’est exclu qu’en cas de restricWon alimentaire très spécifiques (ex: vegan).</p>
-<p>Merci d’indiquer les contraintes médicales spécifiques pour chaque voyage afin d’anWciper tout problème d’ordre médical pouvant subvenir pendant le voyage.</p>
-<p>Pour ce contrat de voyage:</p>
-
-<% @order.travellers.each_with_index do |traveller, index| %>
-  <% index +=1 %>
-  <p>- Voyageur <%= index %>: <%= traveller.last_name %>, <%= traveller.first_name %></p>
-    <% if traveller.food_diets.ids.flatten.count(@vegan_id) == 0 %>
-      <p> OUI sans repas pour restricWon alimentaire NON ParWcipe au pot commun</p>
-    <% else %>
-      <p> NON sans repas pour restricWon alimentaire OUI ParWcipe au pot commun</p>
-    <% end %>
-
-<p>Autres remarques ou restricWons:</p> 
-  <% if traveller.food_restrictions.empty? %>
-    <p>Food Restrictions: None</p>
-  <% else %>
-    <p>Food Restrictions: <%= traveller.food_restrictions.map{|x| x.name}.join(",") %></p>
+<div class="text-container">
+  <p class="secondary-titles">VOYAGEUR(S)</p>
+  <% @order.travellers.each_with_index do |traveller, index| %>
+    <% index += 1 %>
+      <p class="traveller-title">VOYAGEUR <%= index %></p>
+      <div class="p-text">
+        <p><span class="b">Nom:</span> <%= traveller.first_name %></p>
+        <p><span class="b">Prénom:</span> <%= traveller.last_name %></p>
+        <p><span class="b">Date de naissance:</span> <%= traveller.birth_date.strftime('%d-%m-%Y') %></p>
+      </div>
   <% end %>
+</div>
 
-  <% if traveller.food_diets.empty? %>
-    <p>Food Diets: None</p>
-  <% else %>
-    <p>Food Diets: <%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
+<div class="text-container">
+  <div class="p-text-no-margin">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="data-check1">
+      <label class="form-check-label" for="data-check1">
+        <p>La personne concluant le présent contrat accepte de transmeRre ses données dans le but de son exécu3on et garan3t qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.</p>
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="data-check2">
+      <label class="form-check-label" for="data-check2">
+        <p>La personne concluant le présent contrat accepte de transmettre ses données aux fins de recevoir nos promotions et sollicitations (via courriers électroniques, messages SMS, appels téléphoniques et courriers postaux):</p>
+      </label>
+    </div>
+
+    <p>Les données sont conservées pendant une durée qui n’excède pas la durée nécessaire aux finalités suivantes:</p>
+    <ul>
+    <li><p>Commande d’un séjour : les données nécessaires au traitement de votre commande seront conservées pendant la durée nécessaire à l’établissement d’un droit ou d’un contrat.</p></li>
+    <li><p>Ges3on de la rela3on commerciale : les données seront conservées (au plus tard) 3 ans à compter de la fin de la rela3on commerciale.</p></li>
+    </ul>
+    <br>
+    <p>Conformément à la législa3on en vigueur, vous disposez d’un droit d’accès, de rec3fica3on, de suppression et de portabilité des données personnelles vous concernant et d’un droit d’opposi3on pour raison légi3me à leur traitement.</p>
+    <p>Pour exercer ces droits, vous devez adresser un courrier postal à l'adresse suivante : 31 résidence du château 31150 Fenouillet ou un courrier électronique à : <a href="#">hello@magicbusworld.com</a></p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+<div class="small-header">
+    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <p>CONTRAT DE VOYAGE</p>
+    <p>FORFAIT TOURISTIQUE</p>
+</div>
+
+<p class="main-titles">3. INFORMATIONS VOYAGE(S)</p>
+
+<div class="text-container">
+  <p class="secondary-titles">DETAIL DES VOYAGES RESERVES</p>
+  <div class="p-text">
+    <p><span class="b">Type:</span> Séjour itinérant</p>
+    <p><span class="b">Numéro de réservation:</span> <%= @order.name %> 
+  </div>
+  <% @order.trips.each_with_index do |trip, index| %>
+    <% index += 1 %>
+    <p class="traveller-title">VOYAGE <%= index %></p>
+      <div class="p-text">
+        <p>Départ le <%= trip.departure_date.strftime("%d-%m-%Y") %> à <%= trip.departure_location['locality'] %>, <%= trip.departure_location['country'].upcase %></p>
+        <p>Arrivée le <%= trip.arrival_date.strftime("%d-%m-%Y") %> à <%= trip.arrival_location['locality'] %>, <%= trip.departure_location['country'].upcase %></p>
+      </div>
   <% end %>
-  <p>Contraintes/remarques médicales spécifiques: *CASE A AJOUTER dans le formulaire voyageur* </p>
-  <p>Contact d’urgence: *CASE A AJOUTER dans le formulaire voyageur*</p>
-<% end %>
+</div>
 
-<h1>ACTIVITES INCLUSES DANS LE FORFAIT</h1>
-<p>Visite/excursion/ac9vités: *Ac3vités comprises si applicable*</p>
-<p>Pour les visites/excursions/ac9vités effectuées en groupe, le client recevra les informaWons plus précise dans un second temps.</p>
+<div class="text-container">
+  <p class="secondary-titles">PAYS TRAVERSE(S)</p>
+  <div class="p-text-no-margin">
+    <p>Durant les voyages stipulés dans la rubrique précédente, les voyageurs traverserons les pays suivants:</p>
+    <p class="b"><%= @order_trips.map{|x| x.departure_location['country']}.uniq.join(",") %></p>
+  </div>
+</div>
 
-<h1>PERSONNES A MOBILITE REDUITE</h1>
-<p>Ce voyage n’est pas adapté aux personnes à mobilité réduite.</p>
+<div class="text-container">
+  <p class="secondary-titles">TRANSPORT</p>
+  <div class="p-text-no-margin">
+    <p class="subhead">• Caractéris+ques, moyen, catégorie</p>
+    <p>Le transport pour rejoindre le bus à l’allée et rejoindre le domicile du client au retour ne sont pas pris en charge dans ce forfait.</p>
+    <p>Le transport durant le voyage, depuis la récupéraWon du voyageurs au point de départ jusqu’au dépôt de ce dernier au point d’arrivé à la fin du séjour, est effectué en autobus.</p>
+    <p class="subhead">• Horaires</p>
+    <p>L’heure de départ de chaque voyage est une heure approximative qui vous sera précisée ultérieurement.
+    <br>
+    <span class="b">Heure de départ approximative : 16h30.</span></p>
+    <p class="subhead">• Durée et lieux des arrêts</p>
+    <p>La durée et les lieux d’arrêts ne sont pas connues au moment de l’établissement du contrat, puisque les escales seront décidées sur place en collaboration avec les autres voyageurs. Il s’agit là d’un principe fondamental et typique du type de voyage proposé par l’entreprise MagicBus.</p>
+  </div>
+</div>
 
-<h1>INDIVIDUELS REGROUPES</h1>
-<p>Votre voyage est rattaché à un voyage de groupe de 8 personnes maximum, la capacité maximale d’un séjour étant de 8 voyageurs.</p>
+<div class="text-container">
+  <p class="secondary-titles">ITINERAIRE & HEBERGEMENT</p>
+  <div class="p-text-no-margin">
+    <p>Le forfait sélecWonné est un voyage en iWnérance, à bord d’un bus réaménagé en auberge de jeunesse dans lequel le(s) client(s) seront transporté(s) et logé(s) pour toute la durée du séjour. Les étapes sont improvisées à bord en collaboraWon avec les autres voyageurs.</p>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
+        <label class="form-check-label" for="data-check1">
+          <p>Programme communiqué au client</p>
+        </label>
+      </div>
+    <p class="b">Nombre de nuits par voyage: 7 nuits</p>
+  </div>
+</div>
+
+<div class="text-container">
+  <p class="secondary-titles">REPAS & SANTE</p>
+  <div class="p-text-no-margin">
+    <p>La parWcipaWon au pot commun, servant à l’achat des aliments nécessaires au peWt- déjeuner ainsi qu’à un repas par jour, est comprise dans le forfait par default. Il n’est exclu qu’en cas de restricWon alimentaire très spécifiques (ex: vegan).</p>
+    <p>Merci d’indiquer les contraintes médicales spécifiques pour chaque voyage afin d’anWciper tout problème d’ordre médical pouvant subvenir pendant le voyage.</p>
+    <p>Pour ce contrat de voyage:</p>
+  </div>
+  <% @order.travellers.each_with_index do |traveller, index| %>
+    <% index +=1 %>
+    <p class="traveller-title">VOYAGEUR <%= index %></p>
+    <div class="p-text-no-margin">
+      <% if traveller.food_diets.ids.flatten.count(@vegan_id) == 0 %>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="data-check1">
+          <label class="form-check-label" for="data-check1">
+            <p>Sans repas pour restriction alimentaire</p>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
+          <label class="form-check-label" for="data-check1">
+            <p>Participe au pot commun</p>
+          </label>
+        </div>
+      <% else %>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
+          <label class="form-check-label" for="data-check1">
+            <p>Sans repas pour restriction alimentaire</p>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="data-check1">
+          <label class="form-check-label" for="data-check1">
+            <p>Participe au pot commun</p>
+          </label>
+        </div>
+      <% end %>
+    </div>
+    <div class="p-text">
+      <% if traveller.food_restrictions.empty? %>
+        <p><span class="b mr-3">Restrictions Alimentaires:</span> X</p>
+      <% else %>
+        <p><span class="b mr-3">Restrictions Alimentaires:</span> <%= traveller.food_restrictions.map{|x| x.name}.join(",") %></p>
+      <% end %>
+
+      <% if traveller.food_diets.empty? %>
+        <p><span class="b mr-3">Régimes Alimentaires:</span> X</p>
+      <% else %>
+        <p><span class="b mr-3">Régimes Alimentaires:</span> <%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
+      <% end %>
+
+      <% if traveller.medical_condition.empty? %>
+        <p><span class="b mr-3">Remarques médicales spécifiques:</span> X</p>
+      <% else %>
+        <p><span class="b mr-3">Remarques médicales spécifiques:</span> <%= traveller.medical_condition %></p>
+      <% end %>
+
+      <% if traveller.additional_comment.empty? %>
+        <p><span class="b mr-3">Autres commentaires:</span> X</p>
+      <% else %>
+        <p><span class="b mr-3">Autres commentaires:</span> <%= traveller.additional_comment %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-container">
+  <p class="secondary-titles">DESCRIPTION DU FORFAIT</p>
+  <% @order.trips.each_with_index do |trip, index| %>
+    <% index += 1 %>
+    <p class="traveller-title">VOYAGE <%= index %></p>
+      <div class="p-text-no-margin">
+        <p><%= trip.description %></p>
+      </div>
+  <% end %>
+</div>
+
+<div class="text-container">
+  <p class="secondary-titles">PERSONNES A MOBILITE REDUITE</p>
+  <div class="p-text-no-margin">
+    <p>Ce voyage n’est pas adapté aux personnes à mobilité réduite.</p>
+  </div>
+</div>
+
+<div class="text-container">
+  <p class="secondary-titles">INDIVIDUELS REGROUPES</p>
+  <div class="p-text-no-margin">
+    <p>Votre voyage est rattaché à un voyage de groupe de 8 personnes maximum, la capacité maximale d’un séjour étant de 8 voyageurs.</p>
+  </div>
+</div>
 
 <div class="page-break"></div>
 
-<h1>4. FORMALITES</h1>
+<div class="small-header">
+    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <p>CONTRAT DE VOYAGE</p>
+    <p>FORFAIT TOURISTIQUE</p>
+</div>
 
-<h1>FORMALITES – POLICE:</h1>
-<p> OUI Le(s) voyageur(s) déclare sur l’honneur avoir en sa possession les documents administraWfs requis pour son séjour dans le ou les pays concernés par ce voyage (visa à jour, passeport, etc..). Ces documents lui seront demandé à son arrivée. Si le voyageur n’est pas en possession des documents requis, il ne sera pas accepté à bord et ne pourra demander de remboursement / indemnisaWons. *CASE A AJOUTER dans le process et à cocher automa3quement*</p>
-<p> OUI Le(s) voyageur(s) déclare sur l’honneur faire le nécéssaire pour répondre aux formalités sanitaires du ou des pays traversés lors de ce voyage.*CASE A AJOUTER dans le process et à cocher automa3quement*</p>
+<p class="main-titles">4. FORMALITES</h1>
 
-<p>Les informa3ons ci-dessus sont communiquées selon les données disponibles à la date d’établissement du contrat.</p>
-<p>Nous vous conseillons de consulter, jusqu’au jour du départ, les sites:</p>
-<p>hgps://www.pasteur.fr/fr</p>
-<p>hgps://www.diplomaWe.gouv.fr/fr/conseils-aux-voyageurs/</p>
-<p>et vous conseillons de vous inscrire sur le site Ariane:</p>
-<p>hgps://pastel.diplomaWe.gouv.fr/fildariane/dyn/public/login.html</p>
+<div class="text-container">
+  <p class="secondary-titles">FORMALITES – POLICE:</p>
+  <div class="p-text-no-margin">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
+        <label class="form-check-label" for="data-check1">
+          <p>Le(s) voyageur(s) déclare sur l’honneur avoir en sa possession les documents administraWfs requis pour son séjour dans le ou les pays concernés par ce voyage (visa à jour, passeport, etc..). Ces documents lui seront demandé à son arrivée. Si le voyageur n’est pas en possession des documents requis, il ne sera pas accepté à bord et ne pourra demander de remboursement / indemnisaWons.</p>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
+        <label class="form-check-label" for="data-check1">
+          <p>Le(s) voyageur(s) déclare sur l’honneur faire le nécéssaire pour répondre aux formalités sanitaires du ou des pays traversés lors de ce voyage.</p>
+        </label>
+      </div>
+    <p>Les informa3ons ci-dessus sont communiquées selon les données disponibles à la date d’établissement du contrat.</p>
+    <p>Nous vous conseillons de consulter, jusqu’au jour du départ, les sites:</p>
+    <p>hgps://www.pasteur.fr/fr</p>
+    <p>hgps://www.diplomaWe.gouv.fr/fr/conseils-aux-voyageurs/</p>
+    <p>et vous conseillons de vous inscrire sur le site Ariane:</p>
+    <p>hgps://pastel.diplomaWe.gouv.fr/fildariane/dyn/public/login.html</p>
+  </div>
+</div>
 
-<p>Mineurs:</p>
-<p>Les enfants peuvent voyager avec MagicBus à compter de leur dixième anniversaire révolu.</p>
-<p>Les mineurs de moins de 18 ans doivent être accompagnés lors du MagicTrip par des personnes disposant de l’autorité parentale.</p>
-<p>Les enfants ne voyagent pas à tarif réduit.</p>
+<div class="text-container">
+    <p class="secondary-titles">MINEURS</p>
+    <div class="p-text-no-margin">
+      <p>Les enfants peuvent voyager avec MagicBus à compter de leur dixième anniversaire révolu.</p>
+      <p>Les mineurs de moins de 18 ans doivent être accompagnés lors du MagicTrip par des personnes disposant de l’autorité parentale.</p>
+      <p>Les enfants ne voyagent pas à tarif réduit.</p>
+    </div>
+</div>
 
 <div class="page-break"></div>
 
-<h1>V - PRIX ET ANNULATION</h1>
+<div class="small-header">
+    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <p>CONTRAT DE VOYAGE</p>
+    <p>FORFAIT TOURISTIQUE</p>
+</div>
 
-<h1>PRIX</h1>
-<p>Ce prix comprend:</p>
-<p>Les prix de vente, conformément à l'article L. 112-1 du Code de la consommation sont indiqués, pour chacun des MagicTrip figurant sur le Site, en euros toutes taxes comprises, hors frais de transport d’acheminement du MagicPeople jusqu’à la Ville d’étape de départ et hors frais de transport de retour suivant la Ville d’étape d’arrivée choisie par le MagicPeople.</p>
-<p>- le logement à bord d’un bus réaménagé en auberge de jeunesse (habitation)</p>
-<p>- le transport durant la période de séjour (du point de départ au point d’arrivé à la fin du séjour).</p>
-<p>- la participation au pot commun pour le petit-déjeuné et un repas par jour (que les voyageurs cuisineront ensemble)</p>
-<p>- la mise à disposition d’équipement de loisir à bord,</p>
-<p>- certaines activités comprise dans le forfait et annoncées plus haut.</p>
-<p>Ce prix ne comprend pas:</p>
-<p>- les activités optionnelles facturées en supplément du prix.</p>
-<p>- les transports du voyageur pour rejoindre le bus à son point de départ et rejoindre son domicile depuis le point d’arrivé à la fin du séjour.</p>
-<p>Prix total TTC <%= @order.total_price %> € 
-<p>MODE DE REGLEMENT : Stripe</p>
-<p>Le détaillant se réserve le droit, en cas de non-paiement, de constater l’annula3on du contrat par le client et d’exiger sans mise en demeure préalable l’applica3on des pénalités d’annula3on prévues ci-dessous.</p>
+<p class="main-titles">5. PRIX ET ANNULATION</h1>
 
-<h1>ASSURANCE</h1>
-<p>L’assurance mulWrisques Mondial Assistance proposée par le vendeur; couvrant annulaWons/ modificaWon, assistance au voyager, frais médicaux et d’hospitalisaWon d’urgence à l’étranger, retard de transport, dommages aux bagages, responsabilité civile à l’étranger et interrupWon de séjour, pour un montant de 30€/personne; est:</p>
-<p>❒ Acceptée par le client</p>
-<p>❒ Refusée par le client Assureur 
-<p>(Nom) Mondial Assistance</p>
-<p>N°police *numéro de police*</p>
-<p>❒ Contrat transmis au client</p>
-<p>Si vous jus3fiez d’une garan3e antérieure pour les risques couverts par l’assurance souscrite, vous avez la possibilité de renoncer sans frais à ceRe/ces assurance(s) dans un délai de 14 jours à compter de sa conclusion et tant qu’aucune garan3e n’a été mise en œuvre.</p>
+<div class="text-container">
+  <p class="secondary-titles">PRIX</p>
+  <p>Prix total TTC <%= @order.total_price %>€ 
+  <p>Mode de règlement: 
+  <p>Stripe (transaction n° <%= @order.details[0]['stripe']['payment_intent_id'] %>)</p>
+  <p>Carte: <%= @order.details[0]['card']['brand'].upcase %>, **** **** **** <%= @order.details[0]['card']['last_4'] %>, Exp: <%= @order.details[0]['card']['exp_month'] %>-<%= @order.details[0]['card']['exp_year'] %></p>
+  <div class="p-text-no-margin">
+    <p>Les prix de vente, conformément à l'article L. 112-1 du Code de la consommation sont indiqués, pour chacun des MagicTrip figurant sur le Site, en euros toutes taxes comprises, hors frais de transport d’acheminement du MagicPeople jusqu’à la Ville d’étape de départ et hors frais de transport de retour suivant la Ville d’étape d’arrivée choisie par le MagicPeople.</p>
+    <p>Ce prix comprend:</p>
+    <ul>
+      <p>- le logement à bord d’un bus réaménagé en auberge de jeunesse (habitation)</p>
+      <p>- le transport durant la période de séjour (du point de départ au point d’arrivé à la fin du séjour).</p>
+      <p>- la participation au pot commun pour le petit-déjeuné et un repas par jour (que les voyageurs cuisineront ensemble)</p>
+      <p>- la mise à disposition d’équipement de loisir à bord,</p>
+      <p>- certaines activités comprise dans le forfait et annoncées plus haut.</p>
+    </ul>
+    <p>Ce prix ne comprend pas:</p>
+    <ul>
+    <p>- les activités optionnelles facturées en supplément du prix.</p>
+    <p>- les transports du voyageur pour rejoindre le bus à son point de départ et rejoindre son domicile depuis le point d’arrivé à la fin du séjour.</p>
+    </ul>
+    <p>Le détaillant se réserve le droit, en cas de non-paiement, de constater l’annula3on du contrat par le client et d’exiger sans mise en demeure préalable l’applica3on des pénalités d’annula3on prévues ci-dessous.</p>
+  </div>
+</div>
 
-<h1>REVISION DU PRIX</h1>
-<p>Conformément aux ar3cles L.211-12, R. 211-8 et R. 211-9 du Code du tourisme, les prix prévus au contrat sont révisables à la hausse comme à la baisse pour tenir compte des varia3ons du coût des transports (carburant/énergie), des redevances et taxes et des taux de change. Vous serez informé de toute hausse du prix total du forfait, au plus tard 20 jours avant le départ. CeRe hausse s’appliquera intégralement sur la part du prix concernée:</p>
-<p>Part du Transport : ???</p>
-<p>Redevances et taxes connues à la date du contrat : ???</p>
-<p>Part des achats en Devises et taux de référence : ???</p>
-<p>Pour toute hausse supérieure à 8%, vous recevrez sur un support durable le détail de la varia3on du prix, ses conséquences sur le prix du forfait, le choix qui s’offre à vous d’accepter ou de refuser dans un délai raisonnable et des conséquences de l’absence de réponse.</p>
+<div class="text-container">
+  <p class="secondary-titles">ASSURANCE</p>
+  <div class="p-text-no-margin">
+    <p>L’assurance mulWrisques Mondial Assistance proposée par le vendeur; couvrant annulaWons/ modificaWon, assistance au voyager, frais médicaux et d’hospitalisaWon d’urgence à l’étranger, retard de transport, dommages aux bagages, responsabilité civile à l’étranger et interrupWon de séjour, pour un montant de 30€/personne; est:</p>
+    <p>❒ Acceptée par le client</p>
+    <p>❒ Refusée par le client Assureur 
+    <p>(Nom) Mondial Assistance</p>
+    <p>N°police *numéro de police*</p>
+    <p>❒ Contrat transmis au client</p>
+    <p>Si vous jus3fiez d’une garan3e antérieure pour les risques couverts par l’assurance souscrite, vous avez la possibilité de renoncer sans frais à ceRe/ces assurance(s) dans un délai de 14 jours à compter de sa conclusion et tant qu’aucune garan3e n’a été mise en œuvre.</p>
+  </div>
+</div>
 
-<h1>ANNULATION PAR LE VOYAGEUR</h1>
-<p>modalités d’annula3on par le voyageur à voir!</p>
-<p>Absence de droit de rétracta9on</p>
-<p>Conformément à l’ar3cle L221-28 du Code de la consomma3on, le présent contrat n’est pas soumis au droit de rétracta3on. Toutefois, le voyageur peut résoudre le contrat à tout moment avant le début du voyage et s’acquiRera des frais suivants:</p>
-<p>Frais d’annula9on/résolu9on du contrat</p>
-<p>Le voyageur a la possibilité d’annuler/résoudre le présent contrat moyennant le paiement des frais suivants (par personne ou par dossier, sur le prix total du voyage):</p>
-<p>Barème d’annula9on (sur le prix total du voyage)</p>
-<p>- à plus de ...................jours avant le départ : ......... € ou ........... %</p>
-<p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
-<p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
-<p>OU</p>
-<p>Frais réels d’annula9on: L’annulaWon du contrat par le voyageur donnera lieu à l’applicaWon des frais réels supportés par l’organisateur et le détaillant.</p>
+<div class="text-container">
+  <p class="secondary-titles">REVISION DU PRIX</p>
+  <div class="p-text-no-margin">
+    <p>Conformément aux ar3cles L.211-12, R. 211-8 et R. 211-9 du Code du tourisme, les prix prévus au contrat sont révisables à la hausse comme à la baisse pour tenir compte des varia3ons du coût des transports (carburant/énergie), des redevances et taxes et des taux de change. Vous serez informé de toute hausse du prix total du forfait, au plus tard 20 jours avant le départ. CeRe hausse s’appliquera intégralement sur la part du prix concernée:</p>
+    <p>Part du Transport : ???</p>
+    <p>Redevances et taxes connues à la date du contrat : ???</p>
+    <p>Part des achats en Devises et taux de référence : ???</p>
+    <p>Pour toute hausse supérieure à 8%, vous recevrez sur un support durable le détail de la varia3on du prix, ses conséquences sur le prix du forfait, le choix qui s’offre à vous d’accepter ou de refuser dans un délai raisonnable et des conséquences de l’absence de réponse.</p>
+  </div>
+</div>
 
-ANNULATION PAR LE DETAILLANT OU L’ORGANISATEUR
-Le voyage peut être annulé par l’organisateur ou l’agence si le nombre minimum de 2 parWcipants n’est pas inscrit :
+<div class="text-container">
+  <p class="secondary-titles">ANNULATION PAR LE VOYAGEUR</p>
+  <div class="p-text-no-margin">
+    <p>modalités d’annula3on par le voyageur à voir!</p>
+    <p>Absence de droit de rétracta9on</p>
+    <p>Conformément à l’ar3cle L221-28 du Code de la consomma3on, le présent contrat n’est pas soumis au droit de rétracta3on. Toutefois, le voyageur peut résoudre le contrat à tout moment avant le début du voyage et s’acquiRera des frais suivants:</p>
+    <p>Frais d’annula9on/résolu9on du contrat</p>
+    <p>Le voyageur a la possibilité d’annuler/résoudre le présent contrat moyennant le paiement des frais suivants (par personne ou par dossier, sur le prix total du voyage):</p>
+    <p>Barème d’annula9on (sur le prix total du voyage)</p>
+    <p>- à plus de 4 semaines avant le départ : ......... € ou ........... %</p>
+    <p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
+    <p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
+  </div>
+</div>
 
-20 jours avant la date de départ, pour les voyages dont la durée dépasse 6 jours.
-7 jours avant la date de départ, pour les voyages dont la durée est de 2 à 6 jours.
-48h avant la date de départ, pour les voyages dont la durée est 2 jours.
-Le Voyageur sera alors remboursé de toutes les sommes qu’il aura pu verser mais ne pourra pas prétendre à une indemnisaWon. 
+<div class="text-container">
+  <p class="secondary-titles">ANNULATION PAR LE DETAILLANT OU L’ORGANISATEUR</p>
+  <div class="p-text-no-margin">
+    <p>Le voyage peut être annulé par l’organisateur ou l’agence si le nombre minimum de 2 parWcipants n’est pas inscrit:</p>
+    <p>20 jours avant la date de départ, pour les voyages dont la durée dépasse 6 jours.</p>
+    <p>7 jours avant la date de départ, pour les voyages dont la durée est de 2 à 6 jours.</p>
+    <p>48h avant la date de départ, pour les voyages dont la durée est 2 jours.</p>
+    <p>Le Voyageur sera alors remboursé de toutes les sommes qu’il aura pu verser mais ne pourra pas prétendre à une indemnisaWon. </p>
+  </div>
+</div>
+
 
 B. INFORMATION CONTRACTUELLE : RUBRIQUE VI à
 

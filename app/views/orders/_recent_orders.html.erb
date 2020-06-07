@@ -1,6 +1,6 @@
 <% @recent_orders.each do |order| %>
 
-<div class="row justify-content-center mt-3">
+<div class="row justify-content-center my-5">
     <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2" style="background:#ffe475;">
       <div class="row no-gutters my-auto">
         <div class="col-9">
@@ -10,133 +10,9 @@
     </div>
 </div>
 
-<div class="row justify-content-center line-height-small">
-    <div class="col-8">
-        <% order.travellers.each_with_index do |traveller, index| %>
-            
-            <% index += 1 %>
-            <div class="grey-heading mt-5 mb-4">
-                <div class="row no-gutters">
-                    <div class="col-6">
-                        <h5 class="mb-0 py-2 pl-3">Traveller <%= index %></h5>
-                    </div>
-                    <div class="col-3 my-auto">
-                        <p class="font-weight-bold mb-0">Insurance:
-                        <% if traveller.insurance_status == true %>
-                            Yes</p>
-                        <% else %>
-                            No</p>
-                        <% end %>
-                    </div>
-                    <div class="col-3 my-auto">
-                        <p class="mb-0">Nourriture: OUI/NON</p>
-                    </div>
-                </div>
-            </div>
+<%= render "orders/travellers", order: order %>
 
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    
-                    <div class="row">
-                        <div class="col-3">
-                            <p class="font-weight-bold">Name:</p>
-                        </div>
-                        <div class="col-9">
-                            <% if traveller.gender == "Male" %>
-                                <p>Mr.<%= traveller.last_name %>, <%= traveller.first_name %></p>
-                            <% else %>
-                                <p>Mrs. <%= traveller.last_name %>, <%= traveller.first_name %></p>
-                            <% end %>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-3">
-                            <p class="font-weight-bold">Email:</p>
-                        </div>
-                        <div class="col-9">
-                            <p><%= traveller.email_address %></p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-3">
-                            <p class="font-weight-bold">Nationality:</p>
-                        </div>
-                        <div class="col-9">
-                            <p><%= traveller.nationality %></p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-3">
-                            <p class="font-weight-bold">Phone:</p>
-                        </div>
-                        <div class="col-9">
-                            <p><%= traveller.phone_number %></p>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-3">
-                            <p class="font-weight-bold">Address:</p>
-                        </div>
-                        <div class="col-9">
-                            <p><%= traveller.address %>, <%= traveller.zip_code %></p></p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="font-weight-bold">Food Diets:</p>
-                        </div>
-                        <div class="col-8">
-                            <% if traveller.food_diets.empty?%>
-                                <p>None</p>
-                            <% else %>
-                                <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
-                            <% end %>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="font-weight-bold">Food Restrictions:</p>
-                        </div>
-                        <div class="col-8">
-                            <% if traveller.food_restrictions.empty?%>
-                                <p>None</p>
-                            <% else %>
-                                <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
-                            <% end %>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="font-weight-bold">Santé:</p>
-                        </div>
-                        <div class="col-8">
-                            <p>Santé</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <p class="font-weight-bold">Commentaire:</p>
-                        </div>
-                        <div class="col-8">
-                            <p>Commentaire</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        <% end %>
-    </div>
-</div>
-
-<div class="row justify-content-center my-4">
+<div class="row justify-content-center my-5">
     <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2" style="background:#ffe475;">
       <div class="row no-gutters my-auto">
         <div class="col-9">
@@ -146,16 +22,30 @@
     </div>
 </div>
 
-<div class="row h-100 no-gutters my-auto justify-content-center">
-    <div class="col-9 my-auto py-2">       
+<div class="row justify-content-center">
+    <div class="col-9 my-auto">       
         <% order.trips.each do |trip| %>
             <%= render "orders/trip", trip: trip %>
         <% end %>
     </div>
 </div>
 
-<div class="container smaller-padding">
-<%= render "orders/specifications" %>
+<div class="container smaller-padding my-5">
+    <%= render "orders/trips_specifications" %>
+</div>
+
+<div class="row justify-content-center my-5">
+    <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2" style="background:#ffe475;">
+      <div class="row no-gutters my-auto">
+        <div class="col-9">
+          <h4 class="mb-0 ml-4 adventpro font-weight-bold">Payment Information</h4>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container smaller-padding mt-5">
+    <%= render "price_specifications", order: order %>
 </div>
 
 <% if order.coupon %>
@@ -169,13 +59,85 @@
     </div>
 <% end %>
 
-<div class="col text-center">
-    <%= link_to order_new_payment_path(order), remote: true, class:"btn btn-stylised w-50 my-2 border border-warning" do %>
-        <p class="m-0">PAY</p>
+<div class="my-4">
+    <h4 class="text-center">Total TTC: <span class="mx-3"><%= order.total_price %>€</span></h4>
+</div>
+
+<div class="container smallest-padding" id="order-checkboxes">
+    <div class="form-check">
+        <%= check_box_tag :order_first_checkbox, class:"form-check-input" %>
+        <%= label_tag :order_first_checkbox, class:"form-check-label" do %>
+            <p>En cochant cette case, pour moi-même ainsi que pour le compte des autres voyageurs inscrits, je certifie:</p>
+            <ul>
+                <li>
+                    <p>Avoir pris connaissance - avant le paiement – de l’offre répondant aux exigences de l’article R. 211-4 du Code du Tourisme, des conditions particulières de vente de voyages et du formulaire standard d’information,</p>
+                </li>
+                <li>
+                    <p>Avoir pris connaissance des informations liées à la situation politique et sanitaire de la destination choisie figurant dans la rubrique conseils-aux-voyageurs du site <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank" class="pdf-btn">https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/</a> (plus spécifiquement concernant les sous rubriques « risque pays » et « santé ») à consulter régulièrement jusqu’au départ,</p>
+                </li>
+                <li>
+                    <p>Avoir pris connaissance de la brochure et du programme de l’organisateur,</p>
+                </li>
+                <li>
+                    <p>Avoir pris connaissance des conditions de garantie des assurances souscrites,</p>
+                </li>
+            </ul>
+        <% end %>
+    </div>
+    <div class="form-check">
+        <%= check_box_tag :order_second_checkbox, class:"form-check-input" %>
+        <%= label_tag :order_second_checkbox, class:"form-check-label" do %>
+            <p>En cochant cette case, la personne accepte de <a href="#" class="pdf-btn">transmettre ses données</a> dans le but de son exécution et garantit qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.</p>
+        <% end %>
+    </div>
+    <div class="form-check">
+        <%= check_box_tag :order_third_checkbox, class:"form-check-input" %>
+        <%= label_tag :order_third_checkbox, class:"form-check-label" do %>
+            <p>En cochant cette case, je reconnais avoir lu et accepté les <a href="#" target="_blank" class="pdf-btn">conditions générales de vente</a>.</p>
+        <% end %>
+    </div>
+</div>
+
+<div class="text-center">
+    <div class="btn btn-danger no-p-margin mt-3" id="stripe-alert" style="display: none;">
+        <p>Veuillez cocher les cases ci-dessus avant de procéder au paiement.</p>
+    </div>
+</div>
+
+<div class="mt-5 text-center" id="stripe-div">
+    <%= link_to order_new_payment_path(order), class:"btn btn-lg btn-gradient shadow-sm disabled", id: "stripe-payment-btn", remote: true do %>
+        <h5 class="mb-0 p-1 adventpro" id="stripe-text">Passer au Paiement</h5>
+        <%= image_tag("/images/logo_stripe.png", class:"img-fluid", size: "150x150") %>
     <% end %>
 </div>
 
 <% end %>
+
+<script>
+$(document).ready(function(){
+    var stripeBtn = $("#stripe-payment-btn");
+    var stripeAlert = $("#stripe-alert");
+    var stripeDiv = $("#stripe-div");
+    stripeBtn.prop("disabled", true)
+
+    $('#order-checkboxes input[type=checkbox]').change(function(){ 
+        if ($('#order-checkboxes input[type=checkbox]:checked').length == 3) {
+            stripeBtn.prop("disabled", false)
+            stripeBtn.removeClass('disabled');
+            stripeAlert.hide();
+        } else {
+            stripeBtn.prop("disabled", true)
+            stripeBtn.addClass('disabled');
+        }
+    });
+
+    stripeDiv.click(function(){
+        if (stripeBtn.hasClass('disabled')) {
+            stripeAlert.show();
+        }
+    });
+});
+</script>
 
 
 

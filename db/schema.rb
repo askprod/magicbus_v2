@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_114517) do
     t.string "name"
     t.integer "total_price"
     t.boolean "payment_status", default: false
-    t.string "payment_fingerprint"
+    t.jsonb "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "coupon_id"
@@ -207,7 +207,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_114517) do
     t.date "arrival_date"
     t.integer "price"
     t.integer "week"
-    t.time "meetup_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "season_id"

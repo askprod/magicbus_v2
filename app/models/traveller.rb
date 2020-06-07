@@ -14,9 +14,9 @@ class Traveller < ApplicationRecord
   
     before_save :capitalize_attributes
     
-    validates_acceptance_of :valid_passport, :allow_nil => false, :message => "has not been accepted.", :on => :create
-    validates_acceptance_of :sanitary_conditions, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create  
-    validates_acceptance_of :accompanied_minor, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create, unless: :is_over_18? 
+    validates_acceptance_of :valid_passport, :allow_nil => false, :message => "has not been accepted", :on => :create
+    validates_acceptance_of :sanitary_conditions, :allow_nil => false, :message => "have not been accepted", :on => :create  
+    validates_acceptance_of :accompanied_minor, :allow_nil => false, :message => "have not been accepted", :on => :create, unless: :is_over_18? 
     validates_inclusion_of :gender, :in => ["Male", "Female"]
     validates_inclusion_of :insurance_status, :in => [true, false]
     validates_format_of :email_address, with: Devise.email_regexp
@@ -31,7 +31,7 @@ class Traveller < ApplicationRecord
       # 3650 days = 10 years
       if self.birth_date
         if Date.today.mjd - self.birth_date.mjd < 3653
-          self.errors.add(:base, "We do not accept travellers who are younger that 10 years old.")
+          self.errors.add(:base, "We do not accept travellers who are younger that 10 years old")
         end
       end
     end
@@ -49,9 +49,13 @@ class Traveller < ApplicationRecord
     end
 
     def is_over_18?
-      birthday = self.birth_date
-      age = (DateTime.now - birthday) / 365.25
-      return age > 18
+      if self.birth_date
+        birthday = self.birth_date
+        age = (DateTime.now - birthday) / 365.25
+        return age > 18
+      else
+        return true
+      end
     end
 
     def capitalize_attributes

@@ -392,21 +392,21 @@ function initPlacesMap() {
          // The map() method here has nothing to do with the Google Maps API.
          
         var iconRed = {
-            url: '../images/marker-red.png', // url
+            url: '../images/marker_red.png', // url
             scaledSize: new google.maps.Size(50, 50), // scaled size
             origin: new google.maps.Point(0,0), // origin
             anchor: new google.maps.Point(25, 42) // anchor
         };
 
         var iconBlue = {
-            url: "../images/marker-blue.png", // url
+            url: "../images/marker_blue.png", // url
             scaledSize: new google.maps.Size(50, 50), // scaled size
             origin: new google.maps.Point(0,0), // origin
             anchor: new google.maps.Point(25, 42) // anchor
         };
 
         var iconYellow = {
-            url: '../images/marker-yellow.png', // url
+            url: '../images/marker_yellow.png', // url
             scaledSize: new google.maps.Size(50, 50), // scaled size
             origin: new google.maps.Point(0,0), // origin
             anchor: new google.maps.Point(25, 42) // anchor
@@ -487,7 +487,7 @@ function initPlacesMap() {
             styles: 
                 [{
                 height: 50,
-                url: '../images/cluster.png',
+                url: '../images/marker_cluster.png',
                 width: 50,
                 textColor: 'transparent',
             }

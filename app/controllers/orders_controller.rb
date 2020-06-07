@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:edit, :update, :destroy]
+  before_action :check_order_owner, only: [:show]
 
   # GET /orders
   # GET /orders.json
@@ -23,7 +24,9 @@ class OrdersController < ApplicationController
             layout: "pdf.html",
             lowquality: true,
             zoom: 1,
-            dpi: 75
+            dpi: 72,
+            margin: {top: 10, bottom: 10, left: 10, right: 10},
+            footer: { center: '[page]/[topage]', font_size: 8 }
         end
     end
   end
@@ -89,10 +92,10 @@ class OrdersController < ApplicationController
     @payment_intent = Stripe::PaymentIntent.create(
       amount: @order.total_price_calc * 100,
       currency: 'eur',
-      description: "Order N°#{@order.id}",
+      description: "Order N°#{@order.name}",
       payment_method_types: params['card'],
-      metadata: {integration_check: 'accept_a_payment'},
-  )
+      metadata: {'order_id': "#{@order.id}"},
+    )
   end
 
   def create_payment
@@ -101,12 +104,36 @@ class OrdersController < ApplicationController
 
     if @payment_intent.status == "succeeded"
         id = @payment_intent.id
+        card_details = @payment_intent.charges.data[0]['payment_method_details']
+        
+        data = [
+          stripe: {
+            payment_intent_id: id,
+          },
+          customer: {
+            email: params[:email],
+            name: params[:name],
+          },
+          address: {
+            city: params[:address_city],
+            country: params[:address_country],
+            line1: params[:address_line1],
+            postal_code: params[:address_zip],
+          },
+          card: {
+            brand: card_details.card['brand'],
+            last_4: card_details.card['last4'],
+            exp_year: card_details.card['exp_year'],
+            exp_month: card_details.card['exp_month'],
+            country: card_details.card['country'],
+          }
+        ]
 
         if @order.coupon
           @order.user.coupons << @order.coupon
         end
 
-        @order.update!(paid_at: Time.now, expires_at: nil, payment_status: true, payment_fingerprint: id)
+        @order.update!(details: data, paid_at: Time.now, expires_at: nil, payment_status: true)
         @order.save
 
         redirect_to order_success_payment_path(@order)
@@ -162,5 +189,11 @@ class OrdersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:correct_information, :total_price, traveller_ids: [], trip_ids: []).merge(user_id: current_user.id)
+    end
+
+    def check_order_owner
+      unless current_user && User.find(current_user.id).orders.exists?(Order.friendly.find(params[:id]).id)
+        raise "Order does not belongs to you."
+      end
     end
 end

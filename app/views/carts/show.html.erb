@@ -24,7 +24,7 @@
         <h2 class="h1 text-center dincondensed mb-2">Your Trips</h2>
 
         <% @current_cart_items.each do |trip| %>
-          <%= render partial: 'trips', :locals => { :trip => trip } %>
+          <%= render "carts/partials/trips", trip: trip %>
         <% end %>
       </div>
       
@@ -33,10 +33,10 @@
 
         <% @cart.number_of_travellers.times do |traveller_index| %>
           <% if !@cart.travellers.order(:id)[traveller_index].present? %>
-              <%= render "travellers/traveller_fill", traveller_index: traveller_index %>
+              <%= render "travellers/partials/traveller_fill", traveller_index: traveller_index %>
           <% else %>
             <div class="py-2">
-              <%= render "travellers/traveller_info", traveller: @cart.travellers.order(:id)[traveller_index] %>
+              <%= render "travellers/partials/traveller_info", traveller: @cart.travellers.order(:id)[traveller_index] %>
             </div>
           <% end %>
         <% end %>

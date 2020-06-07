@@ -98,9 +98,7 @@
             <div class="blackline"></div>
 
             <div class="container small-padding text-center">
-              <p class="small">To help us organize meals during your trip, please fill in the next forms accordingly. We will take everything into account while cooking.
-              Please note that in the case of Vegan diets, we will not provide meals throughout the duration of the trips.
-              We will deduct 30€ per vegan traveller.</p>
+              <%= render 'travellers/partials/food_explanations' %>
             </div>
 
             <div class="row">
@@ -111,7 +109,7 @@
 
                 <div id='food_diets'>
                   <%= form.fields_for :food_diets do |ff| %>
-                    <%= render 'food_diet_fields', :f => ff %>
+                    <%= render 'food_diet_fields', f: ff %>
                   <% end %>
                   <div class='links' style='display: none;'>
                     <%= link_to_add_association 'Add', form, :food_diets, class: "btn btn-stylised adventpro my-2" %>
@@ -126,7 +124,7 @@
 
                 <div id='food_restrictions'>
                   <%= form.fields_for :food_restrictions do |ff| %>
-                    <%= render 'food_restriction_fields', :f => ff %>
+                    <%= render 'food_restriction_fields', f: ff %>
                   <% end %>
                   <div class='links' style='display: none;'>
                     <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro my-2" %>

@@ -28,7 +28,7 @@
       <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
-            <%= image_tag("/images/marker-yellow.png", class: "m-auto", size: "40x40") %>
+            <%= image_tag("/images/marker_yellow.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
             <p class="small m-0"><%= t('share.shared_spot') %></p>
@@ -39,7 +39,7 @@
       <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
-            <%= image_tag("/images/marker-red.png", class: "m-auto", size: "40x40") %>
+            <%= image_tag("/images/marker_red.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
             <p class="small m-0"><%= t('share.waiting_approval') %></p>
@@ -50,7 +50,7 @@
       <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
-            <%= image_tag("/images/marker-blue.png", class: "m-auto", size: "40x40") %>
+            <%= image_tag("/images/marker_blue.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
             <p class="small m-0"><%= t('share.secret_spot') %></p>
@@ -61,7 +61,7 @@
       <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2" style="background:#ffe475;">
         <div class="row no-gutters">
           <div class="col-2">
-            <%= image_tag("/images/cluster.png", class: "m-auto", size: "40x40") %>
+            <%= image_tag("/images/marker_cluster.png", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
             <p class="small m-0"><%= t('share.cluster_spots') %></p>
@@ -89,11 +89,11 @@
                 </div>
                 <div class="col-2">
                 <% if spot.secret_status == true %>
-                  <%= image_tag("/images/marker-blue.png", size: "25x25") %>
+                  <%= image_tag("/images/marker_blue.png", size: "25x25") %>
                 <% elsif spot.approved_status == true %>
-                  <%= image_tag("/images/marker-yellow.png", size: "25x25") %>
+                  <%= image_tag("/images/marker_yellow.png", size: "25x25") %>
                 <% else %>
-                  <%= image_tag("/images/marker-red.png", size: "25x25") %>
+                  <%= image_tag("/images/marker_red.png", size: "25x25") %>
                 <% end %>
                 </div>
               </div>
