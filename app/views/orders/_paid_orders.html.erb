@@ -9,12 +9,8 @@
           <p class="mb-0 ml-4">Order N°<span class="font-weight-bold"><%= order.name %></span>, paid on <span class="font-weight-bold"><%= order.paid_at.strftime("%d/%m/%Y") %></span> | Total: <span class="font-weight-bold"><%= order.total_price %>€</span> Tax incl.</p>
         </div>
 
-        <div class="col-1 my-auto small mx-2">
-          <%= link_to "Invoice EN", order_path(order, format: :pdf), class: "pdf-btn" %>
-        </div>   
-
-        <div class="col-1 my-auto small mx-2">
-          <%= link_to "Facture FR", order_path(order, format: :pdf), class: "pdf-btn" %>
+        <div class="col-2 my-auto small mx-2">
+          <%= link_to "Download PDF", order_path(order, format: :pdf), class: "pdf-btn" %>
         </div>   
       </div>
 

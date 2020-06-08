@@ -1,6 +1,3 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-
 function initPlacesMap() {
     var myCoords = new google.maps.LatLng(48.866667, 2.333333);
 

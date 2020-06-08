@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_114517) do
     t.string "name"
     t.integer "total_price"
     t.boolean "payment_status", default: false
+    t.boolean "rgpd_validated", default: false
     t.jsonb "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

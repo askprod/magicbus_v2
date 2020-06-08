@@ -4,3 +4,8 @@ Rails.configuration.stripe = {
  }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
+StripeEvent.signing_secret = Rails.application.credentials[Rails.env.to_sym][:stripe_signing_key]
+
+StripeEvent.configure do |events|
+    events.subscribe 'payment_intent.', Stripe::EventHandler.new
+end

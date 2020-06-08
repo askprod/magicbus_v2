@@ -1,67 +1,64 @@
 <div class="card login-form">
     
-<h1 class="card-header adventpro yellow text-center display-5">Payment 
-<br>
-<span class="small h6">Order <%= order.name %></span>
-</h1>
+<h1 class="card-header adventpro yellow text-center display-5">Order <%= order.name %></span></h1>
+    <div class="card-body">
+        <div id="close-button"></div>
 
-<div class="card-body">
-    <div id="close-button"></div>
+        <%= form_with url: order_new_payment_path(order), local: true, id: "payment-form", data: { payment_intent_id: @payment_intent.client_secret } do |form| %>
 
-    <%= form_with url: order_new_payment_path(order), local: true, id: "payment-form", data: { payment_intent_id: @payment_intent.client_secret } do |form| %>
+            Billing Details:
 
-        Billing Details:
-        <div class="group-stripe">
-            <label>
-                <span>Email</span>
-                <input id="email" name="email" class="field" value="<%= current_user.email %>" />
-            </label>
-        </div>
+            <div class="group-stripe">
+                <label>
+                    <span>Email</span>
+                    <input id="email" name="email" class="field" value="<%= current_user.email %>" />
+                </label>
+            </div>
 
-        <div class="row">
-        <div class="col">
-        <div class="group-stripe">
-            <label>
-                <span>Name</span>
-                <input id="name-card" name="name" class="field" placeholder="Jane Doe" />
-            </label>
-            <label>
-                <span>Card N°</span>
-                <div id="card-number" class="field"></div>
-            </label>
+            <div class="row">
+                <div class="col">
+                    <div class="group-stripe">
+                        <label>
+                            <span>Name</span>
+                            <input id="name-card" name="name" class="field" placeholder="Jane Doe" />
+                        </label>
+                        <label>
+                            <span>Card N°</span>
+                            <div id="card-number" class="field"></div>
+                        </label>
 
-            <label>
-                <span>Expiry</span>
-                <div id="card-expiry" class="field"></div>
-            </label>
-            <label>
-                <span>CVC</span>
-                <div id="card-cvc" class="field"></div>
-            </label>
-        </div>
-        </div>
+                        <label>
+                            <span>Expiry</span>
+                            <div id="card-expiry" class="field"></div>
+                        </label>
+                        <label>
+                            <span>CVC</span>
+                            <div id="card-cvc" class="field"></div>
+                        </label>
+                    </div>
+                </div>
 
-        <div class="col">
-        <div class="group-stripe">
-        <label>
-            <span>Address</span>
-            <input id="address-line1" name="address_line1" class="field" placeholder="77 Winchester Lane" />
-        </label>
-        <label>
-            <span>City</span>
-            <input id="address-city" name="address_city" class="field" placeholder="Coachella" />
-        </label>
-        <label>
-            <span>ZIP</span>
-            <input id="address-zip" name="address_zip" class="field" placeholder="92236" />
-        </label>
-        <label>
-            <span>Country</span>
-            <input id="address-country" name="address_country" class="field" placeholder="United States" />
-        </label>
-        </div>
-        </div>
-        </div>
+                <div class="col">
+                    <div class="group-stripe">
+                        <label>
+                            <span>Address</span>
+                            <input id="address-line1" name="address_line1" class="field" placeholder="77 Winchester Lane" />
+                        </label>
+                        <label>
+                            <span>City</span>
+                            <input id="address-city" name="address_city" class="field" placeholder="Coachella" />
+                        </label>
+                        <label>
+                            <span>ZIP</span>
+                            <input id="address-zip" name="address_zip" class="field" placeholder="92236" />
+                        </label>
+                        <label>
+                            <span class="small">Country Code</span>
+                            <input id="address-country" name="address_country" class="field" placeholder="FR" />
+                        </label>
+                    </div>
+                </div>
+            </div>
 
         <div id="card-errors" class="text-center alert alert-danger" role="alert"></div>
 
@@ -69,8 +66,9 @@
             <%= form.hidden_field :payment_intent_id, value: @payment_intent.id %>
             <button type="submit" class="stripe-button"><b>Pay <%= order.total_price %>€</b></button>  
         </div>
-    <% end %>
-    
+
+        <% end %>
+        
     </div>
 </div>
 

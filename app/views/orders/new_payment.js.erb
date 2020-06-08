@@ -48,24 +48,33 @@ $(document).ready(function() {
 
     form.addEventListener("submit", (event) => {
     event.preventDefault()
+    document.querySelector(".stripe-button").disabled = true;
+    document.querySelector(".stripe-button").innerHTML = '<b class="saving">Processing<span>.</span><span>.</span><span>.</span></b>';
 
     let data = {
       payment_method: {
         card: card,
         billing_details: {
-          name: form.querySelector("#name-card").value
-        }
+          address: {
+            city: form.querySelector("#address-city").value,
+            country: form.querySelector("#address-country").value,
+            line1: form.querySelector("#address-city").value,
+            postal_code: form.querySelector("#address-zip").value,
+          },
+          name: form.querySelector("#name-card").value,
+          email: form.querySelector("#email").value,
+        },
       }
     }
 
     stripe.confirmCardPayment(form.dataset.paymentIntentId, data).then((result) => {
       if (result.error) {
+        document.querySelector(".stripe-button").disabled = false;
+        document.querySelector(".stripe-button").innerHTML = '<b>Pay <%= @order.total_price %>€</b>';
         var errorElement = document.getElementById('card-errors')
         errorElement.textContent = result.error.message
         errorElement.style.display = "block"
       } else {
-        // 
-        // 
         form.submit()
       }
     })

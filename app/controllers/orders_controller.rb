@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @recent_orders = User.find(current_user.id).orders.where(payment_status: false)
+    @recent_order = User.find(current_user.id).orders.where(payment_status: false).first
     @paid_orders = User.find(current_user.id).orders.where(payment_status: true)
   end
 
@@ -20,8 +20,8 @@ class OrdersController < ApplicationController
         format.pdf do
             render pdf: "Order No. #{@order.name}",
             page_size: 'A4',
-            template: "orders/show.html.erb",
-            layout: "pdf.html",
+            template: "orders/invoice_pdf.#{I18n.locale}.html.erb",
+            layout: "invoice_pdf_layout.html",
             lowquality: true,
             zoom: 1,
             dpi: 72,
@@ -100,48 +100,25 @@ class OrdersController < ApplicationController
 
   def create_payment
     @order = Order.find(params[:order_id])
-    @payment_intent = Stripe::PaymentIntent.retrieve(params[:payment_intent_id])
+    event = Stripe::PaymentIntent.retrieve(params[:payment_intent_id])
 
-    if @payment_intent.status == "succeeded"
-        id = @payment_intent.id
-        card_details = @payment_intent.charges.data[0]['payment_method_details']
-        
-        data = [
-          stripe: {
-            payment_intent_id: id,
-          },
-          customer: {
-            email: params[:email],
-            name: params[:name],
-          },
-          address: {
-            city: params[:address_city],
-            country: params[:address_country],
-            line1: params[:address_line1],
-            postal_code: params[:address_zip],
-          },
-          card: {
-            brand: card_details.card['brand'],
-            last_4: card_details.card['last4'],
-            exp_year: card_details.card['exp_year'],
-            exp_month: card_details.card['exp_month'],
-            country: card_details.card['country'],
-          }
-        ]
+    if @order.coupon
+        @order.user.coupons << @order.coupon
+    end
 
-        if @order.coupon
-          @order.user.coupons << @order.coupon
-        end
+    @order.update!(details: event, paid_at: Time.now, expires_at: nil, payment_status: true)
+    @order.save
 
-        @order.update!(details: data, paid_at: Time.now, expires_at: nil, payment_status: true)
-        @order.save
-
-        redirect_to order_success_payment_path(@order)
+    respond_to do |format|
+      if @order.save
         session[:order_page] = true
-        flash[:notice] = "Your Order was successful!"
-    else
-        flash[:alert] = "Your Order was unsuccessful. Please try again."
+        flash[:notice] = "Your payment was successful!"
+        format.html { redirect_to order_success_payment_path(@order) }
+      else
+        flash[:alert] = "We could not process your order. Please contact us."
         redirect_to orders_path
+        format.html { redirect_to orders_path }
+      end
     end
   end
 
@@ -178,6 +155,17 @@ class OrdersController < ApplicationController
       # @cart.update!(promo_code: nil)
       # redirect_to @cart
       # flash[:notice] = "You promo code has been deleted."
+  end
+
+  def update_rgpd_validation
+    @order = Order.friendly.find(params[:order_id])
+
+    puts params[:value]
+    if params[:value] == "true"
+      @order.update_attribute(:rgpd_validated, true)
+    elsif params[:value] == "false"
+      @order.update_attribute(:rgpd_validated, false)
+    end
   end
 
   private

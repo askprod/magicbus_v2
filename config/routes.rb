@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
+  mount StripeEvent::Engine, at: '/stripe/webhook'
+
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do 
     devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
       
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
       get 'promo_code', to: 'orders#promo_code'
       post 'promo_code', to: 'orders#check_promo_code'
       delete 'promo_code', to: 'orders#destroy_promo_code'
+      post 'update-rgpd-validation', to: 'orders#update_rgpd_validation'
     end
 
     resources :carts, only: [:show] do

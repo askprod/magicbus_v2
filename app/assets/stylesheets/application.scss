@@ -985,38 +985,12 @@ input[type=file][readonly] {
   outline: none;
 }
 
-#payment-stripe button:focus {
-  background: #555ABF;
-}
-
-#payment-stripe button:active {
-  background: #43458B;
-}
-
-.outcome {
-  float: left;
-  width: 100%;
-  padding-top: 8px;
-  min-height: 24px;
-  text-align: center;
-}
-
-.success.visible,
 #card-errors.visible {
   display: inline;
 }
 
 div#card-errors {
   display: none;
-}
-
-.success {
-  color: #666EE8;
-}
-
-.success .token {
-  font-weight: 500;
-  font-size: 13px;
 }
 
 .top-margin {
@@ -1157,4 +1131,31 @@ div#card-errors {
 
 .no-p-margin p {
   margin: 0;
+}
+
+@keyframes blink {
+  0% {
+    opacity: .2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .2;
+  }
+}
+
+.saving span {
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.saving span:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.saving span:nth-child(3) {
+  animation-delay: .4s;
 }

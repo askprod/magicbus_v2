@@ -109,3 +109,4 @@ gem "countries", "~> 3.0"
 
 gem 'actiontext', github: 'kobaltz/actiontext', branch: 'archive', require: 'action_text'
 
+gem 'stripe_event'

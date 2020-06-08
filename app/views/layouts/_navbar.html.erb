@@ -8,32 +8,34 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarToggler">
+  <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
+
+    <% unless current_page?(root_url) %>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item adventpro">
+          <%= link_to discover_path, class:"nav-link mx-4" do %>
+            <span class="m-0">Discover</span>
+          <% end %>
+        </li>
+        <li class="nav-item adventpro">
+          <%= link_to trips_path, class:"nav-link mx-4" do %>
+            <span class="m-0">Travel</span>
+          <% end %>
+        </li>
+        <li class="nav-item adventpro">
+          <%= link_to places_path, class:"nav-link mx-4" do %>
+            <span class="m-0">Share</span>
+          <% end %>
+        </li>
+        <li class="nav-item adventpro">
+          <%= link_to story_path, class:"nav-link mx-4" do %>
+            <span class="m-0">Story</span>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
 
     <ul class="navbar-nav mx-auto">
-      <li class="nav-item adventpro">
-        <%= link_to discover_path, class:"nav-link mx-4" do %>
-          <span class="m-0">Discover</span>
-        <% end %>
-      </li>
-      <li class="nav-item adventpro">
-        <%= link_to trips_path, class:"nav-link mx-4" do %>
-          <span class="m-0">Travel</span>
-        <% end %>
-      </li>
-      <li class="nav-item adventpro">
-        <%= link_to places_path, class:"nav-link mx-4" do %>
-          <span class="m-0">Share</span>
-        <% end %>
-      </li>
-      <li class="nav-item adventpro">
-        <%= link_to story_path, class:"nav-link mx-4" do %>
-          <span class="m-0">Story</span>
-        <% end %>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-0">
 
       <% if user_signed_in? %>
 
@@ -75,7 +77,7 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link adventpro" href="#" id="navbarDropdownMagicMe" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Join Us
+                MagicMe
                 <%= fa_icon "caret-down" %>
           </a>
 
@@ -88,30 +90,31 @@
               <% end %>
           </div>
         </li>
+  
+      <% end %>
+    </ul>
 
+    <ul class="navbar-nav">
+
+      <% if user_signed_in? && current_user.admin? %>
+          <%= link_to rails_admin.dashboard_path(locale: nil), class: "btn btn-danger my-auto mx-auto" do %>
+            <span class="m-0 adventpro">ADMIN PAGE</span>
+          <% end %>
       <% end %>
 
-      <div class="mx-5">
-        <% if user_signed_in? && current_user.admin? %>
-            <%= link_to rails_admin.dashboard_path(locale: nil), class: "btn btn-danger my-auto" do %>
-              <span class="m-0 adventpro">ADMIN PAGE</span>
-            <% end %>
-        <% end %>
-
-        <%= link_to trips_path, class:"form-inline btn btn-stylised border border-warning my-auto" do %>
-          <span class="m-0 adventpro">BOOK NOW</span>
-        <% end %>
-      </div>
+      <%= link_to trips_path, class:"form-inline btn btn-stylised border border-warning my-auto mx-auto" do %>
+        <span class="m-0 adventpro">BOOK NOW</span>
+      <% end %>
 
       <% if I18n.locale == :fr %>
         <li class="nav-item">
-          <%= link_to({:locale=> nil}, class:"nav-link mr-5") do %>
+          <%= link_to({:locale=> nil}, class:"nav-link") do %>
             <%= flag_icon(:gb) %>
           <% end %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to({:locale=>'fr'}, class:"nav-link mr-5") do %>
+          <%= link_to({:locale=>'fr'}, class:"nav-link") do %>
             <%= flag_icon(:fr) %>
           <% end %>
         </li> 

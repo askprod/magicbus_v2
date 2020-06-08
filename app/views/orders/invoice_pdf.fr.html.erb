@@ -47,7 +47,7 @@
     </tr>
 
     <tr class="details">
-      <td><b>Payment Id:</b> <%= @order.details[0]['stripe']['payment_intent_id'] %></td>
+      <td><b>Payment Id:</b> <%= @order.details['id'] %></td>
     </tr>
 
     <tr class="heading">
@@ -159,11 +159,12 @@
 <div class="text-container">
   <p class="secondary-titles">CLIENT</p>
   <div class="p-text">
-    <p><span class="b">Nom:</span> <%= @order.details[0]['customer']['name'] %></p>
-    <p><span class="b">Date de naissance:</span> *Date de naissance du payant*</p>
-    <p><span class="b">Adresse:</span> <%= @order.details[0]['address']['line1'] %></p>
-    <p><span class="b">Code postal:</span> <%= @order.details[0]['address']['postal_code'] %></p>
-    <p><span class="b">E-mail:</span> <%= @order.details[0]['customer']['email'] %></p>
+    <p><span class="b">Nom:</span> <%= @order.details['charges']['data'][0]['billing_details']['name'] %></p>
+    <p><span class="b">Date de naissance:</span> NON DEMANDE LORS DU PAIEMENT</p>
+    <p><span class="b">Adresse:</span> <%= @order.details['charges']['data'][0]['billing_details']['address']['line1'] %></p>
+    <p><span class="b">Code postal:</span> <%= @order.details['charges']['data'][0]['billing_details']['address']['postal_code'] %></p>
+    <p><span class="b">Pays:</span> <%= @order.details['charges']['data'][0]['billing_details']['address']['country'] %></p>
+    <p><span class="b">E-mail:</span> <%= @order.details['charges']['data'][0]['billing_details']['email'] %></p>
   </div>
 </div>
 
@@ -183,25 +184,30 @@
 <div class="text-container">
   <div class="p-text-no-margin">
     <div class="form-check">
+      <% if @order.rgpd_validated == false %>
+      <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
+      <% else %>
       <input class="form-check-input" type="checkbox" value="" id="data-check1">
+      <% end %>
       <label class="form-check-label" for="data-check1">
         <p>La personne concluant le présent contrat accepte de transmeRre ses données dans le but de son exécu3on et garan3t qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.</p>
       </label>
     </div>
-
     <div class="form-check">
+      <% if @order.rgpd_validated == false %>
+      <input class="form-check-input" type="checkbox" value="" id="data-check2" checked>
+      <% else %>
       <input class="form-check-input" type="checkbox" value="" id="data-check2">
+      <% end %>
       <label class="form-check-label" for="data-check2">
         <p>La personne concluant le présent contrat accepte de transmettre ses données aux fins de recevoir nos promotions et sollicitations (via courriers électroniques, messages SMS, appels téléphoniques et courriers postaux):</p>
       </label>
     </div>
-
     <p>Les données sont conservées pendant une durée qui n’excède pas la durée nécessaire aux finalités suivantes:</p>
     <ul>
-    <li><p>Commande d’un séjour : les données nécessaires au traitement de votre commande seront conservées pendant la durée nécessaire à l’établissement d’un droit ou d’un contrat.</p></li>
-    <li><p>Ges3on de la rela3on commerciale : les données seront conservées (au plus tard) 3 ans à compter de la fin de la rela3on commerciale.</p></li>
+      <li><p>Commande d’un séjour : les données nécessaires au traitement de votre commande seront conservées pendant la durée nécessaire à l’établissement d’un droit ou d’un contrat.</p></li>
+      <li><p>Ges3on de la rela3on commerciale : les données seront conservées (au plus tard) 3 ans à compter de la fin de la rela3on commerciale.</p></li>
     </ul>
-    <br>
     <p>Conformément à la législa3on en vigueur, vous disposez d’un droit d’accès, de rec3fica3on, de suppression et de portabilité des données personnelles vous concernant et d’un droit d’opposi3on pour raison légi3me à leur traitement.</p>
     <p>Pour exercer ces droits, vous devez adresser un courrier postal à l'adresse suivante : 31 résidence du château 31150 Fenouillet ou un courrier électronique à : <a href="#">hello@magicbusworld.com</a></p>
   </div>
@@ -416,24 +422,26 @@
 
 <div class="text-container">
   <p class="secondary-titles">PRIX</p>
-  <p>Prix total TTC <%= @order.total_price %>€ 
-  <p>Mode de règlement: 
-  <p>Stripe (transaction n° <%= @order.details[0]['stripe']['payment_intent_id'] %>)</p>
-  <p>Carte: <%= @order.details[0]['card']['brand'].upcase %>, **** **** **** <%= @order.details[0]['card']['last_4'] %>, Exp: <%= @order.details[0]['card']['exp_month'] %>-<%= @order.details[0]['card']['exp_year'] %></p>
+  <div class="p-text">
+    <p>Prix TTC: <%= @order.total_price %>€ 
+    <p>Mode de règlement: <%= @order.details['charges']['data'][0]['payment_method_details']['card']['brand'].upcase %>, **** **** **** <%= @order.details['charges']['data'][0]['payment_method_details']['card']['last4'] %>, Exp: <%= sprintf('%02d', @order.details['charges']['data'][0]['payment_method_details']['card']['exp_month']) %>-<%= @order.details['charges']['data'][0]['payment_method_details']['card']['exp_year'] %></p>
+    <p>Transaction Stripe N° <%= @order.details['charges']['data'][0]['payment_intent'] %></p>
+    <p><a href="<%= @order.details['charges']['data'][0]['receipt_url'] %>">Facture Stripe</a></p>
+  </div>
   <div class="p-text-no-margin">
     <p>Les prix de vente, conformément à l'article L. 112-1 du Code de la consommation sont indiqués, pour chacun des MagicTrip figurant sur le Site, en euros toutes taxes comprises, hors frais de transport d’acheminement du MagicPeople jusqu’à la Ville d’étape de départ et hors frais de transport de retour suivant la Ville d’étape d’arrivée choisie par le MagicPeople.</p>
     <p>Ce prix comprend:</p>
     <ul>
-      <p>- le logement à bord d’un bus réaménagé en auberge de jeunesse (habitation)</p>
-      <p>- le transport durant la période de séjour (du point de départ au point d’arrivé à la fin du séjour).</p>
-      <p>- la participation au pot commun pour le petit-déjeuné et un repas par jour (que les voyageurs cuisineront ensemble)</p>
-      <p>- la mise à disposition d’équipement de loisir à bord,</p>
-      <p>- certaines activités comprise dans le forfait et annoncées plus haut.</p>
+      <li>le logement à bord d’un bus réaménagé en auberge de jeunesse (habitation)</li>
+      <li>le transport durant la période de séjour (du point de départ au point d’arrivé à la fin du séjour).</li>
+      <li>la participation au pot commun pour le petit-déjeuné et un repas par jour (que les voyageurs cuisineront ensemble)</li>
+      <li>la mise à disposition d’équipement de loisir à bord,</li>
+      <li>certaines activités comprise dans le forfait et annoncées plus haut.</li>
     </ul>
     <p>Ce prix ne comprend pas:</p>
     <ul>
-    <p>- les activités optionnelles facturées en supplément du prix.</p>
-    <p>- les transports du voyageur pour rejoindre le bus à son point de départ et rejoindre son domicile depuis le point d’arrivé à la fin du séjour.</p>
+        <li>les activités optionnelles facturées en supplément du prix.</li>
+        <li>les transports du voyageur pour rejoindre le bus à son point de départ et rejoindre son domicile depuis le point d’arrivé à la fin du séjour.</li>
     </ul>
     <p>Le détaillant se réserve le droit, en cas de non-paiement, de constater l’annula3on du contrat par le client et d’exiger sans mise en demeure préalable l’applica3on des pénalités d’annula3on prévues ci-dessous.</p>
   </div>
@@ -489,34 +497,71 @@
   </div>
 </div>
 
+<div class="page-break"></div>
 
-B. INFORMATION CONTRACTUELLE : RUBRIQUE VI à
+<div class="small-header">
+    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <p>CONTRAT DE VOYAGE</p>
+    <p>FORFAIT TOURISTIQUE</p>
+</div>
 
-VI - CONTACT - RESPONSABILITE – RECLAMATIONS
+<p class="main-titles">6. INFORMATIONS CONTRACTUELLES</h1>
 
-CONTACT
-Lorsqu’une non-conformité est constatée sur place, le voyageur est tenu de la signaler au contact ci-dessous dans les meilleurs délais :
-Nom ABADIE Lisette
-Adresse 31 résidence du chateau, 31150 Fenouillet
-06.59.09.11.65
-hello@magicbusworld.com
-Le défaut de signalement d’une non-conformité sur place pourra avoir une influence sur le montant des éventuels dommages-intérêts ou réducWon de prix dus si le signalement sans retard aurait pu éviter ou diminuer le dommage du client.
-Le voyageur pourra également demander de l’aide auprès du contact ci-dessus en cas de difficulté sur place.
+<div class="text-container">
+  <p class="secondary-titles">CONTACT</p>
+  <div class="p-text-no-margin">
+    <p>Lorsqu’une non-conformité est constatée sur place, le voyageur est tenu de la signaler au contact ci-dessous dans les meilleurs délais:</p>
+    <p>Nom: ABADIE Lisette</p>
+    <p>Adresse: 31 résidence du chateau, 31150 Fenouillet</p>
+    <p>06.59.09.11.65</p>
+    <p>hello@magicbusworld.com</p>
+    <p>Le défaut de signalement d’une non-conformité sur place pourra avoir une influence sur le montant des éventuels dommages-intérêts ou réducWon de prix dus si le signalement sans retard aurait pu éviter ou diminuer le dommage du client.</p>
+    <p>Le voyageur pourra également demander de l’aide auprès du contact ci-dessus en cas de difficulté sur place.</p>
+  </div>
+</div>
 
-RESPONSABILITE
-Le détaillant et l’organisateur sont responsables de la bonne exécuWon des services prévus au présent contrat et sont tenus d’apporter de l’aide au voyageur en difficulté.
-En cas de mise en jeu de leur responsabilité de plein droit du fait des prestataires, les limites de dédommagement résultant de convenWons internaWonales selon l’arWcle L. 211-17-IV du Code du Tourisme trouveront à s’appliquer ; à défaut et sauf préjudice corporels, dommages intenWonnels ou causés par négligence, les dommages-intérêts éventuels sont limités à trois fois le prix total du voyage ou du séjour.
-GARANT FINANCIER DU DETAILLANT
-Nom : APST
-Adresse : 15 Avenue Carnot, 75017 Paris
+<div class="text-container">
+  <p class="secondary-titles">RESPONSABILITE</p>
+  <div class="p-text-no-margin">
+    <p>Le détaillant et l’organisateur sont responsables de la bonne exécuWon des services prévus au présent contrat et sont tenus d’apporter de l’aide au voyageur en difficulté.</p>
+    <p>En cas de mise en jeu de leur responsabilité de plein droit du fait des prestataires, les limites de dédommagement résultant de convenWons internaWonales selon l’arWcle L. 211-17-IV du Code du Tourisme trouveront à s’appliquer ; à défaut et sauf préjudice corporels, dommages intenWonnels ou causés par négligence, les dommages-intérêts éventuels sont limités à trois fois le prix total du voyage ou du séjour.</p>
+  </div>
+</div>
 
-ASSUREUR DE RESPONSABILITE CIVILE DU DETAILLANT
-Nom : HISCOX
-Adresse : 12 quai des Queyries - CS 41177 - 33072 Bordeaux
+<div class="text-container">
+  <p class="secondary-titles">GARANT FINANCIER DU DETAILLANT</p>
+  <div class="p-text-no-margin">
+    <p>Nom : APST</p>
+    <p>Adresse : 15 Avenue Carnot, 75017 Paris</p>
+  </div>
+</div>
 
-CESSION DU CONTRAT
-Conformément à l’arWcle L. 211-11 du Code du Tourisme, vous avez la possibilité de céder le présent contrat tant que celui-ci n’a produit aucun effet et jusqu’à 7 jours du départ, en prévenant l’agence dans un délai raisonnable, à une personne remplissant les mêmes condiWons que vous. Vous-même et le bénéficiaire de la cession demeurez solidairement tenus du paiement du solde du contrat et des frais de cession qui vous seront communiqués.
+<div class="text-container">
+  <p class="secondary-titles">ASSUREUR DE RESPONSABILITE CIVILE DU DETAILLANT</p>
+  <div class="p-text-no-margin">
+    <p>Nom : HISCOX</p>
+    <p>Adresse : 12 quai des Queyries - CS 41177 - 33072 Bordeaux</p>
+  </div>
+</div>
 
-RECLAMATIONS & MEDIATION
-Le voyageur peut saisir le service client du détaillant de toute réclamaWon, à l’adresse suivante : 31 résidence du château, 31150 Fenouillet par [legre RAR ou mail à hello@magicbusworld.com] accompagné(e) de tout jusWficaWf.
-A défaut de réponse saWsfaisante dans un délai de 60 jours ou s’il n’est pas saWsfait de la réponse reçue, le client peut saisir gratuitement le Médiateur du Tourisme et du Voyage, dont les coordonnées et modalités de saisine sont disponibles sur le site : www.mtv.travel. Si la vente s’effectue en ligne, le voyageur a la possibilité de recourir à la plateforme disponible sur le site hgps://webgate.ec.europa.eu/odr pour régler son liWge.
+<div class="text-container">
+  <p class="secondary-titles">CESSION DU CONTRAT</p>
+  <div class="p-text-no-margin">
+    <p>Conformément à l’arWcle L. 211-11 du Code du Tourisme, vous avez la possibilité de céder le présent contrat tant que celui-ci n’a produit aucun effet et jusqu’à 7 jours du départ, en prévenant l’agence dans un délai raisonnable, à une personne remplissant les mêmes condiWons que vous. Vous-même et le bénéficiaire de la cession demeurez solidairement tenus du paiement du solde du contrat et des frais de cession qui vous seront communiqués.</p>
+  </div>
+</div>
+
+<div class="text-container">
+  <p class="secondary-titles">RECLAMATIONS & MEDIATION
+</p>
+  <div class="p-text-no-margin">
+    <p>Le voyageur peut saisir le service client du détaillant de toute réclamaWon, à l’adresse suivante : 31 résidence du château, 31150 Fenouillet par [legre RAR ou mail à hello@magicbusworld.com] accompagné(e) de tout jusWficaWf.</p>
+    <p>A défaut de réponse saWsfaisante dans un délai de 60 jours ou s’il n’est pas saWsfait de la réponse reçue, le client peut saisir gratuitement le Médiateur du Tourisme et du Voyage, dont les coordonnées et modalités de saisine sont disponibles sur le site : www.mtv.travel. Si la vente s’effectue en ligne, le voyageur a la possibilité de recourir à la plateforme disponible sur le site hgps://webgate.ec.europa.eu/odr pour régler son liWge.</p>
+  </div>
+</div>
+
+
+
+
+
+
