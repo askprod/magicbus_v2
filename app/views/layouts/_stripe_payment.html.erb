@@ -64,7 +64,7 @@
 
         <div class="container-fluid text-center">
             <%= form.hidden_field :payment_intent_id, value: @payment_intent.id %>
-            <button type="submit" class="stripe-button"><b>Pay <%= order.total_price %>€</b></button>  
+            <button type="submit" class="stripe-button"><b>Pay <%= order.total_price_calc %>€</b></button>  
         </div>
 
         <% end %>

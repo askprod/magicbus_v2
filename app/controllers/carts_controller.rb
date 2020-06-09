@@ -11,11 +11,10 @@ class CartsController < ApplicationController
     @current_cart_items = @cart.trips.order(:week)
 
     @insured_travellers = @cart.travellers.where(insurance_status: true).count
-    @insurance_price = @insured_travellers * 15
+    @insurance_price = @insured_travellers * Cart::INSURANCE_PRICE
 
-    vegan_id = FoodDiet.find_by(name_en: "Vegan").id
-    @vegan_travellers = @cart.travellers.map{|traveller| traveller.food_diets.ids}.flatten.count(vegan_id)
-    @food_deduction =  @vegan_travellers * 30
+    @vegan_travellers = @cart.travellers.where(food_participation: false).count
+    @food_deduction =  @vegan_travellers * Cart::FOOD_PARTICIPATION_PRICE
 
     @total_price = (total_price(@current_cart_items) * @travellers_count + @insurance_price) - @food_deduction
   end

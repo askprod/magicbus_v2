@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_114517) do
     t.string "medical_condition"
     t.string "additional_comment"
     t.boolean "insurance_status"
+    t.boolean "food_participation", default: true
     t.bigint "cart_id"
     t.bigint "order_id"
     t.datetime "created_at", null: false

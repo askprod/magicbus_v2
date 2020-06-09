@@ -10,6 +10,7 @@
           <div class="container">
 
             <p class="h3 my-auto text-center">Would this Traveller like to subscribe to the <b>Travel Insurance</b>?</p>
+            <p class="small my-auto text-center">Price: <%= Cart::INSURANCE_PRICE %>€</p>
             <p class="small my-auto text-center">Travel insurance quick explanation..</p>
             
             <div class="btn-group-toggle row no-gutters justify-content-center">
@@ -29,7 +30,7 @@
             <div class="row justify-content-center">
               <div class="col-sm-4 form-group text-center">
                 <%= form.label "Gender", class: "small" %>
-                <%= form.select :gender, ['Male', 'Female'], {include_blank: "Select"}, class: "form-control rounded border" %>
+                <%= form.select :gender, options_for_select(Traveller.gender_attributes_for_select), {include_blank: "Select"}, class: "form-control rounded border" %>
               </div>
             </div>
 
@@ -81,7 +82,7 @@
             <div class="row">
               <div class="col-sm form-group">
                 <%= form.label "Nationality", class: "small" %>
-                <%= form.select :nationality, @nationalities_list.collect {|p| p }, {include_blank: "Select"}, class: "form-control rounded border" %>
+                <%= form.select :nationality, @nationalities_list.collect {|k, v| [v, k] }, {include_blank: "Select"}, class: "form-control rounded border" %>
               </div>
 
               <div class="col-sm form-group">
@@ -102,37 +103,33 @@
             </div>
 
             <div class="row">
-
               <div class="col-sm-6 text-center">
                 <%= form.label "Food Diets", class: "small" %>
                 <%= form.select :food_diet_ids, @food_diets_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
 
-                <div id='food_diets'>
+                <div id='food_diets_div'>
                   <%= form.fields_for :food_diets do |ff| %>
                     <%= render 'food_diet_fields', f: ff %>
                   <% end %>
-                  <div class='links' style='display: none;'>
+                  <div class='links'>
                     <%= link_to_add_association 'Add', form, :food_diets, class: "btn btn-stylised adventpro my-2" %>
                   </div>
-                </div>
-                
+                </div> 
               </div> 
             
               <div class="col-sm-6 text-center">
                 <%= form.label "Food Allergies", class: "small" %>
                 <%= form.select :food_restriction_ids, @food_restrictions_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
 
-                <div id='food_restrictions'>
+                <div id='food_restrictions_div'>
                   <%= form.fields_for :food_restrictions do |ff| %>
                     <%= render 'food_restriction_fields', f: ff %>
                   <% end %>
-                  <div class='links' style='display: none;'>
+                  <div class='links'>
                     <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro my-2" %>
                   </div>
                 </div>
-
               </div> 
-
             </div>
 
             <div class="blackline"></div>

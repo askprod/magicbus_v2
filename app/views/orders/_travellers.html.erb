@@ -18,7 +18,12 @@
                         <% end %>
                     </div>
                     <div class="col-3 my-auto">
-                        <p class="mb-0"><span class="font-weight-bold">Nourriture:</span> OUI/NON</p>
+                        <p class="mb-0"><span class="font-weight-bold">Nourriture</span>:
+                        <% if traveller.food_participation == true %>
+                            Oui</p>
+                        <% else %>
+                            Non</p>
+                        <% end %>
                     </div>
                 </div>
             </div>
@@ -31,8 +36,8 @@
                             <p class="font-weight-bold">Name:</p>
                         </div>
                         <div class="col-9">
-                            <% if traveller.gender == "Male" %>
-                                <p>Mr.<%= traveller.last_name %>, <%= traveller.first_name %></p>
+                            <% if traveller.gender == "male" %>
+                                <p>Mr. <%= traveller.last_name %>, <%= traveller.first_name %></p>
                             <% else %>
                                 <p>Mrs. <%= traveller.last_name %>, <%= traveller.first_name %></p>
                             <% end %>
@@ -53,7 +58,7 @@
                             <p class="font-weight-bold">Nationality:</p>
                         </div>
                         <div class="col-9">
-                            <p><%= traveller.nationality %></p>
+                            <p><%= translated_nationality(traveller) %></p>
                         </div>
                     </div>
 

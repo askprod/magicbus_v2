@@ -37,6 +37,8 @@ $cookies-eu-button-background-color: rgb(233, 213, 32);
 $cookies-eu-button-color: #FFFFFF;
 $cookies-eu-mobile: 'max-width: 767px';
 
+$magicbus-yellow: rgb(233, 213, 32);
+
 .cookies-eu {
   line-height: 40px;
 
@@ -1079,12 +1081,13 @@ div#card-errors {
   }
 }
 
-#myTab a.nav-link {
+.nav-pills > li > a {
+  border: solid 1px $magicbus-yellow;
   color: black;
 }
 
-#myTab a.nav-link.active {
-  color: black;
+.nav-pills > li > a.active {
+  background-color: $magicbus-yellow !important;
 }
 
 .blackline {

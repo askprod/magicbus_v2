@@ -27,6 +27,7 @@ class TravellersController < ApplicationController
   def create
     @traveller = Traveller.new(traveller_params)
     @traveller.phone_validation = (traveller_params[:phone_validation])
+    @traveller.food_participation_validation = (traveller_params[:food_diet_ids])
 
     respond_to do |format|
       if @traveller.save
@@ -67,7 +68,7 @@ class TravellersController < ApplicationController
   private
 
     def set_lists
-      @nationalities_list = JSON.parse(File.read('app/assets/json/nationalities.json'))
+      @nationalities_list = JSON.parse(File.read("app/assets/json/nationalities_#{locale}.json"))
       @food_diets_list = FoodDiet.where(approved_status: true)
       @food_restrictions_list = FoodRestriction.where(approved_status: true)
     end
@@ -79,6 +80,6 @@ class TravellersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def traveller_params
-      params.require(:traveller).permit(:accompanied_minor, :additional_comment, :medical_condition, :valid_passport, :sanitary_conditions, :phone_validation, :gender, :insurance_status, :cart_id, :first_name, :last_name, :address, :phone_number, :zip_code, :birth_date, :nationality, :email_address, :food_restriction_ids, :food_diet_ids,  food_restrictions_attributes: [:id, :name, :_destroy], food_diets_attributes: [:id, :name, :_destroy])
+      params.require(:traveller).permit(:accompanied_minor, :additional_comment, :medical_condition, :valid_passport, :sanitary_conditions, :phone_validation, :gender, :insurance_status, :cart_id, :first_name, :last_name, :address, :phone_number, :zip_code, :birth_date, :nationality, :email_address, :food_restriction_ids, :food_diet_ids,  food_restrictions_attributes: [:id, :name_fr, :name_en, :_destroy], food_diets_attributes: [:id, :name_fr, :name_en, :_destroy])
     end
 end

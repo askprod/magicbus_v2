@@ -3,6 +3,8 @@ class Cart < ApplicationRecord
     friendly_id :name, use: :slugged
 
     MAX_TRAVELLERS_PER_CART = 8
+    INSURANCE_PRICE = 15
+    FOOD_PARTICIPATION_PRICE = 30
 
     belongs_to :user
     has_many :travellers, dependent: :destroy,

@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.friendly.find(params[:id])
-    @vegan_id = FoodDiet.find_by(name_en: "Vegan").id
     @order_trips = @order.trips.order(:week)
 
     respond_to do |format|

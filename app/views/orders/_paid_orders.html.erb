@@ -1,12 +1,13 @@
-<div class="row justify-content-center mt-3">
+<% unless @paid_orders.empty? %>
 
+<div class="row justify-content-center mt-3">
   <% @paid_orders.each do |order| %>
     <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2 rounded-pill" style="background:#ffe475;">
       
       <div class="row no-gutters my-auto">
 
         <div class="col-9">
-          <p class="mb-0 ml-4">Order N°<span class="font-weight-bold"><%= order.name %></span>, paid on <span class="font-weight-bold"><%= order.paid_at.strftime("%d/%m/%Y") %></span> | Total: <span class="font-weight-bold"><%= order.total_price %>€</span> Tax incl.</p>
+          <p class="mb-0 ml-4">Order N°<span class="font-weight-bold"><%= order.name %></span>, paid on <span class="font-weight-bold"><%= order.paid_at.strftime("%d/%m/%Y") %></span> | Total: <span class="font-weight-bold"><%= order.total_price_calc %>€</span> Tax incl.</p>
         </div>
 
         <div class="col-2 my-auto small mx-2">
@@ -16,5 +17,19 @@
 
     </div>
   <% end %>
-
 </div>
+
+<% else %>
+
+<div class="container-fluid mt-5">
+    <div class="card mx-auto col-lg-6 m-1 px-0 shadow-sm" style="background:#ffe475;">
+        <div class="card-header py-1">
+        <p class="h1 my-auto text-center">No Paid Orders</p>
+        </div>
+        <div class="text-center">
+        <%= link_to "Book a Trip", trips_path, class: "adventpro btn btn-stylised border-secondary my-4" %>
+        </div>
+    </div>
+</div>
+
+<% end %>
