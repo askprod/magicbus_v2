@@ -1,6 +1,6 @@
 <div class='nested-fields food_restriction_fields'>
   <% if f.object.food_restriction_id %>
-    <div class="input-group restriction_traveller_fields">
+    <div class="input-group restriction_traveller_fields mb-1">
       <%= f.select(:food_restriction_id, options_for_select(FoodRestriction.all.map{|x| [x.name, x.id]}, f.object.food_restriction_id), {:prompt => "Select"}, class:"form-control", disabled: true) %>
       <div class="input-group-append">
         <%= link_to_remove_association f, class: "form-control input-group-text" do %>
@@ -9,10 +9,10 @@
       </div>
     </div>
   <% else %>
-    <div class="input-group restriction_traveller_fields">
+    <div class="input-group restriction_traveller_fields mb-1">
       <%= f.select(:food_restriction_id, options_for_select(@food_restrictions_list.all.map{|x| [x.name, x.id]}, f.object.food_restriction_id), {:prompt => "Select"}, class:"form-control restriction_traveller_from_list mb-1 w-50") %>
       <%= link_to_add_association f, :food_restriction, id: "add_food_restriction", class: "form-control input-group-text" do %>
-        <%= fa_icon "plus", class: "text-success mx-auto"%>
+        <p class= "mb-0 mx-auto text-secondary">Autre</p>
       <% end %>
       <div class="input-group-append" id="food_restriction_input_group_append">
         <%= link_to_remove_association f, id:"remove_food_restriction", class: "form-control input-group-text" do %>
@@ -38,9 +38,8 @@ $("#food_restrictions_div").on('cocoon:after-remove', function(){
 
 $('.restriction_traveller_fields').on('cocoon:after-insert',
     function() {
-      $(".restriction_traveller_from_list").remove();
-      $("a#add_food_restriction").hide();
-      $("a#remove_food_restriction").hide();
+      $(this).children(".restriction_traveller_from_list").remove();
+      $(this).children("a.add_fields").hide();
     });
 
 function check_to_hide_or_show_add_restriction() {
