@@ -13,6 +13,8 @@ class Traveller < ApplicationRecord
     has_many :restriction_travellers
     has_many :food_restrictions, through: :restriction_travellers, dependent: :destroy
 
+    accepts_nested_attributes_for :diet_travellers, allow_destroy: true, reject_if: :all_blank
+    accepts_nested_attributes_for :restriction_travellers, allow_destroy: true, reject_if: :all_blank
     accepts_nested_attributes_for :food_diets, allow_destroy: true, reject_if: :all_blank
     accepts_nested_attributes_for :food_restrictions, allow_destroy: true, reject_if: :all_blank
   

@@ -105,28 +105,24 @@
             <div class="row">
               <div class="col-sm-6 text-center">
                 <%= form.label "Food Diets", class: "small" %>
-                <%= form.select :food_diet_ids, @food_diets_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
-
                 <div id='food_diets_div'>
-                  <%= form.fields_for :food_diets do |ff| %>
-                    <%= render 'food_diet_fields', f: ff %>
+                  <%= form.fields_for :diet_travellers do |diet_traveller| %>
+                    <%= render 'diet_traveller_fields', f: diet_traveller %>
                   <% end %>
                   <div class='links'>
-                    <%= link_to_add_association 'Add', form, :food_diets, class: "btn btn-stylised adventpro my-2" %>
+                    <%= link_to_add_association 'Add', form, :diet_travellers, class: "btn btn-stylised adventpro my-2", id:"add_food_diets_association" %>
                   </div>
                 </div> 
               </div> 
             
               <div class="col-sm-6 text-center">
-                <%= form.label "Food Allergies", class: "small" %>
-                <%= form.select :food_restriction_ids, @food_restrictions_list.collect {|p| [p.name, p.id] }, {include_blank: "None"}, class: "form-control rounded border" %>
-
+                <%= form.label "Food Restrictions", class: "small" %>
                 <div id='food_restrictions_div'>
-                  <%= form.fields_for :food_restrictions do |ff| %>
-                    <%= render 'food_restriction_fields', f: ff %>
+                  <%= form.fields_for :restriction_travellers do |restriction_traveller| %>
+                    <%= render 'restriction_traveller_fields', f: restriction_traveller %>
                   <% end %>
                   <div class='links'>
-                    <%= link_to_add_association 'Add', form, :food_restrictions, class: "btn btn-stylised adventpro my-2" %>
+                    <%= link_to_add_association 'Add', form, :restriction_travellers, class: "btn btn-stylised adventpro my-2", id: "add_food_restrictions_association" %>
                   </div>
                 </div>
               </div> 
@@ -281,3 +277,4 @@ $("#datetimepicker1").on("change.datetimepicker", function () {
     };
 });
 </script>
+

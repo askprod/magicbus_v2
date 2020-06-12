@@ -1,35 +1,8 @@
-<div class='nested-fields row no-gutters'>
-  <div class="field form-group col-11 my-1">
-    <% if locale == :fr %>
-      <%= f.text_field :name_fr, placeholder: "Description", class: "form-control rounded border" %>
-    <% else %>
-      <%= f.text_field :name_en, placeholder: "Description", class: "form-control rounded border" %>
+<div class="input-group">
+    <%= f.text_field :name_en, class: "nested-fields form-control", placeholder: "Enter your Food Restriction" %>
+    <div class="input-group-append">
+    <%= link_to_remove_association f, class: "form-control input-group-text" do %>
+        <%= fa_icon "times", class: "mx-auto text-danger" %>
     <% end %>
-  </div>
-  <div class="col-1">
-    <%= link_to_remove_association f, class: "btn btn-stylised adventpro my-1" do %>
-      <%= fa_icon "times" %>
-    <% end %>
-  </div>
+    </div>
 </div>
-
-<script>
-$(function() {
-  $('#food_restrictions_div').on('cocoon:after-insert', function() {
-    check_to_hide_or_show_add_link();
-  });
-
-  $('#food_restrictions_div').on('cocoon:after-remove', function() {
-    check_to_hide_or_show_add_link();
-  });
-
-  check_to_hide_or_show_add_link();
-  function check_to_hide_or_show_add_link() {
-    if ($('#food_restrictions_div .nested-fields').length == 3) {
-      $('#food_restrictions_div .links').hide();
-    } else {
-      $('#food_restrictions_div .links').show();
-    }
-  }
-});
-</script>
