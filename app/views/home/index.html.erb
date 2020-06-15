@@ -6,11 +6,11 @@
     
         <div class="maintitle-container text-center">
             
-            <div class="container-fluid travel-animate mx-auto">
+            <div class="container travel-animate text-center">
                 <%= render "layouts/travel_basics_svg" %>
             </div>
 
-            <div class="container yellow mt-5 annietelescope">
+            <div class="container mx-auto yellow mt-5 annietelescope">
             <h4><%= t('home.moving_hostel') %>!</h4>
             </div>
 
@@ -18,7 +18,7 @@
 
                 <div class="row">
 
-                    <div class="col">
+                    <div class="col-sm-6 col-lg-3">
                         <%= link_to discover_path do %>
                             <div class="categoryWrapper stop-flickering">
                                 <h2 class="annietelescope"><%= t('home.discover') %></h2>  
@@ -35,7 +35,7 @@
                         <% end %>
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-6 col-lg-3">
                         <%= link_to trips_path do %>
                             <div class="categoryWrapper stop-flickering">
                                 <h2 class="annietelescope"><%= t('home.travel') %></h2>
@@ -52,7 +52,7 @@
                         <% end %>
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-6 col-lg-3">
                         <%= link_to places_path do %>
                             <div class="categoryWrapper stop-flickering">
                                 <h2 class="annietelescope"><%= t('home.share') %></h2>
@@ -69,7 +69,7 @@
                         <% end %>
                     </div>
                     
-                    <div class="col">
+                    <div class="col-sm-6 col-lg-3">
                         <%= link_to story_path do %>
                             <div class="categoryWrapper stop-flickering">
                                 <h2 class="annietelescope"><%= t('home.story') %></h2>  
@@ -94,6 +94,7 @@
 </div>
 
 <script>
+// Animation SVG
 var path = document.querySelector('.travel-animate path');
 var length = path.getTotalLength();
 // Clear any previous transition

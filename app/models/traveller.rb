@@ -2,7 +2,6 @@ class Traveller < ApplicationRecord
     attr_accessor :phone_validation
     attr_accessor :food_participation_validation
 
-    enum genders: [:male, :female]
     FOOD_DIETS_WITH_REDUCTION = "#{FoodDiet.find_by(name_en: "Vegan").id}"
 
     belongs_to :cart, optional: true
@@ -30,7 +29,6 @@ class Traveller < ApplicationRecord
     validates_acceptance_of :valid_passport, :allow_nil => false, :message => "has not been accepted", :on => :create
     validates_acceptance_of :sanitary_conditions, :allow_nil => false, :message => "have not been accepted", :on => :create  
     validates_acceptance_of :accompanied_minor, :allow_nil => false, :message => "have not been accepted", :on => :create, unless: :is_over_18? 
-    validates_inclusion_of :gender, :in => genders
     validates_inclusion_of :insurance_status, :in => [true, false]
     validates_format_of :email_address, with: Devise.email_regexp
 
@@ -47,11 +45,6 @@ class Traveller < ApplicationRecord
           self.errors.add(:base, "We do not accept travellers who are younger that 10 years old")
         end
       end
-    end
-
-    def self.gender_attributes_for_select(hash = {})
-      genders.keys.each { |key| hash[I18n.t("general_forms.gender_#{key}")] = key }
-      hash
     end
 
     def valid_phone_number

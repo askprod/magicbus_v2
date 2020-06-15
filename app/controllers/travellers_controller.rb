@@ -68,9 +68,16 @@ class TravellersController < ApplicationController
   private
 
     def set_lists
+      food_diets = FoodDiet.where(approved_status: true)
+      traveller_food_diets = @cart.travellers.map{|traveller| FoodDiet.joins(:travellers).where(travellers: {id: traveller.id}).to_a }.flatten
+      @food_diets_list = food_diets + traveller_food_diets
+      
+      food_restr = FoodRestriction.where(approved_status: true)
+      traveller_food_restr = @cart.travellers.map{|traveller| FoodRestriction.joins(:travellers).where(travellers: {id: traveller.id}).to_a }.flatten
+      @food_restrictions_list = food_restr + traveller_food_restr
+      
       @nationalities_list = JSON.parse(File.read("app/assets/json/nationalities_#{locale}.json"))
-      @food_diets_list = FoodDiet.where(approved_status: true)
-      @food_restrictions_list = FoodRestriction.where(approved_status: true)
+      @genders_list = JSON.parse(File.read("app/assets/json/gender_#{locale}.json"))
     end
 
     # Use callbacks to share common setup or constraints between actions.

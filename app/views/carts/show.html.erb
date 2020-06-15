@@ -3,12 +3,12 @@
   <% if @current_cart_items.count == 0 %>
 
   <div class="container-fluid top-margin">
-    <div class="card mx-auto col-lg-6 m-1 border-warning px-0 border shadow-sm" style="background:#ffe475;">
+    <div class="card mx-auto col-lg-6 m-1 border-0 px-0 shadow-sm background-yellow">
       <div class="card-header py-1">
         <p class="h1 my-auto text-center">Your Cart is Empty</p>
       </div>
       <div class="text-center">
-        <%= link_to "Book a Trip", trips_path, class: "adventpro btn btn-stylised border border-warning my-4" %>
+        <%= link_to "Book a Trip", trips_path, class: "adventpro btn btn-stylised my-4" %>
       </div>
     </div>
   </div>

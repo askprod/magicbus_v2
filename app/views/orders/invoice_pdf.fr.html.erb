@@ -27,7 +27,7 @@
               N° Immatriculation: IM031190014<br>
               31 Résidence du Château, 31150 Fenouillet<br>
               hello@magicbusworld.com<br>
-              06.59.09.11.65
+              +33 6 59 09 11 65
             </td>
 
             <td>
@@ -123,7 +123,7 @@
     <% unless @order.travellers.where(food_participation: false).empty? %>
     <tr>
       <td colspan="2"></td>
-      <td><b>Special Food Diets: x<%= @order.travellers.where(food_participation: false).count %></b></td>
+      <td><b>Régimes alimentaires particuliers: x<%= @order.travellers.where(food_participation: false).count %></b></td>
       <td>- <%= @order.travellers.where(food_participation: false).count * Cart::FOOD_PARTICIPATION_PRICE %>€</td>
     </tr>
     <% end %>

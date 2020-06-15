@@ -23,8 +23,9 @@ RailsAdmin.config do |config|
     navigation_label "Data"
 
     list do
-      sort_by :name
-      field :name
+      sort_by :name_en
+      field :name_en
+      field :name_fr
       field :trips
     end
   end

@@ -159,7 +159,15 @@ p {
  }
 
  .yellow {
-     color: rgb(233, 213, 32)
+    color: $magicbus-yellow;
+ }
+
+ .background-yellow {
+   background: $magicbus-yellow;
+ }
+
+ .background-yellow-lighter {
+  background: #ffe475;
  }
 
  a:hover, a:visited, a:link, a:active {
@@ -265,17 +273,18 @@ p {
   padding-top: 5%;
   width: 80%;
   font-size: 3vw;
+  height: 100%;
 }
 
 .btn-stylised {
     text-align: center;
-    background-color:rgb(253, 233, 48);
+    background-color: $magicbus-yellow;
     color: black !important;
 }
 
 .btn-gradient {
   text-align: center;
-  background: rgb(253, 233, 48);
+  background: $magicbus-yellow;
   color: black !important;
   opacity: 1;
   transition: 0.3s;
@@ -335,7 +344,7 @@ p {
 }
 
 .travel-cart-item {
-  border: solid 1px rgb(233, 213, 32);
+  border: solid 1px $magicbus-yellow;
   border-radius: 4px;
 }
 
@@ -481,7 +490,7 @@ p {
 .bus-map-container {
   height: 600px;
   width: 100%;
-  background-color: rgb(233, 213, 32);
+  background-color: $magicbus-yellow;
 }
 
 #bus-map {
@@ -577,6 +586,31 @@ p {
     transition: background-color .50s linear;
 
 }
+
+@media (max-width: 700px){
+  #grayfilter {
+    background-color: rgba(22, 22, 22, 0.5);
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+    top: 0;
+    z-index: -1;
+  }
+
+  .categoryWrapper {
+    max-height: 10%;
+  }
+
+  .categoryWrapper:after{
+    display: none;
+  }
+
+  .categoryWrapper button {
+    display: none;
+  }
+}
   
 .categoryWrapper{
   height: 150px;
@@ -613,7 +647,7 @@ p {
 
 .categoryWrapper:hover h2{
   transform: translateY(-10px);
-  color: rgb(233, 213, 32)
+  color: $magicbus-yellow;
 }
 
 .categoryWrapper button{
@@ -655,7 +689,7 @@ p {
 }
 
 .typing {
-  color: rgb(233, 213, 32);
+  color: $magicbus-yellow;
   font-family: "GiveYouGlory";
   display: inline-block;
   font-size: 60px;
@@ -687,7 +721,7 @@ section {
 #video-section {
   height: 100%;
   min-width: 100vw;
-  background-color: #ffd700;
+  background-color: $magicbus-yellow;
 }
 
 #discover-video  {
@@ -713,7 +747,7 @@ section {
   color: #fff;
   text-align: left;
   font-size: 16px;
-  background: rgb(233, 213, 32);
+  background: $magicbus-yellow;
   border-radius: 0.1em;
 }
 
@@ -857,7 +891,7 @@ section {
 ====================== */
 
 /* Main Footer */
-footer .main-footer{	padding: 0;	background: #ffd700;}
+footer .main-footer{	padding: 0;	background: $magicbus-yellow;}
 footer ul{	padding-left: 0;	list-style: none;}
 
 /* Copy Right Footer */
@@ -898,6 +932,15 @@ ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: cent
   max-width: 70%;
   transform: translate(-3%, 0);
   filter: invert(84%) sepia(82%) saturate(1428%) hue-rotate(342deg) brightness(98%) contrast(87%);
+}
+
+@media (max-width: 700px) {
+  .travel-animate {
+    margin: 0;
+    max-width: 100%;
+    transform: translate(-3%, 0);
+    filter: invert(84%) sepia(82%) saturate(1428%) hue-rotate(342deg) brightness(98%) contrast(87%);
+  }
 }
 
 .stop-flickering {
@@ -974,7 +1017,7 @@ input[type=file][readonly] {
 }
 
 .stripe-button {
-  background: rgb(233, 213, 32);
+  background: $magicbus-yellow;
   color: white;
   box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
   border-radius: 4px;
@@ -1006,7 +1049,7 @@ div#card-errors {
 
 .navbar-nav > li > .dropdown-menu > a:hover { 
   background-color: rgb(0, 0, 0); 
-  color: rgb(233, 213, 32)
+  color: $magicbus-yellow;
 }
 
 @media (min-width: 992px) {
@@ -1072,7 +1115,7 @@ div#card-errors {
 }
 
 .sidenav a.active span {
-  color: rgb(233, 213, 32);
+  color: $magicbus-yellow;
 }
 
 @media (max-width: 700px) {

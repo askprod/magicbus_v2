@@ -1,16 +1,6 @@
 <div class='nested-fields food_diet_fields'>
-  <% if f.object.food_diet_id %>
     <div class="input-group diet_traveller_fields mb-1">
-      <%= f.select(:food_diet_id, options_for_select(FoodDiet.all.map{|x| [x.name, x.id]}, f.object.food_diet_id), {:prompt => "Select"}, class:"form-control", disabled: true) %>
-      <div class="input-group-append">
-        <%= link_to_remove_association f, class: "form-control input-group-text" do %>
-          <%= fa_icon "times", class: "mx-auto text-danger" %>
-        <% end %>
-      </div>
-    </div>
-  <% else %>
-    <div class="input-group diet_traveller_fields mb-1">
-      <%= f.select(:food_diet_id, options_for_select(@food_diets_list.all.map{|x| [x.name, x.id]}, f.object.food_diet_id), {:prompt => "Select"}, class:"form-control diet_traveller_from_list mb-1 w-50") %>
+      <%= f.select(:food_diet_id, options_for_select(@food_diets_list.map{|x| [x.name, x.id]}, f.object.food_diet_id), {:prompt => "Select"}, class:"form-control diet_traveller_from_list mb-1 w-50") %>
       <%= link_to_add_association f, :food_diet, id: "add_food_diet", class: "p-0 form-control input-group-text" do %>
         <p class= "mb-0 mx-auto text-secondary">Autre</p>
       <% end %>
@@ -20,7 +10,6 @@
         <% end %>
       </div>
     </div>
-  <% end %>
 </div>
 
 <script>

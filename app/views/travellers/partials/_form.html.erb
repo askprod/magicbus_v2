@@ -13,15 +13,16 @@
             <p class="small my-auto text-center">Price: <%= Cart::INSURANCE_PRICE %>€</p>
             <p class="small my-auto text-center">Travel insurance quick explanation..</p>
             
-            <div class="btn-group-toggle row no-gutters justify-content-center">
-              <div class="col-sm-2 m-2">
-                <%= form.label :insurance, "Yes", id:"yes-btn", class:"btn btn-block btn-secondary", for: "traveller_insurance_status_true" %>
-                <%= form.radio_button :insurance_status, true, class: "d-none" %>
-              </div>
-
-              <div class="col-sm-2 m-2">
-                <%= form.label :insurance, "No", id:"no-btn", class:"btn btn-block btn-secondary", for: "traveller_insurance_status_false"  %>
-                <%= form.radio_button :insurance_status, false, class: "d-none" %>
+            <div class="text-center">
+              <div class="btn-group my-3" data-toggle="buttons">
+                  <%= form.label :insurance_status_true, class: "btn btn-outline-success form-check-label" do %>
+                  Oui
+                    <%= form.radio_button :insurance_status, true, class:"form-check-input invisible" %>
+                  <% end %>
+                <%= form.label :insurance_status_false, class:"btn btn-outline-danger form-check-label" do %>
+                  Non
+                  <%= form.radio_button :insurance_status, false, class:"form-check-input invisible" %>
+                <% end %>
               </div>
             </div>
 
@@ -30,11 +31,12 @@
             <div class="row justify-content-center">
               <div class="col-sm-4 form-group text-center">
                 <%= form.label "Gender", class: "small" %>
-                <%= form.select :gender, options_for_select(Traveller.gender_attributes_for_select), {include_blank: "Select"}, class: "form-control rounded border" %>
+                <%= form.select :gender, @genders_list.collect {|k, v| [v, k] }, {include_blank: "Select"}, class: "form-control rounded border" %>
               </div>
             </div>
 
             <%= form.hidden_field :cart_id, :value => @current_user.cart.id %>
+            <%= hidden_field_tag :traveller_js_date, form.object.birth_date %>
 
             <div class="row">
               <div class="col-sm form-group">
@@ -178,60 +180,8 @@
 <% end %>
 
 <script>
-$( document ).ready(function() {
-var foodDietsSelected = $("#traveller_food_diet_ids :selected").text();
-var foodRestrictionsSelected = $("#traveller_food_restriction_ids :selected").text();
-var foodRestrictionsIds = $('#traveller_food_restriction_ids')
-var foodDietsIds = $('#traveller_food_diet_ids')
+$('.btn-group [checked="checked"]').parent().addClass("active");
 
-    if (foodDietsSelected == 'Other')  {
-        $('#food_diets .links').show();
-    }
-    else {
-      $('#food_diets .links').hide(); 
-      $('#food_diets .nested-fields').remove();
-    }
-    if (foodRestrictionsSelected == 'Other') {
-        $('#food_restrictions .links').show();
-    }
-    else {
-      $('#food_restrictions .links').hide(); 
-      $('#food_restrictions .nested-fields').remove();
-    }
-    foodRestrictionsIds.change(function() {
-        if (($("#traveller_food_restriction_ids :selected").text() == 'Other') || ($("#traveller_food_restriction_ids :selected").text() == 'Autre')) {
-            $('#food_restrictions .links').show();
-        }
-        else 
-          $('#food_restrictions .links').hide(); 
-          $('#food_restrictions .nested-fields').remove();
-    })
-    foodDietsIds.change(function() {
-        if (($("#traveller_food_diet_ids :selected").text() == 'Other') || ($("#traveller_food_diet_ids :selected").text() == 'Autre'))  {
-            $('#food_diets .links').show();
-        }
-        else 
-          $('#food_diets .links').hide(); 
-          $('#food_diets .nested-fields').remove();
-    })
-});
-</script>
-
-<script>
-$(document).ready(function(){
-  $(".btn-group-toggle input[type=radio]").change(function(){
-    if ($(".btn-group-toggle input[type='radio']:checked").val() == "true") {
-      $("#yes-btn").addClass('btn-success');
-      $("#no-btn").removeClass('btn-danger');
-    } else if ($(".btn-group-toggle input[type='radio']:checked").val() == "false") {
-      $("#yes-btn").removeClass('btn-success');
-      $("#no-btn").addClass('btn-danger');
-      }
-  });
-});
-</script>
-
-<script>
 $("#traveller_phone_number").intlTelInput({
     initialCountry: "FR",
     formatOnInit: true,
@@ -255,10 +205,13 @@ $("#traveller_phone_number").change(function() {
 </script>
 
 <script>
+var dateSelector = $ ("#traveller_js_date").val().toString()
+var selectedDate = dateSelector === "" ? null : moment(dateSelector, 'DD-MM-YYYY');
+
 $(document).ready(function(){
     $('#datetimepicker1').datetimepicker({
+      date: selectedDate,
       format: 'DD-MM-YYYY',
-      extraFormats: ['YYYY-MM-DD'],
       allowInputToggle: true,
       viewMode: 'years'
     });

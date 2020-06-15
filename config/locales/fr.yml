@@ -12,8 +12,6 @@ fr:
   general_forms:
     name: Nom
     description: Description
-    gender_male: Masculin
-    gender_female: Féminin
   sidenav: 
     concept: Le concept
     team: L'équipe

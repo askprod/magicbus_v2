@@ -1,7 +1,7 @@
 class Theme < ApplicationRecord
     has_and_belongs_to_many :trips
 
-    validates :name, presence: true
+    validates :name_en, :name_fr, presence: true
     validates_uniqueness_of :name_fr
     validates_uniqueness_of :name_en
 
