@@ -20,10 +20,10 @@
 //= require tempusdominus-bootstrap-4
 //= require activestorage
 //= require cocoon
-//= require cookies_eu
 //= require intlTelInput
 //= require libphonenumber/utils
 //= require turbolinks
+//= require cookies_eu
 //= require_tree .
 
 // Petite croix pour cacher fênetres AJAX de connection/inscription/edit
