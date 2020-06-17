@@ -3,6 +3,7 @@ class Coupon < ApplicationRecord
     belongs_to :order, optional: :true
     has_many :coupon_users
     has_many :users, through: :coupon_users
+    has_many :orders
 
     validates :code, :remaining_uses, :expiry_date, :reduction_percentage, presence: :true
     validates :code, format: {with: /\A[A-Z0-9]+\z/, message: "only allows capital letters and numbers." }
@@ -11,7 +12,7 @@ class Coupon < ApplicationRecord
     validate :user_already_used
 
     def remaining_uses_left
-        used = self.users.count
+        used = self.orders.count
         limit = self.remaining_uses
         return limit - used
     end

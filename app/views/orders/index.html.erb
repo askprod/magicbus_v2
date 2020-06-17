@@ -5,7 +5,7 @@
   <div class="container-fluid top-margin">
     <div class="card mx-auto col-lg-6 m-1 px-0 shadow-sm background-yellow">
       <div class="card-header py-1">
-        <p class="h1 my-auto text-center">No Orders</p>
+        <p class="h1 my-auto text-center"><%= t('orders.no_orders') %></p>
       </div>
       <div class="text-center">
         <%= link_to "Book a Trip", trips_path, class: "btn btn-stylised border-secondary my-4" %>
@@ -17,19 +17,19 @@
 
   <ul class="nav nav-tabs justify-content-center" id="ordersTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="recent-orders-tab" data-toggle="tab" href="#recent-orders" role="tab" aria-selected="true">OnGoing Order</a>
+      <a class="nav-link active" id="recent-orders-tab" data-toggle="tab" href="#recent-orders" role="tab" aria-selected="true"><%= t('orders.recent_tab') %></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="paid-orders-tab" data-toggle="tab" href="#paid-orders" role="tab" aria-selected="false">Paid Orders (<%= @paid_orders.count %>)</a>
+      <a class="nav-link" id="paid-orders-tab" data-toggle="tab" href="#paid-orders" role="tab" aria-selected="false"><%= t('orders.paid_tab') %> (<%= @paid_orders.count %>)</a>
     </li>
   </ul>
   <div class="tab-content" id="ordersTabContent">
     <div class="tab-pane fade show active" id="recent-orders" role="tabpanel">
-      <%= render "orders/recent_orders" %>
+      <%= render "orders/partials/recent_orders" %>
     </div>
 
     <div class="tab-pane fade" id="paid-orders" role="tabpanel">
-      <%= render "orders/paid_orders" %>
+      <%= render "orders/partials/paid_orders" %>
     </div>
   </div>
 

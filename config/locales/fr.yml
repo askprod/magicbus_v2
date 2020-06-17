@@ -12,6 +12,26 @@ fr:
   general_forms:
     name: Nom
     description: Description
+    enter_code: Entrer Code
+    yes_word: Oui
+    no_word: Non
+    none_word: Aucun
+    from_word: De
+    to_word: à
+    nbr_travellers: Nombre de Voyageurs
+    select: Selectionner
+  nav: 
+    discover: Découvre
+    travel: Voyage
+    share: Partage
+    story: Histoire
+    my_account: Mon Compte
+    my_cart: Mon Panier
+    my_bookings: Mes Réservations
+    log_in: Connexion
+    log_out: Déconnexion
+    create_account: Créer un Compte
+    book_now: RÉSERVER
   sidenav: 
     concept: Le concept
     team: L'équipe
@@ -76,6 +96,30 @@ fr:
     trip_is_full: Ce voyage est complet
     add_to_cart: Ajouter au Panier
     book_trip: Reserver ce Voyage
+    or_word: OU
+  travellers: 
+    add_traveller: Ajouter un Voyageur
+    traveller: Voyageur
+    insurance: Assurance
+    food_included: Repas Inclus
+    gender: Sexe
+    gender_mr: Mr
+    gender_mrs: Mme
+    first_name: Prénom
+    last_name: Nom
+    zip_code: Code Postal
+    birth_date: Date de Naissance
+    medical_remarks: Remarques Médicales
+    other_remarks: Autres Remarques
+    name: Nom
+    email: Email
+    nationality: Nationalité
+    phone: Téléphone
+    address: Adresse
+    food_diets: Régimes Alimentaires
+    food_restrictions: Allergies Alimentaires
+    comment: Commentaire
+    medical_condition: Conditions Médicales
   share_form:
     is_secret: C'est un secret spot?
     current_pictures: Photos
@@ -84,3 +128,20 @@ fr:
     picture_3: Photo 3
     dont_forget: N'oublie pas de placer ton point sur la carte
     share_spot: Partager avec MagicBus
+  orders:
+    no_orders: Pas de Commandes
+    recent_tab: Commande en Cours
+    paid_tab: Commandes Payées
+  recent_orders:
+    travellers_info: Informations Voyageurs
+    trips_info: Informations Voyages
+    payment_info: Informations Paiement
+    enter_code: ENTRER UN CODE PROMO
+    total_ttc: TOTAL TTC
+    pay_order: Payer ma Commande
+    no_recent_orders: Pas de commande récente
+  paid_orders:
+    order_no: Commande N°
+    download_pdf: Télécharger PDF
+    paid_on: payée le
+    no_paid_orders: Pas de commande payée

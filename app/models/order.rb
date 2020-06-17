@@ -3,7 +3,7 @@ class Order < ApplicationRecord
     friendly_id :name, use: :slugged
     
     belongs_to :user
-    has_one :coupon
+    belongs_to :coupon, optional: true
     has_many :travellers, dependent: :destroy
     has_many :order_trips, dependent: :destroy
     has_many :trips, through: :order_trips
@@ -14,6 +14,7 @@ class Order < ApplicationRecord
 
     validates_acceptance_of :correct_information, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create
     validates :travellers, presence: true
+    validates :coupon_id, uniqueness: true
     validates :trips, presence: true
     validate :only_one_pending_order, on: :create
 

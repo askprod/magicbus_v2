@@ -7,22 +7,22 @@
             <div class="grey-heading mb-4">
                 <div class="row no-gutters text-center">
                     <div class="col-lg-6 col-sm-3">
-                        <h5 class="mb-0 py-2">Traveller <%= index %></h5>
+                        <h5 class="mb-0 py-2"><%= t("travellers.traveller") %> <%= index %></h5>
                     </div>
                     <div class="col-lg-3 col-sm-3 my-auto">
-                        <p class="mb-0"><span class="font-weight-bold">Insurance</span>:
+                        <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.insurance") %></span>:
                         <% if traveller.insurance_status == true %>
-                            Oui</p>
+                            <%= t("general_forms.yes_word") %></p>
                         <% else %>
-                            Non</p>
+                            <%= t("general_forms.no_word") %></p>
                         <% end %>
                     </div>
                     <div class="col-lg-3 col-sm-3 my-auto">
-                        <p class="mb-0"><span class="font-weight-bold">Nourriture</span>:
+                        <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.food_included") %></span>:
                         <% if traveller.food_participation == true %>
-                            Oui</p>
+                            <%= t("general_forms.yes_word") %></p>
                         <% else %>
-                            Non</p>
+                            <%= t("general_forms.no_word") %></p>
                         <% end %>
                     </div>
                 </div>
@@ -32,31 +32,31 @@
                 <div class="col-5">
                     
                     <div class="row">
-                        <p class="font-weight-bold">Name:</p>
+                        <p class="font-weight-bold"><%= t("travellers.name") %>:</p>
                         <% if traveller.gender == "male" %>
-                            <p>Mr. <%= traveller.last_name %>, <%= traveller.first_name %></p>
+                            <p><%= t("travellers.gender_mr") %>. <%= traveller.last_name %>, <%= traveller.first_name %></p>
                         <% else %>
-                            <p>Mrs. <%= traveller.last_name %>, <%= traveller.first_name %></p>
+                            <p><%= t("travellers.gender_mrs") %>. <%= traveller.last_name %>, <%= traveller.first_name %></p>
                         <% end %>
                     </div>
                     
                     <div class="row">
-                            <p class="font-weight-bold">Email:</p>
+                            <p class="font-weight-bold"><%= t("travellers.email") %>:</p>
                             <p><%= traveller.email_address %></p>
                     </div>
 
                     <div class="row">
-                            <p class="font-weight-bold">Nationality:</p>
+                            <p class="font-weight-bold"><%= t("travellers.nationality") %>:</p>
                             <p><%= translated_nationality(traveller) %></p>
                     </div>
 
                     <div class="row">
-                            <p class="font-weight-bold">Phone:</p>
+                            <p class="font-weight-bold"><%= t("travellers.phone") %>:</p>
                             <p><%= traveller.phone_number %></p>
                     </div>
                     
                     <div class="row">
-                            <p class="font-weight-bold">Address:</p>
+                            <p class="font-weight-bold"><%= t("travellers.address") %>:</p>
                             <p><%= traveller.address %>, <%= traveller.zip_code %></p></p>
                     </div>
                 </div>
@@ -64,28 +64,36 @@
 
                 <div class="col-5">
                     <div class="row">
-                            <p class="font-weight-bold">Food Diets:</p>
+                            <p class="font-weight-bold"><%= t("travellers.food_diets") %>:</p>
                             <% if traveller.food_diets.empty?%>
-                                <p>None</p>
+                                <p><%= t("general_forms.none_word") %></p>
                             <% else %>
                                 <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
                             <% end %>
                     </div>
                     <div class="row">
-                            <p class="font-weight-bold">Food Restrictions:</p>
+                            <p class="font-weight-bold"><%= t("travellers.food_restrictions") %>:</p>
                             <% if traveller.food_restrictions.empty?%>
-                                <p>None</p>
+                                <p><%= t("general_forms.none_word") %></p>
                             <% else %>
                                 <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
                             <% end %>
                     </div>
                     <div class="row">
-                            <p class="font-weight-bold">Santé:</p>
-                            <p>Santé</p>
+                            <p class="font-weight-bold"><%= t("travellers.medical_condition") %>:</p>
+                            <% if traveller.medical_condition.empty?%>
+                                <p><%= t("general_forms.none_word") %></p>
+                            <% else %>
+                                <p><%= traveller.medical_condition %></p>
+                            <% end %>
                     </div>
                     <div class="row">
-                            <p class="font-weight-bold">Commentaire:</p>
-                            <p>Commentaire</p>
+                            <p class="font-weight-bold"><%= t("travellers.comment") %>:</p>
+                            <% if traveller.additional_comment.empty?%>
+                                <p><%= t("general_forms.none_word") %></p>
+                            <% else %>
+                                <p><%= traveller.additional_comment %></p>
+                            <% end %>
                     </div>
                 </div>
 

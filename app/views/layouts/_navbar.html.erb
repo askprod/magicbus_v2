@@ -14,22 +14,22 @@
       <ul class="navbar-nav mx-auto">
         <li class="nav-item adventpro">
           <%= link_to discover_path, class:"nav-link mx-4" do %>
-            <span class="m-0">Discover</span>
+            <span class="m-0"><%= t('nav.discover') %></span>
           <% end %>
         </li>
         <li class="nav-item adventpro">
           <%= link_to trips_path, class:"nav-link mx-4" do %>
-            <span class="m-0">Travel</span>
+            <span class="m-0"><%= t('nav.travel') %></span>
           <% end %>
         </li>
         <li class="nav-item adventpro">
           <%= link_to places_path, class:"nav-link mx-4" do %>
-            <span class="m-0">Share</span>
+            <span class="m-0"><%= t('nav.share') %></span>
           <% end %>
         </li>
         <li class="nav-item adventpro">
           <%= link_to story_path, class:"nav-link mx-4" do %>
-            <span class="m-0">Story</span>
+            <span class="m-0"><%= t('nav.story') %></span>
           <% end %>
         </li>
       </ul>
@@ -52,12 +52,12 @@
 
           <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownMagicMe">
             <%= link_to(edit_user_registration_path, remote: true, class:"dropdown-item m-0 adventpro text-center") do %>
-              My Account
+              <%= t('nav.my_account') %>
             <% end %>
 
             <% unless current_user.orders.empty? %>
                 <%= link_to orders_path, class:"dropdown-item m-0 adventpro text-center" do %>
-                    My Bookings
+                  <%= t('nav.my_bookings') %>
                 <% end %>
             <% end %>
 
@@ -68,7 +68,7 @@
             <% end %>
 
             <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item m-0 adventpro text-center" do %>
-              Log Out
+              <%= t('nav.log_out') %>
             <% end %>
           </div>
         </li>
@@ -83,10 +83,10 @@
 
           <div class="dropdown-menu animate slideIn px-2" aria-labelledby="navbarDropdownMagicMe">
               <%= link_to new_user_registration_path, class:"dropdown-item m-0 adventpro text-center", remote: true do %>
-                <span class="m-0">Create an Account</span>
+                <span class="m-0"><%= t('nav.create_account') %></span>
               <% end %>
               <%= link_to user_session_path, class:"dropdown-item m-0 adventpro text-center", remote: true do %>
-                <span class="m-0">Log In</span>
+                <span class="m-0"><%= t('nav.log_in') %></span>
               <% end %>
           </div>
         </li>
@@ -103,7 +103,7 @@
       <% end %>
 
       <%= link_to trips_path, class:"form-inline btn btn-stylised my-auto mx-4" do %>
-        <span class="mx-3 adventpro">BOOK NOW</span>
+        <span class="mx-3 adventpro"><%= t('nav.book_now') %></span>
       <% end %>
 
       <% if I18n.locale == :fr %>

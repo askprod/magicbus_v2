@@ -9,7 +9,7 @@
             <%= form_with url: order_promo_code_path(order), remote: true do |f| %>
 
                 <div class="from-group">
-                    <%= f.text_field :promo_code, required: true, placeholder: "Enter Code", class: "rounded border form-control" %>
+                    <%= f.text_field :promo_code, required: true, placeholder: t("general_forms.enter_code"), class: "rounded border form-control" %>
                 </div>
 
                 <div class="action mt-2">

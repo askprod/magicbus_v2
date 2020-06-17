@@ -37,14 +37,14 @@
                 <%= render "trips/dates_sort" %>
             </div>
             
-            <div class="my-auto small yellow">OR</div>
+            <div class="my-auto small yellow"><%= t("trips.or_word") %></div>
             
             <div class="col-sm-3 border rounded shadow-sm mx-3 my-2 p-3">
                 <p><%= t('travel.sort_by_country') %></p>
                 <%= select :country, :select, @countries_list.map {|v| [ v ] }, {}, class: "form-control rounded border my-5" %>
             </div>
 
-            <div class="my-auto small yellow">OR</div>
+            <div class="my-auto small yellow"><%= t("trips.or_word") %></div>
 
             <div class="col-sm-3 border rounded shadow-sm mx-3 my-2 p-3">
                 <p><%= t('travel.sort_by_theme') %></p>

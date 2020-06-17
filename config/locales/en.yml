@@ -43,6 +43,26 @@ en:
   general_forms:
     name: Name
     description: Description
+    enter_code: Enter Code
+    yes_word: "Yes"
+    no_word: "No"
+    none_word: None
+    from_word: From
+    to_word: To
+    nbr_travellers: Number of Travellers
+    select: Select
+  nav: 
+    discover: Discover
+    travel: Travel
+    share: Share
+    story: Story
+    my_account: My Account
+    my_cart: My Cart
+    my_bookings: My Bookings
+    log_in: Log In
+    log_out: Log Out
+    create_account: Create an Account
+    book_now: BOOK NOW
   sidenav: 
     concept: The concept
     team: The team
@@ -107,6 +127,30 @@ en:
     trip_is_full: This Trip is full
     add_to_cart: Add to Cart
     book_trip: Book this Trip
+    or_word: OR
+  travellers: 
+    add_traveller: Add a Traveller
+    traveller: Traveller
+    insurance: Insurance
+    food_included: Meals Included
+    gender: Gender
+    gender_mr: Mr
+    gender_mrs: Mrs
+    first_name: First Name
+    last_name: Last Name
+    zip_code: ZIP Code
+    birth_date: Birth Date
+    medical_remarks: Medical Remarks
+    other_remarks: Other Remarks
+    name: Name
+    email: Email
+    nationality: Nationality
+    phone: Phone
+    address: Address
+    food_diets: Food Diets
+    food_restrictions: Food Allergies
+    comment: Comment
+    medical_condition: Medical Condition
   share_form:
     is_secret: Is this a secret spot?
     current_pictures: Current pictures
@@ -115,5 +159,26 @@ en:
     picture_3: Picture 3
     dont_forget: Don't forget to place your spot on the map
     share_spot: Share with Magicbus
+  orders:
+    no_orders: No Orders
+    recent_tab: Recent Order
+    paid_tab: Paid Orders
+  recent_orders:
+    travellers_info: Travellers Informations
+    trips_info: Trips Information
+    payment_info: Payment Information
+    enter_code: ENTER PROMO CODE
+    total_ttc: TOTAL VAT Incl.
+    pay_order: Pay Order
+    no_recent_orders: No Recent Order
+  paid_orders:
+    order_no: Order N°
+    download_pdf: Download PDF
+    paid_on: paid on
+    no_paid_orders: No paid orders
+
+
+
+
 
 

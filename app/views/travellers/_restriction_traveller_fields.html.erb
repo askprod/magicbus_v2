@@ -1,6 +1,6 @@
 <div class='nested-fields food_restriction_fields'>
     <div class="input-group restriction_traveller_fields mb-1">
-      <%= f.select(:food_restriction_id, options_for_select(@food_restrictions_list.map{|x| [x.name, x.id]}, f.object.food_restriction_id), {:prompt => "Select"}, class:"form-control restriction_traveller_from_list mb-1 w-50") %>
+      <%= f.select(:food_restriction_id, options_for_select(@food_restrictions_list.map{|x| [x.name, x.id]}, f.object.food_restriction_id), {prompt: t("general_forms.select")}, class:"form-control restriction_traveller_from_list mb-1 w-50") %>
       <%= link_to_add_association f, :food_restriction, id: "add_food_restriction", class: "form-control input-group-text" do %>
         <p class= "mb-0 mx-auto text-secondary">Autre</p>
       <% end %>

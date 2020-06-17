@@ -105,7 +105,7 @@ class OrdersController < ApplicationController
         @order.user.coupons << @order.coupon
     end
 
-    @order.update!(coupon: nil, details: event, paid_at: Time.now, expires_at: nil, payment_status: true)
+    @order.update!(details: event, paid_at: Time.now, expires_at: nil, payment_status: true)
     @order.save
 
     respond_to do |format|
@@ -142,7 +142,7 @@ class OrdersController < ApplicationController
         @coupon.current_order_user = @order.user
         respond_to do |format|
           if @coupon.save
-            @order.coupon = @coupon
+            @coupon.orders << @order
             format.js
             flash[:notice] = "Your promo code has been applied."  
           else

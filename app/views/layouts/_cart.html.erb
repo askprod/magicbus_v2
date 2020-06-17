@@ -11,13 +11,13 @@
         <% @cart_items.each do |trip| %>
             <div id="<%= dom_id(trip) %>" class="row justify-content-center no-gutters py-2 travel-cart-item m-3">
                 <div class="col my-auto">
-                    <p>Week <%= find_trip_id(trip).week %></p>
+                    <p><%= t("trips.week") %> <%= find_trip_id(trip).week %></p>
                     <p><%= find_trip_id(trip).price %>€</p>
                 </div>
 
                 <div class="col my-auto">
-                    <p>From: <%= departure_city(find_trip_id(trip)) %></p>
-                    <p>To: <%= arrival_city(find_trip_id(trip)) %></p>
+                    <p><%= t("general_forms.from_word") %>: <%= departure_city(find_trip_id(trip)) %></p>
+                    <p><%= t("general_forms.to_word") %>: <%= arrival_city(find_trip_id(trip)) %></p>
                 </div>
 
                 <div class="col my-auto">
@@ -31,7 +31,7 @@
         <% else %>
 
             <div class="mb-3 text-center">
-            <p class="mb-3 h6">Number of Travellers:</p> 
+            <p class="mb-3 h6"><%= t("general_forms.nbr_travellers") %>:</p> 
             <%= form_for @cart, :url => cart_change_traveller_quantity_path(@cart), :html => {:method => :post}, remote: true do |f| %>
                 <%= f.button class: "btn btn-stylised", value: "decrement" do %>
                     <%= fa_icon "minus" %>

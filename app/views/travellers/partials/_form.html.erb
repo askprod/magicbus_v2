@@ -1,6 +1,6 @@
   <div class="card login-form">
         
-    <h1 class="card-header adventpro yellow text-center display-5">Add a Traveller</h1>
+    <h1 class="card-header adventpro yellow text-center display-5"><%= t("travellers.add_traveller") %></h1>
 
     <div class="card-body">
       <div id="close-button"></div>
@@ -9,18 +9,16 @@
 
           <div class="container">
 
-            <p class="h3 my-auto text-center">Would this Traveller like to subscribe to the <b>Travel Insurance</b>?</p>
-            <p class="small my-auto text-center">Price: <%= Cart::INSURANCE_PRICE %>€</p>
-            <p class="small my-auto text-center">Travel insurance quick explanation..</p>
+            <%= render "travellers/partials/insurance_info" %>
             
             <div class="text-center">
               <div class="btn-group my-3" data-toggle="buttons">
                   <%= form.label :insurance_status_true, class: "btn btn-outline-success form-check-label" do %>
-                  Oui
+                  <%= t("general_forms.yes_word") %>
                     <%= form.radio_button :insurance_status, true, class:"form-check-input invisible" %>
                   <% end %>
                 <%= form.label :insurance_status_false, class:"btn btn-outline-danger form-check-label" do %>
-                  Non
+                  <%= t("general_forms.no_word") %>
                   <%= form.radio_button :insurance_status, false, class:"form-check-input invisible" %>
                 <% end %>
               </div>
@@ -30,7 +28,7 @@
 
             <div class="row justify-content-center">
               <div class="col-sm-4 form-group text-center">
-                <%= form.label "Gender", class: "small" %>
+                <%= form.label t("travellers.gender"), class: "small" %>
                 <%= form.select :gender, @genders_list.collect {|k, v| [v, k] }, {include_blank: "Select"}, class: "form-control rounded border" %>
               </div>
             </div>
@@ -40,36 +38,36 @@
 
             <div class="row">
               <div class="col-sm form-group">
-                <%= form.label "First Name", class: "small" %>
+                <%= form.label t("travellers.first_name"), class: "small" %>
                 <%= form.text_field :first_name, class: "form-control rounded border" %>
               </div>
 
               <div class="col-sm form-group">
-                <%= form.label "Last Name", class: "small" %>
+                <%= form.label t("travellers.last_name"), class: "small" %>
                 <%= form.text_field :last_name, class: "form-control rounded border" %>
               </div>
             </div>
 
             <div class="row">
               <div class="col-sm form-group">
-                <%= form.label "Email", class: "small" %>
+                <%= form.label t("travellers.email"), class: "small" %>
                 <%= form.text_field :email_address, class: "form-control rounded border" %>
               </div>
               
               <div class="col-sm form-group">
-                <%= form.label "Address", class: "small" %>
+                <%= form.label t("travellers.address"), class: "small" %>
                 <%= form.text_field :address, class: "form-control rounded border" %>
               </div>
             </div>
 
             <div class="row">
               <div class="col-sm form-group">
-                <%= form.label "ZIP Code", class: "small" %>
+                <%= form.label t("travellers.zip_code"), class: "small" %>
                 <%= form.text_field :zip_code, class: "form-control rounded border" %>  
               </div>
 
               <div class="col-sm form-group mb-0">  
-                <%= form.label "Birth Date", class: "small" %>
+                <%= form.label t("travellers.birth_date"), class: "small" %>
                   <div class="form-group">
                       <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                           <%= form.text_field :birth_date, class: "form-control datetimepicker-input", "data-target" => "#datetimepicker1" %>
@@ -83,12 +81,12 @@
 
             <div class="row">
               <div class="col-sm form-group">
-                <%= form.label "Nationality", class: "small" %>
+                <%= form.label t("travellers.nationality"), class: "small" %>
                 <%= form.select :nationality, @nationalities_list.collect {|k, v| [v, k] }, {include_blank: "Select"}, class: "form-control rounded border" %>
               </div>
 
               <div class="col-sm form-group">
-                <%= form.label "Phone", class: "small" %>
+                <%= form.label t("travellers.phone"), class: "small" %>
                 <br>
                 <div class="d-flex flex-row">
                   <%= form.telephone_field :phone_number, class: "form-control" %>
@@ -106,7 +104,7 @@
 
             <div class="row">
               <div class="col-sm-6 text-center">
-                <%= form.label "Food Diets", class: "small" %>
+                <%= form.label t("travellers.food_diets"), class: "small" %>
                 <div id='food_diets_div'>
                   <%= form.fields_for :diet_travellers do |diet_traveller| %>
                     <%= render 'diet_traveller_fields', f: diet_traveller %>
@@ -118,7 +116,7 @@
               </div> 
             
               <div class="col-sm-6 text-center">
-                <%= form.label "Food Restrictions", class: "small" %>
+                <%= form.label t("travellers.food_restrictions"), class: "small" %>
                 <div id='food_restrictions_div'>
                   <%= form.fields_for :restriction_travellers do |restriction_traveller| %>
                     <%= render 'restriction_traveller_fields', f: restriction_traveller %>
@@ -134,12 +132,12 @@
 
             <div class="row">
               <div class="col-sm form-group">
-                <%= form.label "Medical Condition Remarks", class: "small" %>
+                <%= form.label t("travellers.medical_remarks"), class: "small" %>
                 <%= form.text_field :medical_condition, class: "form-control rounded border" %>
               </div>
               
               <div class="col-sm form-group">
-                <%= form.label "Other Comments", class: "small" %>
+                <%= form.label t("travellers.other_remarks"), class: "small" %>
                 <%= form.text_field :additional_comment, class: "form-control rounded border" %>
               </div>
             </div>
