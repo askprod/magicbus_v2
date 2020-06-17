@@ -35,7 +35,7 @@
       </ul>
     <% end %>
 
-    <ul class="navbar-nav mx-auto">
+    <ul class="navbar-nav">
 
       <% if user_signed_in? %>
 
@@ -97,13 +97,13 @@
     <ul class="navbar-nav">
 
       <% if user_signed_in? && current_user.admin? %>
-          <%= link_to rails_admin.dashboard_path(locale: nil), class: "btn btn-danger my-auto mx-auto" do %>
+          <%= link_to rails_admin.dashboard_path(locale: nil), class: "btn btn-danger my-auto" do %>
             <span class="m-0 adventpro">ADMIN PAGE</span>
           <% end %>
       <% end %>
 
-      <%= link_to trips_path, class:"form-inline btn btn-stylised border border-warning my-auto mx-auto" do %>
-        <span class="m-0 adventpro">BOOK NOW</span>
+      <%= link_to trips_path, class:"form-inline btn btn-stylised my-auto mx-4" do %>
+        <span class="mx-3 adventpro">BOOK NOW</span>
       <% end %>
 
       <% if I18n.locale == :fr %>

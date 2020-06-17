@@ -1,12 +1,14 @@
 <div class="cart">
 
     <div class="arrow-header">
-      <button class="btn btn-block btn-arrow" type="button" data-toggle="collapse" data-target="#collapse-cart" aria-expanded="false" aria-controls="collapseExample">
+      <p class="small mb-0 text-center my-auto py-3 hide-sm">Order Info</p>
+      <button class="btn btn-block btn-arrow hide-lg" type="button" data-toggle="collapse" data-target="#collapse-cart" aria-expanded="false" aria-controls="collapseExample">
         <i id="arrow-button" class="fa fa-chevron-circle-up fa-2x my-2"></i>
+        <p class="small">More Info</p>
       </button>
     </div>
 
-    <div class="show" id="collapse-cart">
+    <div class="collapse dont-collapse-sm" id="collapse-cart">
 
       <div class="container my-5 text-center">
           <p class="small"><%= @travellers_count %> Travellers<p> 
@@ -35,7 +37,8 @@
           <div class="form-check mx-3 mb-4">
             <%= f.check_box :correct_information, class:"form-check-input" %>          
             <%= f.label :correct_information, class:"form-check-label" do %> 
-              <span>I certify that the information provided concerning each traveller is correct and has been double-checked.</span>
+              <p>I certify that the information provided concerning each traveller is correct and has been double-checked.</p>
+              <p class="text-danger">You will not be able to modify any information after this page.</p>
             <% end %>
           </div>
 

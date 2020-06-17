@@ -32,7 +32,7 @@ $('.restriction_traveller_fields').on('cocoon:after-insert',
     });
 
 function check_to_hide_or_show_add_restriction() {
-  if ($('#food_restrictions_div .nested-fields').length == 3) {
+  if ($('#food_restrictions_div .nested-fields').length == 5) {
     $("a#add_food_restrictions_association").hide();
   } else {
     $("a#add_food_restrictions_association").show();

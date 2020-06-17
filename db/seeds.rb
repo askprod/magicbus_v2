@@ -9,14 +9,12 @@
 case Rails.env
 when "development"
 
-    FoodRestriction.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
     FoodRestriction.create!(name_en: "Sesame", name_fr: "Sésame", approved_status: true)
     FoodRestriction.create!(name_en: "Lactose Intolerance", name_fr: "Intolérance au lactose", approved_status: true)
     FoodRestriction.create!(name_en: "Nuts", name_fr: "Fruits à coque", approved_status: true)
     FoodRestriction.create!(name_en: "Gluten", name_fr: "Gluten", approved_status: true)
     FoodRestriction.create!(name_en: "Halal", name_fr: "Halal", approved_status: true)
     
-    FoodDiet.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
     FoodDiet.create!(name_en: "Vegan", name_fr: "Vegan", approved_status: true)
     FoodDiet.create!(name_en: "Vegetarian", name_fr: "Végétarien",  approved_status: true)
     
@@ -60,14 +58,12 @@ when "production"
     Theme.create!(name_en: "Woodland", name_fr: "Bois")
     Theme.create!(name_en: "Jungle", name_fr: "Jungle")
 
-    FoodRestriction.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
     FoodRestriction.create!(name_en: "Sesame", name_fr: "Sésame", approved_status: true)
     FoodRestriction.create!(name_en: "Lactose Intolerance", name_fr: "Intolérance au lactose", approved_status: true)
     FoodRestriction.create!(name_en: "Nuts", name_fr: "Fruits à coque", approved_status: true)
     FoodRestriction.create!(name_en: "Gluten", name_fr: "Gluten", approved_status: true)
     FoodRestriction.create!(name_en: "Halal", name_fr: "Halal", approved_status: true)
     
-    FoodDiet.create!(name_en: "Other", name_fr: "Autre", approved_status: true)
     FoodDiet.create!(name_en: "Vegan", name_fr: "Vegan", approved_status: true)
     FoodDiet.create!(name_en: "Vegetarian", name_fr: "Végétarien",  approved_status: true)
     

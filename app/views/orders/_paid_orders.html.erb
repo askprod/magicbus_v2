@@ -2,15 +2,15 @@
 
 <div class="row justify-content-center mt-3">
   <% @paid_orders.each do |order| %>
-    <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2 rounded-pill background-yellow">
+    <div class="card col-lg-9 col-sm-12 m-1 px-0 py-4 border-0 shadow-sm my-2 rounded-pill background-yellow">
       
       <div class="row no-gutters my-auto">
 
-        <div class="col-9">
+        <div class="col-lg-9 col-sm-12">
           <p class="mb-0 ml-4">Order N°<span class="font-weight-bold"><%= order.name %></span>, paid on <span class="font-weight-bold"><%= order.paid_at.strftime("%d/%m/%Y") %></span> | Total: <span class="font-weight-bold"><%= order.total_price_calc %>€</span> Tax incl.</p>
         </div>
 
-        <div class="col-2 my-auto small mx-2">
+        <div class="col-lg-2 col-sm-12 my-auto small mx-2 text-center">
           <%= link_to "Download PDF", order_path(order, format: :pdf), class: "pdf-btn" %>
         </div>   
       </div>

@@ -1,11 +1,12 @@
 <% if @recent_order %>
+
     <div class="row justify-content-center my-5">
         <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2 background-yellow">
-        <div class="row no-gutters my-auto">
-            <div class="col-9">
-            <h4 class="mb-0 ml-4 adventpro font-weight-bold">Travellers Information</h4>
+            <div class="row no-gutters my-auto">
+                <div class="col-9">
+                <h4 class="mb-0 ml-4 adventpro font-weight-bold">Travellers Information</h4>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 
@@ -22,7 +23,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-9 my-auto">       
+        <div class="col-lg-9 col-sm-12 my-auto">       
             <% @recent_order.trips.each do |trip| %>
                 <%= render "orders/trip", trip: trip %>
             <% end %>
@@ -64,63 +65,67 @@
         <h4 class="text-center">Total TTC: <span class="mx-3"><%= @recent_order.total_price_calc %>€</span></h4>
     </div>
 
-    <div class="container smallest-padding" id="order-checkboxes">
+    <div class="container small-padding" id="order-checkboxes">
         <div class="form-check">
-            <%= check_box_tag :order_first_checkbox, class:"form-check-input" %>
             <%= label_tag :order_first_checkbox, class:"form-check-label" do %>
-                <p>En cochant cette case, pour moi-même ainsi que pour le compte des autres voyageurs inscrits, je certifie:</p>
-                <ul>
-                    <li>
-                        <p>Avoir pris connaissance - avant le paiement – de l’offre répondant aux exigences de l’article R. 211-4 du Code du Tourisme, des conditions particulières de vente de voyages et du formulaire standard d’information,</p>
-                    </li>
-                    <li>
-                        <p>Avoir pris connaissance des informations liées à la situation politique et sanitaire de la destination choisie figurant dans la rubrique conseils-aux-voyageurs du site <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank" class="pdf-btn">https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/</a> (plus spécifiquement concernant les sous rubriques « risque pays » et « santé ») à consulter régulièrement jusqu’au départ,</p>
-                    </li>
-                    <li>
-                        <p>Avoir pris connaissance de la brochure et du programme de l’organisateur,</p>
-                    </li>
-                    <li>
-                        <p>Avoir pris connaissance des conditions de garantie des assurances souscrites,</p>
-                    </li>
-                </ul>
+            <%= check_box_tag :order_first_checkbox, class:"form-check-input" %>
+                En cochant cette case, pour moi-même ainsi que pour le compte des autres voyageurs inscrits, je certifie:
             <% end %>
+            <ul class="small">
+                <li>
+                    <p>Avoir pris connaissance - avant le paiement – de l’offre répondant aux exigences de l’article R. 211-4 du Code du Tourisme, des conditions particulières de vente de voyages et du formulaire standard d’information,</p>
+                </li>
+                <li>
+                    <p>Avoir pris connaissance des informations liées à la situation politique et sanitaire de la destination choisie figurant dans la rubrique conseils-aux-voyageurs du site <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank" class="pdf-btn">diplomatie.gouv.fr</a> (plus spécifiquement concernant les sous rubriques « risque pays » et « santé ») à consulter régulièrement jusqu’au départ,</p>
+                </li>
+                <li>
+                    <p>Avoir pris connaissance de la brochure et du programme de l’organisateur,</p>
+                </li>
+                <li>
+                    <p>Avoir pris connaissance des conditions de garantie des assurances souscrites,</p>
+                </li>
+            </ul>
         </div>
+
         <div class="form-check">
-            <%= check_box_tag :order_second_checkbox, class:"form-check-input" %>
-            <%= label_tag :order_second_checkbox, class:"form-check-label" do %>
-                <p>En cochant cette case, la personne accepte de <a href="#" class="pdf-btn">transmettre ses données</a> dans le but de son exécution et garantit qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.</p>
-            <% end %>
-        </div>
-        <div class="form-check">
-            <%= check_box_tag :order_third_checkbox, class:"form-check-input" %>
             <%= label_tag :order_third_checkbox, class:"form-check-label" do %>
-                <p>En cochant cette case, je reconnais avoir lu et accepté les <a href="#" target="_blank" class="pdf-btn">conditions générales de vente</a>.</p>
+            <%= check_box_tag :order_third_checkbox, class:"form-check-input" %>
+                En cochant cette case, je reconnais avoir lu et accepté les <a href="#" target="_blank" class="pdf-btn">conditions générales de vente</a>.
             <% end %>
         </div>
-    </div>
 
-    <%= form_for @recent_order, :url => order_update_rgpd_validation_path(@recent_order), :html => {:method => :post}, remote: true do |f| %>
-        <div class="container smallest-padding">
+        <br/>
+
+        <div class="form-check">
+            <%= label_tag :order_second_checkbox, class:"form-check-label" do %>
+            <%= check_box_tag :order_second_checkbox, class:"form-check-input" %>
+                En cochant cette case, la personne accepte de <a href="#" class="pdf-btn">transmettre ses données</a> et garantit qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.
+            <% end %>
             <p>Nous collectons ces données pour la bonne execution du contrat de voyage. Nous utilisons également votre adresse électronique pour vous adresser des nouvelles et avantages concernant nos prochains voyages (Newsletter mensuelle). Si, en votre nom et au nom des voyageurs qui vous accompagnent, vous ne souhaitez pas recevoir de telles sollicitations, cochez la case ci-dessous:</p>       
-            <div class="form-check">
-                <%= f.check_box :rgpd_validated, class:"form-check-input" %>
-                <%= f.label :rgpd_validated, class:"form-check-label" do %>
-                    <p>Je refuse que la société SARL MagicBus me contacte par courriel à d’autres fins que la transmission d’information concernant ma commande.</p>
-                    <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
-                        <p>En savoir plus sur la gestion de vos données et vos droits.</p>
-                    <% end %>
-                <% end %>
-            </div>
         </div>
-    <% end %>
+    </div>
+    
+    <div class="container small-padding">
+        <div class="form-check">
+            <%= form_for @recent_order, :url => order_update_rgpd_validation_path(@recent_order), :html => {:method => :post}, remote: true do |f| %>
+                <%= f.label :rgpd_validated, class:"form-check-label" do %>
+                <%= f.check_box :rgpd_validated, class:"form-check-input" %>
+                    Je refuse que la société SARL MagicBus me contacte par courriel à d’autres fins que la transmission d’information concernant ma commande.
+                <% end %>
+                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
+                    <p>En savoir plus sur la gestion de vos données et vos droits.</p>
+                <% end %>
+            <% end %>
+         </div>
+    </div>
 
-    <div class="text-center">
-        <div class="btn btn-danger no-p-margin mt-3" id="stripe-alert" style="display: none;">
-            <p>Veuillez cocher les cases ci-dessus avant de procéder au paiement.</p>
+    <div class="container smallest-padding text-center">
+        <div class="no-p-margin mt-3" id="stripe-alert" style="display: none;">
+            <p class="bg-danger text-white p-3 rounded">Veuillez cocher les cases ci-dessus avant de procéder au paiement.</p>
         </div>
     </div>
 
-    <div class="mt-5 text-center" id="stripe-div">
+    <div class="mt-3 text-center" id="stripe-div">
         <%= link_to order_new_payment_path(@recent_order), class:"btn btn-lg btn-gradient shadow-sm disabled", id: "stripe-payment-btn", remote: true do %>
             <h5 class="mb-0 p-1 adventpro" id="stripe-text">Passer au Paiement</h5>
             <%= image_tag("/images/logo_stripe.png", class:"img-fluid", size: "150x150") %>

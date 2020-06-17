@@ -1,97 +1,60 @@
-<div>
+<%= video_tag "/videos/home_video.mp4", playsinline: :playsinline, autoplay: :autoplay, loop: :loop, muted: :muted, id: "home_video" %>
 
-    <%= video_tag "/videos/home_video.mp4", playsinline: :playsinline, autoplay: :autoplay, loop: :loop, muted: :muted, id: "home_video" %>
-    
-    <div id="grayfilter" class="stop-flickering">
-    
-        <div class="maintitle-container text-center">
-            
-            <div class="container travel-animate text-center">
-                <%= render "layouts/travel_basics_svg" %>
-            </div>
+<div id="grayfilter" class="stop-flickering"></div>
 
-            <div class="container mx-auto yellow mt-5 annietelescope">
-            <h4><%= t('home.moving_hostel') %>!</h4>
-            </div>
+<section>
+<div class="container top-margin-larger">
+    <div class="container text-center my-auto">
+        
+        <div class="container text-center travel-animate">
+            <%= render "layouts/travel_basics_svg" %>
+        </div>
 
-            <div class="container mainpageblock pt-0">
+        <div class="container mx-auto yellow annietelescope mt-3 moving-hostel">
+        <h4><%= t('home.moving_hostel') %>!</h4>
+        </div>
 
-                <div class="row">
+        <div class="container">
+            <div class="row">
 
-                    <div class="col-sm-6 col-lg-3">
-                        <%= link_to discover_path do %>
-                            <div class="categoryWrapper stop-flickering">
-                                <h2 class="annietelescope"><%= t('home.discover') %></h2>  
-                                <button>
-                                <span>
-                                    <span>
-                                    <span class="adventpro p-0" data-attr-span="About the MagicBus project !">
-                                        <%= t('home.about') %>
-                                    </span>
-                                    </span>
-                                </span>
-                                </button>
-                            </div>
-                        <% end %>
-                    </div>
+                <div class="col-sm-6 col-lg-3 my-3">
+                    <%= link_to discover_path do %>
+                        <div class="categoryWrapper stop-flickering">
+                            <h2 class="annietelescope"><%= t('home.discover') %></h2>  
+                        </div>
+                    <% end %>
+                </div>
 
-                    <div class="col-sm-6 col-lg-3">
-                        <%= link_to trips_path do %>
-                            <div class="categoryWrapper stop-flickering">
-                                <h2 class="annietelescope"><%= t('home.travel') %></h2>
-                                <button>
-                                <span>
-                                    <span>
-                                    <span class="adventpro" data-attr-span="Book your trip with MagicBus !">
-                                        <%= t('home.book_trip') %>
-                                    </span>
-                                    </span>
-                                </span>
-                                </button>
-                            </div>
-                        <% end %>
-                    </div>
+                <div class="col-sm-6 col-lg-3 my-3">
+                    <%= link_to trips_path do %>
+                        <div class="categoryWrapper stop-flickering">
+                            <h2 class="annietelescope"><%= t('home.travel') %></h2>
+                        </div>
+                    <% end %>
+                </div>
 
-                    <div class="col-sm-6 col-lg-3">
-                        <%= link_to places_path do %>
-                            <div class="categoryWrapper stop-flickering">
-                                <h2 class="annietelescope"><%= t('home.share') %></h2>
-                                <button>
-                                <span>
-                                    <span>
-                                    <span class="adventpro" data-attr-span="With the MagicCommunity !">
-                                    <%= t('home.give_us_hand') %>
-                                    </span>
-                                    </span>
-                                </span>
-                                </button>
-                            </div>
-                        <% end %>
-                    </div>
-                    
-                    <div class="col-sm-6 col-lg-3">
-                        <%= link_to story_path do %>
-                            <div class="categoryWrapper stop-flickering">
-                                <h2 class="annietelescope"><%= t('home.story') %></h2>  
-                                <button>
-                                <span>
-                                    <span>
-                                    <span class="adventpro" data-attr-span="About the MagicBus project !">
-                                        <%= t('home.learn_more') %>
-                                    </span>
-                                    </span>
-                                </span>
-                                </button>
-                            </div>
-                        <% end %>
-                    </div>
-
+                <div class="col-sm-6 col-lg-3 my-3">
+                    <%= link_to places_path do %>
+                        <div class="categoryWrapper stop-flickering">
+                            <h2 class="annietelescope"><%= t('home.share') %></h2>
+                        </div>
+                    <% end %>
+                </div>
+                
+                <div class="col-sm-6 col-lg-3 my-3">
+                    <%= link_to story_path do %>
+                        <div class="categoryWrapper stop-flickering">
+                            <h2 class="annietelescope"><%= t('home.story') %></h2>  
+                        </div>
+                    <% end %>
                 </div>
 
             </div>
         </div>
+
     </div>
 </div>
+</section>
 
 <script>
 // Animation SVG

@@ -16,6 +16,8 @@ class TravellersController < ApplicationController
   # GET /travellers/new
   def new
     @traveller = Traveller.new
+    @traveller.diet_travellers.build 
+    @traveller.restriction_travellers.build 
   end
 
   # GET /travellers/1/edit

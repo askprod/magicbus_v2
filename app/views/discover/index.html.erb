@@ -14,7 +14,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200"><path fill="#e9d520" fill-opacity="1" d="M0,160L60,133.3C120,107,240,53,360,42.7C480,32,600,64,720,96C840,128,960,160,1080,165.3C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
 
 <section class="container pb-5" id="video-section">
-    <iframe src="https://vimeo.com/256330880" class="shadow" id="discover-video" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/15XZoljxU2o" id="discover-video" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </section>
 
 <section id="concept">
@@ -32,29 +32,29 @@
 
     <div class="container smaller-padding mt-5">
         <div class="row no-gutters justify-content-center">       
-            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4 background-yellow-lighter">
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4 bg-light border">
                 <div class="card-title mx-2 my-auto">
                     <%= fa_icon "road 3x", class:"text-muted" %>
                 </div>
-                <div class="card-body background-yellow text-right">
+                <div class="card-body text-right background-yellow-lighter">
                     <h2><%= @total_trips %></h2><span class="small text-muted"><%= t('discover.number_of_trips') %></span>
                 </div>
             </div>
 
-            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4 background-yellow-lighter">
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4 bg-light border">
                 <div class="card-title mx-2 my-auto">
                     <%= fa_icon "user 3x", class:"text-muted" %>
                 </div>
-                <div class="card-body background-yellow text-right">
+                <div class="card-body text-right background-yellow-lighter">
                     <h2><%= @total_users %></h2><span class="small text-muted"><%= t('discover.number_of_users') %></span>
                 </div>
             </div>
 
-            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4 background-yellow-lighter">
+            <div class="card col-sm-3 col-md col-lg-3 flex-row mx-2 mb-4 bg-light border">
                 <div class="card-title mx-2 my-auto">
                     <%= fa_icon "suitcase 3x", class:"text-muted" %>
                 </div>
-                <div class="card-body background-yellow text-right">
+                <div class="card-body text-right background-yellow-lighter">
                     <h2><%= @total_travellers %></h2><span class="small text-muted"><%= t('discover.number_of_travellers') %></span>
                 </div> 
             </div>
