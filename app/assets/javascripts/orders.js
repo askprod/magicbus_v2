@@ -11,7 +11,7 @@ $(document).ready(function(){
      });
 });
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
     var stripeBtn = $("#stripe-payment-btn");
     var stripeAlert = $("#stripe-alert");
     var stripeDiv = $("#stripe-div");

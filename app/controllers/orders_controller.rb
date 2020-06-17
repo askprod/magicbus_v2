@@ -105,7 +105,7 @@ class OrdersController < ApplicationController
         @order.user.coupons << @order.coupon
     end
 
-    @order.update!(details: event, paid_at: Time.now, expires_at: nil, payment_status: true)
+    @order.update!(coupon: nil, details: event, paid_at: Time.now, expires_at: nil, payment_status: true)
     @order.save
 
     respond_to do |format|
@@ -137,23 +137,36 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:order_id])
       @promo_code = params[:promo_code].upcase
       @coupon = Coupon.find_by(code: @promo_code)
-      
-      respond_to do |format|
-        if @coupon && @coupon.is_usable?
-          @coupon.orders << @order
-          format.js
-          flash[:notice] = "Your promo code has been applied."  
-        else
+
+      unless @coupon.nil? 
+        @coupon.current_order_user = @order.user
+        respond_to do |format|
+          if @coupon.save
+            @order.coupon = @coupon
+            format.js
+            flash[:notice] = "Your promo code has been applied."  
+          else
             format.js { render :promo_code }
-            flash[:alert] = "The promo code you have enterred is not valid."    
+            flash.now[:alert] = @coupon.errors.full_messages.join(", ")
+          end
+        end
+      else
+        respond_to do |format|
+          format.js { render :promo_code }
+          flash.now[:alert] = "This code is invalid."
         end
       end
+
   end
 
   def destroy_promo_code
-      # @cart.update!(promo_code: nil)
-      # redirect_to @cart
-      # flash[:notice] = "You promo code has been deleted."
+    @order = Order.find(params[:order_id])
+    @order.update(coupon: nil)
+    
+    respond_to do |format|
+      format.html {redirect_to orders_path}
+      flash[:notice] = "Promo code removed successfully."
+    end
   end
 
   def update_rgpd_validation

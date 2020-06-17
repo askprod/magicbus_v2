@@ -3,7 +3,7 @@ class Order < ApplicationRecord
     friendly_id :name, use: :slugged
     
     belongs_to :user
-    belongs_to :coupon, optional: true 
+    has_one :coupon
     has_many :travellers, dependent: :destroy
     has_many :order_trips, dependent: :destroy
     has_many :trips, through: :order_trips

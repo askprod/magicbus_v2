@@ -49,14 +49,15 @@
     </div>
 
     <% if @recent_order.coupon %>
-        <div class="container smaller-padding text-center mt-5">
+        <div class="container smaller-padding text-center my-5">
             <div>Promo Code: <%= @recent_order.coupon.code %></div>
             <div>- <%= @recent_order.total_price - @recent_order.total_price_calc %>€ (<%= @recent_order.coupon.reduction_percentage %>% Reduction)</div>
+            <%= link_to "Delete", order_promo_code_path(@recent_order), method: :delete, class: "btn btn-stylised", remote: true %>
         </div>
     <% else %>
-        <div class="container-fluid my-1 text-center">
-            <%= link_to order_promo_code_path(@recent_order), class: "btn btn-stylised", remote: true do %>
-                <p class="small my-auto">PROMO CODE</p>
+        <div class="container-fluid my-5 text-center">
+            <%= link_to order_promo_code_path(@recent_order), class: "btn btn-stylised p-3", remote: true do %>
+                <p class="my-auto">ENTER PROMO CODE</p>
             <% end %>
         </div>
     <% end %>

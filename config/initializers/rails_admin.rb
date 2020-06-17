@@ -2,7 +2,7 @@ RailsAdmin.config do |config|
 
   config.parent_controller = '::ApplicationController'
 
-  config.excluded_models = ["TravelTheme", "CartTrip", "DietTraveller", "RestrictionTraveller"]
+  config.excluded_models = ["ActiveStorage::Attachment", "ActiveStorage::Blob", "ActionText::RichText", "OrderTrip", "CouponUser", "TravelTheme", "CartTrip", "DietTraveller", "RestrictionTraveller"]
 
   config.model 'FoodDiet' do
     navigation_label "Data"
@@ -40,29 +40,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'ActiveStorage::Blob' do
-    navigation_label "Uploads"
-    weight -1
-
-    list do
-      sort_by :id
-      field :filename
-      field :byte_size
-      field :content_type
-    end
-  end
-
-  config.model 'ActiveStorage::Attachment' do
-    navigation_label "Uploads"
-
-    list do
-      sort_by :id
-      field :id
-      field :record
-      field :blob
-    end
-  end
-
   config.model 'Trip' do
     parent Season
 
@@ -77,7 +54,27 @@ RailsAdmin.config do |config|
 
     create do 
       field :name
-      field :description
+      field :description_en
+      field :description_fr
+      field :season
+      field :week
+      field :price
+      field :departure_date
+      field :departure_location do
+        partial "form_map_departure"
+      end
+      field :arrival_date
+      field :arrival_location do
+        partial "form_map_arrival"
+      end
+      field :picture
+      field :themes
+    end 
+
+    edit do 
+      field :name
+      field :description_en
+      field :description_fr
       field :season
       field :week
       field :price
@@ -95,7 +92,8 @@ RailsAdmin.config do |config|
 
     show do 
       field :name
-      field :description
+      field :description_en
+      field :description_fr
       field :season
       field :week
       field :price
@@ -114,12 +112,6 @@ RailsAdmin.config do |config|
       field :picture
       field :themes
     end 
-    
-    configure :description, :text do
-      html_attributes do
-        {:maxlength => 200}
-      end
-    end
 
   end
 
