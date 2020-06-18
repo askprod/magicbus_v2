@@ -8,15 +8,16 @@
     </div>
     <div class="no-p-margin">
         <p class="mb-3">Your reservation number is: <span class="font-weight-bold"><%= @order.name %></span></p>
-        <p>You will receive an e-mail shortly on:</p>
+        <p>You will receive an e-mail containing the invoice and travel contract shortly on:</p>
         <p class="font-weight-bold mb-3"><%= current_user.email %></p>
+        <p>You can also view it <%= link_to "here", orders_path, class:"pdf-btn" %> at any time.</p>
         <p>Please bring a copy with you when you board the bus.<p>
         <p class="small mx-5">Don't forget to check your mail's spam folder as some email providers might unfotunately consider it as so.</p>
     </div>
-    <div class="mx-auto" style="width: 40%;">
+    <div class="mx-auto">
         <div class="row no-gutters">
             <div class="col mx-2">
-                <%= link_to "Back to My Orders", orders_path, class: "btn btn-block btn-stylised my-4" %>
+                <%= link_to "Back to My Orders", orders_path, class: "btn btn-stylised my-4 p-3" %>
             </div>
         </div>
     </div>

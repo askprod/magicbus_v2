@@ -20,6 +20,17 @@ fr:
     to_word: à
     nbr_travellers: Nombre de Voyageurs
     select: Selectionner
+  stripe_form:
+    order_no: Commande N°
+    billing_details: Détails Facturation
+    card_no: N° Carte
+    card_exp: Expiration
+    card_cvc: CVV
+    address: Adresse
+    city_name: Ville
+    zip_code: CP
+    country_code: Pays
+    pay_btn: Payer
   nav: 
     discover: Découvre
     travel: Voyage
@@ -109,17 +120,17 @@ fr:
     last_name: Nom
     zip_code: Code Postal
     birth_date: Date de Naissance
-    medical_remarks: Remarques Médicales
+    medical_remarks: Remarques Médicales Spécifiques
     other_remarks: Autres Remarques
     name: Nom
     email: Email
     nationality: Nationalité
     phone: Téléphone
     address: Adresse
-    food_diets: Régimes Alimentaires
+    food_diets: Régimes Alimentaires Particuliers
     food_restrictions: Allergies Alimentaires
     comment: Commentaire
-    medical_condition: Conditions Médicales
+    medical_condition: Conditions Médicales Spécifiques
   share_form:
     is_secret: C'est un secret spot?
     current_pictures: Photos

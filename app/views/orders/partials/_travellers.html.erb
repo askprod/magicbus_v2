@@ -1,104 +1,99 @@
 <div class="no-p-margin">
-<div class="row justify-content-center">
+    <div class="row justify-content-center">
         <% order.travellers.each_with_index do |traveller, index| %>
-            
-        <% index += 1 %>
-        <div class="col-sm-12 col-lg-8 my-4">
-            <div class="grey-heading mb-4">
-                <div class="row no-gutters text-center">
-                    <div class="col-lg-6 col-sm-3">
-                        <h5 class="mb-0 py-2"><%= t("travellers.traveller") %> <%= index %></h5>
-                    </div>
-                    <div class="col-lg-3 col-sm-3 my-auto">
-                        <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.insurance") %></span>:
-                        <% if traveller.insurance_status == true %>
-                            <%= t("general_forms.yes_word") %></p>
-                        <% else %>
-                            <%= t("general_forms.no_word") %></p>
-                        <% end %>
-                    </div>
-                    <div class="col-lg-3 col-sm-3 my-auto">
-                        <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.food_included") %></span>:
-                        <% if traveller.food_participation == true %>
-                            <%= t("general_forms.yes_word") %></p>
-                        <% else %>
-                            <%= t("general_forms.no_word") %></p>
-                        <% end %>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    
-                    <div class="row">
-                        <p class="font-weight-bold"><%= t("travellers.name") %>:</p>
-                        <% if traveller.gender == "male" %>
-                            <p><%= t("travellers.gender_mr") %>. <%= traveller.last_name %>, <%= traveller.first_name %></p>
-                        <% else %>
-                            <p><%= t("travellers.gender_mrs") %>. <%= traveller.last_name %>, <%= traveller.first_name %></p>
-                        <% end %>
-                    </div>
-                    
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.email") %>:</p>
-                            <p><%= traveller.email_address %></p>
-                    </div>
-
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.nationality") %>:</p>
-                            <p><%= translated_nationality(traveller) %></p>
-                    </div>
-
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.phone") %>:</p>
-                            <p><%= traveller.phone_number %></p>
-                    </div>
-                    
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.address") %>:</p>
-                            <p><%= traveller.address %>, <%= traveller.zip_code %></p></p>
+                
+            <% index += 1 %>
+            <div class="col-sm-12 col-lg-8 my-4">
+                <div class="grey-heading mb-4">
+                    <div class="row no-gutters text-center">
+                        <div class="col-lg-6 col-sm-3">
+                            <h5 class="mb-0 py-2"><%= t("travellers.traveller") %> <%= index %></h5>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 my-auto">
+                            <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.insurance") %></span>:
+                            <% if traveller.insurance_status == true %>
+                                <%= t("general_forms.yes_word") %></p>
+                            <% else %>
+                                <%= t("general_forms.no_word") %></p>
+                            <% end %>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 my-auto">
+                            <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.food_included") %></span>:
+                            <% if traveller.food_participation == true %>
+                                <%= t("general_forms.yes_word") %></p>
+                            <% else %>
+                                <%= t("general_forms.no_word") %></p>
+                            <% end %>
+                        </div>
                     </div>
                 </div>
 
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-sm-10">
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.name") %></span>:
+                            <% if traveller.gender == "male" %>
+                                <%= t("travellers.gender_mr") %>. <%= traveller.last_name %>, <%= traveller.first_name %>
+                            <% else %>
+                                <%= t("travellers.gender_mrs") %>. <%= traveller.last_name %>, <%= traveller.first_name %>
+                            <% end %>
+                        </p>
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.email") %></span>:
+                            <%= traveller.email_address %>
+                        </p>
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.nationality") %></span>:
+                            <%= translated_nationality(traveller) %>
+                        </p>
+                        <p> 
+                            <span class="font-weight-bold"><%= t("travellers.phone") %></span>:
+                            <%= traveller.phone_number %>
+                        </p>
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.address") %></span>:
+                            <%= traveller.address %>, <%= traveller.zip_code %>
+                        </p>
+                    </div>
 
-                <div class="col-5">
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.food_diets") %>:</p>
+
+                    <div class="col-lg-5 col-sm-10">
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.food_diets") %></span>:
                             <% if traveller.food_diets.empty?%>
-                                <p><%= t("general_forms.none_word") %></p>
+                                <%= t("general_forms.none_word") %>
                             <% else %>
-                                <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
+                                <%= traveller.food_diets.map{|x| x.name}.join(",") %>
                             <% end %>
-                    </div>
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.food_restrictions") %>:</p>
+                        </p>
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.food_restrictions") %></span>:
                             <% if traveller.food_restrictions.empty?%>
-                                <p><%= t("general_forms.none_word") %></p>
+                                <%= t("general_forms.none_word") %>
                             <% else %>
-                                <p><%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
+                                <%= traveller.food_diets.map{|x| x.name}.join(",") %>
                             <% end %>
-                    </div>
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.medical_condition") %>:</p>
+                        </p>
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.medical_condition") %></span>:
                             <% if traveller.medical_condition.empty?%>
-                                <p><%= t("general_forms.none_word") %></p>
+                                <%= t("general_forms.none_word") %>
                             <% else %>
-                                <p><%= traveller.medical_condition %></p>
+                                <%= traveller.medical_condition %>
                             <% end %>
-                    </div>
-                    <div class="row">
-                            <p class="font-weight-bold"><%= t("travellers.comment") %>:</p>
+                        </p>
+                        <p>
+                            <span class="font-weight-bold"><%= t("travellers.comment") %></span>:
                             <% if traveller.additional_comment.empty?%>
-                                <p><%= t("general_forms.none_word") %></p>
+                                <%= t("general_forms.none_word") %>
                             <% else %>
-                                <p><%= traveller.additional_comment %></p>
+                                <%= traveller.additional_comment %>
                             <% end %>
+                        </p>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
         <% end %>
-</div>
+    </div>
 </div>

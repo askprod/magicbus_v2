@@ -62,9 +62,7 @@
     <% @order.trips.each do |trip| %>
       <tr class="item">
           <td>
-              <%= trip.name %><br>
-              <small><%= trip.description %></small>
-          </td>
+              <%= trip.name %><br>          </td>
 
           <td class="right">
               <%= trip.price %>€
@@ -186,7 +184,6 @@
   <p class="secondary-titles">CLIENT</p>
   <div class="p-text">
     <p><span class="b">Nom:</span> <%= @order.details['charges']['data'][0]['billing_details']['name'] %></p>
-    <p><span class="b">Date de naissance:</span> NON DEMANDE LORS DU PAIEMENT</p>
     <p><span class="b">Adresse:</span> <%= @order.details['charges']['data'][0]['billing_details']['address']['line1'] %></p>
     <p><span class="b">Code postal:</span> <%= @order.details['charges']['data'][0]['billing_details']['address']['postal_code'] %></p>
     <p><span class="b">Pays:</span> <%= @order.details['charges']['data'][0]['billing_details']['address']['country'] %></p>
@@ -617,11 +614,40 @@
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">RECLAMATIONS & MEDIATION
-</p>
+  <p class="secondary-titles">RECLAMATIONS & MEDIATION</p>
   <div class="p-text-no-margin">
     <p>Le voyageur peut saisir le service client du détaillant de toute réclamaWon, à l’adresse suivante : 31 résidence du château, 31150 Fenouillet par [legre RAR ou mail à hello@magicbusworld.com] accompagné(e) de tout jusWficaWf.</p>
     <p>A défaut de réponse saWsfaisante dans un délai de 60 jours ou s’il n’est pas saWsfait de la réponse reçue, le client peut saisir gratuitement le Médiateur du Tourisme et du Voyage, dont les coordonnées et modalités de saisine sont disponibles sur le site : www.mtv.travel. Si la vente s’effectue en ligne, le voyageur a la possibilité de recourir à la plateforme disponible sur le site hgps://webgate.ec.europa.eu/odr pour régler son liWge.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="small-header">
+    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <p>CONTRAT DE VOYAGE</p>
+    <p>FORFAIT TOURISTIQUE</p>
+</div>
+
+<p class="main-titles">6. SIGNATURES</h1>
+
+<div class="text-container">
+  <div class="p-text-no-margin">
+    <p>Je soussigné <%= @order.details['charges']['data'][0]['billing_details']['name'] %> agissant tant pour moi-même que pour le compte des autres voyageurs inscrits, cerWfie (1) avoir pris connaissance - avant la conclusion du présent contrat – de l’offre répondant aux exigences de l’arWcle R. 211-4 du Code du Tourisme, des condiWons parWculières de vente de voyages et du formulaire standard d’informaWon, (2) avoir pris connaissance des informaWons liées à la situaWon poliWque et sanitaire de la desWnaWon choisie figurant dans la rubrique conseils-aux- voyageurs du site hgps://www.diplomaWe.gouv.fr/fr/conseils-aux-voyageurs/ (plus spécifiquement concernant les sous rubriques « risque pays » et « santé ») à consulter régulièrement jusqu’au départ, (3) avoir pris connaissance de la brochure et/ou le devis et le programme de l’organisateur, ainsi que (4) des condiWons de garanWe des assurances souscrites et (5) du document d’informaWon m’invitant à vérifier que je ne suis pas déjà couvert pour les garanWes éventuellement souscrites, et du formulaire d’informaWon standard joint à ce document (6).</p>
+    <p class="traveller-title">Date: <%= @order.paid_at.strftime('%d/%m/%Y') %></p>
+    <div class="float-right">
+      <p class="traveller-title">Le Détaillant</p>
+      <p>Lisette Abadie</p>
+      <%= image_tag image_url('/images/signature_lilly.png', class:"img-fluid") %>
+    </div>
+    <p class="traveller-title">Le Client</p>
+    <p><%= @order.details['charges']['data'][0]['billing_details']['name'] %></p>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" checked>
+      <label class="form-check-label">
+        <p>Signature électronique</p>
+      </label>
+    </div>
   </div>
 </div>
 

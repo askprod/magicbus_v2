@@ -14,7 +14,6 @@ class Order < ApplicationRecord
 
     validates_acceptance_of :correct_information, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create
     validates :travellers, presence: true
-    validates :coupon_id, uniqueness: true
     validates :trips, presence: true
     validate :only_one_pending_order, on: :create
 

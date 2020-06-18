@@ -70,7 +70,7 @@ $(document).ready(function() {
     stripe.confirmCardPayment(form.dataset.paymentIntentId, data).then((result) => {
       if (result.error) {
         document.querySelector(".stripe-button").disabled = false;
-        document.querySelector(".stripe-button").innerHTML = '<b>Pay <%= @order.total_price %>€</b>';
+        document.querySelector(".stripe-button").innerHTML = '<b><%= t("stripe_form.pay_btn") %> <%= @order.total_price %>€</b>';
         var errorElement = document.getElementById('card-errors')
         errorElement.textContent = result.error.message
         errorElement.style.display = "block"

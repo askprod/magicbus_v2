@@ -5,7 +5,7 @@ class TripsController < ApplicationController
   def index
     @cart_items = CartTrip.where(cart_id: @cart.id)
     @countries_list = Trip.all.pluck(:departure_location).map{|v|v['country']}.uniq.prepend("All")
-    @thematics_list = Theme.all.select{|v| v.trips.count > 0 == true}.map{|v| v.name}.prepend("All")
+    @thematics_list = Theme.all.select{|v| v.trips.count > 0 == true}.map{|v| v}
 
     if active_season
       @active_season = Season.where(status: true).first
@@ -66,7 +66,7 @@ class TripsController < ApplicationController
     if params[:id] == "All"
       @sort_by_themes = Season.find_by(status: true).trips.order(:week)
     else
-      theme = Theme.find_by(name: params[:id]).id
+      theme = Theme.find_by(id: params[:id]).id
       @sort_by_themes = Trip.joins(:themes).where(themes: {id: theme})
     end
 

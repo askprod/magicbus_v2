@@ -1,16 +1,18 @@
 <div class="card login-form">
     
-<h1 class="card-header adventpro yellow text-center display-5">Order <%= order.name %></span></h1>
+<h1 class="card-header adventpro yellow text-center display-5"><%= t("stripe_form.order_no") %> <%= order.name %></span></h1>
     <div class="card-body">
         <div id="close-button"></div>
 
         <%= form_with url: order_new_payment_path(order), local: true, id: "payment-form", data: { payment_intent_id: @payment_intent.client_secret } do |form| %>
 
-            Billing Details:
+            <div class="group-stripe text-center">
+                <h4 class="py-2"><%= t("stripe_form.billing_details") %></h4>
+            </div>
 
             <div class="group-stripe">
                 <label>
-                    <span>Email</span>
+                    <span class="text-center mx-auto">Email</span>
                     <input id="email" name="email" class="field" value="<%= current_user.email %>" />
                 </label>
             </div>
@@ -19,20 +21,20 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="group-stripe">
                         <label>
-                            <span>Name</span>
-                            <input id="name-card" name="name" class="field" placeholder="Jane Doe" />
+                            <span><%= t("general_forms.name") %></span>
+                            <input id="name-card" name="name" class="field" placeholder="Jean Dupont" />
                         </label>
                         <label>
-                            <span>Card N°</span>
+                            <span><%= t("stripe_form.card_no") %></span>
                             <div id="card-number" class="field"></div>
                         </label>
 
                         <label>
-                            <span>Expiry</span>
+                            <span><%= t("stripe_form.card_exp") %></span>
                             <div id="card-expiry" class="field"></div>
                         </label>
                         <label>
-                            <span>CVC</span>
+                            <span><%= t("stripe_form.card_cvc") %></span>
                             <div id="card-cvc" class="field"></div>
                         </label>
                     </div>
@@ -41,20 +43,20 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="group-stripe">
                         <label>
-                            <span>Address</span>
-                            <input id="address-line1" name="address_line1" class="field" placeholder="77 Winchester Lane" />
+                            <span><%= t("stripe_form.address") %></span>
+                            <input id="address-line1" name="address_line1" class="field" placeholder="1 Rue Dupont" />
                         </label>
                         <label>
-                            <span>City</span>
-                            <input id="address-city" name="address_city" class="field" placeholder="Coachella" />
+                            <span><%= t("stripe_form.city_name") %></span>
+                            <input id="address-city" name="address_city" class="field" placeholder="Paris" />
                         </label>
                         <label>
-                            <span>ZIP</span>
-                            <input id="address-zip" name="address_zip" class="field" placeholder="92236" />
+                            <span><%= t("stripe_form.zip_code") %></span>
+                            <input id="address-zip" name="address_zip" class="field" placeholder="75001" />
                         </label>
                         <label>
-                            <span class="small">Country</span>
-                            <input id="address-country" name="address_country" class="field" placeholder="FR" />
+                            <span><%= t("stripe_form.country_code") %></span>
+                            <input id="address-country" name="address_country" class="field" placeholder="(FR, ES, IT...)" />
                         </label>
                     </div>
                 </div>
@@ -64,7 +66,7 @@
 
         <div class="container-fluid text-center">
             <%= form.hidden_field :payment_intent_id, value: @payment_intent.id %>
-            <button type="submit" class="stripe-button"><b>Pay <%= order.total_price_calc %>€</b></button>  
+            <button type="submit" class="stripe-button mb-4 mt-2"><b><%= t("stripe_form.pay_btn") %> <%= order.total_price_calc %>€</b></button>  
         </div>
 
         <% end %>

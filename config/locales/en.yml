@@ -51,6 +51,17 @@ en:
     to_word: To
     nbr_travellers: Number of Travellers
     select: Select
+  stripe_form:
+    order_no: Order N°
+    billing_details: Billing Details
+    card_no: Card N°
+    card_exp: Expiry
+    card_cvc: CVC
+    address: Address
+    city_name: City
+    zip_code: ZIP
+    country_code: Country
+    pay_btn: Pay
   nav: 
     discover: Discover
     travel: Travel
@@ -140,17 +151,17 @@ en:
     last_name: Last Name
     zip_code: ZIP Code
     birth_date: Birth Date
-    medical_remarks: Medical Remarks
+    medical_remarks: Specific Medical Remarks
     other_remarks: Other Remarks
     name: Name
     email: Email
     nationality: Nationality
     phone: Phone
     address: Address
-    food_diets: Food Diets
+    food_diets: Specific Food Diets
     food_restrictions: Food Allergies
     comment: Comment
-    medical_condition: Medical Condition
+    medical_condition: Specific Medical Condition
   share_form:
     is_secret: Is this a secret spot?
     current_pictures: Current pictures

@@ -2,6 +2,7 @@
   <div class="card m-1 px-0 shadow-sm bg-light border border-success">
     
     <p class="h6 mt-4"><b><%= traveller.first_name %> <%= traveller.last_name.upcase %></b></p>
+    <p class="h6 text-success"><b>Complete</b></p>
 
     <div class="row h-100 no-gutters my-auto">
       <div class="col-12 my-auto py-2">
@@ -9,7 +10,7 @@
         <div class="row no-gutters justify-content-center">
 
           <div class="col-8 p-4">
-            <%= button_to "Edit Information", edit_traveller_path(traveller), method: :get, remote: true, class: "btn btn-stylised" %>  
+            <%= button_to "Edit Information", edit_traveller_path(traveller), method: :get, remote: true, class: "close-navbar btn btn-stylised" %>  
           </div> 
         
         </div>

@@ -56,8 +56,8 @@
         </div>
     <% else %>
         <div class="container-fluid my-5 text-center">
-            <%= link_to order_promo_code_path(@recent_order), class: "btn btn-stylised p-3", remote: true do %>
-                <p class="my-auto"><%= t("recent_orders.enter_code") %></p>
+            <%= link_to order_promo_code_path(@recent_order), class: "btn btn-stylised py-3", remote: true do %>
+                <p class="my-auto small adventpro"><%= t("recent_orders.enter_code") %></p>
             <% end %>
         </div>
     <% end %>
@@ -68,7 +68,7 @@
 
     <div class="container small-padding" id="order-checkboxes">
         <div class="form-check">
-            <%= label_tag :order_first_checkbox, class:"form-check-label" do %>
+            <%= label_tag :order_first_checkbox, class:"form-check-label small" do %>
             <%= check_box_tag :order_first_checkbox, class:"form-check-input" %>
                 En cochant cette case, pour moi-même ainsi que pour le compte des autres voyageurs inscrits, je certifie:
             <% end %>
@@ -89,7 +89,7 @@
         </div>
 
         <div class="form-check">
-            <%= label_tag :order_third_checkbox, class:"form-check-label" do %>
+            <%= label_tag :order_third_checkbox, class:"form-check-label small" do %>
             <%= check_box_tag :order_third_checkbox, class:"form-check-input" %>
                 En cochant cette case, je reconnais avoir lu et accepté les <a href="#" target="_blank" class="pdf-btn">conditions générales de vente</a>.
             <% end %>
@@ -98,7 +98,7 @@
         <br/>
 
         <div class="form-check">
-            <%= label_tag :order_second_checkbox, class:"form-check-label" do %>
+            <%= label_tag :order_second_checkbox, class:"form-check-label small" do %>
             <%= check_box_tag :order_second_checkbox, class:"form-check-input" %>
                 En cochant cette case, la personne accepte de <a href="#" class="pdf-btn">transmettre ses données</a> et garantit qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.
             <% end %>
@@ -107,17 +107,17 @@
     </div>
     
     <div class="container small-padding">
-        <div class="form-check">
-            <%= form_for @recent_order, :url => order_update_rgpd_validation_path(@recent_order), :html => {:method => :post}, remote: true do |f| %>
-                <%= f.label :rgpd_validated, class:"form-check-label" do %>
-                <%= f.check_box :rgpd_validated, class:"form-check-input" %>
-                    Je refuse que la société SARL MagicBus me contacte par courriel à d’autres fins que la transmission d’information concernant ma commande.
+        <%= form_for @recent_order, :url => order_update_rgpd_validation_path(@recent_order), :html => {:method => :post}, remote: true do |f| %>
+            <div class="form-check">
+                <%= f.label :rgpd_validated, class:"form-check-label small" do %>
+                    <%= f.check_box :rgpd_validated, class:"form-check-input" %>
+                        Je refuse que la société SARL MagicBus me contacte par courriel à d’autres fins que la transmission d’information concernant ma commande.
+                    <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
+                        <p>En savoir plus sur la gestion de vos données et vos droits.</p>
+                    <% end %>
                 <% end %>
-                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
-                    <p>En savoir plus sur la gestion de vos données et vos droits.</p>
-                <% end %>
-            <% end %>
-         </div>
+            </div>
+        <% end %>
     </div>
 
     <div class="container smallest-padding text-center">
@@ -127,8 +127,8 @@
     </div>
 
     <div class="mt-3 text-center" id="stripe-div">
-        <%= link_to order_new_payment_path(@recent_order), class:"btn btn-lg btn-gradient shadow-sm disabled", id: "stripe-payment-btn", remote: true do %>
-            <h5 class="mb-0 p-1 adventpro" id="stripe-text"><%= t("recent_orders.pay_order") %></h5>
+        <%= link_to order_new_payment_path(@recent_order), class:"close-navbar btn btn-lg btn-gradient shadow-sm disabled", id: "stripe-payment-btn", remote: true do %>
+            <h5 class="mb-0 p-2 adventpro" id="stripe-text"><%= t("recent_orders.pay_order") %></h5>
             <%= image_tag("/images/logo_stripe.png", class:"img-fluid", size: "150x150") %>
         <% end %>
     </div>

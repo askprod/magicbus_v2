@@ -1,14 +1,12 @@
 <section>
 <% if active_season %>
 
-    <% if user_signed_in? %>
-        <div id="cart">
-            <%= render "layouts/cart" %>
-        </div>
-    <% end %>
+    <div id="cart">
+        <%= render "layouts/cart" %>
+    </div>
     
     <div>
-        <%= image_tag "/images/bus-font.jpg", class: "image-cover" %>
+        <%= image_tag "/images/index_travel.jpg", class: "image-cover" %>
     </div>
 
     <div class="container my-5">
@@ -41,14 +39,14 @@
             
             <div class="col-sm-3 border rounded shadow-sm mx-3 my-2 p-3">
                 <p><%= t('travel.sort_by_country') %></p>
-                <%= select :country, :select, @countries_list.map {|v| [ v ] }, {}, class: "form-control rounded border my-5" %>
+                <%= select :country, :select, @countries_list.map {|v| [v] }, {}, class: "form-control rounded border my-5" %>
             </div>
 
             <div class="my-auto small yellow"><%= t("trips.or_word") %></div>
 
             <div class="col-sm-3 border rounded shadow-sm mx-3 my-2 p-3">
                 <p><%= t('travel.sort_by_theme') %></p>
-                <%= select :theme, :select, @thematics_list.map {|v| [ v ] }, {}, class: "form-control rounded border my-5" %>
+                <%= select :theme, :select, @thematics_list.map {|v| [v.name, v.id] }.prepend("All"), {}, class: "form-control rounded border my-5" %>
             </div>
 
         </div>

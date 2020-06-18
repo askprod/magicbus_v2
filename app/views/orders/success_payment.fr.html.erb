@@ -1,0 +1,24 @@
+<div class="container-fluid top-margin text-center">
+    <div>
+        <p class="h1 my-3 text-center text-success">
+            <%= fa_icon "check-circle", class: "text-success" %>
+            Votre paiement a été traité avec succès!
+        </p>
+        <h6 class="mb-4">Merci pour votre commande <%= current_user.first_name %>!</h6>
+    </div>
+    <div class="no-p-margin">
+        <p class="mb-3">Votre numéro de réservation est le: <span class="font-weight-bold"><%= @order.name %></span></p>
+        <p>Vous recevrez sous peu un email avec le contrat et la facture sur cette adresse:</p>
+        <p class="font-weight-bold mb-3"><%= current_user.email %></p>
+        <p>Vous pouvez également les consulter <%= link_to "ici", orders_path, class:"pdf-btn" %> à votre guise.</p>
+        <p>Veuillez amener une copie de votre contrat le jour de l'embarquement.<p>
+        <p class="small mx-5">N'oubliez pas de vérifier le dossier SPAM de votre boîte mail, certains fournisseurs risquent malencontreusement de nous considerer ainsi.</p>
+    </div>
+    <div class="mx-auto" style="width: 40%;">
+        <div class="row no-gutters">
+            <div class="col mx-2">
+                <%= link_to "Retour à la page Commandes", orders_path, class: "btn btn-stylised my-4 p-3" %>
+            </div>
+        </div>
+    </div>
+</div>
