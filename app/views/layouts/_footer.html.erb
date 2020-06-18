@@ -8,29 +8,29 @@
     
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="widget subscribe no-box">
-                        <h6 class="widget-title">About MagicBus</h6>
-                        <p>MagicBus is a school bus turned into a hotel, travelling all around Europe !</p>
+                        <h6 class="widget-title"><%= t("footer.about_magicbus") %></h6>
+                        <p><%= t("footer.bus_to_hotel") %> !</p>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="widget no-box">
-                        <h6 class="widget-title">Quick Links</h6>
+                        <h6 class="widget-title"><%= t("footer.quick_links") %></h6>
                         <ul class="thumbnail-widget">
                             <li>
-                                <div class="thumb-content"><%= link_to "Discover", discover_path %></div>	
+                                <div class="thumb-content"><%= link_to t("nav.discover"), discover_path %></div>	
                             </li>
 
                             <li>
-                                <div class="thumb-content"><%= link_to "Story", story_path %></div>	
+                                <div class="thumb-content"><%= link_to t("nav.story"), story_path %></div>	
                             </li>
 
                             <li>
-                                <div class="thumb-content"><%= link_to "Share", places_path %></div>	
+                                <div class="thumb-content"><%= link_to t("nav.share"), places_path %></div>	
                             </li>
 
                             <li>
-                                <div class="thumb-content"><%= link_to "Travel", trips_path %></div>	
+                                <div class="thumb-content"><%= link_to t("nav.travel"), trips_path %></div>	
                             </li>
 
                         </ul>
@@ -40,31 +40,31 @@
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="widget no-box">
                         <% if user_signed_in? %>
-                            <h6 class="widget-title">My Account</h6>
+                            <h6 class="widget-title"><%= t("nav.my_account") %></h6>
                             <ul>
                                 <li>
-                                    <%= link_to "Edit Account", edit_user_registration_path, remote: true %>
+                                    <%= link_to t("nav.my_account"), edit_user_registration_path, remote: true %>
                                 </li>
                                 <li>
-                                    <%= link_to "My Cart", cart_path(@cart) %>
+                                    <%= link_to t("nav.my_cart"), cart_path(@cart) %>
                                 </li>                       
                                 <% unless current_user.orders.empty? %>
                                 <li>
-                                    <%= link_to "My Bookings", orders_path %>
+                                    <%= link_to t("nav.my_bookings"), orders_path %>
                                 </li>
                                 <% end %>
                                 <li>
-                                    <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+                                    <%= link_to t("nav.log_out"), destroy_user_session_path, method: :delete %>
                                 </li>        
                             </ul>
                         <% else %>
-                            <h6 class="widget-title">Get Started</h6>
+                            <h6 class="widget-title"><%= t("footer.get_started") %></h6>
                             <ul>
                                 <li>
-                                    <%= link_to "Register", new_user_registration_path, remote: true %>
+                                    <%= link_to t("nav.create_account"), new_user_registration_path, remote: true %>
                                 </li>
                                 <li>
-                                    <%= link_to "Log In", user_session_path, remote: true %>
+                                    <%= link_to t("nav.log_in"), user_session_path, remote: true %>
                                 </li>
                             </ul>
                         <% end %>
@@ -74,7 +74,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="widget no-box">
 
-                        <h6 class="widget-title">Contact Us</h6>
+                        <h6 class="widget-title"><%= t("footer.contact_us") %></h6>
 
                         <p><a href="mailto:hello@magicbusworld.com">hello@magicbusworld.com</a></p>
                         
@@ -101,19 +101,25 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 small my-auto">
-                    <%= link_to do %>
-                        <p>Terms & Conditions</p>
-                    <% end %>
+                    <p>
+                        <%= link_to do %>
+                            <%= t("general_forms.terms_of_use") %>
+                        <% end %>
+                        |
+                        <%= link_to asset_path("/pdf/magicbus_cookies.pdf"), target: "_blank" do %>
+                            Cookies
+                        <% end %>
+                    </p>
                 </div>
                 <div class="col-sm-6 text-center small my-auto">
-                    <p>Copyright MagicBus © <%= Date.current.year %>. All rights reserved.</p>
+                    <p>Copyright MagicBus © <%= Date.current.year %>. <%= t("footer.all_rights") %>.</p>
                 </div>
                 <div class="col-sm-3 text-right small my-auto">
-                    <p>Made with
+                    <p><%= t("footer.made_with") %>
                     <%= link_to "https://rubyonrails.org/", target: "_blank" do %>
                         <%= image_tag "https://devstickers.com/assets/img/cat/ruby.png", size: "28x28" %>
                     <% end %>
-                    by <%= link_to "Paul", "http://paultrindinh.com", target: "_blank", style: "color: azure;" %></p>
+                    <%= t("footer.by_word") %> <%= link_to "Paul", "http://paultrindinh.com", target: "_blank", style: "color: azure;" %></p>
                 </div>
             </div>
         </div>

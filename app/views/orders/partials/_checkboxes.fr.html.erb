@@ -1,0 +1,61 @@
+<div class="container small-padding" id="order-checkboxes">
+    <div class="form-check">
+        <%= label_tag :order_first_checkbox, class:"form-check-label small" do %>
+        <%= check_box_tag :order_first_checkbox, class:"form-check-input" %>
+            En cochant cette case, pour moi-même ainsi que pour le compte des autres voyageurs inscrits, je certifie:
+        <% end %>
+        <ul class="small">
+            <li>
+                <p>Avoir pris connaissance - avant le paiement – de l’offre répondant aux exigences de l’article R. 211-4 du Code du Tourisme, des conditions particulières de vente de voyages et du formulaire standard d’information,</p>
+            </li>
+            <li>
+                <p>Avoir pris connaissance des informations liées à la situation politique et sanitaire de la destination choisie figurant dans la rubrique conseils-aux-voyageurs du site <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank" class="pdf-btn">diplomatie.gouv.fr</a> (plus spécifiquement concernant les sous rubriques « risque pays » et « santé ») à consulter régulièrement jusqu’au départ,</p>
+            </li>
+            <li>
+                <p>Avoir pris connaissance de la brochure et du programme de l’organisateur,</p>
+            </li>
+            <li>
+                <p>Avoir pris connaissance des conditions de garantie des assurances souscrites,</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-check">
+        <%= label_tag :order_third_checkbox, class:"form-check-label small" do %>
+        <%= check_box_tag :order_third_checkbox, class:"form-check-input" %>
+            En cochant cette case, je reconnais avoir lu et accepté les 
+            <%= link_to asset_path("/pdf/magicbus_cgv.pdf"), target: "_blank", class:"pdf-btn" do %>
+                conditions générales de vente.
+            <% end %>
+        <% end %>
+    </div>
+
+    <br/>
+
+    <div class="form-check">
+        <%= label_tag :order_second_checkbox, class:"form-check-label small" do %>
+        <%= check_box_tag :order_second_checkbox, class:"form-check-input" %>
+            En cochant cette case, la personne accepte de 
+                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
+                    transmettre ses données
+                <% end %>    
+                et garantit qu’il a recueilli le consentement des autres voyageurs aux mêmes fins. Nous collectons ces données pour la bonne execution du contrat de voyage.</p>
+        <% end %>
+    </div>
+    <p>Nous utilisons également votre adresse électronique pour vous adresser des nouvelles et avantages concernant nos prochains voyages (Newsletter mensuelle). Si, en votre nom et au nom des voyageurs qui vous accompagnent, vous ne souhaitez pas recevoir de telles sollicitations, cochez la case ci-dessous:</p>       
+</div>
+
+<div class="container small-padding">
+    <%= form_for @recent_order, :url => order_update_rgpd_validation_path(@recent_order), :html => {:method => :post}, remote: true do |f| %>
+        <div class="form-check">
+            <%= f.label :rgpd_validated, class:"form-check-label small" do %>
+                <%= f.check_box :rgpd_validated, class:"form-check-input" %>
+                    Je refuse que la société SARL MagicBus me contacte par courriel à d’autres fins que la transmission d’information concernant ma commande.
+                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
+                    <p>En savoir plus sur la gestion de vos données et vos droits.</p>
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+

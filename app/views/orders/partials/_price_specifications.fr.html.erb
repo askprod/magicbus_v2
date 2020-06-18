@@ -35,12 +35,16 @@
     <div class="col-lg-6 col-sm-12">
         <h3>Annulation</h3>
         <p>Selon l'article L. 211-14 du Code du Tourisme, le voyage peut-être annulé par l'organisateur ou l'agence si le nombre minimum de 2 participants n'est pas inscrit, 20 jours avant la date de départ.</p>
-        <p>Voir la <a href="#" target="_blank" class="pdf-btn">politique d'annulation</a>.</p>
+        <p>Voir la 
+            <%= link_to asset_path("/pdf/magicbus_annulation.pdf"), target: "_blank", class:"pdf-btn" do %>
+                politique d'annulation.
+            <% end %>
+        </p>
     </div>
 
     <div class="col-lg-6 col-sm-12">
         <h3>Assurance</h3>
-        <p>Retrouvez les modalités et couvertures de <a href="#" target="_blank" class="pdf-btn">l'assurance voyageur optionnelle</a>.</p>
+        <p>Retrouvez les modalités et couvertures de <a href="#" class="pdf-btn">l'assurance voyageur optionnelle</a>.</p>
     </div>
 </div>
 

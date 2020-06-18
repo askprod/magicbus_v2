@@ -22,21 +22,21 @@
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
 
-            <button class="btn btn-stylised" type="button" data-toggle="collapse" data-target="#new-password-fields" aria-expanded="false" aria-controls="collapseExample">
-              Change Password
+            <button class="btn btn-stylised adventpro" type="button" data-toggle="collapse" data-target="#new-password-fields" aria-expanded="false" aria-controls="collapseExample">
+              <%= t("general_forms.change_password") %>
             </button>
 
             <div id="new-password-fields" class="collapse p-1 mt-2">
               <div class="form-group">
-                <%= f.password_field :password, placeholder: "New Password", class: "border form-control" %>
+                <%= f.password_field :password, placeholder: t("general_forms.new_password"), class: "border form-control" %>
               </div>
 
               <div class="form-group">
-                <%= f.password_field :password_confirmation, placeholder: "New Password Confirmation", class: "rounded border form-control" %>
+                <%= f.password_field :password_confirmation, placeholder: t("general_forms.new_password_confirmation"), class: "rounded border form-control" %>
               </div>
 
               <div class="form-group mb-0">
-                <%= f.password_field :current_password, placeholder: "Current Password", class: "rounded border form-control" %>
+                <%= f.password_field :current_password, placeholder: t("general_forms.current_password"), class: "rounded border form-control" %>
               </div>
             </div>
           </div>
@@ -62,10 +62,10 @@
         <div class="container mt-3">
           <div class="row justify-content-center">
             <div class="col-sm-4 my-1">
-                <%= f.submit "Update", class: "btn btn-stylised btn-block" %>
+                <%= f.submit t("general_forms.update"), class: "btn btn-stylised btn-block adventpro" %>
             </div>
             <div class="col-sm-4 my-1">
-                <%= link_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-stylised btn-block" %>
+                <%= link_to t("general_forms.delete_account"), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-stylised btn-block adventpro" %>
             </div>
           </div>
         </div>

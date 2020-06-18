@@ -43,7 +43,19 @@ en:
   general_forms:
     name: Name
     description: Description
+    join_us: Join Us
+    password: Password
+    password_confirmation: Password Confirmation
+    password_length: characters minimum
+    change_password: Change Password
+    new_password: New Password
+    new_password_confirmation: New Password Confirmation
+    current_password: Current Password
+    update: Update
+    delete_account: Delete Account
     enter_code: Enter Code
+    submit: Submit
+    here_word: here
     yes_word: "Yes"
     no_word: "No"
     none_word: None
@@ -51,6 +63,10 @@ en:
     to_word: To
     nbr_travellers: Number of Travellers
     select: Select
+    agreement_to: I agree to the
+    terms_of_use: Terms of Use
+    create_account: Create my Account
+    no_account_register: No account? You can register
   stripe_form:
     order_no: Order N°
     billing_details: Billing Details
@@ -80,6 +96,15 @@ en:
     sponsors: Sponsors
     story: Story
     magicpeople: MagicPeople
+  footer: 
+    about_magicbus: About MagicBus
+    bus_to_hotel: MagicBus is a school bus turned into a hostel, travelling all around Europe
+    quick_links: Quick Links
+    get_started: Get Started
+    contact_us: Contact Us
+    all_rights: All rights reserved
+    made_with: Made with
+    by_word: by
   team:
     lisette: Founder & Designer
     bastien: Engineer

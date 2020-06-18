@@ -1,6 +1,6 @@
   <div class="card login-form-small text-center">
 
-        <h1 class="card-header adventpro yellow text-center display-5">Log-In</h1>
+    <h1 class="card-header adventpro yellow text-center display-5"><%= t("nav.log_in") %></h1>
 
     <div class="card-body">
       
@@ -15,25 +15,16 @@
       </div>
 
       <div class="form-group text-center">
-        <%= f.label :password, "Password", class: "small" %> <br>
+        <%= f.label t("general_forms.password"), class: "small" %> <br>
         <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
       </div>
 
-      <div class="form-group text-center">
-        <% if devise_mapping.rememberable? %>
-          <div class="field text-center">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, class: "small" %>
-          </div>
-        <% end %>
-      </div>
-
       <div class="small">
-        <p>No account? You can register <%= link_to "here", new_user_registration_path, remote: true, style: "color:black; text-decoration: underline;" %>!</p>
+        <p><%= t("general_forms.no_account_register") %> <%= link_to t("general_forms.here_word"), new_user_registration_path, remote: true, style: "color:black; text-decoration: underline;" %>!</p>
       </div>
 
       <div class="actions mt-3">
-        <%= f.submit "Submit", class: "btn btn-lg btn-stylised btn-block adventpro" %>
+        <%= f.submit t("general_forms.submit"), class: "btn btn-lg btn-stylised btn-block adventpro" %>
       </div>
 
       <% end %>
