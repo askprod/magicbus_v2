@@ -1,6 +1,10 @@
 <div class="traveller-info mb-3">
   <div class="card m-1 px-0 shadow-sm bg-light border border-success">
     
+    <%= button_to traveller, method: :delete, class:"btn btn-danger position-absolute m-1 px-1 py-0", style:"top:0; right:0;" do %>
+      <%= fa_icon "trash" %>
+    <% end %>
+    
     <p class="h6 mt-4"><b><%= traveller.first_name %> <%= traveller.last_name.upcase %></b></p>
     <p class="h6 text-success"><b>Complete</b></p>
 

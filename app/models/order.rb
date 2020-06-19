@@ -12,7 +12,7 @@ class Order < ApplicationRecord
     after_create :set_order_name 
     after_create :set_expiration_time
 
-    validates_acceptance_of :correct_information, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create
+    validates_acceptance_of :correct_information, :allow_nil => false, :message => "have not been accepted", :on => :create
     validates :travellers, presence: true
     validates :trips, presence: true
     validate :only_one_pending_order, on: :create
@@ -23,7 +23,7 @@ class Order < ApplicationRecord
 
     def only_one_pending_order
         if self.user.orders.where(payment_status: false).size > 0
-            errors.add(:base, "You can't have more than one pending Order at a time.")
+            errors.add(:base, "You can't have more than one pending Order at a time")
         end
     end
 
