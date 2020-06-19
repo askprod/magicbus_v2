@@ -1,1 +1,61 @@
-Translate
+<div class="container small-padding" id="order-checkboxes">
+    <div class="form-check">
+        <%= label_tag :order_first_checkbox, class:"form-check-label small" do %>
+        <%= check_box_tag :order_first_checkbox, class:"form-check-input" %>
+            By checking this box, for myself and the other travellers, I certify that:
+        <% end %>
+        <ul class="small">
+            <li>
+                <p>I have read the offer that follows the requirements of the article R. 211-4 of the Tourism Code; of the specific conditions for travel sales, and the standard form of information,</p>
+            </li>
+            <li>
+                <p>I have read about the political and sanitary conditions of the chosen destinations, which can be found here: <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/" target="_blank" class="pdf-btn">diplomatie.gouv.fr</a>,</p>
+            </li>
+            <li>
+                <p>I have read the brochure and the program of the organizer,</p>
+            </li>
+            <li>
+                <p>I have read about the warranty conditions of the subscribed insurances.</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-check">
+        <%= label_tag :order_third_checkbox, class:"form-check-label small" do %>
+        <%= check_box_tag :order_third_checkbox, class:"form-check-input" %>
+            By checking this box, I accept the 
+            <%= link_to asset_path("/pdf/magicbus_cgv.pdf"), target: "_blank", class:"pdf-btn" do %>
+                general conditions of sales.
+            <% end %>
+        <% end %>
+    </div>
+
+    <br/>
+
+    <div class="form-check">
+        <%= label_tag :order_second_checkbox, class:"form-check-label small" do %>
+        <%= check_box_tag :order_second_checkbox, class:"form-check-input" %>
+            By checking this box, I allow my
+                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
+                    data to be transmitted 
+                <% end %>    
+                and allow it for the travellers. We collect this data for the right execution of the travel contract.
+        <% end %>
+    </div>
+    <p>We will also use your email address to send you news and benefits concerning our next trips. If in any case, you would not like to receive any of the mentionned, please tick the following checkbox:</p>
+</div>
+
+<div class="container small-padding">
+    <%= form_for @recent_order, :url => order_update_rgpd_validation_path(@recent_order), :html => {:method => :post}, remote: true do |f| %>
+        <div class="form-check">
+            <%= f.label :rgpd_validated, class:"form-check-label small" do %>
+                <%= f.check_box :rgpd_validated, class:"form-check-input" %>
+                    I do not wish MagicBus to contact me appart for any information concerning this booking.
+                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
+                    <p>Find out more about your data and your rights.</p>
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+

@@ -207,6 +207,7 @@ en:
     total_ttc: TOTAL VAT Incl.
     pay_order: Pay Order
     no_recent_orders: No Recent Order
+    check_before_payment: Please check the boxes above before proceeding to payment
   paid_orders:
     order_no: Order N°
     download_pdf: Download PDF

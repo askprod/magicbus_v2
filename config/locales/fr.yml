@@ -207,6 +207,7 @@ fr:
     total_ttc: TOTAL TTC
     pay_order: Payer ma Commande
     no_recent_orders: Pas de commande récente
+    check_before_payment: Veuillez cocher les cases ci-dessus avant de procéder au paiement
   paid_orders:
     order_no: Commande N°
     download_pdf: Télécharger PDF
