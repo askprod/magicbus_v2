@@ -31,15 +31,22 @@ class PlacesController < ApplicationController
     location = JSON.parse(params[:place][:location])
     params[:place][:location] = location
     @place = Place.new(place_params)
-
+    recaptcha_valid = verify_recaptcha(action: 'share', minimum_score: 0.5)
     respond_to do |format|
-      if @place.save
-        format.js
-        flash[:notice] = "Spot created successfully."
+      if recaptcha_valid
+        if @place.save
+          format.js
+          score = recaptcha_reply['score']
+          flash[:notice] = "Spot created successfully, with a reCaptcha score of #{score}."
+        else
+          format.js { render :new }
+          flash.now[:alert] = @place.errors.full_messages.join(', ') if @place.errors.any?
+          format.json { render json: @place.errors, status: :unprocessable_entity }
+        end
       else
+        score = recaptcha_reply['score']
+        flash.now[:alert] = "Spot was denied because of a Recaptcha score of #{score}."
         format.js { render :new }
-        flash.now[:alert] = @place.errors.full_messages.join(', ') if @place.errors.any?
-        format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
   end

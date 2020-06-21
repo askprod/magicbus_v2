@@ -25,7 +25,7 @@ class Cart < ApplicationRecord
         unless self.trips.empty?
             self.trips.each do |trip|
                 if trip.remaining_seats_count < self.number_of_travellers
-                    self.errors.add(:base, "One of the Trips in your Cart is full.")
+                    self.errors.add(:base, :one_trip_is_full)
                 end
             end
         end

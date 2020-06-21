@@ -20,14 +20,14 @@ class Coupon < ApplicationRecord
     def user_already_used
         if current_order_user
             if self.users.where(id: current_order_user.id).exists?
-                self.errors.add(:base, "You have already used this code.")
+                self.errors.add(:base, :already_used)
             end
         end
     end
 
     def is_usable
         unless [self.remaining_uses_left != 0, self.expiry_date > Date.today].all?
-            self.errors.add(:base, "This code is not valid.")
+            self.errors.add(:base, :invalid_code)
         end
     end
 end

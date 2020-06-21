@@ -213,6 +213,40 @@ en:
     download_pdf: Download PDF
     paid_on: paid on
     no_paid_orders: No paid orders
+  activerecord:
+    attributes:
+      traveller:
+        birth_date: Birth date
+        phone_number: Phone number
+    errors:
+      models:
+        traveller:
+          attributes:
+            phone_number: is invalid
+            birth_date:
+              not_in_future: can't be in the future
+            base:
+              too_young: We do not accept travellers who are younger than 10 years old
+              max_travellers_per_cart: You can't have more than 8 Travellers per Cart
+        order:
+          attributes:
+            base:
+              only_one: You can't have more than one pending Order at a time
+        coupon:
+          attributes:
+            base:
+              already_used: You have already used this code
+              invalid_code: This code is invalid
+        cart:
+          attributes:
+            base:
+              one_trip_is_full: One of the Trips in your Cart is full
+        place:
+          attributes:
+            base:
+              already_shared_location: A Spot has already been shared here. Try another location
+              max_per_user: Vous ne pouvez pas partager plus de %{count} spots pour le moment
+              visitors_limit: Visitors are limited to sharing Spots. Try again later
 
 
 

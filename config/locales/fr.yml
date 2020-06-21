@@ -213,3 +213,39 @@ fr:
     download_pdf: Télécharger PDF
     paid_on: payée le
     no_paid_orders: Pas de commande payée
+  activerecord:
+    attributes:
+      traveller:
+        birth_date: Date de naissance
+        phone_number: Numéro de téléphone
+    errors:
+      models:
+        traveller:
+          attributes:
+            phone_number:
+              incorrect_format: n'est pas valide
+            birth_date: 
+              not_in_future: ne peut pas être dans le futur
+            base:
+              too_young: Nous n'acceptons pas les voyageurs ayant moins de 10 ans
+              max_travellers_per_cart: Vous ne pouvez pas réserver pour plus de 8 voyageurs
+        order:
+          attributes:
+            base:
+              only_one: Vous ne pouvez avoir qu'une commande en attente à la fois
+        coupon:
+          attributes:
+            base:
+              already_used: Vous avez déjà utilisé ce code
+              invalid_code: Ce code n'est pas valable
+        cart:
+          attributes:
+            base:
+              one_trip_is_full: Un des voyage dans votre panier est complet
+        place:
+          attributes:
+            base:
+              already_shared_location: Un Spot a déjà été partagé sur ces coordonnées. Essayez-en d'autres
+              max_per_user: You can't share more than %{count} spots for now
+              visitors_limit: Les visiteurs ont une limite de partage. Réessayez dans un instant
+

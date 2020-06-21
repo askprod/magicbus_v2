@@ -5,4 +5,9 @@ var elmnt = document.getElementById("map");
 elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' })
 });
 
+executeRecaptchaForShare();
+
+var captchaReponse = $('#g-recaptcha-response-data-share').val();
+$('#g-recaptcha-response').val(captchaReponse);
+
 window.location.reload();

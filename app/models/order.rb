@@ -33,7 +33,7 @@ class Order < ApplicationRecord
 
     def only_one_pending_order
         if self.user.orders.where(payment_status: false).size > 0
-            errors.add(:base, "You can't have more than one pending Order at a time")
+            errors.add(:base, :only_one)
         end
     end
 
@@ -43,7 +43,7 @@ class Order < ApplicationRecord
 
     def set_order_name
         order = sprintf('%02d', self.id)
-        secure_random = SecureRandom.alphanumeric(4).upcase
+        secure_random = SecureRandom.alphanumeric(5).upcase
         season = self.trips.first.season_id.to_s
         trips = self.trips.map{|t| t.week.to_s}.join("T")
         travellers = self.travellers.count.to_s

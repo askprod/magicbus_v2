@@ -21,7 +21,8 @@ class Traveller < ApplicationRecord
     after_create :set_food_participation
 
     validates :first_name, :last_name, :address, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
-    validate :check_number_of_travellers_per_trip, on: :create
+    # to check if useful:
+    # validate :check_number_of_travellers_per_trip, on: :create
     validate :max_traveller_per_cart, on: :create
     validate :valid_birth_date
     validate :valid_phone_number
@@ -42,20 +43,20 @@ class Traveller < ApplicationRecord
       # 3653 days = 10 years
       if self.birth_date
         if Date.today.mjd - self.birth_date.mjd < 3653
-          self.errors.add(:base, "We do not accept travellers who are younger that 10 years old")
+          self.errors.add(:base, :too_young)
         end
       end
     end
 
     def valid_phone_number
       if self.phone_validation == "invalid"
-        self.errors.add(:phone_number, "is invalid")
+        self.errors.add(:phone_number, :incorrect_format)
       end
     end
 
     def valid_birth_date
       if self.birth_date
-        self.errors.add(:birth_date, "can't be in the future.") unless self.birth_date < DateTime.now
+        self.errors.add(:birth_date, :not_in_future) unless self.birth_date < DateTime.now
       end
     end
 
@@ -76,15 +77,15 @@ class Traveller < ApplicationRecord
     
     def max_traveller_per_cart
       if self.cart.is_full?
-        self.errors.add(:base, "You can't have more than 8 Travellers per Cart.")
+        self.errors.add(:base, :max_travellers_per_cart)
       end
     end
 
-    def check_number_of_travellers_per_trip
-      self.cart.trips.each do |trip|
-        if trip.is_full?
-          self.errors.add(:base, " #{trip.name} has no seats left.")
-        end
-      end
-    end
+    # def check_number_of_travellers_per_trip
+    #   self.cart.trips.each do |trip|
+    #     if trip.is_full?
+    #       self.errors.add(:base, " #{trip.name} has no seats left.")
+    #     end
+    #   end
+    # end
 end

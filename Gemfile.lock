@@ -180,6 +180,7 @@ GEM
       railties (>= 3.2.16)
     js_cookie_rails (2.2.0)
       railties (>= 3.1)
+    json (2.3.0)
     jwt (2.2.1)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
@@ -282,6 +283,8 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    recaptcha (5.5.0)
+      json
     regexp_parser (1.7.0)
     remotipart (1.4.4)
     representable (3.0.4)
@@ -406,6 +409,7 @@ DEPENDENCIES
   rails-erd
   rails-i18n (~> 5.1)
   rails_admin (~> 2.0)
+  recaptcha
   roo (~> 2.8)
   sass-rails (~> 5.0)
   selenium-webdriver

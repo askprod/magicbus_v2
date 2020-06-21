@@ -15,7 +15,7 @@ class Season < ApplicationRecord
       end
       
       if matches.exists?
-        errors.add(:status, "You can't have more than one active Season at a time.")
+        errors.add(:status, "You can't have more than one active Season at a time")
       end
     end
 

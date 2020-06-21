@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+    MAXIMUM_PLACES_PER_USER = 10
+
     has_one_attached :image_one
     has_one_attached :image_two
     has_one_attached :image_three
@@ -16,12 +18,12 @@ class Place < ApplicationRecord
 
     def spot_limit
         unless self.is_a_visitor?
-            if User.find(self.user.id).places.count >= 10
-                self.errors.add(:base, "You can't share more than 10 Spots for now.")
+            if User.find(self.user.id).places.count >= MAXIMUM_PLACES_PER_USER
+                self.errors.add(:base, :max_per_user, {count: MAXIMUM_PLACES_PER_USER})
             end
         else
-            unless Place.where(user_id: nil).last.created_at < Time.now - 15.seconds
-                self.errors.add(:base, "Visitors are limited to sharing Spots. Try again later.")
+            unless Place.last.created_at < Time.now - 15.seconds
+                self.errors.add(:base, :visitors_limit)
             end
         end
     end
@@ -40,7 +42,7 @@ class Place < ApplicationRecord
         check_longitudes = existing_longitudes.map{|v| v.round(4) == new_longitude}.include?(true)
 
         if check_longitudes == true && check_latitudes == true
-            self.errors.add(:base, "A Spot has already been shared here. Try another location.")
+            self.errors.add(:base, :already_shared_location)
         end
     end
 
