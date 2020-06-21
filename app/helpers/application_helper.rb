@@ -19,6 +19,14 @@ module ApplicationHelper
         trip.arrival_location['country']
     end
 
+    def latlng_departure_location(trip)
+        trip.departure_location['location']
+    end
+
+    def latlng_arrival_location(trip)
+        trip.arrival_location['location']
+    end
+
     def find_country_code(country)
         result = ISO3166::Country.find_country_by_name(country).alpha2
     end

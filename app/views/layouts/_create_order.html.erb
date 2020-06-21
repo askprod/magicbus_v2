@@ -24,7 +24,6 @@
 
       <div id="validatecart" class="text-center">
         <%= form_for(:order, :url => orders_path, :method => :post)  do |f| %>
-          <%= f.hidden_field :total_price, value: @total_price %>
 
           <% @cart.travellers.each do |traveller| %>
             <%= f.hidden_field :traveller_ids, multiple: true, value: traveller.id %>

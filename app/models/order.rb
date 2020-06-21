@@ -8,6 +8,7 @@ class Order < ApplicationRecord
     has_many :order_trips, dependent: :destroy
     has_many :trips, through: :order_trips
 
+    after_create :set_total_price
     before_save :empty_cart
     after_create :set_order_name 
     after_create :set_expiration_time
@@ -19,6 +20,15 @@ class Order < ApplicationRecord
 
     def empty_cart
         self.user.cart.clear_cart
+    end
+
+    def set_total_price
+        trips_trav = self.trips.map{|x| x.price}.sum * self.travellers.count
+        food = self.travellers.where(food_participation: false).count * Cart::FOOD_PARTICIPATION_PRICE
+        insurance = self.travellers.where(insurance_status: true).count * Cart::INSURANCE_PRICE
+        total = trips_trav + insurance - food
+        puts total
+        self.total_price ||= total
     end
 
     def only_one_pending_order

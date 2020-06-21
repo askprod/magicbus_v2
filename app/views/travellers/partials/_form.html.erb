@@ -207,12 +207,12 @@ var dateSelector = $ ("#traveller_js_date").val().toString()
 var selectedDate = dateSelector === "" ? null : moment(dateSelector, 'DD-MM-YYYY');
 
 $(document).ready(function(){
-    $('#datetimepicker1').datetimepicker({
-      date: selectedDate,
-      format: 'DD-MM-YYYY',
-      allowInputToggle: true,
-      viewMode: 'years'
-    });
+  $('#datetimepicker1').datetimepicker({
+    date: selectedDate,
+    format: 'DD-MM-YYYY',
+    allowInputToggle: true,
+    viewMode: 'years',
+  });
 });
 </script>
 

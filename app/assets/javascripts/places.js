@@ -321,6 +321,7 @@ function initPlacesMap() {
     };
 
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    var infowindow;
 
     // Bounds to reset map 
     var bounds = new google.maps.Circle({center: myCoords, radius: 900000}).getBounds();
@@ -375,7 +376,7 @@ function initPlacesMap() {
 
             var point = new google.maps.LatLng(spotLocation);
             map.setCenter(point);
-            map.setZoom(8);
+            map.setZoom(12);
             elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' })
         });
       });
@@ -409,6 +410,12 @@ function initPlacesMap() {
             anchor: new google.maps.Point(25, 42) // anchor
         };
 
+        google.maps.event.addListener(map, "click", function() {
+            if(infowindow){
+                infowindow.close();
+            }
+        });
+
          var markers = locations.map(function(location, i) {
             approved = approvals[i % approvals.length]
             secret = secrets[i % secrets.length]
@@ -440,38 +447,27 @@ function initPlacesMap() {
          });
 
          for (var i = 0; i < markers.length; i++) {
-             google.maps.event.addListener(markers[i], 'click', function(){
-                map.setZoom(8);
-                map.panTo(this.position);
-             });
-         }
-
-         for (var i = 0; i < markers.length; i++) {
             if (markers[i].approved == true) {
-            
-                var infowindow = new google.maps.InfoWindow()
 
                 google.maps.event.addListener(markers[i], 'click', function () {
-                    infowindow.setContent(                         
-                                        '<div class="gm-style-iw">'+
-                                        '<h1 id="firstHeading" class="firstHeading giveyouglory yellow" style="font-size: 15px"> <b>' + 
-                                        this.name +'</b></h1>'+
-                                        '<div id="bodyContent">'+
-                                        '<p>' + this.anecdote +' </p>' +
-                                        (this.imageOne != undefined ? ('<img src=' + this.imageOne + ' style="margin: 0 20px; height:100px; width: 100px;"></img>') : '' ) + 
-                                        (this.imageTwo != undefined ? ('<img src=' + this.imageTwo + ' style="margin: 0 20px; height:100px; width: 100px;"></img>') : '' ) + 
-                                        (this.imageThree != undefined ? ('<img src=' + this.imageThree + ' style="margin: 0 20px; height:100px; width: 100px;"></img>') : '' ) + 
-                                        '</div>'+
-                                        '</div>'
-                                        );
-                    if(!this.open){
-                        infowindow.open(map, this);
-                        this.open = true;
-                    }
-                    else {
+                    if(infowindow){
                         infowindow.close();
-                        this.open = false;
                     }
+                    infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent(
+                                            '<div class="gm-style-iw">'+
+                                            '<h1 id="firstHeading" class="firstHeading giveyouglory yellow" style="font-size: 15px"> <b>' + 
+                                            this.name +'</b></h1>'+
+                                            '<div id="bodyContent">'+
+                                            '<p>' + this.anecdote +' </p>' +
+                                            (this.imageOne != undefined ? ('<img src=' + this.imageOne + ' style="margin: 0 20px; height:100px; width: 100px;"></img>') : '' ) + 
+                                            (this.imageTwo != undefined ? ('<img src=' + this.imageTwo + ' style="margin: 0 20px; height:100px; width: 100px;"></img>') : '' ) + 
+                                            (this.imageThree != undefined ? ('<img src=' + this.imageThree + ' style="margin: 0 20px; height:100px; width: 100px;"></img>') : '' ) + 
+                                            '</div>'+
+                                            '</div>'
+                                        );
+                    infowindow.open(map, this);
+                    map.panTo(this.getPosition());                
                 })
             }
           }

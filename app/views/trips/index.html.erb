@@ -91,7 +91,7 @@
     var trips = [
         <% if @trips %>
             <% @trips.each do |trip| %>
-                {id: "<%= trip.id %>", week: "<%= trip.week %>", departure: "<%= departure_city(trip) %> <%= departure_country(trip) %>", arrival: "<%= arrival_city(trip) %>", name: "<%= trip.name %>"},
+                {id: "<%= trip.id %>", week: "<%= trip.week %>", departure_lat: {lat: <%= latlng_departure_location(trip).map{|k, v| v}.first %>, lng: <%= latlng_departure_location(trip).map{|k, v| v}.last %>}, arrival_lat: {lat: <%= latlng_arrival_location(trip).map{|k, v| v}.first %>, lng: <%= latlng_arrival_location(trip).map{|k, v| v}.last %>}, name: "<%= trip.name %>", departure: "<%= departure_city(trip) %> <%= departure_country(trip) %>", arrival: "<%= arrival_city(trip) %>"},
             <% end %>
         <% end %>
     ]

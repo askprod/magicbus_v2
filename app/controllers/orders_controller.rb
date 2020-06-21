@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = Order.new(order_params)
   end
 
   # GET /orders/1/edit
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = Order.create(order_params)
 
     if @order.valid?
       params[:order][:traveller_ids].each do |traveller|
@@ -188,7 +188,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:correct_information, :total_price, traveller_ids: [], trip_ids: []).merge(user_id: current_user.id)
+      params.require(:order).permit(:correct_information, traveller_ids: [], trip_ids: []).merge(user_id: current_user.id)
     end
 
     def check_order_owner

@@ -2,7 +2,7 @@ class Traveller < ApplicationRecord
     attr_accessor :phone_validation
     attr_accessor :food_participation_validation
 
-    FOOD_DIETS_WITH_REDUCTION = "#{FoodDiet.find_by(name_en: "Vegan").id}"
+    FOOD_DIETS_WITH_REDUCTION = FoodDiet.find_by(name_en: "Vegan").id
 
     belongs_to :cart, optional: true
     belongs_to :order, optional: true
@@ -18,7 +18,7 @@ class Traveller < ApplicationRecord
     accepts_nested_attributes_for :food_restrictions, allow_destroy: true, reject_if: :all_blank
   
     before_save :capitalize_attributes
-    after_validation :set_food_participation
+    after_create :set_food_participation
 
     validates :first_name, :last_name, :address, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
     validate :check_number_of_travellers_per_trip, on: :create
@@ -33,13 +33,13 @@ class Traveller < ApplicationRecord
     validates_format_of :email_address, with: Devise.email_regexp
 
     def set_food_participation
-      if self.food_participation_validation == FOOD_DIETS_WITH_REDUCTION
+      if self.food_diet_ids.include?(FOOD_DIETS_WITH_REDUCTION)
         self.update_attribute(:food_participation, false)
       end
     end
     
     def traveller_is_over_ten
-      # 3650 days = 10 years
+      # 3653 days = 10 years
       if self.birth_date
         if Date.today.mjd - self.birth_date.mjd < 3653
           self.errors.add(:base, "We do not accept travellers who are younger that 10 years old")
