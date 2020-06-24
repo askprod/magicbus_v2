@@ -38,7 +38,7 @@ class Cart < ApplicationRecord
     end
 
     def set_cart_name
-        name = "#{User.find(self.user_id).email.split('@')[0]}-#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}"
+        name = "#{User.find(self.user_id).email.split('@')[0].gsub!(/\W+/, '')}#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}"
         self.name ||= name
     end
 

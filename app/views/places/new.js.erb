@@ -3,6 +3,9 @@ $('#login-form').html("<%= escape_javascript(render :partial => 'places/form', :
 
 $(document).ready(function() {
     initPlacesMap2();
+    $('.grecaptcha-badge').show();
 });
 
-
+$('#close-button').click(function(){
+    $('.grecaptcha-badge').hide();
+});
