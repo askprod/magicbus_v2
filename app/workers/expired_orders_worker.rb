@@ -1,5 +1,7 @@
-desc "Delete Orders that are expired, to free available spots on the bus."
-task empty_expired_orders: :environment do
+class ExpiredOrdersWorker
+  include Sidekiq::Worker
+
+  def perform(*args)
     stars = "*" * 10
     orders_to_empty = Order.where("expires_at <=?", Time.now - 1.day)
 
@@ -23,4 +25,5 @@ task empty_expired_orders: :environment do
     puts stars
     puts "Done clearing Orders."
     puts stars
+  end
 end

@@ -1,5 +1,7 @@
-desc "Clear carts that are expired, to free available spots on the bus."
-task empty_expired_carts: :environment do
+class ExpiredCartsWorker
+  include Sidekiq::Worker
+
+  def perform(*args)
     stars = "*" * 10
     carts_to_empty = Cart.where("expires_at <=?", Time.now - 1.hour)
 
@@ -23,4 +25,6 @@ task empty_expired_carts: :environment do
     puts stars
     puts "Done clearing Carts."
     puts stars
+  end
 end
+

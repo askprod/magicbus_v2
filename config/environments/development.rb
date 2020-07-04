@@ -3,6 +3,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :mailjet
   config.action_mailer.default_url_options = { host: 'localhost:3000', protocol: 'http' }
+  
   config.active_job.queue_adapter = :sidekiq
 
   # Prevent rails from adding error fields inline within invalid form fields

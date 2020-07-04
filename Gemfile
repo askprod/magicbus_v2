@@ -120,3 +120,5 @@ gem 'i18n-js'
 gem "sidekiq", "~> 6.1"
 
 gem "redis", "~> 4.2"
+
+gem "sidekiq-cron", "~> 1.2"

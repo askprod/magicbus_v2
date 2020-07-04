@@ -1,0 +1,7 @@
+delete_expired_carts:
+  cron: "*/5 * * * *" # execute at every 5 minutes
+  class: "ExpiredCartsWorker"
+
+delete_expired_orders:
+  cron: "*/10 * * * *" # execute at every 10 minutes
+  class: "ExpiredOrdersWorker"
