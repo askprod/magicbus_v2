@@ -112,3 +112,11 @@ gem 'actiontext', github: 'kobaltz/actiontext', branch: 'archive', require: 'act
 gem 'stripe_event'
 
 gem 'recaptcha'
+
+gem 'mailjet'
+
+gem 'i18n-js'
+
+gem "sidekiq", "~> 6.1"
+
+gem "redis", "~> 4.2"

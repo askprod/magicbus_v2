@@ -106,19 +106,17 @@
         <span class="mx-3 adventpro"><%= t('nav.book_now') %></span>
       <% end %>
 
-      <% if I18n.locale == :fr %>
-        <li class="nav-item">
-          <%= link_to({:locale=> nil}, class:"nav-link") do %>
-            <%= flag_icon(:gb) %>
-          <% end %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to({:locale=>'fr'}, class:"nav-link") do %>
-            <%= flag_icon(:fr) %>
-          <% end %>
-        </li> 
-      <% end %>
+      <li class="nav-item">
+        <%= link_to({:locale=> nil}, class:"nav-link") do %>
+          <%= flag_icon(:gb) %>
+        <% end %>
+        
+      </li>
+      <li class="nav-item">
+        <%= link_to({:locale=>'fr'}, class:"nav-link") do %>
+          <%= flag_icon(:fr) %>
+        <% end %>
+      </li> 
 
     </ul>
 

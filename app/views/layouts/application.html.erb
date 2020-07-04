@@ -13,7 +13,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials[:google_maps_api_key]}&libraries=places" %>
+    <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials[:google_maps_api_key]}&language=" + I18n.locale.to_s + "&libraries=places" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script> 
 
     <%= javascript_include_tag "https://js.stripe.com/v3/" %>
@@ -21,6 +21,11 @@
     <%= tag :meta, name: "stripe-public-key", content: ENV['PUBLISHABLE_KEY'] %>
 
     <%= yield(:head_tags) %>
+
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
 
   </head>
 

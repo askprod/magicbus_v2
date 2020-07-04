@@ -1,0 +1,11 @@
+en:
+  js: 
+    maps:
+      share:
+        center_map: Center Map
+        shared_by: Shared by
+        move_me: Move Me
+        visitor: Visitor
+      trips:
+        from_word: From
+        to_word: To

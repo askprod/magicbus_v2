@@ -29,7 +29,7 @@
             <div class="row justify-content-center">
               <div class="col-sm-4 form-group text-center">
                 <%= form.label t("travellers.gender"), class: "small" %>
-                <%= form.select :gender, @genders_list.collect {|k, v| [v, k] }, {include_blank: "Select"}, class: "form-control rounded border" %>
+                <%= form.select :gender, @genders_list.collect {|k, v| [v, k] }, {include_blank: t("general_forms.select")}, class: "form-control rounded border" %>
               </div>
             </div>
 
@@ -82,7 +82,7 @@
             <div class="row">
               <div class="col-sm form-group">
                 <%= form.label t("travellers.nationality"), class: "small" %>
-                <%= form.select :nationality, @nationalities_list.collect {|k, v| [v, k] }, {include_blank: "Select"}, class: "form-control rounded border" %>
+                <%= form.select :nationality, @nationalities_list.collect {|k, v| [v, k] }, {include_blank: t("general_forms.select")}, class: "form-control rounded border" %>
               </div>
 
               <div class="col-sm form-group">
@@ -110,7 +110,7 @@
                     <%= render 'diet_traveller_fields', f: diet_traveller %>
                   <% end %>
                   <div class='links'>
-                    <%= link_to_add_association 'Add', form, :diet_travellers, class: "btn btn-stylised adventpro my-2", id:"add_food_diets_association" %>
+                    <%= link_to_add_association t("travellers.add_word"), form, :diet_travellers, class: "btn btn-stylised adventpro my-2", id:"add_food_diets_association" %>
                   </div>
                 </div> 
               </div> 
@@ -122,7 +122,7 @@
                     <%= render 'restriction_traveller_fields', f: restriction_traveller %>
                   <% end %>
                   <div class='links'>
-                    <%= link_to_add_association 'Add', form, :restriction_travellers, class: "btn btn-stylised adventpro my-2", id: "add_food_restrictions_association" %>
+                    <%= link_to_add_association t("travellers.add_word"), form, :restriction_travellers, class: "btn btn-stylised adventpro my-2", id: "add_food_restrictions_association" %>
                   </div>
                 </div>
               </div> 
@@ -147,28 +147,28 @@
               <div class="form-check mx-5 my-3">
                 <%= form.check_box :valid_passport, class:"form-check-input", style:"margin-top: 7px;" %>          
                 <%= form.label :valid_passport, class:"form-check-label" do %> 
-                  <span class="small">I certify that this traveller is in possession of valid <span class="font-weight-bold">administrative documents</span> required for their stay in the countries concerned by this trip (up to date VISA, Passport, etc...). These documents will be requested upon arrival. If the traveller is not in possession of these documents, he/she will not be accepted on board, and will not be able to claim any refund or indemnity.</span>
+                  <%= render 'travellers/partials/check_valid_passport' %>
                 <% end %>
               </div>
 
               <div class="form-check mx-5 my-3">
                 <%= form.check_box :sanitary_conditions, class:"form-check-input", style:"margin-top: 7px;" %>          
                 <%= form.label :sanitary_conditions, class:"form-check-label" do %> 
-                  <span class="small">I certify that this traveller meets the necessary <span class="font-weight-bold">health and sanitary conditions</span> required in the countries concerned by this trip.</span>
+                  <%= render 'travellers/partials/check_sanitary_conditions' %>
                 <% end %>
               </div>
 
               <div class="form-check mx-5 my-3" id="minor-checkbox" style="display: none;">
                 <%= form.check_box :accompanied_minor, class:"form-check-input", style:"margin-top: 7px;" %>          
                 <%= form.label :accompanied_minor, class:"form-check-label" do %> 
-                  <span class="small">I certify that this minor traveller will be accompanied by an adult. If this is not the case upon departure, this traveller will be refused, and will not be able to claim any refund or indemnity.</span>
+                  <%= render 'travellers/partials/check_accompanied_minor' %>
                 <% end %>
               </div>
 
             <div class="blackline"></div>
 
             <div class="actions">
-              <%= form.submit "Save Traveller", class: "mb-3 btn btn-lg btn-stylised btn-block adventpro" %>
+              <%= form.submit t("general_forms.submit"), class: "mb-3 btn btn-lg btn-stylised btn-block adventpro" %>
             </div>
           </div>
 
@@ -204,7 +204,7 @@ $("#traveller_phone_number").change(function() {
 
 <script>
 var dateSelector = $ ("#traveller_js_date").val().toString()
-var selectedDate = dateSelector === "" ? null : moment(dateSelector, 'DD-MM-YYYY');
+var selectedDate = dateSelector === "" ? null : moment(dateSelector, 'YYYY-MM-DD');
 
 $(document).ready(function(){
   $('#datetimepicker1').datetimepicker({

@@ -1,7 +1,7 @@
 <div id="trip<%= trip.id %>" class="my-4" style="background-image: url('<%= rails_blob_url(trip.picture)%>'); background-size: cover; background-position: center;">
     <div class="text-block-cart py-5 text-center ">
         <div class="row no-gutters justify-content-center">
-            <div class="col-lg-6 col-sm-5 my-auto">
+            <div class="col-lg-3 col-sm-3 my-auto">
                 <h3 class="adventpro"><%= t("trips.week") %> <%= trip.week %></h3>
                 <p class="small"><%= trip.name %></p>
             </div>
@@ -17,8 +17,12 @@
                 <h5 class="adventpro"><%= arrival_city(trip) %><span class="h6 ml-3">[ <%= find_country_code(departure_country(trip)) %> ]</span></h5> 
                 <p><%= trip.arrival_date.to_formatted_s(:long_ordinal) %></p>
             </div>
+            <div class="col-lg-3 col-sm-3 my-auto">
+                <h3 class="adventpro"><%= trip.price %>€</h3>
+                <p class="small"><%= t("trips.per_traveller") %></p>
+            </div>
         </div>
-    </div>
+    </div> 
     <div class="text-block-description small p-4">
         <p><%= trip.description %></p>
     </div>    

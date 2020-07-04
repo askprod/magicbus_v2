@@ -2,21 +2,21 @@
   <% flash.each do |type, msg| %>
 
     <% if type == "notice" %>
-      <div class="alert alert-success alert-dismissible fade show">
+      <div class="alert alert-success alert-dismissible">
         <%= msg %> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     <% elsif type == "alert" %>
-      <div class="alert alert-danger alert-dismissible fade show">
+      <div class="alert alert-danger alert-dismissible">
         <%= msg %> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     <% else %>
-      <div class='alert alert-<%= "#{type}" %> alert-dismissible fade show'>
+      <div class='alert alert-<%= "#{type}" %> alert-dismissible'>
         <%= msg %> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>

@@ -34,9 +34,42 @@ RailsAdmin.config do |config|
     navigation_label "Users"
     weight -6
 
+    object_label_method do
+      :rails_admin_name
+    end
+
     list do
       field :email
       field :created_at
+      field :first_name
+      field :last_name
+      field :confirmed_at do 
+        label "Account Confirmed?"
+        pretty_value do 
+          if bindings[:object].present?
+            %{<span class="label label-success">✓</span>}.html_safe
+          else
+            %{<span class="label label-danger">✘</span>}.html_safe
+          end
+        end
+      end
+      field :orders
+    end
+
+    show do
+      field :picture
+      field :admin
+      field :email
+      field :first_name
+      field :last_name
+      field :created_at
+      field :confirmed_at
+      field :cart
+      field :orders
+      field :coupons
+      field :places do
+        label "Shared Spots"
+      end
     end
   end
 
@@ -129,9 +162,12 @@ RailsAdmin.config do |config|
     parent User
 
     list do 
-      field :id
+      field :name 
+      field :user
       field :total_price
+      field :payment_status
       field :created_at
+      field :expires_at
       field :travellers
     end
   end
@@ -142,27 +178,19 @@ RailsAdmin.config do |config|
     weight -4
 
     list do
-      sort_by :approved_status
+      sort_by :created_at
       field :approved_status do
         label "Approved?"
-        column_width 100
       end
       field :secret_status do 
         label "Secret?"
-        column_width 80
       end 
       field :is_a_visitor?, :boolean do
         label "Visitor?"
       end
-      field :user do
-        column_width 80
-      end
-      field :name do
-        column_width 80
-      end
-      field :description do
-        column_width 100
-      end
+      field :user 
+      field :name
+      field :description
     end
 
     show do 

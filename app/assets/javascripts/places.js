@@ -347,7 +347,7 @@ function initPlacesMap() {
         controlText.style.lineHeight = '38px';
         controlText.style.paddingLeft = '5px';
         controlText.style.paddingRight = '5px';
-        controlText.innerHTML = 'Center Map';
+        controlText.innerHTML = I18n.t("js.maps.share.center_map");
         controlUI.appendChild(controlText);
       
         // Setup the click event listeners: simply set the map to Chicago.
@@ -430,6 +430,8 @@ function initPlacesMap() {
                     name: names[i % names.length],
                     anecdote: anecdotes[i % anecdotes.length],
                     approved: approvals[i % approvals.length],
+                    user: users[i % users.length],
+                    userLogo: usersLogo[i % usersLogo.length],
                     imageOne: blobOne[i % blobOne.length],
                     imageTwo: blobTwo[i % blobTwo.length],
                     imageThree: blobThree[i % blobThree.length],
@@ -455,9 +457,19 @@ function initPlacesMap() {
                     }
                     infowindow = new google.maps.InfoWindow();
                     infowindow.setContent(
+                                            '<h1 style="font-size: 10px">'+
+                                            I18n.t("js.maps.share.shared_by") + 
+                                            ': <b>' + 
+                                            this.user +
+                                            '</b></h1>' + 
+                                            '<h1 style="font-size: 12px"><b>' + 
+                                            (this.userLogo != undefined ? ('<img src=' + this.userLogo + ' style="border-radius: 20px; margin: 0; height:25px; width: 25px;"></img> ') : '<i style="margin: 0; font-size:25px;" class="fa fa-user"></i> ' ) + 
+                                            '</b></h1>'+
+                                            '<hr>' + 
                                             '<div class="gm-style-iw">'+
-                                            '<h1 id="firstHeading" class="firstHeading giveyouglory yellow" style="font-size: 15px"> <b>' + 
+                                            '<h1 id="firstHeading" class="firstHeading yellow" style="font-size: 15px"> <b>' + 
                                             this.name +'</b></h1>'+
+                                            '<div class="gm-style-iw">'+
                                             '<div id="bodyContent">'+
                                             '<p>' + this.anecdote +' </p>' +
                                             (this.imageOne != undefined ? ('<img src=' + this.imageOne + ' style="margin: 0 20px; height:100px; width: 100px;"></img>') : '' ) + 
@@ -479,10 +491,10 @@ function initPlacesMap() {
             gridSize: 20,
             styles: 
                 [{
-                height: 50,
-                url: '../images/marker_cluster.png',
-                width: 50,
+                url: '../images/marker_cluster.svg',
                 textColor: 'transparent',
+                height: 50,
+                width: 50,
             }
                 ]
             }
@@ -509,7 +521,9 @@ function initPlacesMap() {
         draggable: true
     });
     var infowindow = new google.maps.InfoWindow({
-        content: "Move Me!",
+        content: '<h1 style="font-size:11px; text-align:center; margin: 0;">' + 
+                I18n.t('js.maps.share.move_me') + 
+                '</h1>'
     });
 
     infowindow.open(map2, marker);

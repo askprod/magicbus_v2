@@ -37,7 +37,7 @@ class PlacesController < ApplicationController
         if @place.save
           format.js
           score = recaptcha_reply['score']
-          flash[:notice] = "Spot created successfully, with a reCaptcha score of #{score}."
+          flash[:notice] = t("flashes.places.successful_create", score: score)
         else
           format.js { render :new }
           flash.now[:alert] = @place.errors.full_messages.join(', ') if @place.errors.any?
@@ -45,7 +45,7 @@ class PlacesController < ApplicationController
         end
       else
         score = recaptcha_reply['score']
-        flash.now[:alert] = "Spot was denied because of a Recaptcha score of #{score}."
+        flash.now[:alert] = t("flashes.places.failed_captcha", score: score)
         format.js { render :new }
       end
     end
@@ -57,7 +57,7 @@ class PlacesController < ApplicationController
     respond_to do |format|
       if @place.update(place_params)
         format.js
-        flash[:notice] = "Spot updated successfully."
+        flash[:notice] = t("flashes.places.successful_update")
       else
         format.js { render :edit, :locals => {:place => @place} }
         flash.now[:alert] = @place.errors.full_messages.join(', ') if @place.errors.any?
@@ -71,7 +71,7 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
     respond_to do |format|
-      format.html { redirect_to places_url, notice: 'Place was successfully destroyed.' }
+      format.html { redirect_to places_url, notice: t("flashes.places.successful_delete") }
       format.json { head :no_content }
     end
   end

@@ -2,13 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :confirmable
 
   has_one_attached :picture
   has_many :orders
   has_one :cart, dependent: :destroy
-  has_many :places
-  has_many :coupon_users
+  has_many :places, dependent: :destroy
+  has_many :coupon_users, dependent: :destroy
   has_many :coupons, through: :coupon_users
 
   validates_acceptance_of :terms_and_conditions, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create
@@ -19,7 +20,8 @@ class User < ApplicationRecord
   scope :admin, -> {where(admin: true)}
 
   before_save :capitalize_names
-  after_create :send_welcome_mail
+  # after_create :send_welcome_mail
+  # after_create :add_to_mailing_list
 
   def capitalize_names
     self.first_name = first_name.camelcase
@@ -38,7 +40,17 @@ class User < ApplicationRecord
     end
   end
 
-  def send_welcome_mail
-    # UserMailer.welcome_email(self).deliver_now!
+  def rails_admin_name
+    "#{first_name} #{last_name}"
   end
+
+  # def send_welcome_mail
+  #   UserMailer.welcome_email(self.email).deliver!
+  #   puts "**" * 1000
+  #   puts self.email
+  #   puts "Sent email"
+  # end
+
+  # def add_to_mailing_list
+  # end
 end

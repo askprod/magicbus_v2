@@ -103,21 +103,21 @@
 $(document).ready(function() {
   $('#country_select').change(function() {
     $('#theme_select').val('All');
-    $.ajax({ url: '/travel/sort-trips-country/' + this.value });
+    $.ajax({ url: '/' + I18n.currentLocale() + '/travel/sort-trips-country/' + this.value });
   });
 });
 
 $(document).ready(function() {
   $('#theme_select').change(function() {
     $('#country_select').val('All');
-    $.ajax({ url: '/travel/sort-trips-theme/' + this.value });
+    $.ajax({ url: '/' + I18n.currentLocale() + '/travel/sort-trips-theme/' + this.value });
   });
 });
 
 $("#date-reset").click(function() {
     $('#theme_select').val('All');
     $('#country_select').val('All');
-    $.ajax({ url: '/travel/sort-trips-date/reset'  });
+    $.ajax({ url: '/' + I18n.currentLocale() + '/travel/sort-trips-date/reset'  });
 
 });
 </script>

@@ -2,12 +2,8 @@
 
 class Users::SessionsController < Devise::SessionsController
 
-  respond_to :html, :js
-
-  before_action :log_failed_login, :only => :new
-
-
-  # before_action :configure_sign_in_params, only: [:create]
+  clear_respond_to
+  respond_to :js
 
   # GET /resource/sign_in
   def new
@@ -20,6 +16,7 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
+    set_flash_message :notice, :signed_in
     sign_in(resource_name, resource)
     yield resource if block_given?
     respond_with resource, location: after_sign_in_path_for(resource)
@@ -32,16 +29,12 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
 
-  def log_failed_login
-      flash.now[:alert] = set_flash_message :alert, :invalid if failed_login?
-  end 
-
-  def failed_login?
-    (options = request.env["warden.options"]) && options[:action] == "unauthenticated"
-  end 
-
   def after_sign_in_path_for(resource)
-    set_flash_message :notice, :signed_in
+    request.referrer
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    request.referrer
   end
 
   # If you have extra params to permit, append them to the sanitizer.

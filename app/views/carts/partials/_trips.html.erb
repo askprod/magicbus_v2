@@ -1,35 +1,29 @@
-<div id="trip<%= trip.id %>" class="my-2" style="background-image: url('<%= rails_blob_url(trip.picture)%>'); background-size: cover; background-position: center;">
-    <div class="text-block-cart adventpro py-3">
-
-        <div class="row text-center justify-content-center">
-            <div class="col-3 my-auto">
-                <p>Week <%= trip.week %></p>
+<div id="trip<%= trip.id %>" class="my-4" style="background-image: url('<%= rails_blob_url(trip.picture)%>'); background-size: cover; background-position: center;">
+    <div class="text-block-cart py-4 text-center position-relative">
+        <div class="row no-gutters justify-content-center">
+            <div class="col-lg-3 col-sm-3 my-auto">
+                <h3 class="adventpro"><%= t("trips.week") %> <%= trip.week %></h3>
                 <p class="small"><%= trip.name %></p>
             </div>
-
-            <div class="col-3 my-auto">
-                <p class="small">Departure<p> 
-                <p><%= departure_city(trip) %></p> 
+            <div class="col-lg-2 col-sm-3 my-auto">
+                <h5 class="adventpro"><%= departure_city(trip) %><span class="h6 ml-3">[ <%= find_country_code(departure_country(trip)) %> ]</span></h5> 
                 <p><%= trip.departure_date.to_formatted_s(:long_ordinal) %></p>
             </div>
-
-            <div class="col-3 my-auto">
-                <p class="small">Arrival</p> 
-                <p><%= arrival_city(trip) %></p> 
+            <div class="col-lg-1 col-sm-1 my-auto px-0 mx-0">
+                <%= fa_icon "chevron-right 2x", class:"px-0 hide-sm"%>
+                <%= fa_icon "chevron-down 2x", class:"px-0 hide-lg"%>
+            </div>
+            <div class="col-lg-2 col-sm-3 my-auto">
+                <h5 class="adventpro"><%= arrival_city(trip) %><span class="h6 ml-3">[ <%= find_country_code(departure_country(trip)) %> ]</span></h5> 
                 <p><%= trip.arrival_date.to_formatted_s(:long_ordinal) %></p>
             </div>
-
-            <div class="col-3 my-auto">
-                <p><%= trip.price %>€</p>
-                <p class="small">per traveller</p>
+            <div class="col-lg-3 col-sm-3 my-auto">
+                <h3 class="adventpro"><%= trip.price %>€</h3>
+                <p class="small"><%= t("trips.per_traveller") %></p>
             </div>
+            <%= button_to t("carts.remove_from_cart"), {:controller => "trips", :action => "remove_from_cart", :trip_id => trip.id, :response_type => "html"}, {class: "btn btn-danger mt-3", remote: true} %>
         </div>
-
-        <div class="row text-center justify-content-center py-1">
-            <div class="col my-auto">
-                <%= button_to "Remove from Cart", {:controller => "trips", :action => "remove_from_cart", :trip_id => trip.id, :response_type => "html"}, {class: "btn btn-danger", remote: true} %>
-            </div>
-        </div>
-
-    </div>
+    </div> 
 </div>
+
+

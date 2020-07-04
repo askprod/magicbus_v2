@@ -5,7 +5,7 @@
         <table>
           <tr>
             <td class="title">
-              <%= image_tag image_url('/images/logo_black.png', class:"img-fluid") %>
+              <%= wicked_pdf_image_tag '/images/logo_black.png', class:"img-fluid" %>
             </td>
 
             <td>
@@ -139,7 +139,7 @@
 <div class="page-break"></div>
 
 <div class="big-header">
-    <%= image_tag(image_url('/images/logo_round.png'), size: "180x180") %>
+    <%= wicked_pdf_image_tag '/images/logo_round.png', size: "180x180" %>
     <p>CONTRAT DE VOYAGE</p>
     <p>FORFAIT TOURISTIQUE</p>
 </div>
@@ -173,7 +173,7 @@
 <div class="page-break"></div>
 
 <div class="small-header">
-    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
     <p>CONTRAT DE VOYAGE</p>
     <p>FORFAIT TOURISTIQUE</p>
 </div>
@@ -238,7 +238,7 @@
 
 <div class="page-break"></div>
 <div class="small-header">
-    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
     <p>CONTRAT DE VOYAGE</p>
     <p>FORFAIT TOURISTIQUE</p>
 </div>
@@ -265,7 +265,7 @@
   <p class="secondary-titles">PAYS TRAVERSE(S)</p>
   <div class="p-text-no-margin">
     <p>Durant les voyages stipulés dans la rubrique précédente, les voyageurs traverserons les pays suivants:</p>
-    <p class="b"><%= @order_trips.map{|x| x.departure_location['country']}.uniq.join(",") %></p>
+    <p class="b"><%= @order.trips.order(:week).map{|x| x.departure_location['country']}.uniq.join(",") %></p>
   </div>
 </div>
 
@@ -393,7 +393,7 @@
 <div class="page-break"></div>
 
 <div class="small-header">
-    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
     <p>CONTRAT DE VOYAGE</p>
     <p>FORFAIT TOURISTIQUE</p>
 </div>
@@ -436,7 +436,7 @@
 <div class="page-break"></div>
 
 <div class="small-header">
-    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
     <p>CONTRAT DE VOYAGE</p>
     <p>FORFAIT TOURISTIQUE</p>
 </div>
@@ -562,7 +562,7 @@
 <div class="page-break"></div>
 
 <div class="small-header">
-    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
     <p>CONTRAT DE VOYAGE</p>
     <p>FORFAIT TOURISTIQUE</p>
 </div>
@@ -624,7 +624,7 @@
 <div class="page-break"></div>
 
 <div class="small-header">
-    <%= image_tag(image_url('/images/logo_round.png'), size: "90x90") %>
+    <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
     <p>CONTRAT DE VOYAGE</p>
     <p>FORFAIT TOURISTIQUE</p>
 </div>
@@ -638,7 +638,7 @@
     <div class="float-right">
       <p class="traveller-title">Le Détaillant</p>
       <p>Lisette Abadie</p>
-      <%= image_tag image_url('/images/signature_lilly.png', class:"img-fluid") %>
+      <%= wicked_pdf_image_tag '/images/signature_lilly.png', class:"img-fluid" %>
     </div>
     <p class="traveller-title">Le Client</p>
     <p><%= @order.details['charges']['data'][0]['billing_details']['name'] %></p>

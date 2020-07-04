@@ -26,9 +26,14 @@ when "development"
     Theme.create!(name_en: "Woodland", name_fr: "Bois")
     Theme.create!(name_en: "Jungle", name_fr: "Jungle")
 
-    User.create!(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
+    admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
+    admin.skip_confirmation!
+    admin.save!
+
     5.times do |index|
-        User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email:"mail#{index}@mail.com", password:"password", terms_and_conditions: true, admin: false)
+        user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email:"mail#{index}@mail.com", password:"password", terms_and_conditions: true, admin: false)
+        user.skip_confirmation!
+        user.save!
     end
 
     Season.create!(status: true)
@@ -48,8 +53,10 @@ when "development"
 
 when "production"
 
-    User.create!(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
-    
+    admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
+    admin.skip_confirmation!
+    admin.save!
+
     Theme.create!(name_en: "Mountain", name_fr: "Montagne")
     Theme.create!(name_en: "Sea", name_fr: "Mer")
     Theme.create!(name_en: "Ocean", name_fr: "Océan")

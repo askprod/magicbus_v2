@@ -61,7 +61,7 @@
       <div class="col-lg-2 col-sm-3 px-1 border shadow-sm mx-2 background-yellow mb-1">
         <div class="row no-gutters">
           <div class="col-2">
-            <%= image_tag("/images/marker_cluster.png", class: "m-auto", size: "40x40") %>
+            <%= image_tag("/images/marker_cluster.svg", class: "m-auto", size: "40x40") %>
           </div>
           <div class="col-6 m-auto">
             <p class="small m-0"><%= t('share.cluster_spots') %></p>
@@ -175,6 +175,30 @@
     <% end %>
   ]
 
+  var users = [
+    <% @places.each do |place| %>
+      <% if place.user %>
+        "<%= place.user.first_name %> <%= place.user.last_name[0] %>.",
+      <% else %>
+        I18n.t("js.maps.share.visitor"),
+      <% end %>
+    <% end %>
+  ]
+
+  var usersLogo = [
+    <% @places.each do |place| %>
+      <% if place.user %>
+        <% if place.user.picture.attached? %>
+          "<%= rails_blob_url(place.user.picture) %>",
+        <% else %>
+          undefined,
+        <% end %>
+      <% else %>
+        undefined,
+      <% end %>
+    <% end %>
+  ]
+
   var blobOne = [
     <% @places.each do |place| %>
       <% if place.image_one.attached? %>
@@ -215,4 +239,4 @@
     </script>
 <% end %> 
 
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>

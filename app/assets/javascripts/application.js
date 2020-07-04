@@ -22,13 +22,15 @@
 //= require cocoon
 //= require intlTelInput
 //= require libphonenumber/utils
+//= require i18n/translations
 //= require turbolinks
 //= require cookies_eu
 //= require_tree .
 
 // Petite croix pour cacher fênetres AJAX de connection/inscription/edit
 $(document).on("click", "#close-button", function(){
-  $('#login-form').hide();
+  $('#login-form').fadeOut();
+  $('#alert').hide();
 });
 
 // Buttons that close navbar on mobile
@@ -49,11 +51,11 @@ $(document).ready(function(){
 });
   
 // Fade out alert/flash partial.
-$(document).ready(function(){
-  setTimeout(function(){
-    $('#alert').fadeOut();
-  }, 3000);
-  })
+$(document).on('turbolinks:load', function(){
+  $("#alert").delay(4000).slideUp(300, function(){
+        $("#alert").alert('close');
+  });
+});
   
 // Hide/Show Navbar on scroll
 $(document).ready(function () {

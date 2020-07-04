@@ -164,6 +164,7 @@ en:
     add_to_cart: Add to Cart
     book_trip: Book this Trip
     or_word: OR
+    per_traveller: per traveller
   travellers: 
     add_traveller: Add a Traveller
     traveller: Traveller
@@ -187,7 +188,15 @@ en:
     food_restrictions: Food Allergies
     comment: Comment
     medical_condition: Specific Medical Condition
+    add_word: Add
+    traveller_fill: 
+      to_complete: To Complete
+      add_info: Add Information
+    traveller_info:
+      is_complete: Informations Completed
+      edit_info: Edit Informations
   share_form:
+    search_address: Search with an address
     is_secret: Is this a secret spot?
     current_pictures: Current pictures
     picture_1: Picture 1
@@ -199,6 +208,12 @@ en:
     no_orders: No Orders
     recent_tab: Recent Order
     paid_tab: Paid Orders
+  carts: 
+    empty_cart: You cart is empty
+    book_trip: Book a Trip
+    your_trips: Your Trips
+    your_travellers: Your Travellers
+    remove_from_cart: Remove from cart
   recent_orders:
     travellers_info: Travellers Informations
     trips_info: Trips Information
@@ -213,6 +228,25 @@ en:
     download_pdf: Download PDF
     paid_on: paid on
     no_paid_orders: No paid orders
+  flashes:
+    travellers:
+      successful_create: Traveller was successfully created
+      successful_delete: Traveller successfully deleted
+      successful_update: Traveller successfully updated
+    orders:
+      successful_create: Order was successfully created
+      successful_delete: Order successfully deleted
+      successful_update: Order successfully updated
+      successful_payment: Your payment was successful!
+      could_not_process: We could not process your order. Please contact us
+      code_applied: Promo code successfully applied
+      code_removed: Promo code successully removed
+      invalid_code: Promo code is invalid
+    places:
+      successful_create: Spot created successfully, with a reCaptcha score of %{score}
+      successful_update: Spot was successfully updated
+      successful_delete: Spot was successfully deleted
+      failed_captcha: Spot was denied because of a Recaptcha score of %{score}
   activerecord:
     attributes:
       traveller:
@@ -222,7 +256,8 @@ en:
       models:
         traveller:
           attributes:
-            phone_number: is invalid
+            phone_number: 
+              incorrect_format: is invalid
             birth_date:
               not_in_future: can't be in the future
             base:

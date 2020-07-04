@@ -138,7 +138,7 @@ fr:
     secret_spot: Spot Secret
     cluster_spots: Groupe de Spots
     your_shared_spots: Tes spots partagés
-    share_another_spot: Nouveau Spot  
+    share_another_spot: Nouveau Spot 
   travel:
     travel_with_magicbus: Voyage avec MagicBus
     sort_by_country: Trier par Pays
@@ -164,6 +164,7 @@ fr:
     add_to_cart: Ajouter au Panier
     book_trip: Reserver ce Voyage
     or_word: OU
+    per_traveller: par voyageur
   travellers: 
     add_traveller: Ajouter un Voyageur
     traveller: Voyageur
@@ -187,7 +188,15 @@ fr:
     food_restrictions: Allergies Alimentaires
     comment: Commentaire
     medical_condition: Conditions Médicales Spécifiques
+    add_word: Ajouter
+    traveller_fill: 
+      to_complete: À complèter
+      add_info: Ajouter les informations
+    traveller_info:
+      is_complete: Informations Complètes
+      edit_info: Editer les Informations
   share_form:
+    search_address: Recherche par addresse
     is_secret: C'est un secret spot?
     current_pictures: Photos
     picture_1: Photo 1
@@ -199,6 +208,12 @@ fr:
     no_orders: Pas de Commandes
     recent_tab: Commande en Cours
     paid_tab: Commandes Payées
+  carts: 
+    empty_cart: Ton panier est vide
+    book_trip: Réserver un Voyage
+    your_trips: Tes Voyages
+    your_travellers: Tes Voyageurs
+    remove_from_cart: Supprimer du panier
   recent_orders:
     travellers_info: Informations Voyageurs
     trips_info: Informations Voyages
@@ -213,6 +228,25 @@ fr:
     download_pdf: Télécharger PDF
     paid_on: payée le
     no_paid_orders: Pas de commande payée
+  flashes:
+    travellers:
+      successful_create: Voyageur créé avec succès
+      successful_delete: Voyageur supprimé avec succès
+      successful_update: Voyageur mis à jour avec succès
+    orders:
+      successful_create: Commande créée avec succèes
+      successful_delete: Commande supprimée avec succèes
+      successful_update: Commande mise à jour avec succès
+      successful_payment: Votre paiement a été pris en compte avec succès
+      could_not_process: Nous avons eu un problème lors de votre réservation. Veuillez nous contacter
+      code_applied: Code promo appliqué avec succès
+      code_removed: Code promo retiré avec succès
+      invalid_code: Code promo invalide
+    places:
+      successful_create: Spot créé avec succès, avec un score reCaptcha de %{score}
+      successful_update: Spot mis à jour avec succès
+      successful_delete: Spot supprimé avec succès
+      failed_captcha: Création du Spot refusée, car votre score reCaptcha est de %{score}
   activerecord:
     attributes:
       traveller:

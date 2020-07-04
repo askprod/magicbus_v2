@@ -8,6 +8,49 @@ function initMap() {
   mapTypeControl: false,
   styles: [
     {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#444444"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "weight": "2"
+            },
+            {
+                "lightness": "-60"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
         "elementType": "labels",
         "stylers": [
             {
@@ -16,40 +59,61 @@ function initMap() {
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
+        "featureType": "administrative.locality",
+        "elementType": "all",
         "stylers": [
-            {
-                "saturation": 36
-            },
-            {
-                "color": "#000000"
-            },
-            {
-                "lightness": 40
-            },
             {
                 "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
+        "featureType": "administrative.locality",
+        "elementType": "labels",
         "stylers": [
             {
-                "visibility": "off"
-            },
-            {
-                "color": "#000000"
-            },
-            {
-                "lightness": 16
+                "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "all",
+        "featureType": "administrative.neighborhood",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.neighborhood",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
         "elementType": "labels.icon",
         "stylers": [
             {
@@ -58,71 +122,122 @@ function initMap() {
         ]
     },
     {
-        "featureType": "administrative",
-        "elementType": "geometry.fill",
+        "featureType": "landscape",
+        "elementType": "all",
         "stylers": [
             {
-                "lightness": 20
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "color": "#b8b8b8"
-            },
-            {
-                "lightness": "14"
+                "color": "#f2f2f2"
             }
         ]
     },
     {
         "featureType": "landscape",
-        "elementType": "geometry",
+        "elementType": "labels",
         "stylers": [
             {
-                "color": "#000000"
-            },
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "labels",
+        "stylers": [
             {
-                "lightness": 20
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.terrain",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.terrain",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.terrain",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     },
     {
         "featureType": "poi",
-        "elementType": "geometry",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#000000"
-            },
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [
             {
-                "lightness": 21
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "on"
             }
         ]
     },
     {
         "featureType": "road",
-        "elementType": "geometry.fill",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#f9f9f9"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#ffffff"
+                "saturation": -100
             },
             {
-                "lightness": 17
+                "lightness": 45
             },
             {
                 "visibility": "off"
@@ -130,18 +245,27 @@ function initMap() {
         ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
+        "featureType": "road",
+        "elementType": "labels",
         "stylers": [
             {
-                "color": "#000000"
-            },
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
             {
-                "lightness": 29
-            },
-            {
-                "weight": 0.2
-            },
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "labels",
+        "stylers": [
             {
                 "visibility": "off"
             }
@@ -149,50 +273,17 @@ function initMap() {
     },
     {
         "featureType": "road.arterial",
-        "elementType": "geometry",
+        "elementType": "labels.icon",
         "stylers": [
             {
-                "lightness": 18
-            },
-            {
-                "visibility": "off"
+                "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "road.arterial",
-        "elementType": "geometry.fill",
+        "featureType": "transit",
+        "elementType": "all",
         "stylers": [
-            {
-                "color": "#ffffff"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#000000"
-            },
-            {
-                "lightness": 16
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#fffcfc"
-            },
             {
                 "visibility": "off"
             }
@@ -200,14 +291,8 @@ function initMap() {
     },
     {
         "featureType": "transit",
-        "elementType": "geometry",
+        "elementType": "labels",
         "stylers": [
-            {
-                "color": "#000000"
-            },
-            {
-                "lightness": 19
-            },
             {
                 "visibility": "off"
             }
@@ -215,17 +300,26 @@ function initMap() {
     },
     {
         "featureType": "water",
-        "elementType": "geometry",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#ffffff"
+                "color": "#3c5e6c"
             },
             {
-                "lightness": 17
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     }
-]
+  ]
   };
 
   var map = new google.maps.Map(document.getElementById('bus-map'), mapOptions);
@@ -266,7 +360,7 @@ function initMap() {
         controlText.style.lineHeight = '38px';
         controlText.style.paddingLeft = '5px';
         controlText.style.paddingRight = '5px';
-        controlText.innerHTML = 'Center Map';
+        controlText.innerHTML = I18n.t("js.maps.share.center_map");
         controlUI.appendChild(controlText);
 
         // Setup the click event listeners: simply set the map to Chicago.
@@ -320,14 +414,14 @@ function initMap() {
 
         codeAddress();
 
-        var startPoint = trips[0].departure
-        var endPoint = trips[trips.length-1].arrival
+        var startPoint = trips[0].departure_lat
+        var endPoint = trips[trips.length-1].arrival_lat
         var steps = []
 
         for (var y = 1; y < trips.length; y++) {
             var currentElement = trips[y];
             steps.push ({
-            location: currentElement.departure,
+            location: currentElement.departure_lat,
             stopover: true});
             };
 
@@ -340,7 +434,7 @@ function initMap() {
             };
             directionsService.route(requestRoute, function(result, status) {
             if (status == 'OK') {
-                var testvar = directionsRenderer.setDirections(result);
+                directionsRenderer.setDirections(result);
             }
             });
         }
@@ -414,8 +508,12 @@ function initMap() {
                     '</div>'+
                     '<h1 id="firstHeading" class="firstHeading" style="font-size: 15px;"> <b>' + marker.name + '</b></h1>'+
                     '<div id="bodyContent" style="font-size: 12px; line-height: 2px;">'+
-                    '<p>' + '<span style="text-decoration: underline;">' + "from" + '</span>' + ": " + '<b>' + trips[i % trips.length].departure + '</b>' +'</p>'+
-                    '<p>' + '<span style="text-decoration: underline;">' + "to" + '</span>' + ": " + '<b>' + trips[i % trips.length].arrival + '</b>' +' </p>'+
+                    '<p>' + '<span style="text-decoration: underline;">' + 
+                    I18n.t("js.maps.trips.from_word") + 
+                    '</span>' + ": " + '<b>' + trips[i % trips.length].departure + '</b>' +'</p>'+
+                    '<p>' + '<span style="text-decoration: underline;">' + 
+                    I18n.t("js.maps.trips.to_word") + 
+                    '</span>' + ": " + '<b>' + trips[i % trips.length].arrival + '</b>' +' </p>'+
                     '</div>'+
                     '</div>';
                 

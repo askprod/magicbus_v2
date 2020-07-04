@@ -2,7 +2,8 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  respond_to :html, :js
+  clear_respond_to
+  respond_to :js
 
   # GET /resource/sign_up
   # def new
@@ -90,7 +91,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else 
       flash[:alert] = resource.errors.full_messages.first
     end
-    redirect_to new_user_registration_path, turbolinks: false
+    render 'new'
   end
 
   def response_to_edit_failure(resource)

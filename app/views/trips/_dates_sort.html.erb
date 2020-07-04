@@ -17,7 +17,7 @@
 
 <script>
 $("#date-search").click(function() {
-    $.ajax({ url: '/travel/sort-trips-date/' + $('#dateStart').data('date') + '+' + $('#dateEnd').data('date')  });
+    $.ajax({ url: '/' + I18n.currentLocale() + '/travel/sort-trips-date/' + $('#dateStart').data('date') + '+' + $('#dateEnd').data('date')  });
 });
 
 $('#dateStart').datetimepicker({

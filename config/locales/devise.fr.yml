@@ -45,6 +45,8 @@ fr:
       update_needs_confirmation: "Votre compte a bien été mis à jour mais nous devons vérifier votre nouvelle adresse email. Merci de vérifier vos emails et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse."
       updated: "Votre compte a été modifié avec succès."
       updated_but_not_signed_in: "Votre compte a été modifié avec succès. Merci de vous reconnecter."
+      user:
+        not_empty: "Veuillez bien renseigner tous les champs." 
     sessions:
       signed_in: "Connecté."
       signed_out: "Déconnecté."

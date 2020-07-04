@@ -32,7 +32,7 @@ class TravellersController < ApplicationController
     respond_to do |format|
       if @traveller.save
         format.js
-        flash[:notice] = "Traveller created successfully."
+        flash[:notice] = t("flashes.travellers.successful_create")
       else
         format.js { render :new }
         flash.now[:alert] = @traveller.errors.full_messages.join(', ') if @traveller.errors.any?
@@ -45,7 +45,7 @@ class TravellersController < ApplicationController
   def update
     respond_to do |format|
       if @traveller.update(traveller_params)
-        format.js { redirect_to cart_path(@cart.friendly_id), notice: 'Traveller was successfully updated.' }
+        format.js { redirect_to cart_path(@cart.friendly_id), notice: t("flashes.travellers.successful_update") }
       else
         format.js { render :edit }
         flash.now[:alert] = @traveller.errors.full_messages.join(', ') if @traveller.errors.any?
@@ -60,7 +60,7 @@ class TravellersController < ApplicationController
     @traveller.destroy
 
     respond_to do |format|
-      format.html { redirect_to cart_path(@cart), notice: 'Traveller was successfully destroyed.' }
+      format.html { redirect_to cart_path(@cart), notice: t("flashes.travellers.successful_delete") }
       format.json { head :no_content }
     end
   end

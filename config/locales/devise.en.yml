@@ -18,11 +18,11 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Account Email Confirmation"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "Account Password Reset Confirmation"
       unlock_instructions:
-        subject: "Unlock instructions"
+        subject: "Account Unlock Instructions"
       email_changed:
         subject: "Email Changed"
       password_change:
@@ -53,6 +53,7 @@ en:
       already_signed_out: "Signed out successfully."
       user:
         invalid: "Invalid email or password."
+        email_already_used: "This email has already been used. Try another one."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

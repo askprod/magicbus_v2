@@ -1,0 +1,11 @@
+fr:
+  js:
+    maps:
+      share:
+        center_map: Recentrer Carte
+        shared_by: Partagé par
+        move_me: Déplace Moi
+        visitor: Visiteur
+      trips:
+        from_word: De
+        to_word: À

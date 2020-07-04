@@ -1,8 +1,8 @@
 <div class="traveller-info mb-3">
   <div class="card m-1 px-0 shadow-sm bg-light border border-danger">
     
-    <p class="h6 mt-4"><b>Traveller <%= traveller_index + 1 %></b></p>
-    <p class="h6 text-danger"><b>To Complete</b></p>
+    <p class="h6 mt-4"><b><%= t("travellers.traveller") %> <%= traveller_index + 1 %></b></p>
+    <p class="h6 text-danger"><b><%= t("travellers.traveller_fill.to_complete") %></b></p>
 
     <div class="row h-100 no-gutters my-auto">
       <div class="col-12 my-auto py-2">
@@ -10,7 +10,7 @@
         <div class="row no-gutters justify-content-center">
 
           <div class="col-8 p-4">
-                <%= button_to "Add Information", new_traveller_path, class: "close-navbar btn btn-stylised", id: "form_traveller_#{traveller_index}", method: :get, remote: true %>
+                <%= button_to t("travellers.traveller_fill.add_info"), new_traveller_path, class: "close-navbar btn btn-stylised", id: "form_traveller_#{traveller_index}", method: :get, remote: true %>
           </div> 
         
         </div>

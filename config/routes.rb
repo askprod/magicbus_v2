@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount StripeEvent::Engine, at: '/stripe/webhook'
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do 
-    devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+    devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', confirmations: 'users/confirmations' }
       
     root to: 'home#index'
 
@@ -31,9 +31,9 @@ Rails.application.routes.draw do
 
     resources :travellers, only: [:new, :create, :edit, :update, :destroy]
     resources :places, :path => 'share', only: [:index, :new, :create, :edit, :update, :destroy]
-  end
 
-  get 'travel/sort-trips-country/:id' => 'trips#sort_trips_country'
-  get 'travel/sort-trips-date/:id' => 'trips#sort_trips_date'
-  get 'travel/sort-trips-theme/:id' => 'trips#sort_trips_theme'
+    get 'travel/sort-trips-country/:id' => 'trips#sort_trips_country'
+    get 'travel/sort-trips-date/:id' => 'trips#sort_trips_date'
+    get 'travel/sort-trips-theme/:id' => 'trips#sort_trips_theme'
+  end
 end

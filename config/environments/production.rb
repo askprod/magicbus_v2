@@ -1,6 +1,14 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   
+  config.action_mailer.delivery_method = :mailjet
+  config.action_mailer.default_url_options = { host: 'magicbusworld.com' }
+
+  # Prevent rails from adding error fields inline within invalid form fields
+  ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+    html_tag.html_safe
+  end
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

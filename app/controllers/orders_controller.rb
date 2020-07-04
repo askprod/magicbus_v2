@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.friendly.find(params[:id])
-    @order_trips = @order.trips.order(:week)
 
     respond_to do |format|
         format.pdf do
@@ -52,7 +51,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to orders_path, notice: t("flashes.orders.successful_create") }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { redirect_to @cart, alert: @order.errors.full_messages.join(', ') }
@@ -66,7 +65,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order, notice: t("flashes.orders.successful_update") }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -80,7 +79,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: t("flashes.orders.successful_delete") }
       format.json { head :no_content }
     end
   end
@@ -110,11 +109,17 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+
+        UserMailer.send_invoice_email(@order).deliver_now!
+        @order.travellers.each do |traveller|
+          UserMailer.send_traveller_booked_email(@order, traveller).deliver_later
+        end
+
         session[:order_page] = true
-        flash[:notice] = "Your payment was successful!"
+        flash[:notice] = t("flashes.orders.successful_payment")
         format.html { redirect_to order_success_payment_path(@order) }
       else
-        flash[:alert] = "We could not process your order. Please contact us."
+        flash[:alert] = t("flashes.orders.could_not_process")
         redirect_to orders_path
         format.html { redirect_to orders_path }
       end
@@ -144,7 +149,7 @@ class OrdersController < ApplicationController
           if @coupon.save
             @coupon.orders << @order
             format.js
-            flash[:notice] = "Your promo code has been applied."  
+            flash[:notice] = t("flashes.orders.code_applied")
           else
             format.js { render :promo_code }
             flash.now[:alert] = @coupon.errors.full_messages.join(", ")
@@ -153,7 +158,7 @@ class OrdersController < ApplicationController
       else
         respond_to do |format|
           format.js { render :promo_code }
-          flash.now[:alert] = "This code is invalid."
+          flash.now[:alert] = t("flashes.orders.invalid_code")
         end
       end
 
@@ -165,7 +170,7 @@ class OrdersController < ApplicationController
     
     respond_to do |format|
       format.html {redirect_to orders_path}
-      flash[:notice] = "Promo code removed successfully."
+      flash[:notice] = t("flashes.orders.code_removed")
     end
   end
 
