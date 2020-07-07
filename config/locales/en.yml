@@ -40,6 +40,7 @@ en:
     give_us_hand: Give us a hand for the future
     travel: TRAVEL
     book_trip: Book a trip with us
+    test_mode: Please take note that the website is currently in test mode. Any payment or reservations will not be debited or credited (to test paiements please check https://stripe.com/docs/testing), and any info or accounts might be subject to be edited, deleted of changed in the future.
   general_forms:
     name: Name
     description: Description

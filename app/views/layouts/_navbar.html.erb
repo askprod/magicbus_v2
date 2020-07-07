@@ -4,6 +4,15 @@
     <%= image_tag("/images/logo_navbar.png", style: "width: 190px;") %>
   <% end %>
 
+  <div class="dropdown">
+    <button class="btn btn-danger" style="font-size:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      TEST MODE
+    </button>
+    <div class="dropdown-menu p-4 text-center" aria-labelledby="dropdownMenuButton" style="width:500px;">
+      <%= t("home.test_mode") %>
+    </div>
+  </div>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

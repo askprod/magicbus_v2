@@ -83,6 +83,9 @@ RailsAdmin.config do |config|
       field :name_en
       field :week
       field :price
+      field :remaining_seats_count do
+        label "Spots Left"
+      end
     end
 
     create do 
