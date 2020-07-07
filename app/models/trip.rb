@@ -8,12 +8,14 @@ class Trip < ApplicationRecord
     has_many :carts, through: :cart_trips
     has_many :order_trips, dependent: :destroy
     has_many :orders, through: :order_trips
+    has_rich_text :name_fr
+    has_rich_text :name_en
     has_rich_text :description_fr
     has_rich_text :description_en
 
     validate :valid_departure_arrival_dates, on: :create
     validates :picture, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..3.megabytes }
-    validates :price, :themes,  :arrival_date, :departure_date, :departure_location, :arrival_location, :name, :week, :picture, presence: true 
+    validates :price, :themes,  :arrival_date, :departure_date, :departure_location, :arrival_location, :week, :picture, :name_fr, :name_en, :description_fr, :description_en, presence: true 
     validates_uniqueness_of :week, scope: :season
 
     def remaining_seats_count
@@ -25,6 +27,10 @@ class Trip < ApplicationRecord
 
     def description
         self.send("description_#{I18n.locale}")
+    end
+
+    def name
+        self.send("name_#{I18n.locale}")
     end
 
     def valid_departure_arrival_dates

@@ -249,6 +249,8 @@ en:
       failed_captcha: Spot was denied because of a Recaptcha score of %{score}
   activerecord:
     attributes:
+      user:
+        terms_and_conditions: Terms and conditions
       traveller:
         birth_date: Birth date
         phone_number: Phone number

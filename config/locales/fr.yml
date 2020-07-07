@@ -249,6 +249,8 @@ fr:
       failed_captcha: Création du Spot refusée, car votre score reCaptcha est de %{score}
   activerecord:
     attributes:
+      user:
+        terms_and_conditions: Conditions Générales d'Utilisation
       traveller:
         birth_date: Date de naissance
         phone_number: Numéro de téléphone

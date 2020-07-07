@@ -47,10 +47,13 @@ fr:
       updated_but_not_signed_in: "Votre compte a été modifié avec succès. Merci de vous reconnecter."
       user:
         not_empty: "Veuillez bien renseigner tous les champs." 
+        email_already_used: "Cet email est déjà utilisé. Essayez-en un autre."
     sessions:
       signed_in: "Connecté."
       signed_out: "Déconnecté."
       already_signed_out: "Déconnecté."
+      user:
+        invalid: "Email ou mot de passe invalide."
     unlocks:
       send_instructions: "Vous allez recevoir les instructions nécessaires au déverrouillage de votre compte dans quelques instants."
       send_paranoid_instructions: "Si votre compte existe, vous allez bientôt recevoir un email contenant les instructions pour le déverrouiller."

@@ -80,13 +80,14 @@ RailsAdmin.config do |config|
       sort_by "season_id, week"
       sort_reverse :false
       field :season_id
-      field :name
+      field :name_en
       field :week
       field :price
     end
 
     create do 
-      field :name
+      field :name_en
+      field :name_fr
       field :description_en
       field :description_fr
       field :season
@@ -105,7 +106,8 @@ RailsAdmin.config do |config|
     end 
 
     edit do 
-      field :name
+      field :name_en
+      field :name_fr
       field :description_en
       field :description_fr
       field :season
@@ -124,7 +126,8 @@ RailsAdmin.config do |config|
     end 
 
     show do 
-      field :name
+      field :name_en
+      field :name_fr
       field :description_en
       field :description_fr
       field :season

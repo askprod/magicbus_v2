@@ -208,7 +208,6 @@ ActiveRecord::Schema.define(version: 2020_06_24_102303) do
   end
 
   create_table "trips", force: :cascade do |t|
-    t.string "name"
     t.jsonb "arrival_location"
     t.jsonb "departure_location"
     t.date "departure_date"

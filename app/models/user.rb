@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :coupon_users, dependent: :destroy
   has_many :coupons, through: :coupon_users
 
-  validates_acceptance_of :terms_and_conditions, :allow_nil => false, :message => "have not been accepted. Please try again.", :on => :create
+  validates_acceptance_of :terms_and_conditions, :allow_nil => false, :on => :create
   validate :only_one_admin
   validates :first_name, :last_name, presence: true
   validates :picture, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..1.megabytes }
