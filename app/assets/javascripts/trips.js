@@ -405,7 +405,7 @@ function initMap() {
                         };
                         setTimeout(function(){
                             next();
-                        }, 500);
+                        }, 1000);
                     });
                 }
             }
