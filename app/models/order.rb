@@ -17,9 +17,17 @@ class Order < ApplicationRecord
     validates :travellers, presence: true
     validates :trips, presence: true
     validate :only_one_pending_order, on: :create
+    validate :travellers_info_filled, on: :create
 
     def empty_cart
         self.user.cart.clear_cart
+    end
+
+    def travellers_info_filled
+        set_number = self.user.cart.number_of_travellers
+        unless self.user.cart.travellers.count == set_number
+            errors.add(:base, "Please fill in information for every traveller")
+        end
     end
 
     def set_total_price

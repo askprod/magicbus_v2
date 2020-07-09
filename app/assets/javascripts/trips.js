@@ -508,7 +508,7 @@ function initMap() {
                     '</div>'+
                     '<h1 id="firstHeading" class="firstHeading" style="font-size: 15px;"> <b>' + marker.name + '</b></h1>'+
                     '<div id="bodyContent" style="font-size: 12px; line-height: 2px;">'+
-                    '<p>' + '<span style="text-decoration: underline;">' + 
+                    '<p style="margin: 0;">' + '<span style="text-decoration: underline;">' + 
                     I18n.t("js.maps.trips.from_word") + 
                     '</span>' + ": " + '<b>' + trips[i % trips.length].departure + '</b>' +'</p>'+
                     '<p>' + '<span style="text-decoration: underline;">' + 

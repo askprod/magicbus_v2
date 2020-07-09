@@ -42,20 +42,7 @@
                 et garantit qu’il a recueilli le consentement des autres voyageurs aux mêmes fins. Nous collectons ces données pour la bonne execution du contrat de voyage.</p>
         <% end %>
     </div>
-    <p>Nous utilisons également votre adresse électronique pour vous adresser des nouvelles et avantages concernant nos prochains voyages (Newsletter mensuelle). Si, en votre nom et au nom des voyageurs qui vous accompagnent, vous ne souhaitez pas recevoir de telles sollicitations, cochez la case ci-dessous:</p>       
 </div>
 
-<div class="container small-padding">
-    <%= form_for @recent_order, :url => order_update_rgpd_validation_path(@recent_order), :html => {:method => :post}, remote: true do |f| %>
-        <div class="form-check">
-            <%= f.label :rgpd_validated, class:"form-check-label small" do %>
-                <%= f.check_box :rgpd_validated, class:"form-check-input" %>
-                    Je refuse que la société SARL MagicBus me contacte par courriel à d’autres fins que la transmission d’information concernant ma commande.
-                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
-                    <p>En savoir plus sur la gestion de vos données et vos droits.</p>
-                <% end %>
-            <% end %>
-        </div>
-    <% end %>
-</div>
+
 

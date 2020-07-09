@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :check_cart_owner
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts/1
@@ -54,6 +55,13 @@ class CartsController < ApplicationController
   end
 
   private
+    def check_cart_owner
+      @cart = Cart.friendly.find(params[:id])
+      unless current_user && current_user.cart == @cart
+        raise "This cart does not belong to this user." 
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
       @cart = Cart.friendly.find(params[:id])

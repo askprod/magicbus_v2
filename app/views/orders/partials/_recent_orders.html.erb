@@ -68,11 +68,13 @@
 
     <%= render "orders/partials/checkboxes" %>
 
-    <div class="container smallest-padding text-center">
+    <div class="container smallest-padding text-centers mb-3">
         <div class="no-p-margin mt-3" id="stripe-alert" style="display: none;">
             <p class="bg-danger text-white p-3 rounded"><%= t("recent_orders.check_before_payment") %>.</p>
         </div>
     </div>
+
+    <%= render "orders/partials/checkbox_pub_mail"%>
 
     <div class="mt-3 text-center" id="stripe-div">
         <%= link_to order_new_payment_path(@recent_order), class:"close-navbar btn btn-lg btn-gradient shadow-sm disabled", id: "stripe-payment-btn", remote: true do %>

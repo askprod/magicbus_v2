@@ -142,7 +142,7 @@ p {
  }
 
  .background-yellow-lighter {
-  background: #ffeca2;
+  background: $magicbus-yellow;
  }
 
  a:hover, a:visited, a:link, a:active {
@@ -324,6 +324,22 @@ p {
 
 .image-container-travel {
     position: relative;
+    overflow: hidden;
+}
+
+.image-container-travel img {
+  transition: transform 2s, filter 1.5s ease-in-out;
+  transform-origin: center center;
+  filter: brightness(80%);
+}
+
+.image-container-travel:hover img {
+  filter: brightness(100%);
+  transform: scale(1.2);
+}
+
+.marker-img-count {
+  background: url('/images/marker_yellow_big.png');
 }
 
 .trip-picture {
@@ -782,11 +798,11 @@ footer ul{	padding-left: 0;	list-style: none;}
 	Widgets 
 ====================== */
 .widget{	padding: 20px;	margin-bottom: 20px;}
-.widget.no-box{	padding: 0;	background-color: transparent;
+.widget.no-box{	padding: 0;	background-color: transparent; font-size: 14px;
 	box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none;}
 .widget.subscribe p{	margin-bottom: 18px;}
-.widget li a{	color: #816c0c;}
-.widget li a:hover{	color: #ac8e2d;}
+.widget li a{	color: black;}
+.widget li a:hover{	color: black;}
 .widget-title {border-bottom: solid 1px; padding-bottom: 10px;}
 .widget .badge{	float: right;	background: #7f7f7f;}
 
@@ -1305,3 +1321,4 @@ div#card-errors {
 .cluster img {
   width: 100%;
 }
+
