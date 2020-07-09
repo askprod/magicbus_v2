@@ -71,7 +71,7 @@
 
     </div>
 
-    <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.places.any? %>
 
   <div class="container small-padding mt-4">
 
@@ -107,7 +107,7 @@
                     <%= hidden_field_tag :spot_location, spot.location.to_json %>
                   </div>
 
-                  <% unless spot.approved_status == true || spot.secret_status == true %>
+                  <% unless spot.approved_status == true %>
                     <div class="col">
                       <%= button_to edit_place_path(spot), method: :get, remote: true, class: "btn btn-warning" do %>
                         <%= fa_icon "edit" %>

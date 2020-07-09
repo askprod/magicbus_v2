@@ -20,11 +20,20 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @cart_items = CartTrip.where(cart_id: @cart.id)
 
+    begin
     @cart.trips << @trip
 
     respond_to do |format|
       format.js {render layout: false}
       format.html{redirect_to travel_index_path}
+    end
+
+    rescue ActiveRecord::RecordInvalid => invalid
+      respond_to do |format|
+        flash.now[:alert] = invalid.record.errors.full_messages.join("")
+        format.js {render layout: false}
+        format.html{redirect_to travel_index_path}
+      end
     end
   end
 
@@ -33,7 +42,6 @@ class TripsController < ApplicationController
     @ajax_trip = Trip.find(params[:trip_id]).id
     
     @trip = Trip.find(params[:trip_id])
-    @trips = Season.find_by(status: true).trips.order(:week)
     @cart_items = CartTrip.where(cart_id: @cart.id)
 
     @cart.trips.delete(@trip)

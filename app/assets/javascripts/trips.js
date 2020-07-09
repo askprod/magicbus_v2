@@ -492,8 +492,7 @@ function initMap() {
                 map: map,
                 animation: google.maps.Animation.DROP,
                 position: place.geometry.location,
-                name: trips[i % trips.length].name,
-                id: trips[i % trips.length].id,
+                url: trips[i % trips.length].url,
                 label: {
                     color: 'black',
                     fontSize: '15px',
@@ -503,28 +502,11 @@ function initMap() {
                     icon: iconRound,
                 });
                 
-                var contentString = '<div id="content" class="gm-style-iw">'+
-                    '<div id="siteNotice">'+
-                    '</div>'+
-                    '<h1 id="firstHeading" class="firstHeading" style="font-size: 15px;"> <b>' + marker.name + '</b></h1>'+
-                    '<div id="bodyContent" style="font-size: 12px; line-height: 2px;">'+
-                    '<p style="margin: 0;">' + '<span style="text-decoration: underline;">' + 
-                    I18n.t("js.maps.trips.from_word") + 
-                    '</span>' + ": " + '<b>' + trips[i % trips.length].departure + '</b>' +'</p>'+
-                    '<p>' + '<span style="text-decoration: underline;">' + 
-                    I18n.t("js.maps.trips.to_word") + 
-                    '</span>' + ": " + '<b>' + trips[i % trips.length].arrival + '</b>' +' </p>'+
-                    '</div>'+
-                    '</div>';
-                
                 google.maps.event.addListener(marker, 'click', function() {
-                    if(infowindow){
-                        infowindow.close();
-                    }
-                    infowindow = new google.maps.InfoWindow();
-                    infowindow.setContent(contentString);
-                    infowindow.open(map, this);
-                    map.panTo(this.getPosition());
+                    var elem = $(marker.url);
+                    $('html, body').animate({
+                              scrollTop: elem.offset().top-20
+                      }, 1000 );
                 });
             i++;
         }

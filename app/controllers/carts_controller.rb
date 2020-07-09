@@ -55,20 +55,21 @@ class CartsController < ApplicationController
   end
 
   private
-    def check_cart_owner
-      @cart = Cart.friendly.find(params[:id])
-      unless current_user && current_user.cart == @cart
-        raise "This cart does not belong to this user." 
-      end
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.friendly.find(params[:id])
+  def check_cart_owner
+    @cart = Cart.friendly.find(params[:cart_id])
+    unless current_user && current_user.cart == @cart
+      raise "This cart does not belong to this user." 
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def cart_params
-      params.fetch(:cart, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart
+    @cart = Cart.friendly.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def cart_params
+    params.fetch(:cart, {})
+  end
 end

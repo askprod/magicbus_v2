@@ -339,7 +339,18 @@ p {
 }
 
 .marker-img-count {
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
   background: url('/images/marker_yellow_big.png');
+  background-position: center;
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+}
+
+.grey-out.inside-cart {
+  opacity: 0.2;
 }
 
 .trip-picture {

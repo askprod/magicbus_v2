@@ -1,4 +1,4 @@
-<div class="card login-form text-center">
+<div class="card login-form-small text-center">
 
     <h1 class="card-header adventpro yellow display-5"><%= t("general_forms.join_us") %>!</h1>
 
@@ -9,43 +9,40 @@
       
         <%= form_for resource, as: resource_name, url: registration_path(resource_name), remote: true do |f| %>
           
-        <div class="row">
           <div class="col form-group">
               <%= f.label t("travellers.first_name"), class:"small" %><br />
-              <%= f.text_field :first_name, autofocus: true, class:"form-control" %>
+              <%= f.text_field :first_name, autofocus: true, class:"form-control form-control-sm" %>
           </div>
+
           <div class="col form-group">
             <%= f.label :email, "Email", class:"small" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-sm" %>
           </div>
-        </div>
 
-        <div class="row">
           <div class="col form-group">
               <%= f.label t("travellers.last_name"), class:"small" %><br />
-              <%= f.text_field :last_name, autofocus: true, class:"form-control" %>
+              <%= f.text_field :last_name, autofocus: true, class:"form-control form-control-sm" %>
           </div>
+
           <div class="col form-group">
             <%= f.label t("general_forms.password"), class:"small" %>
             <% if @minimum_password_length %>
             <em class="small">(<%= @minimum_password_length %> <%= t("general_forms.password_length") %>)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-sm" %>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col form-group mt-4">
+          <div class="col form-group">
+            <%= f.label t("general_forms.password_confirmation"), class:"small" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-sm" %>
+          </div>
+
+          <div class="col form-group mt-4 small">
             <%= f.check_box :terms_and_conditions %>          
             <%= f.label :terms_and_conditions do %> 
               <span><%= t("general_forms.agreement_to") %> <%= link_to t("general_forms.terms_of_use"), root_path, class:"pdf-btn" %></span>
             <% end %>
           </div>
-          <div class="col form-group">
-            <%= f.label t("general_forms.password_confirmation"), class:"small" %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-          </div>
-        </div>
 
         <div class="actions mt-1">
           <%= f.submit t("general_forms.create_account"), class: "btn btn-lg btn-stylised btn-block adventpro" %>

@@ -10,25 +10,17 @@
                 <h4 class="py-2"><%= t("stripe_form.billing_details") %></h4>
             </div>
 
-            <div class="group-stripe">
-                <label>
-                    <span class="text-center mx-auto">Email</span>
-                    <input id="email" name="email" class="field" value="<%= current_user.email %>" />
-                </label>
-            </div>
-
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
                     <div class="group-stripe">
                         <label>
-                            <span><%= t("general_forms.name") %></span>
-                            <input id="name-card" name="name" class="field" placeholder="Jean Dupont" />
+                            <span>Email</span>
+                            <input id="email" name="email" class="field" value="<%= current_user.email %>" />
                         </label>
                         <label>
                             <span><%= t("stripe_form.card_no") %></span>
                             <div id="card-number" class="field"></div>
                         </label>
-
                         <label>
                             <span><%= t("stripe_form.card_exp") %></span>
                             <div id="card-expiry" class="field"></div>
@@ -43,6 +35,10 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="group-stripe">
                         <label>
+                            <span><%= t("general_forms.name") %></span>
+                            <input id="name-card" name="name" class="field" placeholder="Jean Dupont" />
+                        </label>
+                        <label>
                             <span><%= t("stripe_form.address") %></span>
                             <input id="address-line1" name="address_line1" class="field" placeholder="1 Rue Dupont" />
                         </label>
@@ -54,10 +50,6 @@
                             <span><%= t("stripe_form.zip_code") %></span>
                             <input id="address-zip" name="address_zip" class="field" placeholder="75001" />
                         </label>
-                        <label>
-                            <span><%= t("stripe_form.country_code") %></span>
-                            <input id="address-country" name="address_country" class="field" placeholder="(FR, ES, IT...)" />
-                        </label>
                     </div>
                 </div>
             </div>
@@ -66,7 +58,7 @@
 
         <div class="container-fluid text-center">
             <%= form.hidden_field :payment_intent_id, value: @payment_intent.id %>
-            <button type="submit" class="stripe-button mb-4 mt-2"><b><%= t("stripe_form.pay_btn") %> <%= order.total_price_calc %>€</b></button>  
+            <button type="submit" class="stripe-button mb-3 mt-1"><b><%= t("stripe_form.pay_btn") %> <%= order.total_price_calc %>€</b></button>  
         </div>
 
         <% end %>
