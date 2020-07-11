@@ -3,7 +3,7 @@ module Stripe
       def call(event)
         begin
           method = "handle_" + event.type.tr('.', '_')
-          self.send method, signature_header, event
+          self.send method, event
         rescue JSON::ParserError => e
             render json: { status: 400, error: 'Invalid payload' }
             Raven.capture_exception(e)
@@ -20,10 +20,6 @@ module Stripe
       end
 
       def handle_invoice_payment_succeeded(event)
-      end
-
-      def signature_header
-        request.env['HTTP_STRIPE_SIGNATURE']
       end
     end
 end
