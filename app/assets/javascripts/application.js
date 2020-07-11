@@ -25,6 +25,7 @@
 //= require i18n/translations
 //= require turbolinks
 //= require cookies_eu
+//= require google_analytics
 //= require_tree .
 
 // Petite croix pour cacher fênetres AJAX de connection/inscription/edit

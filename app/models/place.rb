@@ -22,7 +22,7 @@ class Place < ApplicationRecord
                 self.errors.add(:base, :max_per_user, {count: MAXIMUM_PLACES_PER_USER})
             end
         else
-            unless Place.last && Place.last.created_at < Time.now - 15.seconds
+            unless Place.last.present? && Place.last.created_at < Time.now - 15.seconds
                 self.errors.add(:base, :visitors_limit)
             end
         end

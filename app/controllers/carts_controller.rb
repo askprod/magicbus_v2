@@ -57,7 +57,7 @@ class CartsController < ApplicationController
   private
 
   def check_cart_owner
-    @cart = Cart.friendly.find(params[:cart_id])
+    @cart = current_user.cart
     unless current_user && current_user.cart == @cart
       raise "This cart does not belong to this user." 
     end

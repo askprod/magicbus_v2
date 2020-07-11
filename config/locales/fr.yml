@@ -147,7 +147,7 @@ fr:
     sort_by_dates: Trier par Dates
     start_date: Date de départ
     end_date: Date d'arrivée
-    reset_fields: Supprimer Recherche
+    reset_fields: Réinitialiser Recherche
     no_trips_yet: Pas de voyages programmés pour l'instant
     come_later: Revenez un peu plus tard
     search: Rechercher

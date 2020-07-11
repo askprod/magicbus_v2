@@ -20,7 +20,6 @@ class User < ApplicationRecord
   scope :admin, -> {where(admin: true)}
 
   before_save :capitalize_names
-  # after_create :send_welcome_mail
   # after_create :add_to_mailing_list
 
   def capitalize_names
@@ -43,13 +42,6 @@ class User < ApplicationRecord
   def rails_admin_name
     "#{first_name} #{last_name}"
   end
-
-  # def send_welcome_mail
-  #   UserMailer.welcome_email(self.email).deliver!
-  #   puts "**" * 1000
-  #   puts self.email
-  #   puts "Sent email"
-  # end
 
   # def add_to_mailing_list
   # end

@@ -20,6 +20,8 @@
 
     <%= tag :meta, name: "stripe-public-key", content: ENV['PUBLISHABLE_KEY'] %>
 
+    <%= render "layouts/google_analytics" %>
+
     <%= yield(:head_tags) %>
 
     <script type="text/javascript">

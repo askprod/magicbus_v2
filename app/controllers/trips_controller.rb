@@ -66,6 +66,7 @@ class TripsController < ApplicationController
     end
 
     respond_to do |format|
+      flash.now[:notice] = "Trips sorted successfully."
       format.js
     end
   end
@@ -75,10 +76,11 @@ class TripsController < ApplicationController
       @sort_by_themes = Season.find_by(status: true).trips.order(:week)
     else
       theme = Theme.find_by(id: params[:id]).id
-      @sort_by_themes = Trip.joins(:themes).where(themes: {id: theme})
+      @sort_by_themes = Trip.joins(:themes).where(themes: {id: theme}).order(:week)
     end
 
     respond_to do |format|
+      flash.now[:notice] = "Trips sorted successfully."
       format.js
     end
   end
@@ -91,18 +93,28 @@ class TripsController < ApplicationController
           format.js { render "sort_trips_reset.js.erb" }
         end
       else
-        start_date = params[:id].split('+').first
-        end_date = params[:id].split('+').last
+        start_date = params[:id].split('+').first.to_date
+        end_date = params[:id].split('+').last.to_date
 
         if start_date == 'undefined' || end_date == 'undefined'
           @sort_by_dates = Season.find_by(status: true).trips.order(:week)
         else
-          @sort_by_dates = Trip.where("departure_date::date >= '#{start_date}' ").where("arrival_date::date <= '#{end_date}' ")
+          trips = Season.find_by(status: true).trips.order(:week)
+          
+          @sort_by_dates = trips.select do |trip|
+            (start_date..end_date).cover?(trip.departure_date || trip.arrival_date)
+          end
         end
 
         respond_to do |format|
+          if @sort_by_dates.empty?
+            flash.now[:alert] = "No trips were found."
+            format.js
+          else
+            flash.now[:notice] = "Trips sorted successfully."
             format.js
           end
+        end
       end
   end
 
