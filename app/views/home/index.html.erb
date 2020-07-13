@@ -1,4 +1,8 @@
-<%= video_tag "/videos/home_video.mp4", playsinline: :playsinline, autoplay: :autoplay, loop: :loop, muted: :muted, id: "home_video" %>
+<% if @video %>
+    <%= video_tag rails_blob_path(@video), playsinline: :playsinline, autoplay: :autoplay, loop: :loop, muted: :muted, id: "home_video" %>
+<% else %>
+    <%= video_tag "/videos/home_video.mp4", playsinline: :playsinline, autoplay: :autoplay, loop: :loop, muted: :muted, id: "home_video" %>
+<% end %>
 
 <div id="grayfilter" class="stop-flickering"></div>
 

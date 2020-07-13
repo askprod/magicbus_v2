@@ -26,6 +26,8 @@ when "development"
     Theme.create!(name_en: "Woodland", name_fr: "Bois")
     Theme.create!(name_en: "Jungle", name_fr: "Jungle")
 
+    Home.create!
+
     admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
     admin.skip_confirmation!
     admin.save!
@@ -37,6 +39,8 @@ when "development"
     end
 
     Season.create!(status: true)
+
+    Home.create!
     
     random_theme = Theme.all.shuffle.sample
 
