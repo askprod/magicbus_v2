@@ -151,6 +151,7 @@ en:
     no_trips_yet: No trips programmed yet
     come_later: Come back later
     search: Search
+    map_text: Texte Carte
   trips:
     week: WEEK
     departure: Departure

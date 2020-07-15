@@ -30,6 +30,43 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Home' do
+    navigation_label "Views"
+    label "Home Page"
+    label_plural "Home Page"
+    weight -4
+
+    list do
+      field :description
+      field :home_video
+    end
+
+    edit do
+      field :home_video, :active_storage do
+        delete_method :remove_video
+        help "Make sure your file is .mp4 and not too large (3Mb maximum)"
+      end
+    end
+  end
+
+  config.model 'Discover' do
+    navigation_label "Views"
+    label "Discover Page"
+    label_plural "Discover Page"
+    weight -4
+
+    list do
+      field :description
+      field :quote_en
+      field :quote_fr
+    end
+
+    edit do
+      field :quote_en
+      field :quote_fr
+    end
+  end
+
   config.model 'User' do
     navigation_label "Users"
     weight -6

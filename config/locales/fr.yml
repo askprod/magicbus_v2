@@ -151,6 +151,7 @@ fr:
     no_trips_yet: Pas de voyages programmés pour l'instant
     come_later: Revenez un peu plus tard
     search: Rechercher
+    map_text: Map Text 
   trips:
     week: SEMAINE
     departure: Départ

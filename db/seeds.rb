@@ -26,7 +26,8 @@ when "development"
     Theme.create!(name_en: "Woodland", name_fr: "Bois")
     Theme.create!(name_en: "Jungle", name_fr: "Jungle")
 
-    Home.create!
+    Home.create!(description: "Attach a video file to show it on the home page")
+    Discover.create!(description: "The quote on Discover page")
 
     admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
     admin.skip_confirmation!
@@ -39,8 +40,6 @@ when "development"
     end
 
     Season.create!(status: true)
-
-    Home.create!
     
     random_theme = Theme.all.shuffle.sample
 
@@ -60,6 +59,10 @@ when "production"
     admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
     admin.skip_confirmation!
     admin.save!
+
+    Home.create!(description: "Attach a video file to show it on the home page")
+
+    Discover.create!(description: "The quote on Discover page")
 
     Theme.create!(name_en: "Mountain", name_fr: "Montagne")
     Theme.create!(name_en: "Sea", name_fr: "Mer")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_13_164422) do
+ActiveRecord::Schema.define(version: 2020_07_14_083312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,12 @@ ActiveRecord::Schema.define(version: 2020_07_13_164422) do
     t.index ["traveller_id"], name: "index_diet_travellers_on_traveller_id"
   end
 
+  create_table "discovers", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "food_diets", force: :cascade do |t|
     t.boolean "approved_status", default: false
     t.string "name_fr"
@@ -120,6 +126,7 @@ ActiveRecord::Schema.define(version: 2020_07_13_164422) do
   end
 
   create_table "homes", force: :cascade do |t|
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
