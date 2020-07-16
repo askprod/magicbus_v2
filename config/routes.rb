@@ -3,8 +3,14 @@ Rails.application.routes.draw do
   mount StripeEvent::Engine, at: '/stripe/webhook'
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do 
-    devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', confirmations: 'users/confirmations' }
-      
+
+    devise_for :users, controllers: { 
+      sessions: 'users/sessions', 
+      registrations: 'users/registrations', 
+      confirmations: 'users/confirmations', 
+      passwords: 'users/passwords',
+    }
+
     root to: 'home#index'
 
     match '/discover', to: 'discover#index', via: :get

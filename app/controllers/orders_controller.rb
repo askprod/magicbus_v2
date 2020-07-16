@@ -99,7 +99,7 @@ class OrdersController < ApplicationController
   def create_payment
     @order = Order.find(params[:order_id])
     event = Stripe::PaymentIntent.retrieve(params[:payment_intent_id])
-
+    
     if @order.coupon
         @order.user.coupons << @order.coupon
     end
@@ -110,7 +110,8 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
 
-        UserMailer.send_invoice_email(@order).deliver_now!
+        UserMailer.send_invoice_email(@order).deliver_later
+        
         @order.travellers.each do |traveller|
           UserMailer.send_traveller_booked_email(@order, traveller).deliver_later
         end

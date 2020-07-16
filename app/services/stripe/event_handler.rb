@@ -13,7 +13,7 @@ module Stripe
         end
       end
 
-      def handle_invoice_payment_payment_failed(event)
+      def handle_payment_intent_payment_failed(event)
       end
 
       def handle_payment_intent_succeeded(event)

@@ -23,6 +23,10 @@
         <p><%= t("general_forms.no_account_register") %> <%= link_to t("general_forms.here_word"), new_user_registration_path, remote: true, style: "color:black; text-decoration: underline;" %>!</p>
       </div>
 
+      <div class="small">
+        <p>Forgot your password? Reset it <%= link_to "here", new_user_password_path, remote: true, style: "color:black; text-decoration: underline;" %>!</p>
+      </div>
+
       <div class="actions mt-3">
         <%= f.submit t("general_forms.submit"), class: "btn btn-lg btn-stylised btn-block adventpro" %>
       </div>

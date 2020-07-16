@@ -15,13 +15,13 @@
           </div>
 
           <div class="col form-group">
-            <%= f.label :email, "Email", class:"small" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-sm" %>
-          </div>
-
-          <div class="col form-group">
               <%= f.label t("travellers.last_name"), class:"small" %><br />
               <%= f.text_field :last_name, autofocus: true, class:"form-control form-control-sm" %>
+          </div>
+          
+          <div class="col form-group">
+            <%= f.label :email, "Email", class:"small" %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-sm" %>
           </div>
 
           <div class="col form-group">
