@@ -211,6 +211,7 @@ en:
     no_orders: No Orders
     recent_tab: Recent Order
     paid_tab: Paid Orders
+    delete_order: Delete Order
   carts: 
     empty_cart: You cart is empty
     book_trip: Book a Trip

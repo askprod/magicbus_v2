@@ -485,7 +485,6 @@ p {
   border-radius: 10px;
   width: 35%;
   max-height: 85%;
-  top: 52%;
   margin: 0 auto;
   overscroll-behavior: contain;
 }
@@ -950,7 +949,7 @@ div#card-errors {
 }
 
 .top-margin-larger {
-  padding-top: 18%;
+  padding-top: 16%;
 }
 
 .navbar-nav > li > .dropdown-menu { 
@@ -1139,12 +1138,15 @@ div#card-errors {
     padding-top: 25%;
   }
 
-  .travel-animate {
-    display: none;
+  .margin-top-mobile {
+    margin-top: 35px;
   }
 
-  .moving-hostel {
-    display: none;
+  .center-mobile {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .container.trips {

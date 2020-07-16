@@ -1,7 +1,14 @@
 <% if @recent_order %>
 
+    <div class="container smallest-padding text-center mt-5">
+        <div class="p-4 border border-secondary">
+            <%= render 'orders/partials/booking_delete' %>
+            <%= button_to t("orders.delete_order"), order_path(@recent_order), method: :delete, class: "btn btn-danger" %>
+        </div>
+    </div>
+
     <div class="row justify-content-center my-5">
-        <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2 background-yellow">
+        <div class="card col-lg-9 col-sm-12 m-1 px-0 py-4 border-0 shadow-sm my-2 background-yellow">
             <div class="row no-gutters my-auto">
                 <div class="col-9">
                 <h4 class="mb-0 ml-4 adventpro font-weight-bold"><%= t("recent_orders.travellers_info") %></h4>
@@ -13,7 +20,7 @@
     <%= render "orders/partials/travellers", order: @recent_order %>
 
     <div class="row justify-content-center my-5">
-        <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2 background-yellow">
+        <div class="card col-lg-9 col-sm-12 m-1 px-0 py-4 border-0 shadow-sm my-2 background-yellow">
         <div class="row no-gutters my-auto">
             <div class="col-9">
             <h4 class="mb-0 ml-4 adventpro font-weight-bold"><%= t("recent_orders.trips_info") %></h4>
@@ -35,7 +42,7 @@
     </div>
 
     <div class="row justify-content-center my-5">
-        <div class="card col-9 m-1 px-0 py-4 border-0 shadow-sm my-2 background-yellow">
+        <div class="card col-lg-9 col-sm-12 m-1 px-0 py-4 border-0 shadow-sm my-2 background-yellow">
         <div class="row no-gutters my-auto">
             <div class="col-9">
             <h4 class="mb-0 ml-4 adventpro font-weight-bold"><%= t("recent_orders.payment_info") %></h4>

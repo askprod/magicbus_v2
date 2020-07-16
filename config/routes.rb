@@ -16,6 +16,12 @@ Rails.application.routes.draw do
     match '/discover', to: 'discover#index', via: :get
     match '/story', to: 'story#index', via: :get
 
+    resource :user, only: [:edit] do
+      collection do
+        patch 'update_password'
+      end
+    end
+    
     resources :trips, :path => 'travel', only: [:index] do
       post 'add_to_cart', on: :collection
       post 'remove_from_cart', on: :collection

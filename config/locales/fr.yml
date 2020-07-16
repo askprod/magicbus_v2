@@ -211,6 +211,7 @@ fr:
     no_orders: Pas de Commandes
     recent_tab: Commande en Cours
     paid_tab: Commandes Payées
+    delete_order: Supprimer ma Commande
   carts: 
     empty_cart: Ton panier est vide
     book_trip: Réserver un Voyage

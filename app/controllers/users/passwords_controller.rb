@@ -2,9 +2,13 @@
 
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
-  # def new
-  #   super
-  # end
+  def new
+    super 
+    
+    respond_to do |format|
+      format.js
+    end
+  end
 
   # POST /resource/password
   # def create
