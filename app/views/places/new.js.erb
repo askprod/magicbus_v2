@@ -1,4 +1,11 @@
 $('#alert').html("<%= escape_javascript(render :partial => 'layouts/notice') %>").show();
 $('#login-form').html("<%= escape_javascript(render :partial => 'places/form', :locals => {:place => @place}) %>").hide().fadeIn();
 
+$(document).ready(function() {
+    initPlacesMap2();
+    $('.grecaptcha-badge').show();
+});
 
+$('#close-button').click(function(){
+    $('.grecaptcha-badge').hide();
+});

@@ -3,6 +3,7 @@ class Traveller < ApplicationRecord
     attr_accessor :food_participation_validation
 
     FOOD_DIETS_WITH_REDUCTION = FoodDiet.find_by(name_en: "Vegan").id
+    ACCEPTED_GENDERS = ["1", "2", "3"]
 
     belongs_to :cart, optional: true
     belongs_to :order, optional: true
@@ -31,6 +32,7 @@ class Traveller < ApplicationRecord
     validates_acceptance_of :sanitary_conditions, :allow_nil => false, :message => "have not been accepted", :on => :create  
     validates_acceptance_of :accompanied_minor, :allow_nil => false, :message => "have not been accepted", :on => :create, unless: :is_over_18? 
     validates_inclusion_of :insurance_status, :in => [true, false]
+    validates_inclusion_of :gender, in: ACCEPTED_GENDERS
     validates_format_of :email_address, with: Devise.email_regexp
 
     def set_food_participation

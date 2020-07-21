@@ -1,6 +1,6 @@
   <div class="card login-form-small text-center">
     
-    <h1 class="card-header adventpro yellow text-center display-5"><%= t("nav.log_in") %></h1>
+    <h1 class="card-header adventpro yellow text-center display-5"><%= t("general_forms.new_password") %></h1>
 
     <div class="card-body">
       
@@ -10,12 +10,12 @@
       <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
 
       <div class="form-group text-center">
-            <%= f.label :password, "New Password" %><br />
+            <%= f.label :password, t("general_forms.new_password") %><br />
             <%= f.password_field :password, :autocomplete => "off", class:"form-control"  %>
       </div>
 
       <div class="form-group text-center">
-            <%= f.label :password_confirmation, "New Password Confirmation" %><br />
+            <%= f.label :password_confirmation, t("general_forms.new_password_confirmation") %><br />
             <%= f.password_field :password_confirmation, class:"form-control" %>
       </div>
 

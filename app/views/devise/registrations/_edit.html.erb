@@ -22,7 +22,7 @@
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
 
-            <%= link_to "Change Password", edit_user_path, class: "btn btn-stylised", remote: true %>
+            <%= link_to t("general_forms.change_password"), edit_user_path, class: "btn btn-stylised", remote: true %>
           </div>
 
           <div class="col-sm-6 mx-auto my-auto">

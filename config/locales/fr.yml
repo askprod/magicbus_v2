@@ -30,6 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 fr:
+  user: 
+    change_password: Nouveau mot de passe
   home:
     moving_hostel: Une auberge itinérante en Europe
     discover: DECOUVRE
@@ -49,9 +51,9 @@ fr:
     password_confirmation: Confirmation mot de passe
     password_length: caractères minimum
     change_password: Changer Mot de Passe
-    new_password: Nouveau MDP
-    new_password_confirmation: Confirmation
-    current_password: MDP Actuel
+    new_password: Nouveau Mot de Passe
+    new_password_confirmation: Confirmation Mot de Passe
+    current_password: Mot de passe Actuel
     update: Mettre à Jour
     delete_account: Supprimer Compte
     enter_code: Entrer Code
@@ -152,7 +154,7 @@ fr:
     no_trips_yet: Pas de voyages programmés pour l'instant
     come_later: Revenez un peu plus tard
     search: Rechercher
-    map_text: Map Text 
+    map_text: Attention, le dessin du trajet entre les points d'arrêts est généré automatiquement par Google Maps, il n'est donc pas toujours représentatif du trajet réel.
   trips:
     week: SEMAINE
     departure: Départ

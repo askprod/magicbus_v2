@@ -4,7 +4,15 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    all_places = Place.where.not(secret_status: true)
+    @secret_spots_count = Place.where(secret_status: true).count
+
+    if current_user
+      user_secret_places = Place.where(user_id: current_user.id, secret_status: true)
+      @places = (all_places + user_secret_places)
+    else
+      @places = all_places
+    end
     
     if user_signed_in?
       @user_places = Place.where(user_id: current_user.id)
