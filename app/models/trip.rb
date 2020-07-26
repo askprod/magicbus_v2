@@ -42,4 +42,8 @@ class Trip < ApplicationRecord
     def is_full?
         self.remaining_seats_count <= 0
     end
+
+    def is_bookable?
+        self.departure_date > (Date.today - 2.days)
+    end
 end
