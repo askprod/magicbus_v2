@@ -115,6 +115,19 @@
         <span class="mx-3 adventpro"><%= t('nav.book_now') %></span>
       <% end %>
 
+      <% if current_page?(root_url) %>
+        <div class="dropdown hide-sm" id="contact-us-navbar">
+          <button class="btn btn-contact mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= t("home.contact_us") %>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right p-3 text-center" aria-labelledby="dropdownMenuButton">
+            <p><%= t("home.contact_us_text") %></p>
+            <p>+33 6 59 09 11 65</p>
+            <p><%= t("home.contact_us_text_two") %></p>
+          </div>
+        </div>
+      <% end %>
+
       <li class="nav-item">
         <%= link_to({:locale=> nil}, class:"nav-link m-0") do %>
           <%= flag_icon(:gb) %>

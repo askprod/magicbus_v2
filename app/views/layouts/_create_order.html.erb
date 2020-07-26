@@ -13,9 +13,6 @@
       <div class="container my-5 text-center">
           <p class="small"><%= @travellers_count %> Travellers<p> 
           <p><%= @total_trips_price %>€ per Traveller<p>
-          <% if @insured_travellers > 0 %>
-            <p class="small"><%= @insured_travellers %>x Insurances: <%= @insurance_price %>€<p>
-          <% end %>
           <% if @vegan_travellers > 0 %>
             <p class="small"><%= @vegan_travellers %>x Meals non included: -<%= @food_deduction %>€<p>
           <% end %>

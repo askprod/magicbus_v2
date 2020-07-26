@@ -1288,6 +1288,10 @@ div#card-errors {
     font-size: 13px;
   }
 
+  #contact-us-navbar {
+    display: none;
+  }
+
 }
 
 @media (max-width: 991px) {
@@ -1346,5 +1350,10 @@ div#card-errors {
 
 .cluster img {
   width: 100%;
+}
+
+.btn-contact {
+  color: $magicbus-yellow;
+  border: solid $magicbus-yellow 2px;
 }
 

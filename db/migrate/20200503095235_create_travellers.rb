@@ -12,7 +12,6 @@ class CreateTravellers < ActiveRecord::Migration[5.2]
         t.string :phone_number
         t.string :medical_condition
         t.string :additional_comment
-        t.boolean :insurance_status
         t.boolean :food_participation, default: true
         t.references :cart, index: true
         t.references :order, index: true

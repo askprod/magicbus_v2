@@ -22,8 +22,6 @@ class Traveller < ApplicationRecord
     after_create :set_food_participation
 
     validates :first_name, :last_name, :address, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
-    # to check if useful:
-    # validate :check_number_of_travellers_per_trip, on: :create
     validate :max_traveller_per_cart, on: :create
     validate :valid_birth_date
     validate :valid_phone_number
@@ -31,7 +29,6 @@ class Traveller < ApplicationRecord
     validates_acceptance_of :valid_passport, :allow_nil => false, :message => "has not been accepted", :on => :create
     validates_acceptance_of :sanitary_conditions, :allow_nil => false, :message => "have not been accepted", :on => :create  
     validates_acceptance_of :accompanied_minor, :allow_nil => false, :message => "have not been accepted", :on => :create, unless: :is_over_18? 
-    validates_inclusion_of :insurance_status, :in => [true, false]
     validates_inclusion_of :gender, in: ACCEPTED_GENDERS
     validates_format_of :email_address, with: Devise.email_regexp
 
@@ -82,12 +79,4 @@ class Traveller < ApplicationRecord
         self.errors.add(:base, :max_travellers_per_cart)
       end
     end
-
-    # def check_number_of_travellers_per_trip
-    #   self.cart.trips.each do |trip|
-    #     if trip.is_full?
-    #       self.errors.add(:base, " #{trip.name} has no seats left.")
-    #     end
-    #   end
-    # end
 end

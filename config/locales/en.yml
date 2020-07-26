@@ -41,6 +41,9 @@ en:
     travel: TRAVEL
     book_trip: Book a trip with us
     test_mode: Please take note that the website is currently in TEST MODE. Any payment or reservations will not be debited or credited (to test paiements please check https://stripe.com/docs/testing), and any info or accounts might be subject to be edited, deleted or changed in the future.
+    contact_us: Contact Us
+    contact_us_text: Any questions? Write us a message! hello@magicbusworld.com
+    contact_us_text_two: We are still looking for partnerships for future trips, but also to equip the bus, so don't hesitate!
   general_forms:
     name: Name
     description: Description
@@ -186,7 +189,7 @@ en:
     email: Email
     nationality: Nationality
     phone: Phone
-    address: Address
+    address: Complete address
     food_diets: Specific Food Diets
     food_restrictions: Food Allergies
     comment: Comment

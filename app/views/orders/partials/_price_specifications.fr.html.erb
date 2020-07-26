@@ -70,12 +70,6 @@
             <td class="text-right"><%= trip.price * order.travellers.count %>€</td>
             </tr>
             <% end %>
-            <tr>
-            <th scope="row" class="table-active">Optionnel: Assurance</th>
-            <td class="text-right">15€</td>
-            <td class="text-right"><%= order.travellers.where(insurance_status: true).count %></td>
-            <td class="text-right"><%= order.travellers.where(insurance_status: true).count * 15 %>€</td>
-            </tr>
             <%# <tr>
             <th scope="row">Optional: Specific Food Diets</th>
             <td>-30</td>

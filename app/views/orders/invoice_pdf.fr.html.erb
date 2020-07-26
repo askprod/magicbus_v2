@@ -78,34 +78,6 @@
       </tr>
     <% end %>
 
-    <tr class="heading">
-      <td>Options</td>
-      <td class="right">Prix Unitaire</td>
-      <td class="right">Quantité</td>
-      <td>Total</td>
-    </tr>
-
-    <% @order.trips.each do |trip| %>
-      <tr class="item">
-          <td>
-              Assurance Voyage<br>
-              <small>Mondial Assurance</small>
-          </td>
-
-          <td class="right">
-              <%= Cart::INSURANCE_PRICE %>€
-          </td>
-
-          <td class="right">
-              x<%= Order.last.travellers.where(insurance_status: true).count %>
-          </td>
-
-          <td>
-              <%= Order.last.travellers.where(insurance_status: true).count * Cart::INSURANCE_PRICE %>€
-          </td>
-      </tr>
-    <% end %>
-
     <tr>
       <td colspan="4"></td>
     </tr>
@@ -483,42 +455,6 @@
       </label>
     </div>
     <p>Si vous justifiez d’une garantie antérieure pour les risques couverts par l’assurance souscrite, vous avez la possibilité de renoncer sans frais à cette/ces assurance(s) dans un délai de 14 jours à compter de sa conclusion et tant qu’aucune garantie n’a été mise en œuvre.</p>
-  </div>
-  <div class="text-container">
-    <% @order.travellers.each_with_index do |traveller, index| %>
-      <% index += 1 %>
-        <p class="traveller-title">VOYAGEUR <%= index %></p>
-        <div class="p-text">
-          <p><%= traveller.first_name %> <%= traveller.last_name %></p>
-          <% if traveller.insurance_status == true %>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
-              <label class="form-check-label" for="data-check1">
-                <p>Avec asssurance</p>
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1">
-              <label class="form-check-label" for="data-check1">
-                <p>Sans assurance</p>
-              </label>
-            </div>
-          <% else %>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1">
-              <label class="form-check-label" for="data-check1">
-                <p>Avec asssurance</p>
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
-              <label class="form-check-label" for="data-check1">
-                <p>Sans assurance</p>
-              </label>
-            </div>
-          <% end %>
-        </div>
-    <% end %>
   </div>
 </div>
 

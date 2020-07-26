@@ -10,14 +10,6 @@
                             <h5 class="mb-0 py-2"><%= t("travellers.traveller") %> <%= index %></h5>
                         </div>
                         <div class="col-lg-3 col-sm-3 my-auto">
-                            <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.insurance") %></span>:
-                            <% if traveller.insurance_status == true %>
-                                <%= t("general_forms.yes_word") %></p>
-                            <% else %>
-                                <%= t("general_forms.no_word") %></p>
-                            <% end %>
-                        </div>
-                        <div class="col-lg-3 col-sm-3 my-auto">
                             <p class="mb-0"><span class="font-weight-bold"><%= t("travellers.food_included") %></span>:
                             <% if traveller.food_participation == true %>
                                 <%= t("general_forms.yes_word") %></p>

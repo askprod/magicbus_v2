@@ -33,8 +33,7 @@ class Order < ApplicationRecord
     def set_total_price
         trips_trav = self.trips.map{|x| x.price}.sum * self.travellers.count
         food = self.travellers.where(food_participation: false).count * Cart::FOOD_PARTICIPATION_PRICE
-        insurance = self.travellers.where(insurance_status: true).count * Cart::INSURANCE_PRICE
-        total = trips_trav + insurance - food
+        total = trips_trav - food
         puts total
         self.total_price ||= total
     end

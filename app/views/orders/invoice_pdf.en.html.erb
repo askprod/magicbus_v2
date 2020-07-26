@@ -79,34 +79,6 @@
       </tr>
     <% end %>
 
-    <tr class="heading">
-      <td>Options</td>
-      <td class="right">Price</td>
-      <td class="right">Quantity</td>
-      <td>Total</td>
-    </tr>
-
-    <% @order.trips.each do |trip| %>
-      <tr class="item">
-          <td>
-            Travel Insurance<br>
-              <small>Mondial Assurance</small>
-          </td>
-
-          <td class="right">
-              <%= Cart::INSURANCE_PRICE %>€
-          </td>
-
-          <td class="right">
-              x<%= Order.last.travellers.where(insurance_status: true).count %>
-          </td>
-
-          <td>
-              <%= Order.last.travellers.where(insurance_status: true).count * Cart::INSURANCE_PRICE %>€
-          </td>
-      </tr>
-    <% end %>
-
     <tr>
       <td colspan="4"></td>
     </tr>
@@ -467,14 +439,14 @@
         <li>les activités optionnelles facturées en supplément du prix.</li>
         <li>les transports du voyageur pour rejoindre le bus à son point de départ et rejoindre son domicile depuis le point d’arrivé à la fin du séjour.</li>
     </ul>
-    <p>Le détaillant se réserve le droit, en cas de non-paiement, de constater l’annula3on du contrat par le client et d’exiger sans mise en demeure préalable l’applica3on des pénalités d’annula3on prévues ci-dessous.</p>
+    <p>Le détaillant se réserve le droit, en cas de non-paiement, de constater l’annulation du contrat par le client et d’exiger sans mise en demeure préalable l’applica3on des pénalités d’annula3on prévues ci-dessous.</p>
   </div>
 </div>
 
 <div class="text-container">
   <p class="secondary-titles">ASSURANCE</p>
   <div class="p-text-no-margin">
-    <p>L’assurance mulWrisques Mondial Assistance proposée par le vendeur; couvrant annulaWons/ modificaWon, assistance au voyager, frais médicaux et d’hospitalisaWon d’urgence à l’étranger, retard de transport, dommages aux bagages, responsabilité civile à l’étranger et interrupWon de séjour, pour un montant de 30€/personne; est:</p>
+    <p>L’assurance mulWrisques Mondial Assistance proposée par le vendeur; couvrant annulations/ modificaWon, assistance au voyager, frais médicaux et d’hospitalisaWon d’urgence à l’étranger, retard de transport, dommages aux bagages, responsabilité civile à l’étranger et interrupWon de séjour, pour un montant de 30€/personne; est:</p>
     <p>(Nom) Mondial Assistance</p>
     <p>N°police *numéro de police*</p>
     <div class="form-check">
@@ -483,43 +455,7 @@
         <p>Contrat transmis au client</p>
       </label>
     </div>
-    <p>Si vous jus3fiez d’une garan3e antérieure pour les risques couverts par l’assurance souscrite, vous avez la possibilité de renoncer sans frais à ceRe/ces assurance(s) dans un délai de 14 jours à compter de sa conclusion et tant qu’aucune garan3e n’a été mise en œuvre.</p>
-  </div>
-  <div class="text-container">
-    <% @order.travellers.each_with_index do |traveller, index| %>
-      <% index += 1 %>
-        <p class="traveller-title">VOYAGEUR <%= index %></p>
-        <div class="p-text">
-          <p><%= traveller.first_name %> <%= traveller.last_name %></p>
-          <% if traveller.insurance_status == true %>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
-              <label class="form-check-label" for="data-check1">
-                <p>Avec asssurance</p>
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1">
-              <label class="form-check-label" for="data-check1">
-                <p>Sans assurance</p>
-              </label>
-            </div>
-          <% else %>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1">
-              <label class="form-check-label" for="data-check1">
-                <p>Avec asssurance</p>
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
-              <label class="form-check-label" for="data-check1">
-                <p>Sans assurance</p>
-              </label>
-            </div>
-          <% end %>
-        </div>
-    <% end %>
+    <p>Si vous jus3fiez d’une garantie antérieure pour les risques couverts par l’assurance souscrite, vous avez la possibilité de renoncer sans frais à ceRe/ces assurance(s) dans un délai de 14 jours à compter de sa conclusion et tant qu’aucune garan3e n’a été mise en œuvre.</p>
   </div>
 </div>
 

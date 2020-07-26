@@ -9,23 +9,6 @@
 
           <div class="container">
 
-            <%= render "travellers/partials/insurance_info" %>
-            
-            <div class="text-center">
-              <div class="btn-group my-3" data-toggle="buttons">
-                  <%= form.label :insurance_status_true, class: "btn btn-outline-success form-check-label" do %>
-                  <%= t("general_forms.yes_word") %>
-                    <%= form.radio_button :insurance_status, true, class:"form-check-input invisible" %>
-                  <% end %>
-                <%= form.label :insurance_status_false, class:"btn btn-outline-danger form-check-label" do %>
-                  <%= t("general_forms.no_word") %>
-                  <%= form.radio_button :insurance_status, false, class:"form-check-input invisible" %>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="blackline"></div>
-
             <div class="row justify-content-center">
               <div class="col-sm-4 form-group text-center">
                 <%= form.label t("travellers.gender"), class: "small" %>
