@@ -71,7 +71,7 @@
 
   <%= form.hidden_field :location, value: form.object.location.to_json %>
 
-  <p style="font-size: 10px;"><%= t('share_form.dont_forget') %>!</p>
+  <p class="small"><%= t('share_form.dont_forget') %>!</p>
   
   <div class="mb-3">
     <%= form.button t('share_form.share_spot'), class: "btn btn-block btn-stylised shadow py-3", id:"spot-submit", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>

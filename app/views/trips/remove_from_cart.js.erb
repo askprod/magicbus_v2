@@ -1,4 +1,4 @@
 $('#cart').html("<%= escape_javascript(render(:partial => 'layouts/cart')).html_safe %>");
 $('#my-cart-counter').html("<%= escape_javascript(render(:partial => 'layouts/cart-counter')).html_safe %>");
-$("#trip<%= @ajax_trip %>-content").removeClass("inside-cart");
+$("#trip<%= @ajax_trip %>-content").removeClass("grey-out");
 $("#trip<%= @ajax_trip %>-content").find(".btn-details").show();

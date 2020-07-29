@@ -30,6 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  user: 
+    change_password: New password
   home:
     moving_hostel: A moving hostel in Europe
     discover: DISCOVER
@@ -215,6 +217,11 @@ en:
     recent_tab: Recent Order
     paid_tab: Paid Orders
     delete_order: Delete Order
+    confirm_order: Confirm Order
+    travellers: Travellers
+    meals_non_included: meals non included
+    certify_info: I certify that the information provided concerning each traveller is correct and has been double-checked.
+    no_modification: You will not be able to modify any information after this page.
   carts: 
     empty_cart: You cart is empty
     book_trip: Book a Trip

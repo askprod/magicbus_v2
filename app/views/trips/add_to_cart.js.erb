@@ -1,6 +1,6 @@
 $('#alert').html("<%= escape_javascript(render :partial => 'layouts/notice') %>").show();
 $('#cart').html("<%= escape_javascript(render(:partial => 'layouts/cart')).html_safe %>");
 $('#my-cart-counter').html("<%= escape_javascript(render(:partial => 'layouts/cart-counter')).html_safe %>");
-$("#trip<%= @ajax_trip %>-content").addClass("inside-cart");
+$("#trip<%= @ajax_trip %>-content").addClass("grey-out");
 $("#trip<%= @ajax_trip %>-content").find(".btn-details").hide();
 $("#trip<%= @ajax_trip %>-content").find(".collapse").collapse("toggle");

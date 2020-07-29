@@ -217,6 +217,11 @@ fr:
     recent_tab: Commande en Cours
     paid_tab: Commandes Payées
     delete_order: Supprimer ma Commande
+    confirm_order: Confirmer Commande
+    travellers: Voyageurs
+    meals_non_included: repas non inclus
+    certify_info: Je certifie que les informations concernant chaque voyageur sont correctes et ont été vérifiée.
+    no_modification: Vous ne pourrez plus modifier ces informations après avoir validé ce formulaire.
   carts: 
     empty_cart: Ton panier est vide
     book_trip: Réserver un Voyage

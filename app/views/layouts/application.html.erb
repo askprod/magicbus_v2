@@ -10,7 +10,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# Check if turbolinks reload is causing pages to not scroll to top? %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials[:google_maps_api_key]}&language=" + I18n.locale.to_s + "&libraries=places" %>

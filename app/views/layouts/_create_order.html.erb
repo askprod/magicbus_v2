@@ -4,17 +4,17 @@
       <p class="small mb-0 text-center my-auto py-3 hide-sm">Order Info</p>
       <button class="btn btn-block btn-arrow hide-lg" type="button" data-toggle="collapse" data-target="#collapse-cart" aria-expanded="false" aria-controls="collapseExample">
         <i id="arrow-button" class="fa fa-chevron-circle-up fa-2x my-2"></i>
-        <p class="small">Confirm Order</p>
+        <p class="small"><%= t("orders.confirm_order") %></p>
       </button>
     </div>
 
     <div class="collapse dont-collapse-sm" id="collapse-cart">
 
       <div class="container my-5 text-center">
-          <p class="small"><%= @travellers_count %> Travellers<p> 
-          <p><%= @total_trips_price %>€ per Traveller<p>
+          <p class="small"><%= @travellers_count %> <%= t("orders.travellers") %><p> 
+          <p><%= @total_trips_price %>€ / <%= t("orders.travellers") %><p>
           <% if @vegan_travellers > 0 %>
-            <p class="small"><%= @vegan_travellers %>x Meals non included: -<%= @food_deduction %>€<p>
+            <p class="small"><%= @vegan_travellers %>x <%= t("order.meals_non_included") %>: -<%= @food_deduction %>€<p>
           <% end %>
           <h1><span id="total-cart-price"><%= @total_price %></span> €</h1>
       </div>
@@ -33,12 +33,12 @@
           <div class="form-check mx-3 mb-4">
             <%= f.check_box :correct_information, class:"form-check-input" %>          
             <%= f.label :correct_information, class:"form-check-label" do %> 
-              <p>I certify that the information provided concerning each traveller is correct and has been double-checked.</p>
-              <p class="text-danger">You will not be able to modify any information after this page.</p>
+              <p><%= t("orders.certify_info") %></p>
+              <p class="text-danger"><%= t("orders.no_modification") %></p>
             <% end %>
           </div>
 
-          <%= f.submit "Create Order", class: "btn btn-stylised btn-block py-3" %>
+          <%= f.submit t("orders.confirm_order"), class: "btn btn-stylised btn-block py-3" %>
 
         <% end %>
       </div>

@@ -14,9 +14,11 @@ module Stripe
       end
 
       def handle_payment_intent_payment_failed(event)
+        # Add webhook here
       end
 
       def handle_payment_intent_succeeded(event)
+        # Add webhook here
       end
     end
 end

@@ -43,7 +43,11 @@ class Trip < ApplicationRecord
         self.remaining_seats_count <= 0
     end
 
-    def is_bookable?
-        self.departure_date > (Date.today - 2.days)
+    def is_expired?
+        self.departure_date < (Date.today + 2.days)
+    end
+
+    def is_blocked?
+        self.departure_date < (Date.today + 7.days) && self.remaining_seats_count > 6
     end
 end

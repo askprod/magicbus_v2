@@ -24,10 +24,12 @@
         <div class="container trips px-0">
             <% if current_user && current_user.cart.trips.include?(trip) %>
                 <%= render "trip_in_cart", trip: trip %>
-            <% elsif trip.is_bookable? || trip.is_full? %>
-                <%= render "trip_bookable", trip: trip %>
+            <% elsif trip.is_full? %>
+                <%= render "trip_is_full" %>
+            <% elsif trip.is_expired? || trip.is_blocked? %>
+                <%= render "trip_is_expired", trip: trip %>
             <% else %>
-                <%= render "trip_unbookable", trip: trip %>
+                <%= render "trip_bookable", trip: trip %>
             <% end %>
         </div>
         
