@@ -22,7 +22,19 @@
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
 
-            <%= link_to t("general_forms.change_password"), edit_user_path, class: "btn btn-stylised", remote: true %>
+            <div class="form-group">
+              <%= link_to t("general_forms.change_password"), edit_user_path, class: "btn btn-stylised", remote: true %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :newsletter, class: "small" %>
+              <br>
+              <% if current_user.gibbon_status == true %> 
+                <%= link_to "Unsubscribe", newsletter_delete_subscribtion_path, method: :post, class: "btn btn-danger" %>
+              <% else %>
+                <%= link_to "Subscribe", newsletter_add_subscribtion_path, method: :post, class: "btn btn-success" %>
+              <% end %>
+            </div>
           </div>
 
           <div class="col-sm-6 mx-auto my-auto">

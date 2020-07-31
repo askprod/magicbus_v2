@@ -122,3 +122,5 @@ gem "sidekiq", "~> 6.1"
 gem "redis", "~> 4.2"
 
 gem "sidekiq-cron", "~> 1.2"
+
+gem "gibbon", "~> 3.3"

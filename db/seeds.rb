@@ -29,12 +29,12 @@ when "development"
     Home.create!(description: "Attach a video file to show it on the home page")
     Discover.create!(description: "The quote on Discover page")
 
-    admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
+    admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true, newsletter: false)
     admin.skip_confirmation!
     admin.save!
 
     5.times do |index|
-        user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email:"mail#{index}@mail.com", password:"password", terms_and_conditions: true, admin: false)
+        user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email:"mail#{index}@mail.com", password:"password", terms_and_conditions: true, admin: false, newsletter: false)
         user.skip_confirmation!
         user.save!
     end
@@ -56,7 +56,7 @@ when "development"
 
 when "production"
 
-    admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true)
+    admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true, newsletter: false)
     admin.skip_confirmation!
     admin.save!
 

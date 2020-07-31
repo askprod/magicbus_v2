@@ -44,8 +44,16 @@ Rails.application.routes.draw do
     resources :travellers, only: [:new, :create, :edit, :update, :destroy]
     resources :places, :path => 'share', only: [:index, :new, :create, :edit, :update, :destroy]
 
+    get '/newsletter' => 'newsletter#new'
+    post '/newsletter' => 'newsletter#create'
+
+    get '/faq' => 'helps#index'
     get 'travel/sort-trips-country/:id' => 'trips#sort_trips_country'
     get 'travel/sort-trips-date/:id' => 'trips#sort_trips_date'
     get 'travel/sort-trips-theme/:id' => 'trips#sort_trips_theme'
+
+    post 'newsletter/add-subscribtion' => 'newsletter#user_add_subscribtion'
+    post 'newsletter/delete-subscribtion' => 'newsletter#user_delete_subscribtion'
+
   end
 end

@@ -21,7 +21,7 @@
         <%= label_tag :order_third_checkbox, class:"form-check-label small" do %>
         <%= check_box_tag :order_third_checkbox, class:"form-check-input" %>
             En cochant cette case, je reconnais avoir lu et accepté les 
-            <%= link_to asset_path("/pdf/magicbus_cgv.pdf"), target: "_blank", class:"pdf-btn" do %>
+            <%= link_to asset_path("/pdf/magicbus_cgv_fr.pdf"), target: "_blank", class:"pdf-btn" do %>
                 conditions générales de vente.
             <% end %>
         <% end %>
@@ -33,7 +33,7 @@
         <%= label_tag :order_second_checkbox, class:"form-check-label small" do %>
         <%= check_box_tag :order_second_checkbox, class:"form-check-input" %>
             En cochant cette case, la personne accepte de 
-                <%= link_to asset_path("/pdf/magicbus_rgpd.pdf"), target: "_blank", class: "pdf-btn" do %>
+                <%= link_to asset_path("/pdf/magicbus_rgpd_fr.pdf"), target: "_blank", class: "pdf-btn" do %>
                     transmettre ses données
                 <% end %>    
                 et garantit qu’il a recueilli le consentement des autres voyageurs aux mêmes fins. Nous collectons ces données pour la bonne execution du contrat de voyage.</p>

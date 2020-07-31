@@ -49,6 +49,23 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Help' do
+    navigation_label "Views"
+    label "Help FAQ"
+    label_plural "Help FAQ"
+    weight -4
+
+    list do
+      field :help_en
+      field :help_fr
+    end
+
+    edit do 
+      field :help_en
+      field :help_fr
+    end
+  end
+
   config.model 'Discover' do
     navigation_label "Views"
     label "Discover Page"

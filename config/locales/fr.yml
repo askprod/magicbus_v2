@@ -32,6 +32,8 @@
 fr:
   user: 
     change_password: Nouveau mot de passe
+  faq:
+    home: Foire aux questions
   home:
     moving_hostel: Une auberge itinérante en Europe
     discover: DECOUVRE
@@ -158,6 +160,9 @@ fr:
     come_later: Revenez un peu plus tard
     search: Rechercher
     map_text: Attention, le dessin du trajet entre les points d'arrêts est généré automatiquement par Google Maps, il n'est donc pas toujours représentatif du trajet réel.
+    what_to_know: Ce que tu dois savoir
+    show_me: Montre Moi
+    before_travelling: Avant de voyager avec Magicbus
   trips:
     week: SEMAINE
     departure: Départ

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_083312) do
+ActiveRecord::Schema.define(version: 2020_07_29_121350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,11 @@ ActiveRecord::Schema.define(version: 2020_07_14_083312) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "helps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "homes", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
@@ -209,7 +214,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_083312) do
     t.string "phone_number"
     t.string "medical_condition"
     t.string "additional_comment"
-    t.boolean "insurance_status"
     t.boolean "food_participation", default: true
     t.bigint "cart_id"
     t.bigint "order_id"
@@ -238,6 +242,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_083312) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.boolean "newsletter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false

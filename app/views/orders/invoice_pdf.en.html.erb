@@ -113,29 +113,29 @@
 
 <div class="big-header">
     <%= wicked_pdf_image_tag '/images/logo_round.png', size: "180x180" %>
-    <p>CONTRAT DE VOYAGE</p>
-    <p>FORFAIT TOURISTIQUE</p>
+    <p>TRAVEL CONTRACT</p>
+    <p>TOURIST PACKAGE</p>
 </div>
 
-<p class="main-titles">1. IDENTIFICATION DES PARTIES</h1>
+<p class="main-titles">1. PARTY IDENTIFICATION</h1>
 
 <div class="text-container">
-  <p class="secondary-titles">"LE DETAILLANT"</p>
+  <p class="secondary-titles">"THE RETAILER"</p>
   <div class="p-text">
-    <p><span class="b">Nom:</span> MagicBus</p>
-    <p><span class="b">Dénomination sociale de l'entreprise:</span> SARL MagicBus</p>
-    <p><span class="b">N° Immatriculation:</span> IM031190014</p>
-    <p><span class="b">Adresse:</span> 31 Résidence du Château, 31150 Fenouillet.</p>
-    <p><span class="b">N° de télephone:</span> 06.59.09.11.65</p>
+    <p><span class="b">Name:</span> MagicBus</p>
+    <p><span class="b">Company name:</span> SARL MagicBus</p>
+    <p><span class="b">Registration N°:</span> IM031190014</p>
+    <p><span class="b">Address:</span> 31 Résidence du Château, 31150 Fenouillet.</p>
+    <p><span class="b">Phone:</span> 06.59.09.11.65</p>
     <p><span class="b">E-mail:</span> hello@magicbusworld.com</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">"L'ORGANISATEUR"</p>
+  <p class="secondary-titles">"THE ORGANIZER"</p>
   <div class=p-text>
     <p><span class="b">Name:</span> MagicBus</p>
-    <p><span class="b">Dénomination sociale de l'entreprise:</span> SARL MagicBus</p>
+    <p><span class="b">Company name:</span> SARL MagicBus</p>
     <P><span class="b">Registration N°:</span> IM031190014</p>
     <p><span class="b">Address:</span> 31 Résidence du Château, 31150 Fenouillet.</p>
     <p><span class="b">Phone:</span> 06.59.09.11.65</p>
@@ -147,14 +147,14 @@
 
 <div class="small-header">
     <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
-    <p>CONTRAT DE VOYAGE</p>
-    <p>FORFAIT TOURISTIQUE</p>
+    <p>TRAVEL CONTRACT</p>
+    <p>TOURIST PACKAGE</p>
 </div>
 
-<p class="main-titles">2. VOYAGEUR(S)</p>
+<p class="main-titles">2. TRAVELLER(S)</p>
 
 <div class="text-container">
-  <p class="secondary-titles">CLIENT</p>
+  <p class="secondary-titles">CUSTOMER</p>
   <div class="p-text">
     <p><span class="b">Name:</span> <%= @order.details['charges']['data'][0]['billing_details']['name'] %></p>
     <p><span class="b">Address:</span> <%= @order.details['charges']['data'][0]['billing_details']['address']['line1'] %></p>
@@ -165,13 +165,13 @@
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">VOYAGEUR(S)</p>
+  <p class="secondary-titles">TRAVELLERS(S)</p>
   <% @order.travellers.each_with_index do |traveller, index| %>
     <% index += 1 %>
-      <p class="traveller-title">VOYAGEUR <%= index %></p>
+      <p class="traveller-title">TRAVELLER <%= index %></p>
       <div class="p-text">
-        <p><span class="b">Last Name:</span> <%= traveller.first_name %></p>
-        <p><span class="b">First Name:</span> <%= traveller.last_name %></p>
+        <p><span class="b">Last Name:</span> <%= traveller.last_name %></p>
+        <p><span class="b">First Name:</span> <%= traveller.first_name %></p>
         <p><span class="b">Birth date:</span> <%= traveller.birth_date.strftime('%d-%m-%Y') %></p>
       </div>
   <% end %>
@@ -186,7 +186,7 @@
       <input class="form-check-input" type="checkbox" value="" id="data-check1">
       <% end %>
       <label class="form-check-label" for="data-check1">
-        <p>La personne concluant le présent contrat accepte de transmeRre ses données dans le but de son exécu3on et garan3t qu’il a recueilli le consentement des autres voyageurs aux mêmes fins.</p>
+        <p>The person entering into this contract agrees to the transmission of his data for the purpose of his and guaranteed that it has obtained the consent of other travellers for the same purpose.</p>
       </label>
     </div>
     <div class="form-check">
@@ -196,16 +196,16 @@
       <input class="form-check-input" type="checkbox" value="" id="data-check2">
       <% end %>
       <label class="form-check-label" for="data-check2">
-        <p>La personne concluant le présent contrat accepte de transmettre ses données aux fins de recevoir nos promotions et sollicitations (via courriers électroniques, messages SMS, appels téléphoniques et courriers postaux):</p>
+        <p>The person entering into this contract agrees to transmit his or her data for the purpose of receiving our promotions and solicitations (via e-mail, SMS messages, telephone calls and postal mail):</p>      
       </label>
     </div>
-    <p>Les données sont conservées pendant une durée qui n’excède pas la durée nécessaire aux finalités suivantes:</p>
+      <p>The data shall be kept for no longer than is necessary for the following purposes: </p>
     <ul>
-      <li><p>Commande d’un séjour : les données nécessaires au traitement de votre commande seront conservées pendant la durée nécessaire à l’établissement d’un droit ou d’un contrat.</p></li>
-      <li><p>Ges3on de la rela3on commerciale : les données seront conservées (au plus tard) 3 ans à compter de la fin de la rela3on commerciale.</p></li>
+      <li><p>Ordering a stay: the data necessary to process your order will be kept for the time necessary to establish a right or contract.</p></li>
+      <li><p>Management of the commercial relationship: the data will be kept (at the latest) 3 years from the end of the commercial relationship.</p></li>
     </ul>
-    <p>Conformément à la législa3on en vigueur, vous disposez d’un droit d’accès, de rec3fica3on, de suppression et de portabilité des données personnelles vous concernant et d’un droit d’opposi3on pour raison légi3me à leur traitement.</p>
-    <p>Pour exercer ces droits, vous devez adresser un courrier postal à l'adresse suivante : 31 résidence du château 31150 Fenouillet ou un courrier électronique à : <a href="#">hello@magicbusworld.com</a></p>
+    <p>In accordance with the legislation in force, you have the right to access, rectify, delete and carry personal data concerning you and the right to object on legitimate reason to their processing.</p>
+    <p>To exercise these rights, you must send a letter to the following address: 31 Résidence du Château 31150 Fenouillet, or an e-mail to: <a href="#">hello@magicbusworld.com</a></p>
   </div>
 </div>
 
@@ -216,67 +216,69 @@
     <p>FORFAIT TOURISTIQUE</p>
 </div>
 
-<p class="main-titles">3. INFORMATIONS VOYAGE(S)</p>
+<p class="main-titles">3. TRIP(S) INFORMATION</p>
 
 <div class="text-container">
-  <p class="secondary-titles">DETAIL DES VOYAGES RESERVES</p>
+  <p class="secondary-titles">DETAILS OF BOOKED TRIPS</p>
   <div class="p-text">
-    <p><span class="b">Type:</span> Séjour itinérant</p>
-    <p><span class="b">Numéro de réservation:</span> <%= @order.name %> 
+    <p><span class="b">Type:</span> Itinerant trip</p>
+    <p><span class="b">Reservation number:</span> <%= @order.name %> 
   </div>
   <% @order.trips.each_with_index do |trip, index| %>
     <% index += 1 %>
     <p class="traveller-title">TRIP <%= index %></p>
       <div class="p-text">
         <p>Departure: <%= trip.departure_date.strftime("%d-%m-%Y") %> at <%= trip.departure_location['locality'] %>, <%= trip.departure_location['country'].upcase %></p>
-        <p>Arrival: <%= trip.arrival_date.strftime("%d-%m-%Y") %> at <%= trip.arrival_location['locality'] %>, <%= trip.departure_location['country'].upcase %></p>
+        <p>Arrival: <%= trip.arrival_date.strftime("%d-%m-%Y") %> at <%= trip.arrival_location['locality'] %>, <%= trip.arrival_location['country'].upcase %></p>
       </div>
   <% end %>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">PAYS TRAVERSE(S)</p>
+  <p class="secondary-titles">COUNTRIES CROSSED</p>
   <div class="p-text-no-margin">
-    <p>Durant les voyages stipulés dans la rubrique précédente, les voyageurs traverserons les pays suivants:</p>
-    <p class="b"><%= @order.trips.order(:week).map{|x| x.departure_location['country']}.uniq.join(",") %></p>
+    <p>During the trips stipulated in the previous section, travellers will cross the following countries:</p>
+    <p class="b"><%= (@order.trips.order(:week).map{|x| x.departure_location['country']} + @order.trips.order(:week).map{|x| x.arrival_location['country']}).uniq.join(", ") %></p>
   </div>
 </div>
 
 <div class="text-container">
   <p class="secondary-titles">TRANSPORT</p>
   <div class="p-text-no-margin">
-    <p class="subhead">• Caractéris+ques, moyen, catégorie</p>
-    <p>Le transport pour rejoindre le bus à l’allée et rejoindre le domicile du client au retour ne sont pas pris en charge dans ce forfait.</p>
-    <p>Le transport durant le voyage, depuis la récupéraWon du voyageurs au point de départ jusqu’au dépôt de ce dernier au point d’arrivé à la fin du séjour, est effectué en autobus.</p>
-    <p class="subhead">• Horaires</p>
-    <p>L’heure de départ de chaque voyage est une heure approximative qui vous sera précisée ultérieurement.
-    <br>
-    <span class="b">Heure de départ approximative : 16h30.</span></p>
-    <p class="subhead">• Durée et lieux des arrêts</p>
-    <p>La durée et les lieux d’arrêts ne sont pas connues au moment de l’établissement du contrat, puisque les escales seront décidées sur place en collaboration avec les autres voyageurs. Il s’agit là d’un principe fondamental et typique du type de voyage proposé par l’entreprise MagicBus.</p>
+    <p class="subhead">• Characteristics, medium, category</p>
+    <p>Transport to reach the bus for check in and to leave the bus after check out are not covered by this package.</p>
+    <p>Transportation during the trip, from the pick up of the traveller at the point of departure to the drop off at the point of arrival at the end of the journey, is carried out by bus.</p>
+    <p class="subhead">• Schedule</p>
+    <p>
+      The departure time for each trip is an approximate time that will be specified later
+      <br>
+      <span class="b">Approximate departure time: 4:30 pm.</span>
+    </p>
+    <p class="subhead">• Stops duration and locations</p>
+    <p>The duration and locations of the stops are not known at the time the contract is drawn up, as the stopovers will be decided on the spot in collaboration with other travellers. This is a fundamental principle of the type of travel offered by the MagicBus company.</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">ITINERAIRE & HEBERGEMENT</p>
+  <p class="secondary-titles">ITINERARY & ACCOMMODATION</p>
   <div class="p-text-no-margin">
-    <p>Le forfait sélectionné est un voyage en iWnérance, à bord d’un bus réaménagé en auberge de jeunesse dans lequel le(s) client(s) seront transporté(s) et logé(s) pour toute la durée du séjour. Les étapes sont improvisées à bord en collaboraWon avec les autres voyageurs.</p>
+    <p>The selected package is a road trip, on board of a bus converted into a hostel in which the customer(s) will be transported and accommodated for the entire duration of the stay. The stops are improvised on board in collaboration with the other travellers.</p>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
         <label class="form-check-label" for="data-check1">
-          <p>Programme communiqué au client</p>
+          <p>Program communicated to the customer</p>
         </label>
       </div>
-    <p class="b">Nombre de nuits par voyage: 7 nuits</p>
+    <p class="b">Number of nights per trip: <%= (@order.trips.first.arrival_date - @order.trips.first.departure_date).to_i %> nights</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">REPAS & SANTE</p>
+  <p class="secondary-titles">MEAL & HEALTH</p>
   <div class="p-text-no-margin">
-    <p>La parWcipaWon au pot commun, servant à l’achat des aliments nécessaires au peWt- déjeuner ainsi qu’à un repas par jour, est comprise dans le forfait par default. Il n’est exclu qu’en cas de restricWon alimentaire très spécifiques (ex: vegan).</p>
-    <p>Merci d’indiquer les contraintes médicales spécifiques pour chaque voyage afin d’anWciper tout problème d’ordre médical pouvant subvenir pendant le voyage.</p>
-    <p>Pour ce contrat de voyage:</p>
+    <p>Participation in the common pot, which is used to purchase the food needed for breakfast and for one meal a day, is included in the default package. It is excluded only in case of very specific food restrictions (e.g. vegan).</p>
+    <p>Please indicate the specific medical requirements for each trip in order to anticipate any medical problems that may arise during the trip.</p>
+    <p>For this travel contract:</p>
   </div>
   <% @order.travellers.each_with_index do |traveller, index| %>
     <% index +=1 %>
@@ -286,63 +288,63 @@
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="data-check1">
           <label class="form-check-label" for="data-check1">
-            <p>Sans repas pour restriction alimentaire</p>
+            <p>No meals for restricted diet reason</p>
           </label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
           <label class="form-check-label" for="data-check1">
-            <p>Participe au pot commun</p>
+            <p>Participates to the common pot</p>
           </label>
         </div>
       <% else %>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
           <label class="form-check-label" for="data-check1">
-            <p>Sans repas pour restriction alimentaire</p>
+            <p>No meals for restricted diet reason</p>
           </label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="data-check1">
           <label class="form-check-label" for="data-check1">
-            <p>Participe au pot commun</p>
+            <p>Participates to the common pot</p>
           </label>
         </div>
       <% end %>
     </div>
     <div class="p-text">
       <% if traveller.food_restrictions.empty? %>
-        <p><span class="b mr-3">Restrictions Alimentaires:</span> X</p>
+        <p><span class="b mr-3">Food Restrictions:</span> X</p>
       <% else %>
-        <p><span class="b mr-3">Restrictions Alimentaires:</span> <%= traveller.food_restrictions.map{|x| x.name}.join(",") %></p>
+        <p><span class="b mr-3">Food Restrictions:</span> <%= traveller.food_restrictions.map{|x| x.name}.join(",") %></p>
       <% end %>
 
       <% if traveller.food_diets.empty? %>
-        <p><span class="b mr-3">Régimes Alimentaires:</span> X</p>
+        <p><span class="b mr-3">Food Diets:</span> X</p>
       <% else %>
-        <p><span class="b mr-3">Régimes Alimentaires:</span> <%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
+        <p><span class="b mr-3">Food Diets:</span> <%= traveller.food_diets.map{|x| x.name}.join(",") %></p>
       <% end %>
 
       <% if traveller.medical_condition.empty? %>
-        <p><span class="b mr-3">Remarques médicales spécifiques:</span> X</p>
+        <p><span class="b mr-3">Specific medical remarks:</span> X</p>
       <% else %>
-        <p><span class="b mr-3">Remarques médicales spécifiques:</span> <%= traveller.medical_condition %></p>
+        <p><span class="b mr-3">Specific medical remarks:</span> <%= traveller.medical_condition %></p>
       <% end %>
 
       <% if traveller.additional_comment.empty? %>
-        <p><span class="b mr-3">Autres commentaires:</span> X</p>
+        <p><span class="b mr-3">Other comments:</span> X</p>
       <% else %>
-        <p><span class="b mr-3">Autres commentaires:</span> <%= traveller.additional_comment %></p>
+        <p><span class="b mr-3">Other comments:</span> <%= traveller.additional_comment %></p>
       <% end %>
     </div>
   <% end %>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">DESCRIPTION DU FORFAIT</p>
+  <p class="secondary-titles">PACKAGE DESCRIPTION</p>
   <% @order.trips.each_with_index do |trip, index| %>
     <% index += 1 %>
-    <p class="traveller-title">VOYAGE <%= index %></p>
+    <p class="traveller-title">TRIP <%= index %></p>
       <div class="p-text-no-margin">
         <p><%= trip.description %></p>
       </div>
@@ -350,16 +352,16 @@
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">PERSONNES A MOBILITE REDUITE</p>
+  <p class="secondary-titles">PEOPLE WITH REDUCED MOBILITY</p>
   <div class="p-text-no-margin">
-    <p>Ce voyage n’est pas adapté aux personnes à mobilité réduite.</p>
+    <p>This trip is not suitable for people with reduced mobility.</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">INDIVIDUELS REGROUPES</p>
+  <p class="secondary-titles">INDIVIDUAL GROUPS</p>
   <div class="p-text-no-margin">
-    <p>Votre voyage est rattaché à un voyage de groupe de 8 personnes maximum, la capacité maximale d’un séjour étant de 8 voyageurs.</p>
+    <p>Your trip is attached to a group trip of up to 8 people, the maximum capacity of a stay being 8 travellers, and the minimum being 2 travellers.</p>
   </div>
 </div>
 
@@ -367,42 +369,42 @@
 
 <div class="small-header">
     <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
-    <p>CONTRAT DE VOYAGE</p>
-    <p>FORFAIT TOURISTIQUE</p>
+    <p>TRAVEL CONTRACT</p>
+    <p>TOURIST PACKAGE</p>
 </div>
 
-<p class="main-titles">4. FORMALITES</h1>
+<p class="main-titles">4. FORMALITIES</h1>
 
 <div class="text-container">
-  <p class="secondary-titles">FORMALITES – POLICE:</p>
+  <p class="secondary-titles">FORMALITIES – POLICE:</p>
   <div class="p-text-no-margin">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
         <label class="form-check-label" for="data-check1">
-          <p>Le(s) voyageur(s) déclare sur l’honneur avoir en sa possession les documents administraWfs requis pour son séjour dans le ou les pays concernés par ce voyage (visa à jour, passeport, etc..). Ces documents lui seront demandé à son arrivée. Si le voyageur n’est pas en possession des documents requis, il ne sera pas accepté à bord et ne pourra demander de remboursement / indemnisaWons.</p>
+          <p>The traveller(s) declare(s) on their honour that they are in possession of the administrative documents required for their stay in the country or countries concerned by this journey (up-to-date visa, passport, etc.). These documents will be requested on arrival. If the traveller is not in possession of the required documents, he/she will not be accepted on board and will not be able to claim any refund/indemnity.</p>
         </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
         <label class="form-check-label" for="data-check1">
-          <p>Le(s) voyageur(s) déclare sur l’honneur faire le nécéssaire pour répondre aux formalités sanitaires du ou des pays traversés lors de ce voyage.</p>
+          <p>The traveller(s) declare(s) on their honour that they will take the necessary steps to comply with the health formalities of the country or countries crossed during this trip.</p>
         </label>
       </div>
-    <p>Les informa3ons ci-dessus sont communiquées selon les données disponibles à la date d’établissement du contrat.</p>
-    <p>Nous vous conseillons de consulter, jusqu’au jour du départ, les sites:</p>
-    <p>hgps://www.pasteur.fr/fr</p>
-    <p>hgps://www.diplomaWe.gouv.fr/fr/conseils-aux-voyageurs/</p>
-    <p>et vous conseillons de vous inscrire sur le site Ariane:</p>
-    <p>hgps://pastel.diplomaWe.gouv.fr/fildariane/dyn/public/login.html</p>
+    <p>The above information is provided on the basis of data available at the date of preparation of the contract.</p>
+    <p>We advise you to consult, until the day of departure, the sites:</p>
+    <p>https://www.pasteur.fr/fr</p>
+    <p>https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/</p>
+    <p>and advise you to create an account on the Ariane website:</p>
+    <p>https://pastel.diplomatie.gouv.fr/fildariane/dyn/public/login.html</p>
   </div>
 </div>
 
 <div class="text-container">
-    <p class="secondary-titles">MINEURS</p>
+    <p class="secondary-titles">MINORS</p>
     <div class="p-text-no-margin">
-      <p>Les enfants peuvent voyager avec MagicBus à compter de leur dixième anniversaire révolu.</p>
-      <p>Les mineurs de moins de 18 ans doivent être accompagnés lors du MagicTrip par des personnes disposant de l’autorité parentale.</p>
-      <p>Les enfants ne voyagent pas à tarif réduit.</p>
+      <p>Children can travel with MagicBus from their tenth birthday onwards.</p>
+      <p>Minors under the age of 18 must be accompanied on the MagicTrip by persons with parental authority.</p>
+      <p>Children do not travel at a reduced rate.</p>
     </div>
 </div>
 
@@ -410,89 +412,81 @@
 
 <div class="small-header">
     <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
-    <p>CONTRAT DE VOYAGE</p>
-    <p>FORFAIT TOURISTIQUE</p>
+    <p>TRAVEL CONTRACT</p>
+    <p>TOURIST PACKAGE</p>
 </div>
 
-<p class="main-titles">5. PRIX ET ANNULATION</h1>
+<p class="main-titles">5. PPRICING AND CANCELLATION</h1>
 
 <div class="text-container">
-  <p class="secondary-titles">PRIX</p>
+  <p class="secondary-titles">PRICES</p>
   <div class="p-text">
-    <p>Prix TTC: <%= @order.total_price %>€ 
-    <p>Mode de règlement: <%= @order.details['charges']['data'][0]['payment_method_details']['card']['brand'].upcase %>, **** **** **** <%= @order.details['charges']['data'][0]['payment_method_details']['card']['last4'] %>, Exp: <%= sprintf('%02d', @order.details['charges']['data'][0]['payment_method_details']['card']['exp_month']) %>-<%= @order.details['charges']['data'][0]['payment_method_details']['card']['exp_year'] %></p>
-    <p>Transaction Stripe N° <%= @order.details['charges']['data'][0]['payment_intent'] %></p>
-    <p><a href="<%= @order.details['charges']['data'][0]['receipt_url'] %>">Facture Stripe</a></p>
+    <p>Price VAT included: <%= @order.total_price %>€ 
+    <p>Payment method: <%= @order.details['charges']['data'][0]['payment_method_details']['card']['brand'].upcase %>, **** **** **** <%= @order.details['charges']['data'][0]['payment_method_details']['card']['last4'] %>, Exp: <%= sprintf('%02d', @order.details['charges']['data'][0]['payment_method_details']['card']['exp_month']) %>-<%= @order.details['charges']['data'][0]['payment_method_details']['card']['exp_year'] %></p>
+    <p>Stripe transaction N° <%= @order.details['charges']['data'][0]['payment_intent'] %></p>
+    <p><a href="<%= @order.details['charges']['data'][0]['receipt_url'] %>">Stripe Invoice</a></p>
   </div>
   <div class="p-text-no-margin">
-    <p>Les prix de vente, conformément à l'article L. 112-1 du Code de la consommation sont indiqués, pour chacun des MagicTrip figurant sur le Site, en euros toutes taxes comprises, hors frais de transport d’acheminement du MagicPeople jusqu’à la Ville d’étape de départ et hors frais de transport de retour suivant la Ville d’étape d’arrivée choisie par le MagicPeople.</p>
-    <p>Ce prix comprend:</p>
+    <p>In accordance with article L. 112-1 of the French Consumer Code, sales prices are indicated for each of the MagicTrips appearing on the Site, in euros, all taxes included, excluding transport costs for transporting the MagicPeople to the City of the departure stopover and excluding return transport costs following the City of the arrival stopover chosen by the MagicPeople.</p>
+    <p>This price includes:</p>
     <ul>
-      <li>le logement à bord d’un bus réaménagé en auberge de jeunesse (habitation)</li>
-      <li>le transport durant la période de séjour (du point de départ au point d’arrivé à la fin du séjour).</li>
-      <li>la participation au pot commun pour le petit-déjeuné et un repas par jour (que les voyageurs cuisineront ensemble)</li>
-      <li>la mise à disposition d’équipement de loisir à bord,</li>
-      <li>certaines activités comprise dans le forfait et annoncées plus haut.</li>
+      <li>accommodation on board of the MagicBus: a bed equipped with sheets and pillow, a locker to store your luggage (70 x 40 x 30 cm maximum) and all self-service accommodations (bathroom, kitchen, toilet, furniture).</li>
+      <li>campsites and car parks</li>
+      <li>bus transport: diesel and tolls included.</li>
+      <li>breakfast and participation in the common pot for the evening meal (which we'll cook together)</li>
+      <li>the activities included and mentioned in the trip description (if applicable) </li>
+      <li>the use of the sports and leisure facilities available on the bus: canoeing, surfing, skateboarding, board games, outdoor games, etc...</li>
+      <li>all-you-can-eat tea and coffee, and a welcome beer! </p>
     </ul>
-    <p>Ce prix ne comprend pas:</p>
+    <p>This price does not include:</p>
     <ul>
-        <li>les activités optionnelles facturées en supplément du prix.</li>
-        <li>les transports du voyageur pour rejoindre le bus à son point de départ et rejoindre son domicile depuis le point d’arrivé à la fin du séjour.</li>
+        <li>transport to reach and leave the bus</li>
+        <li>activities / excursions / visits not included in the chosen package</li>
+        <li>rental of equipment other than what is on board </li>
+        <li>travel insurance</li>
+        <li>lunch</li>
     </ul>
-    <p>Le détaillant se réserve le droit, en cas de non-paiement, de constater l’annulation du contrat par le client et d’exiger sans mise en demeure préalable l’applica3on des pénalités d’annula3on prévues ci-dessous.</p>
+    <p>The retailer reserves the right, in the event of non-payment, to note the cancellation of the contract by the customer and to require, without prior formal notice, the application of the cancellation penalties provided for below.</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">ASSURANCE</p>
+  <p class="secondary-titles">INSURANCE</p>
   <div class="p-text-no-margin">
-    <p>L’assurance mulWrisques Mondial Assistance proposée par le vendeur; couvrant annulations/ modificaWon, assistance au voyager, frais médicaux et d’hospitalisaWon d’urgence à l’étranger, retard de transport, dommages aux bagages, responsabilité civile à l’étranger et interrupWon de séjour, pour un montant de 30€/personne; est:</p>
-    <p>(Nom) Mondial Assistance</p>
-    <p>N°police *numéro de police*</p>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
-      <label class="form-check-label" for="data-check1">
-        <p>Contrat transmis au client</p>
-      </label>
-    </div>
-    <p>Si vous jus3fiez d’une garantie antérieure pour les risques couverts par l’assurance souscrite, vous avez la possibilité de renoncer sans frais à ceRe/ces assurance(s) dans un délai de 14 jours à compter de sa conclusion et tant qu’aucune garan3e n’a été mise en œuvre.</p>
+    <p>Travel insurance is not included in the MagicBus package. However, travellers can subscribe to a travel insurance through Chapka Insurance via the following link: </p>
+    <p>https://www.chapkadirect.fr/index.php?action=produit&id=824&app=cd_magicbus</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">REVISION DU PRIX</p>
+  <p class="secondary-titles">PRICE REVISION</p>
   <div class="p-text-no-margin">
-    <p>Conformément aux ar3cles L.211-12, R. 211-8 et R. 211-9 du Code du tourisme, les prix prévus au contrat sont révisables à la hausse comme à la baisse pour tenir compte des varia3ons du coût des transports (carburant/énergie), des redevances et taxes et des taux de change. Vous serez informé de toute hausse du prix total du forfait, au plus tard 20 jours avant le départ. CeRe hausse s’appliquera intégralement sur la part du prix concernée:</p>
-    <p>Part du Transport : ???</p>
-    <p>Redevances et taxes connues à la date du contrat : ???</p>
-    <p>Part des achats en Devises et taux de référence : ???</p>
-    <p>Pour toute hausse supérieure à 8%, vous recevrez sur un support durable le détail de la varia3on du prix, ses conséquences sur le prix du forfait, le choix qui s’offre à vous d’accepter ou de refuser dans un délai raisonnable et des conséquences de l’absence de réponse.</p>
+    <p>In accordance with Articles L.211-12, R. 211-8 and R. 211-9 of the Tourism Code, the prices provided for in the contract may be revised upwards or downwards to take account of variations in transport costs (fuel/energy), fees and taxes and exchange rates. You will be informed of any increase in the total price of the package no later than 20 days before departure.</p>
+    <p>For any increase of more than 8%, you will receive on a durable medium the details of the price variation, its consequences on the price of the package, the choice you have to accept or refuse within a reasonable time and the consequences of not answering.</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">ANNULATION PAR LE VOYAGEUR</p>
+  <p class="secondary-titles">CANCELLATION BY THE TRAVELLER</p>
   <div class="p-text-no-margin">
-    <p>modalités d’annula3on par le voyageur à voir!</p>
-    <p>Absence de droit de rétracta9on</p>
-    <p>Conformément à l’ar3cle L221-28 du Code de la consomma3on, le présent contrat n’est pas soumis au droit de rétracta3on. Toutefois, le voyageur peut résoudre le contrat à tout moment avant le début du voyage et s’acquiRera des frais suivants:</p>
-    <p>Frais d’annula9on/résolu9on du contrat</p>
-    <p>Le voyageur a la possibilité d’annuler/résoudre le présent contrat moyennant le paiement des frais suivants (par personne ou par dossier, sur le prix total du voyage):</p>
-    <p>Barème d’annula9on (sur le prix total du voyage)</p>
-    <p>- à plus de 4 semaines avant le départ : ......... € ou ........... %</p>
-    <p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
-    <p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
+    <p>No right of withdrawal.</p>
+    <p>In accordance with article L221-28 of the Consumer Code, this contract is not subject to the right of withdrawal. However, the traveller may cancel the contract at any time before the start of the trip and shall pay the fees below.</p>
+    <p>Contract cancellation costs</p>
+    <p>The traveller has the option to cancel this contract by paying the following fees (calculated on the total price of the trip):</p>
+      <li>more than 28 days before departure: 50% refunded </li>
+      <li>between 28 days and 14 days before departure: 25% refunded</li>
+      <li>less than 14 days before departure: no refund.</li>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">ANNULATION PAR LE DETAILLANT OU L’ORGANISATEUR</p>
+  <p class="secondary-titles">CANCELLATION BY THE RETAILER OR ORGANIZER</p>
   <div class="p-text-no-margin">
-    <p>Le voyage peut être annulé par l’organisateur ou l’agence si le nombre minimum de 2 parWcipants n’est pas inscrit:</p>
-    <p>20 jours avant la date de départ, pour les voyages dont la durée dépasse 6 jours.</p>
-    <p>7 jours avant la date de départ, pour les voyages dont la durée est de 2 à 6 jours.</p>
-    <p>48h avant la date de départ, pour les voyages dont la durée est 2 jours.</p>
-    <p>Le Voyageur sera alors remboursé de toutes les sommes qu’il aura pu verser mais ne pourra pas prétendre à une indemnisaWon. </p>
+    <p>The trip can be cancelled by the organizer or the agency if the minimum number of 2 participants is not registered:</p>
+      <li>20 days before the departure date, for trips lasting more than 6 days.</li>
+      <li>7 days before the date of departure, for trips lasting between 2 and 6 days.</li>
+      <li>48 hours before the departure date, for trips lasting 2 days.</li>
+    <p>The Traveller will then be refunded all amounts that he may have paid but will not be able to claim compensation.</p>
   </div>
 </div>
 
@@ -500,61 +494,61 @@
 
 <div class="small-header">
     <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
-    <p>CONTRAT DE VOYAGE</p>
-    <p>FORFAIT TOURISTIQUE</p>
+    <p>TRAVEL CONTRACT</p>
+    <p>TOURIST PACKAGE</p>
 </div>
 
-<p class="main-titles">6. INFORMATIONS CONTRACTUELLES</h1>
+<p class="main-titles">6. CONTRACTUAL INFORMATION</h1>
 
 <div class="text-container">
   <p class="secondary-titles">CONTACT</p>
   <div class="p-text-no-margin">
-    <p>Lorsqu’une non-conformité est constatée sur place, le voyageur est tenu de la signaler au contact ci-dessous dans les meilleurs délais:</p>
-    <p>Nom: ABADIE Lisette</p>
-    <p>Adresse: 31 résidence du chateau, 31150 Fenouillet</p>
-    <p>06.59.09.11.65</p>
+    <p>When a non-compliance is found on site, the traveller is required to report it to the contact below as soon as possible:</p>
+    <p>Name: ABADIE Lisette</p>
+    <p>Address: 31 résidence du chateau, 31150 Fenouillet</p>
+    <p>+33 6 59 09 11 65</p>
     <p>hello@magicbusworld.com</p>
-    <p>Le défaut de signalement d’une non-conformité sur place pourra avoir une influence sur le montant des éventuels dommages-intérêts ou réducWon de prix dus si le signalement sans retard aurait pu éviter ou diminuer le dommage du client.</p>
-    <p>Le voyageur pourra également demander de l’aide auprès du contact ci-dessus en cas de difficulté sur place.</p>
+    <p>Failure to report a non-conformity on the spot may influence the amount of any damages or price reduction due if reporting without delay could have prevented or reduced the customer's damage.</p>
+    <p>The traveller may also request assistance from the above contact in the event of difficulties on board.</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">RESPONSABILITE</p>
+  <p class="secondary-titles">RESPONSABILITY</p>
   <div class="p-text-no-margin">
-    <p>Le détaillant et l’organisateur sont responsables de la bonne exécuWon des services prévus au présent contrat et sont tenus d’apporter de l’aide au voyageur en difficulté.</p>
-    <p>En cas de mise en jeu de leur responsabilité de plein droit du fait des prestataires, les limites de dédommagement résultant de convenWons internaWonales selon l’arWcle L. 211-17-IV du Code du Tourisme trouveront à s’appliquer ; à défaut et sauf préjudice corporels, dommages intenWonnels ou causés par négligence, les dommages-intérêts éventuels sont limités à trois fois le prix total du voyage ou du séjour.</p>
+    <p>The retailer and the organiser are responsible for the proper execution of the services provided for in this contract and are obliged to provide assistance to the traveller in difficulty.</p>
+    <p>In the event that their liability is invoked by operation of law on the part of the service providers, the limitations of compensation resulting from international conventions in accordance with article L. 211-17-IV of the Tourism Code will apply; failing this and except in the case of bodily injury, intentional damage or damage caused by negligence, the possible damages are limited to three times the total price of the trip or stay.</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">GARANT FINANCIER DU DETAILLANT</p>
+  <p class="secondary-titles">RETAILER'S FINANCIAL GUARANTOR</p>
   <div class="p-text-no-margin">
-    <p>Nom : APST</p>
-    <p>Adresse : 15 Avenue Carnot, 75017 Paris</p>
+    <p>Name : APST</p>
+    <p>Address : 15 Avenue Carnot, 75017 Paris, France</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">ASSUREUR DE RESPONSABILITE CIVILE DU DETAILLANT</p>
+  <p class="secondary-titles">RETAILER'S LIABILITY INSURANCE</p>
   <div class="p-text-no-margin">
-    <p>Nom : HISCOX</p>
-    <p>Adresse : 12 quai des Queyries - CS 41177 - 33072 Bordeaux</p>
+    <p>Name : HISCOX</p>
+    <p>Address : 12 quai des Queyries - CS 41177 - 33072 Bordeaux, France</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">CESSION DU CONTRAT</p>
+  <p class="secondary-titles">CONTRACT TRANSFER</p>
   <div class="p-text-no-margin">
-    <p>Conformément à l’arWcle L. 211-11 du Code du Tourisme, vous avez la possibilité de céder le présent contrat tant que celui-ci n’a produit aucun effet et jusqu’à 7 jours du départ, en prévenant l’agence dans un délai raisonnable, à une personne remplissant les mêmes condiWons que vous. Vous-même et le bénéficiaire de la cession demeurez solidairement tenus du paiement du solde du contrat et des frais de cession qui vous seront communiqués.</p>
+    <p>In accordance with article L. 211-11 of the Tourism Code, you have the possibility of assigning the present contract as long as it has not produced any effect and up to 7 days of departure, by informing the agency within a reasonable time, to a person fulfilling the same conditions as you. You and the beneficiary of the assignment remain jointly and severally responsible for the payment of the balance of the contract and the assignment fees which will be communicated to you.</p>
   </div>
 </div>
 
 <div class="text-container">
-  <p class="secondary-titles">RECLAMATIONS & MEDIATION</p>
+  <p class="secondary-titles">CLAIMS & MEDIATION</p>
   <div class="p-text-no-margin">
-    <p>Le voyageur peut saisir le service client du détaillant de toute réclamaWon, à l’adresse suivante : 31 résidence du château, 31150 Fenouillet par [legre RAR ou mail à hello@magicbusworld.com] accompagné(e) de tout jusWficaWf.</p>
-    <p>A défaut de réponse saWsfaisante dans un délai de 60 jours ou s’il n’est pas saWsfait de la réponse reçue, le client peut saisir gratuitement le Médiateur du Tourisme et du Voyage, dont les coordonnées et modalités de saisine sont disponibles sur le site : www.mtv.travel. Si la vente s’effectue en ligne, le voyageur a la possibilité de recourir à la plateforme disponible sur le site hgps://webgate.ec.europa.eu/odr pour régler son liWge.</p>
+    <p>The traveller may submit any complaints to the retailer's customer service department at the following address: 31 Residence du Chateau, 31150 Fenouillet, or by mail: hello@magicbusworld.com, accompanied by all proof of purchase.</p>
+    <p>In the absence of a satisfactory reply within 60 days or if the customer can contact the Tourism and Travel Mediator free of charge, whose contact details and methods of data entry are available on the website: www.mtv.travel. If the sale is made online, the traveller has the possibility of to use the platform available on the https://webgate.ec.europa.eu/odr website to settle his dispute.</p>
   </div>
 </div>
 
@@ -562,27 +556,27 @@
 
 <div class="small-header">
     <%= wicked_pdf_image_tag '/images/logo_round.png', size: "90x90" %>
-    <p>CONTRAT DE VOYAGE</p>
-    <p>FORFAIT TOURISTIQUE</p>
+    <p>TRAVEL CONTRACT</p>
+    <p>TOURIST PACKAGE</p>
 </div>
 
 <p class="main-titles">6. SIGNATURES</h1>
 
 <div class="text-container">
   <div class="p-text-no-margin">
-    <p>Je soussigné <%= @order.details['charges']['data'][0]['billing_details']['name'] %> agissant tant pour moi-même que pour le compte des autres voyageurs inscrits, cerWfie (1) avoir pris connaissance - avant la conclusion du présent contrat – de l’offre répondant aux exigences de l’arWcle R. 211-4 du Code du Tourisme, des condiWons parWculières de vente de voyages et du formulaire standard d’informaWon, (2) avoir pris connaissance des informaWons liées à la situaWon poliWque et sanitaire de la desWnaWon choisie figurant dans la rubrique conseils-aux- voyageurs du site hgps://www.diplomaWe.gouv.fr/fr/conseils-aux-voyageurs/ (plus spécifiquement concernant les sous rubriques « risque pays » et « santé ») à consulter régulièrement jusqu’au départ, (3) avoir pris connaissance de la brochure et/ou le devis et le programme de l’organisateur, ainsi que (4) des condiWons de garanWe des assurances souscrites et (5) du document d’informaWon m’invitant à vérifier que je ne suis pas déjà couvert pour les garanWes éventuellement souscrites, et du formulaire d’informaWon standard joint à ce document (6).</p>
+    <p>I, the undersigned <%= @order.details['charges']['data'][0]['billing_details']['name'] %> acting both for myself and on behalf of other registered travellers, certify (1) to have taken knowledge - prior to the conclusion of this contract - of the offer meeting the requirements of Article R. 211-4 of the Tourism Code, the special conditions of sale of trips and the form information standard, (2) have taken note of the information related to the political and health situation of the chosen destination appearing in the travel advice section of the site https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/ (more specifically concerning the sub country risk and health) to be consulted regularly until departure, (3) to be familiar with the brochure and/or the organiser's quote and programme, as well as (4) the conditions of guarantee of the insurances subscribed to and (5) the information document inviting me to check that I am not already covered for any cover that may be taken out, and the standard information form attached to this document (6).</p>
     <p class="traveller-title">Date: <%= @order.paid_at.strftime('%d/%m/%Y') %></p>
     <div class="float-right">
-      <p class="traveller-title">Le Détaillant</p>
+      <p class="traveller-title">The Detailer</p>
       <p>Lisette Abadie</p>
       <%= wicked_pdf_image_tag '/images/signature_lilly.png', class:"img-fluid" %>
     </div>
-    <p class="traveller-title">Le Client</p>
+    <p class="traveller-title">The Client</p>
     <p><%= @order.details['charges']['data'][0]['billing_details']['name'] %></p>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" checked>
       <label class="form-check-label">
-        <p>Signature électronique</p>
+        <p>Electronic signature</p>
       </label>
     </div>
   </div>

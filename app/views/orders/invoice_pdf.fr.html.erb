@@ -227,8 +227,8 @@
     <% index += 1 %>
     <p class="traveller-title">VOYAGE <%= index %></p>
       <div class="p-text">
-        <p>Départ le <%= trip.departure_date.strftime("%d-%m-%Y") %> à <%= trip.departure_location['locality'] %>, <%= trip.departure_location['country'].upcase %></p>
-        <p>Arrivée le <%= trip.arrival_date.strftime("%d-%m-%Y") %> à <%= trip.arrival_location['locality'] %>, <%= trip.departure_location['country'].upcase %></p>
+        <p>Départ: <%= trip.departure_date.strftime("%d-%m-%Y") %> at <%= trip.departure_location['locality'] %>, <%= trip.departure_location['country'].upcase %></p>
+        <p>Arrivée: <%= trip.arrival_date.strftime("%d-%m-%Y") %> at <%= trip.arrival_location['locality'] %>, <%= trip.arrival_location['country'].upcase %></p>
       </div>
   <% end %>
 </div>
@@ -237,7 +237,7 @@
   <p class="secondary-titles">PAYS TRAVERSE(S)</p>
   <div class="p-text-no-margin">
     <p>Durant les voyages stipulés dans la rubrique précédente, les voyageurs traverserons les pays suivants:</p>
-    <p class="b"><%= @order.trips.order(:week).map{|x| x.departure_location['country']}.uniq.join(",") %></p>
+    <p class="b"><%= (@order.trips.order(:week).map{|x| x.departure_location['country']} + @order.trips.order(:week).map{|x| x.arrival_location['country']}).uniq.join(", ") %></p>
   </div>
 </div>
 
@@ -248,9 +248,11 @@
     <p>Le transport pour rejoindre le bus à l’allé et rejoindre le domicile du client au retour ne sont pas pris en charge dans ce forfait.</p>
     <p>Le transport durant le voyage, depuis la récupération du voyageurs au point de départ jusqu’au dépôt de ce dernier au point d’arrivée à la fin du séjour, est effectué en autobus.</p>
     <p class="subhead">• Horaires</p>
-    <p>L’heure de départ de chaque voyage est une heure approximative qui vous sera précisée ultérieurement.
-    <br>
-    <span class="b">Heure de départ approximative : 16h30.</span></p>
+    <p>
+      L’heure de départ de chaque voyage est une heure approximative qui vous sera précisée ultérieurement.
+      <br>
+      <span class="b">Heure de départ approximative : 16h30.</span>
+    </p>
     <p class="subhead">• Durée et lieux des arrêts</p>
     <p>La durée et les lieux d’arrêts ne sont pas connues au moment de l’établissement du contrat, puisque les escales seront décidées sur place en collaboration avec les autres voyageurs. Il s’agit là d’un principe fondamental et typique du type de voyage proposé par l’entreprise MagicBus.</p>
   </div>
@@ -266,7 +268,7 @@
           <p>Programme communiqué au client</p>
         </label>
       </div>
-    <p class="b">Nombre de nuits par voyage: 7 nuits</p>
+    <p class="b">Nombre de nuits par voyage: <%= (@order.trips.first.arrival_date - @order.trips.first.departure_date).to_i %> nuits</p>
   </div>
 </div>
 
@@ -427,16 +429,21 @@
     <p>Les prix de vente, conformément à l'article L. 112-1 du Code de la consommation sont indiqués, pour chacun des MagicTrip figurant sur le Site, en euros toutes taxes comprises, hors frais de transport d’acheminement du MagicPeople jusqu’à la Ville d’étape de départ et hors frais de transport de retour suivant la Ville d’étape d’arrivée choisie par le MagicPeople.</p>
     <p>Ce prix comprend:</p>
     <ul>
-      <li>le logement à bord d’un bus réaménagé en auberge de jeunesse (habitation)</li>
-      <li>le transport durant la période de séjour (du point de départ au point d’arrivée à la fin du séjour).</li>
-      <li>la participation au pot commun pour le petit-déjeuner et un repas par jour (que les voyageurs cuisineront ensemble)</li>
-      <li>la mise à disposition d’équipement de loisir à bord,</li>
-      <li>certaines activités comprise dans le forfait et annoncées plus haut.</li>
+      <li>l’hébergement à bord de MagicBus: un lit équipé de draps et coussin, un casier pour ranger son sac (70 x 40 x 30 cm maximum) et toutes les accommodations en libre service (salle de bain, cuisine, wc, mobilier)</li>
+      <li>les campings et parkings payants</li>
+      <li>le transport en autobus: gasoil et péages compris.</li>
+      <li>le petit-déjeuner et la participation au pot commun pour le repas du soir (que nous cuisinerons ensemble)</li>
+      <li>les activités comprises et stipulées dans le descriptif du voyage (si il y a)</li>
+      <li>l’utilisation des équipements sportifs et de détente à disposition dans le bus: canoë-kayak, surf, skate, jeux de société, jeux extérieurs, etc…</li>
+      <li>le thé et café à volonté, et la bière de bienvenue! </li>
     </ul>
     <p>Ce prix ne comprend pas:</p>
     <ul>
-        <li>les activités optionnelles facturées en supplément du prix.</li>
-        <li>les transports du voyageur pour rejoindre le bus à son point de départ et rejoindre son domicile depuis le point d’arrivée à la fin du séjour.</li>
+        <li>le transport pour rejoindre et quitter le bus </li>
+        <li>les activités / excursions / visites non incluses dans le forfait choisi</li>
+        <li>la location du matériel autre que celui à bord </li>
+        <li>l’assurance voyage</li>
+        <li>le repas du midi</li>
     </ul>
     <p>Le détaillant se réserve le droit, en cas de non-paiement, de constater l’annulation du contrat par le client et d’exiger sans mise en demeure préalable l’application des pénalités d’annulation prévues ci-dessous.</p>
   </div>
@@ -445,42 +452,29 @@
 <div class="text-container">
   <p class="secondary-titles">ASSURANCE</p>
   <div class="p-text-no-margin">
-    <p>L’assurance multirisques Mondial Assistance proposée par le vendeur; couvrant annulations/ modifications, assistance au voyageur, frais médicaux et d’hospitalisaWon d’urgence à l’étranger, retard de transport, dommages aux bagages, responsabilité civile à l’étranger et interruption de séjour, pour un montant de 30€/personne est:</p>
-    <p>(Nom) Mondial Assistance</p>
-    <p>N°Police *******</p>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="data-check1" checked>
-      <label class="form-check-label" for="data-check1">
-        <p>Contrat transmis au client</p>
-      </label>
-    </div>
-    <p>Si vous justifiez d’une garantie antérieure pour les risques couverts par l’assurance souscrite, vous avez la possibilité de renoncer sans frais à cette/ces assurance(s) dans un délai de 14 jours à compter de sa conclusion et tant qu’aucune garantie n’a été mise en œuvre.</p>
+    <p>L’assurance voyageur n’est pas incluse dans le forfait MagicBus. Toutefois, le voyageurs peut souscrire à une assurance adaptée, par Chapka Assurance, via le lien suivant:</p>
+    <p>https://www.chapkadirect.fr/index.php?action=produit&id=824&app=cd_magicbus</p>
   </div>
 </div>
 
 <div class="text-container">
   <p class="secondary-titles">REVISION DU PRIX</p>
   <div class="p-text-no-margin">
-    <p>Conformément aux articles L.211-12, R. 211-8 et R. 211-9 du Code du tourisme, les prix prévus au contrat sont révisables à la hausse comme à la baisse pour tenir compte des variations du coût des transports (carburant/énergie), des redevances et taxes et des taux de change. Vous serez informé de toute hausse du prix total du forfait, au plus tard 20 jours avant le départ. Cette hausse s’appliquera intégralement sur la part du prix concernée:</p>
-    <p>Part du Transport : ???</p>
-    <p>Redevances et taxes connues à la date du contrat : ???</p>
-    <p>Part des achats en Devises et taux de référence : ???</p>
-    <p>Pour toute hausse supérieure à 8%, vous recevrez sur un support durable le détail de la variation du prix, ses conséquences sur le prix du forfait, le choix qui s’offre à vous d’accepter ou refuser dans un délai raisonnable et des conséquences de l’absence de réponse.</p>
+    <p>Conformément aux articles L.211-12, R. 211-8 et R. 211-9 du Code du tourisme, les prix prévus au contrat sont révisables à la hausse comme à la baisse pour tenir compte des variations du coût des transports (carburant/énergie), des redevances et taxes et des taux de change. Vous serez informé de toute hausse du prix total du forfait, au plus tard 20 jours avant le départ.</p>
+    <p>Pour toute hausse supérieure à 8%, vous recevrez sur un support durable le détail de la variation du prix, ses conséquences sur le prix du forfait, le choix qui s’offre à vous d’accepter ou refuser dans un délai raisonnable et des conséquences de l’absence de réponse</p>
   </div>
 </div>
 
 <div class="text-container">
   <p class="secondary-titles">ANNULATION PAR LE VOYAGEUR</p>
   <div class="p-text-no-margin">
-    <p>*** modalités d’annulation par le voyageur à voir! ***</p>
-    <p>Absence de droit de rétractation</p>
-    <p>Conformément à l’article L221-28 du Code de la consommation, le présent contrat n’est pas soumis au droit de rétractation. Toutefois, le voyageur peut résoudre le contrat à tout moment avant le début du voyage et s’acquittera des frais suivants:</p>
+    <p>Absence de droit de rétractation.</p>
+    <p>Conformément à l’article L221-28 du Code de la consommation, le présent contrat n’est pas soumis au droit de rétractation. Toutefois, le voyageur peut résoudre le contrat à tout moment avant le début du voyage et s’acquittera des frais ci-dessous.</p>
     <p>Frais d’annulation/résolution du contrat</p>
-    <p>Le voyageur a la possibilité d’annuler/résoudre le présent contrat moyennant le paiement des frais suivants (par personne ou par dossier, sur le prix total du voyage):</p>
-    <p>Barème d’annulation (sur le prix total du voyage)</p>
-    <p>- à plus de 4 semaines avant le départ : ......... € ou ........... %</p>
-    <p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
-    <p>- entre ......... jours et ....... jours avant le départ : .........€ ou ........ %</p>
+    <p>Le voyageur a la possibilité d’annuler/résoudre le présent contrat moyennant le paiement des frais suivants (sur le prix total du voyage):</p>
+      <li>à plus de 28 jours avant le départ : 50 % remboursé </li>
+      <li>entre 28 jours et 14 jours avant le départ : 25 % remboursé</li>
+      <li>moins de 14 jours avant le départ : pas de remboursement.</li>
   </div>
 </div>
 
@@ -488,9 +482,9 @@
   <p class="secondary-titles">ANNULATION PAR LE DETAILLANT OU L’ORGANISATEUR</p>
   <div class="p-text-no-margin">
     <p>Le voyage peut être annulé par l’organisateur ou l’agence si le nombre minimum de 2 participants n’est pas inscrit:</p>
-    <p>20 jours avant la date de départ, pour les voyages dont la durée dépasse 6 jours.</p>
-    <p>7 jours avant la date de départ, pour les voyages dont la durée est de 2 à 6 jours.</p>
-    <p>48h avant la date de départ, pour les voyages dont la durée est 2 jours.</p>
+      <li>20 jours avant la date de départ, pour les voyages dont la durée dépasse 6 jours.</li>
+      <li>7 jours avant la date de départ, pour les voyages dont la durée est de 2 à 6 jours.</li>
+      <li>48h avant la date de départ, pour les voyages dont la durée est 2 jours.</li>
     <p>Le Voyageur sera alors remboursé de toutes les sommes qu’il aura pu verser mais ne pourra pas prétendre à une indemnisation.</p>
   </div>
 </div>

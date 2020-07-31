@@ -10,6 +10,7 @@
                     <div class="widget subscribe no-box">
                         <h6 class="widget-title"><%= t("footer.about_magicbus") %></h6>
                         <p><%= t("footer.bus_to_hotel") %> !</p>
+                        <%= render 'trips/faq' %>
                     </div>
                 </div>
 
@@ -72,6 +73,12 @@
 
                         <h6 class="widget-title"><%= t("footer.contact_us") %></h6>
 
+                        <% unless user_signed_in? %>
+                            <%= link_to newsletter_path, remote: true, class: "btn btn-sm btn-success" do %>
+                                Subscribe to the Newsletter
+                            <% end %>
+                        <% end %>
+
                         <a class="text-primary" href="mailto:hello@magicbusworld.com">hello@magicbusworld.com</a>
                         <p>+33 6 59 09 11 65<p>
 
@@ -99,11 +106,11 @@
             <div class="row">
                 <div class="col-sm-3 small my-auto">
                     <p>
-                        <%= link_to do %>
+                        <%= link_to asset_path("/pdf/magicbus_cgu_#{I18n.locale}.pdf"), target: "_blank" do %>
                             <%= t("general_forms.terms_of_use") %>
                         <% end %>
                         |
-                        <%= link_to asset_path("/pdf/magicbus_cookies.pdf"), target: "_blank" do %>
+                        <%= link_to asset_path("/pdf/magicbus_cookies_#{I18n.locale}.pdf"), target: "_blank" do %>
                             Cookies
                         <% end %>
                     </p>

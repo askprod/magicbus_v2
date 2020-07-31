@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :coupon_users, dependent: :destroy
   has_many :coupons, through: :coupon_users
 
+  validates_inclusion_of :newsletter, in: [true, false]
   validates_acceptance_of :terms_and_conditions, :allow_nil => false, :on => :create
   validate :only_one_admin
   validates :first_name, :last_name, presence: true
@@ -20,13 +21,38 @@ class User < ApplicationRecord
   scope :admin, -> {where(admin: true)}
 
   before_save :capitalize_names
-  # after_create :add_to_mailing_list
 
   def capitalize_names
     self.first_name = first_name.camelcase
     self.last_name = last_name.camelcase
   end
 
+  def gibbon_status
+    email = Digest::MD5.hexdigest(self.email)
+    list_id = Rails.application.credentials[:mailchimp_list_id]
+    gibbon = Gibbon::Request.new
+
+    begin
+      return true if gibbon.lists(list_id).members(email).retrieve.body[:status] == "subscribed"
+    rescue Gibbon::MailChimpError => e
+      return false
+    end
+  end
+
+  def subscribe_to_newsletter
+    email = self.email
+    list_id = Rails.application.credentials[:mailchimp_list_id]
+    gibbon = Gibbon::Request.new
+    member_info = gibbon.lists(list_id).members(email).retrieve.body[:status]
+
+    if self.newsletter == true && member_info != 'subscribed'
+      begin
+        gibbon.lists(list_id).members.create(body: {email_address: email, status: "subscribed"})
+      rescue Gibbon::MailChimpError => e
+      end
+    end
+  end
+      
   def only_one_admin
     return unless admin?
   
@@ -42,7 +68,4 @@ class User < ApplicationRecord
   def rails_admin_name
     "#{first_name} #{last_name}"
   end
-
-  # def add_to_mailing_list
-  # end
 end

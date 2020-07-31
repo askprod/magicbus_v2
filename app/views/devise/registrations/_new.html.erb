@@ -38,9 +38,16 @@
           </div>
 
           <div class="col form-group mt-4 small">
+            <%= f.check_box :newsletter, checked: "checked" %>          
+            <%= f.label :newsletter do %> 
+              <span>I want to subscribe to the MagicBus Newsletter</span>
+            <% end %>
+          </div>
+          
+          <div class="col form-group mt-4 small">
             <%= f.check_box :terms_and_conditions %>          
             <%= f.label :terms_and_conditions do %> 
-              <span><%= t("general_forms.agreement_to") %> <%= link_to t("general_forms.terms_of_use"), root_path, class:"pdf-btn" %></span>
+              <span><%= t("general_forms.agreement_to") %> <%= link_to t("general_forms.terms_of_use"), asset_path("/pdf/magicbus_cgu_#{I18n.locale}.pdf"), target: "_blank", class:"pdf-btn" %></span>
             <% end %>
           </div>
 
