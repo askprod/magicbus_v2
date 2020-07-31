@@ -1,0 +1,31 @@
+<% if user_signed_in? %>
+
+    <% unless current_user.newsletter == true %>
+        <div class="container smallest-padding text-center">
+            <div class="first-title">
+                <h1>Subscribe to the Newsletter</h1>
+            </div>
+            <%= link_to "Subscribe with #{current_user.email}", newsletter_add_subscribtion_path, method: :post, class: "btn btn-stylised adventpro" %>
+        </div>
+    <% end %>
+
+<% else %>
+
+<div class="container smallest-padding text-center">
+    <div class="first-title">
+        <h1>Subscribe to the Newsletter</h1>
+    </div>
+    <div class="m-auto w-75">
+        <%= form_for :newsletter, :url => newsletter_add_subscribtion_path, :html => {:method => :post}, class: "form-inline" do |f| %>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                </div>
+                <%= f.text_field :email_address, class: "form-control", placeholder: "Email Address" %>
+                <%= f.submit "Subscribe", class: "btn btn-stylised adventpro", style: "border-radius: 0 0.25rem 0.25rem 0; " %>
+            </div> 
+        <% end %>
+    </div>
+</div>
+
+<% end %>

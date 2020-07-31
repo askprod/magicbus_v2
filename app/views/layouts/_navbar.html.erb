@@ -4,6 +4,20 @@
     <%= image_tag("/images/logo_navbar.png", style: "width: 190px;") %>
   <% end %>
 
+  <% if current_page?(root_url) %>
+    <div class="dropdown hide-sm" id="contact-us-navbar">
+      <button class="btn btn-contact mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= t("home.contact_us") %>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right p-3 text-center" aria-labelledby="dropdownMenuButton">
+        <p><%= t("home.contact_us_text") %></p>
+        <a href="mailto:hello@magicbusworld.com" class="text-primary">hello@magicbusworld.com</a>
+        <p>+33 6 59 09 11 65</p>
+        <p><%= t("home.contact_us_text_two") %></p>
+      </div>
+    </div>
+  <% end %>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -104,19 +118,6 @@
 
       <%= link_to trips_path, class:"form-inline btn btn-stylised my-auto mx-4" do %>
         <span class="mx-3 adventpro"><%= t('nav.book_now') %></span>
-      <% end %>
-
-      <% if current_page?(root_url) %>
-        <div class="dropdown hide-sm" id="contact-us-navbar">
-          <button class="btn btn-contact mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= t("home.contact_us") %>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right p-3 text-center" aria-labelledby="dropdownMenuButton">
-            <p><%= t("home.contact_us_text") %></p>
-            <p>+33 6 59 09 11 65</p>
-            <p><%= t("home.contact_us_text_two") %></p>
-          </div>
-        </div>
       <% end %>
 
       <li class="nav-item">
