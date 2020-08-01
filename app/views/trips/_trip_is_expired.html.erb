@@ -15,6 +15,9 @@
             <p style="line-height: 1px;"><span class="font-weight-bold"><%= t('trips.arrival') %>:</span> <%= trip.arrival_date.strftime("%d.%m.%Y") %> - <%= arrival_city(trip) %> [<%= find_country_code(arrival_country(trip)) %>]</p>
 
             <h2 class="dincondensed float-right mx-4"><%= trip.price %>€</h2>   
+            <% if trip.crossed_out_price %>
+                <h4 class="dincondensed crossed-out mx-4"><sup><%= trip.crossed_out_price %>€</sup></h4>
+            <% end %>  
             <h2 class="dincondensed float-right mx-4"><%= (trip.arrival_date - trip.departure_date).to_i %> <%= t('trips.days') %></h2>             
         </div>
     </div>

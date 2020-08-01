@@ -19,7 +19,10 @@
                         <span class="font-weight-bold text-danger"><%= t('trips.sold_out') %></span>
                     <% end %>
             </p>
-            <h2 class="dincondensed float-right mx-4"><%= trip.price %>€</h2>   
+            <h2 class="dincondensed float-right mx-4"><%= trip.price %>€</h2> 
+            <% if trip.crossed_out_price %>
+                <h4 class="dincondensed crossed-out mx-4"><sup><%= trip.crossed_out_price %>€</sup></h4>
+            <% end %>  
             <h2 class="dincondensed float-right mx-4"><%= (trip.arrival_date - trip.departure_date).to_i %> <%= t('trips.days') %></h2>             
         </div>
 
