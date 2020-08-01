@@ -1,7 +1,6 @@
 <% if cookies && cookies['cookie_eu_consented'] != 'true' %>
   <div class="cookies-eu js-cookies-eu">
     <span class="cookies-eu-content-holder"><%= t('cookies_eu.cookies_text') %></span>
-    <span class="cookies-eu-content-holder text-warning"><%= t("home.test_mode") %></span>
     <span class="cookies-eu-button-holder">
     <button class="cookies-eu-ok js-cookies-eu-ok"> <%= t('cookies_eu.ok') %> </button>
     <% if defined?(link).present? %>
