@@ -26,10 +26,14 @@ class NewsletterController < ApplicationController
     end
 
     def user_add_subscribtion
-        email = current_user.email
+        if current_user
+            email = current_user.email
+        else
+            email = params[:newsletter][:email_address]
+        end
+        email = 
         list_id = Rails.application.credentials[:mailchimp_list_id]
         gibbon = Gibbon::Request.new
-        member_info = gibbon.lists(list_id).members(email).retrieve.body[:status]
 
         begin
             gibbon.lists(list_id).members.create(body: {email_address: email, status: "subscribed"})
@@ -46,7 +50,6 @@ class NewsletterController < ApplicationController
         email = Digest::MD5.hexdigest(current_user.email)
         list_id = Rails.application.credentials[:mailchimp_list_id]
         gibbon = Gibbon::Request.new
-        member_info = gibbon.lists(list_id).members(email).retrieve.body[:status]
 
         begin
             gibbon.lists(list_id).members(email).delete
