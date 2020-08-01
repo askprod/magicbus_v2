@@ -124,3 +124,5 @@ gem "redis", "~> 4.2"
 gem "sidekiq-cron", "~> 1.2"
 
 gem "gibbon", "~> 3.3"
+
+gem "jquery-slick-rails", "~> 1.9"

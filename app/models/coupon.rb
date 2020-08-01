@@ -1,5 +1,6 @@
 class Coupon < ApplicationRecord
     attr_accessor :current_order_user
+    attr_accessor :current_order
     belongs_to :order, optional: :true
     has_many :coupon_users
     has_many :users, through: :coupon_users
@@ -8,9 +9,19 @@ class Coupon < ApplicationRecord
     validates :code, :remaining_uses, :expiry_date, :reduction_percentage, presence: :true
     validates :code, format: {with: /\A[A-Z0-9]+\z/, message: "only allows capital letters and numbers." }
     validates :reduction_percentage, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
+    validates :minimum_trips_validity, numericality: { greater_than: 0, less_than_or_equal_to: 8 }
     validate :is_usable
     validate :user_already_used
+    validate :valid_number_of_trips
 
+    def valid_number_of_trips
+        if current_order
+            if self.current_order.trips.count < self.minimum_trips_validity
+                self.errors.add(:base, :requirements_not_valid)
+            end
+        end
+    end
+    
     def remaining_uses_left
         used = self.orders.count
         limit = self.remaining_uses

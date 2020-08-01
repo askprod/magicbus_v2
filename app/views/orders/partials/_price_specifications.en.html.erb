@@ -1,3 +1,84 @@
 <div class="mb-3">
-    Translate
+    <h3>Package</h3>
+    <p>Except for the exceptions mentioned in the description of the selected trips (above):</p>
+</div>
+
+<div class="my-3">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <h6>The price includes:</h6>
+            <ul class="small">
+                <li>Accommodation on board MagicBus: a bed equipped with sheets and pillow, a locker to store your luggage (70 x 40 x 30 cm maximum) and all self-service accommodations (bathroom, kitchen, toilet, furniture).</li>
+                <li>campsites and car parks</li>
+                <li>bus transport: diesel and tolls included.</li>
+                <li>breakfast and participation in the common pot for the evening meal (which we'll cook together)</li>
+                <li>the activities included and mentioned in the trip description (if applicable)</li>
+                <li>the use of the sports and leisure facilities available on the bus: canoeing, surfing, skateboarding, board games, outdoor games, etc...</li>
+                <li>all-you-can-eat tea and coffee, and a welcome beer!</li>
+            </ul>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <h6>Does not include:</h6>
+            <ul class="small">
+                <li>transport to reach and leave the bus</li>
+                <li>activities / excursions / visits not included in the chosen package</li>
+                <li>rental of equipment other than what is on board</li>
+                <li>travel insurance</li>
+                <li>lunch</p>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center no-p-margin">
+    <div class="col-lg-6 col-sm-12 mb-3">
+        <h3>Cancellation</h3>
+        <p>According to article L. 211-14 of the Tourism Code, the trip can be cancelled by the organiser or the agency if the minimum number of 2 participants is not registered, 7 days before the departure date.</p>
+        <p>See the
+            <%= link_to asset_path("/pdf/magicbus_annulation_fr.pdf"), target: "_blank", class:"pdf-btn" do %>
+                cancellation policy.
+            <% end %>
+        </p>
+    </div>
+
+    <div class="col-lg-6 col-sm-12">
+        <h3>Insurance</h3>
+        <p>Travel insurance is not included in the MagicBus package. However, travellers can subscribe to a travel insurance through Chapka Insurance via the 
+        <%= link_to "https://www.chapkadirect.fr/index.php?action=produit&id=824&app=cd_magicbus", target: "_blank", class:"pdf-btn" do %>
+            following link.
+        <% end %>
+    </div>
+</div>
+
+<div>
+    <h3 class="my-4">Details of the payment:</h3>
+
+    <div class="table-responsive small">
+        <table class="table table-bordered">
+        <thead>
+            <tr class="table-active">
+            <th scope="col" style="width: 40%;">Services</th>
+            <th scope="col" style="width: 20%;">Price VAT Incl.</th>
+            <th scope="col" style="width: 20%;">Quantité</th>
+            <th scope="col" style="width: 20%;">Total VAT Incl.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% order.trips.each do |trip| %>
+            <tr>
+            <th scope="row" class="table-active">Week <%= trip.week %></th>
+            <td class="text-right"><%= trip.price %>€</td>
+            <td class="text-right"><%= order.travellers.count %></td>
+            <td class="text-right"><%= trip.price * order.travellers.count %>€</td>
+            </tr>
+            <% end %>
+            <%# <tr>
+            <th scope="row">Optional: Specific Food Diets</th>
+            <td>-30</td>
+            <td>1</td>
+            <td>-30</td>
+            </tr> %>
+        </tbody>
+        </table>
+    </div>
 </div>

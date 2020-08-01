@@ -21,7 +21,7 @@ class Traveller < ApplicationRecord
     before_save :capitalize_attributes
     after_create :set_food_participation
 
-    validates :first_name, :last_name, :address, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
+    validates :first_name, :last_name, :address, :city, :zip_code, :birth_date, :nationality, :phone_number, :email_address, presence: :true
     validate :max_traveller_per_cart, on: :create
     validate :valid_birth_date
     validate :valid_phone_number

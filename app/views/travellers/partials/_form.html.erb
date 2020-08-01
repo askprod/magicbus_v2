@@ -44,12 +44,7 @@
             </div>
 
             <div class="row">
-              <div class="col-sm form-group">
-                <%= form.label t("travellers.zip_code"), class: "small" %>
-                <%= form.text_field :zip_code, class: "form-control rounded border" %>  
-              </div>
-
-              <div class="col-sm form-group mb-0">  
+              <div class="col-sm form-group">  
                 <%= form.label t("travellers.birth_date"), class: "small" %>
                   <div class="form-group">
                       <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
@@ -59,6 +54,17 @@
                           </div>
                       </div>
                   </div>
+              </div>
+
+              <div class="col-sm form-group form-inline">
+                <div>
+                  <%= form.label :city, class: "small" %>
+                  <%= form.text_field :city, class: "form-control rounded-border" %>
+                </div>
+                <div>
+                  <%= form.label t("travellers.zip_code"), class: "small" %>
+                  <%= form.text_field :zip_code, class: "form-control rounded border" %>  
+                </div>
               </div>
             </div>
 

@@ -150,6 +150,7 @@ RailsAdmin.config do |config|
       field :season
       field :week
       field :price
+      field :crossed_out_price
       field :departure_date
       field :departure_location do
         partial "form_map_departure"
@@ -170,6 +171,7 @@ RailsAdmin.config do |config|
       field :season
       field :week
       field :price
+      field :crossed_out_price
       field :departure_date
       field :departure_location do
         partial "form_map_departure"
@@ -190,6 +192,7 @@ RailsAdmin.config do |config|
       field :season
       field :week
       field :price
+      field :crossed_out_price
       field :departure_date
       field :departure_location do
         pretty_value do

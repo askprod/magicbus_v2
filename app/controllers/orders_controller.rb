@@ -146,6 +146,7 @@ class OrdersController < ApplicationController
 
       unless @coupon.nil? 
         @coupon.current_order_user = @order.user
+        @coupon.current_order = @order
         respond_to do |format|
           if @coupon.save
             @coupon.orders << @order

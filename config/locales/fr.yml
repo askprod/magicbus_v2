@@ -75,6 +75,7 @@ fr:
     terms_of_use: Conditions Générales d'Utilisation
     create_account: Créér mon Compte
     no_account_register: Pas de compte? Créé en un 
+    subscribe_newsletter: Je souhaite m'inscrire à la Newsletter de Magicbus
   stripe_form:
     order_no: Commande N°
     billing_details: Détails Facturation
@@ -155,7 +156,7 @@ fr:
     sort_by_dates: Trier par Dates
     start_date: Date de départ
     end_date: Date d'arrivée
-    reset_fields: Réinitialiser Recherche
+    reset_fields: Réinitialiser
     no_trips_yet: Pas de voyages programmés pour l'instant
     come_later: Revenez un peu plus tard
     search: Rechercher
@@ -293,6 +294,7 @@ fr:
             base:
               already_used: Vous avez déjà utilisé ce code
               invalid_code: Ce code n'est pas valable
+              requirements_not_valid: Votre commande ne remplit pas les conditions pour ce code
         cart:
           attributes:
             base:

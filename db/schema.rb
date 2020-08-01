@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_121350) do
+ActiveRecord::Schema.define(version: 2020_08_01_132312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,10 +77,11 @@ ActiveRecord::Schema.define(version: 2020_07_29_121350) do
   create_table "coupons", force: :cascade do |t|
     t.string "code"
     t.integer "remaining_uses"
-    t.integer "reduction_percentage"
+    t.decimal "reduction_percentage", precision: 10, scale: 2
     t.date "expiry_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "minimum_trips_validity"
   end
 
   create_table "diet_travellers", force: :cascade do |t|
@@ -219,6 +220,7 @@ ActiveRecord::Schema.define(version: 2020_07_29_121350) do
     t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
     t.index ["cart_id"], name: "index_travellers_on_cart_id"
     t.index ["order_id"], name: "index_travellers_on_order_id"
   end
@@ -233,6 +235,7 @@ ActiveRecord::Schema.define(version: 2020_07_29_121350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "season_id"
+    t.string "crossed_out_price"
     t.index ["season_id"], name: "index_trips_on_season_id"
   end
 

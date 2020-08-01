@@ -26,6 +26,7 @@
 //= require turbolinks
 //= require cookies_eu
 //= require google_analytics
+//= require jquery.slick
 //= require_tree .
 
 // Petite croix pour cacher fênetres AJAX de connection/inscription/edit

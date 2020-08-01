@@ -72,9 +72,10 @@ en:
     nbr_travellers: Number of Travellers
     select: Select
     agreement_to: I agree to the
-    terms_of_use: Terms of Use
+    terms_of_use: General Terms and Conditions of Use (GTCU)
     create_account: Create my Account
     no_account_register: No account? You can register
+    subscribe_newsletter: I want to subscribe to the MagicBus Newsletter
   stripe_form:
     order_no: Order N°
     billing_details: Billing Details
@@ -293,6 +294,7 @@ en:
             base:
               already_used: You have already used this code
               invalid_code: This code is invalid
+              requirements_not_valid: Your order does not meet the requirements for this code
         cart:
           attributes:
             base:

@@ -27,6 +27,7 @@ when "development"
     Theme.create!(name_en: "Jungle", name_fr: "Jungle")
 
     Home.create!(description: "Attach a video file to show it on the home page")
+    Help.create!
     Discover.create!(description: "The quote on Discover page")
 
     admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true, newsletter: false)
@@ -61,7 +62,7 @@ when "production"
     admin.save!
 
     Home.create!(description: "Attach a video file to show it on the home page")
-
+    Help.create!
     Discover.create!(description: "The quote on Discover page")
 
     Theme.create!(name_en: "Mountain", name_fr: "Montagne")

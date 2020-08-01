@@ -8,24 +8,23 @@
         <div class="col-lg-6 col-sm-12">
             <h6>Le prix comprend:</h6>
             <ul class="small">
-                <li>le logement: lit confortable à bord d’un bus réaménagé en auberge de jeunesse (draps et coussins compris).</li>
-                <li>le transport durant la période de séjour (péage & essence). </li>
-                <li>les potentiels coûts de parking et camping</li>
-                <li>la participation au pot commun (petit-déjeuner et repas du soir, que nous cuisinerons tous ensemble)</li>
-                <li>la mise à disposition d’équipement de loisir à bord</li>
-                <li>Douche chaude et toilettes</li>
-                <li>le trajet pour venir chercher le(s) voyageur(s) à l’aéroport</li>
-                <li>certaines activités comprise et précisée dans la description du voyage.</li>
+                <li>l’hébergement à bord de MagicBus: un lit équipé de draps et coussin, un casier pour ranger son sac (70 x 40 x 30 cm maximum) et toutes les accommodations en libre service (salle de bain, cuisine, wc, mobilier)</li>
+                <li>les campings et parkings payants</li>
+                <li>le transport en autobus: gasoil et péages compris.</li>
+                <li>le petit-déjeuner et la participation au pot commun pour le repas du soir (que nous cuisinerons ensemble)</li>
+                <li>les activités comprises et stipulées dans le descriptif du voyage (si il y a)</li>
+                <li>l’utilisation des équipements sportifs et de détente à disposition dans le bus: canoë-kayak, surf, skate, jeux de société, jeux extérieurs, etc…</li>
+                <li>le thé et café à volonté, et la bière de bienvenue!</li>
             </ul>
         </div>
         <div class="col-lg-6 col-sm-12">
             <h6>Ne comprends pas:</h6>
             <ul class="small">
-                <li>billets d’avion et autres transports pour rejoindre le bus</li>
-                <li>autres activités (ski, tours payants, bateau, sports divers, etc)</li>
-                <li>le repas du midi</li>
-                <li>Restaurants et boissons alcoolisées</li>
-                <li>linge de toilette</p>
+                <li>le transport pour rejoindre et quitter le bus</li>
+                <li>les activités / excursions / visites non incluses dans le forfait choisi</li>
+                <li>la location du matériel autre que celui à bord</li>
+                <li>l’assurance voyage</li>
+                <li>le repas du midi</p>
             </ul>
         </div>
     </div>
@@ -34,7 +33,7 @@
 <div class="row justify-content-center no-p-margin">
     <div class="col-lg-6 col-sm-12 mb-3">
         <h3>Annulation</h3>
-        <p>Selon l'article L. 211-14 du Code du Tourisme, le voyage peut-être annulé par l'organisateur ou l'agence si le nombre minimum de 2 participants n'est pas inscrit, 20 jours avant la date de départ.</p>
+        <p>Selon l'article L. 211-14 du Code du Tourisme, le voyage peut-être annulé par l'organisateur ou l'agence si le nombre minimum de 2 participants n'est pas inscrit, 7 jours avant la date de départ.</p>
         <p>Voir la 
             <%= link_to asset_path("/pdf/magicbus_annulation_fr.pdf"), target: "_blank", class:"pdf-btn" do %>
                 politique d'annulation.
@@ -44,7 +43,10 @@
 
     <div class="col-lg-6 col-sm-12">
         <h3>Assurance</h3>
-        <p>Retrouvez les modalités et couvertures de <a href="#" class="pdf-btn">l'assurance voyageur optionnelle</a>.</p>
+        <p>L’assurance voyageur n’est pas incluse dans le forfait MagicBus. Toutefois, le voyageurs peut souscrire à une assurance adaptée, par Chapka Assurance, via le
+        <%= link_to "https://www.chapkadirect.fr/index.php?action=produit&id=824&app=cd_magicbus", target: "_blank", class:"pdf-btn" do %>
+            lien suivant.
+        <% end %>
     </div>
 </div>
 

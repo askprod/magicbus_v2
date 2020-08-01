@@ -66,38 +66,51 @@
         </div>
     </div>
 
+    <div class="blackline mb-0"></div>
+</section>
+
+<section>  
+    <div class="container">
+        <%= image_tag "/images/discover_infographie_#{I18n.locale}.jpg", class: "img-fluid" %>
+    </div>
+
     <div class="blackline"></div>
 </section>
 
-<section class="mx-3">
-    <div class="img-row">
-        <div class="img-column">
-            <%= image_tag "/images/busphoto_1.jpg"%>
-            <%= image_tag "/images/busphoto_2.jpg"%>
-            <%= image_tag "/images/busphoto_3.jpg"%>
-            <%= image_tag "/images/busphoto_6.jpg"%>
-        </div>
-        <div class="img-column">
-            <%= image_tag "/images/busphoto_4.jpg"%>
-            <%= image_tag "/images/busphoto_8.jpg"%>
-            <%= image_tag "/images/busphoto_9.jpg"%>
-            <%= image_tag "/images/busphoto_5.jpg"%>
-        </div>
-        <div class="img-column">
-            <%= image_tag "/images/busphoto_10.jpg"%>
-            <%= image_tag "/images/busphoto_13.jpg"%>
-            <%= image_tag "/images/busphoto_12.jpg"%>
-            <%= image_tag "/images/busphoto_16.jpg"%>
-        </div>
-        <div class="img-column">
-            <%= image_tag "/images/busphoto_15.jpg"%>
-            <%= image_tag "/images/busphoto_17.jpg"%>
-            <%= image_tag "/images/busphoto_18.jpg"%>
-            <%= image_tag "/images/busphoto_14.jpg"%>
-        </div>
-    </div>
+<section>
+    <div class="container mb-5">
+        <div class="slick-slider">
+            <div>
+                <%= image_tag "/images/busphoto_1.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_2.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_3.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_4.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_5.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_6.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_7.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_8.jpg" %>
+            </div>
+            <div>
+                <%= image_tag "/images/busphoto_9.jpg" %>
+            </div>
+        </div> 
+    </div> 
 
-    <div class="blackline mt-5"></div>
+    <div class="blackline"></div>
 </section>
 
 <section id="team">
@@ -247,3 +260,19 @@
 
 <div class="blackline"></div>
 <%= render "layouts/newsletter_footer_form" %>
+
+<script>
+$(document).ready(function(){
+    $('.slick-slider').slick({
+        dots: true,
+        arrow: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
+});
+</script>
