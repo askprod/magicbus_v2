@@ -31,7 +31,7 @@ class NewsletterController < ApplicationController
         else
             email = params[:newsletter][:email_address]
         end
-        email = 
+
         list_id = Rails.application.credentials[:mailchimp_list_id]
         gibbon = Gibbon::Request.new
 
@@ -41,7 +41,7 @@ class NewsletterController < ApplicationController
             current_user.update_columns(newsletter: true)
             redirect_to root_path
         rescue Gibbon::MailChimpError => e
-            flash[:alert] = "Something went wrong"
+            flash[:alert] = "Something went wrong, or you are already subscribed."
             redirect_to root_path
         end  
     end
