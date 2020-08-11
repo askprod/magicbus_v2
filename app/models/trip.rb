@@ -50,4 +50,8 @@ class Trip < ApplicationRecord
     def is_blocked?
         self.departure_date < (Date.today + 7.days) && self.remaining_seats_count > 6
     end
+
+    def print_pdf
+        self
+    end
 end

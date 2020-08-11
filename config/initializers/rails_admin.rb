@@ -17,6 +17,15 @@ RailsAdmin.config do |config|
   config.model 'Cart' do
     navigation_label "Cart"
     parent User
+
+    list do
+      field :user
+      field :travellers
+      field :trips
+      field :number_of_travellers
+      field :updated_at
+      field :expires_at
+    end
   end
 
   config.model 'Theme' do
@@ -94,9 +103,12 @@ RailsAdmin.config do |config|
 
     list do
       field :email
-      field :created_at
-      field :first_name
-      field :last_name
+      field :created_at do
+        label "Joined on"
+      end
+      field :rails_admin_name do
+        label "Name"
+      end
       field :confirmed_at do 
         label "Account Confirmed?"
         pretty_value do 
@@ -107,17 +119,17 @@ RailsAdmin.config do |config|
           end
         end
       end
+      field :newsletter
       field :orders
     end
 
     show do
-      field :picture
-      field :admin
       field :email
       field :first_name
       field :last_name
       field :created_at
       field :confirmed_at
+      field :picture
       field :cart
       field :orders
       field :coupons
@@ -134,11 +146,19 @@ RailsAdmin.config do |config|
       sort_by "season_id, week"
       sort_reverse :false
       field :season_id
-      field :name_en
+      field :name_en do
+        label "Name"
+      end
       field :week
       field :price
       field :remaining_seats_count do
         label "Spots Left"
+      end
+      field :print_pdf do
+        label "Information"
+        formatted_value do
+          bindings[:view].link_to('Show PDF', bindings[:view].main_app.trip_path(self.value, format: "pdf"))
+        end
       end
     end
 
@@ -215,6 +235,16 @@ RailsAdmin.config do |config|
     parent User
 
     list do
+      field :created_by do
+        formatted_value do
+          path = bindings[:view].show_path(model_name: 'User', id: value.rails_admin_name)
+          bindings[:view].link_to(value.rails_admin_name, path)
+        end
+      end
+      field :full_name
+      field :stringify_gender
+      field :stringify_nationality
+      field :is_booked?, :boolean
       field :is_over_18?, :boolean do
         label ">18"
       end
@@ -225,8 +255,10 @@ RailsAdmin.config do |config|
     parent User
 
     list do 
-      field :name 
       field :user
+      field :name 
+      field :trips
+      field :travellers
       field :total_price
       field :payment_status
       field :created_at
@@ -294,8 +326,10 @@ RailsAdmin.config do |config|
 
     list do
       field :code
+      field :reduction_percentage
       field :remaining_uses
       field :expiry_date
+      field :minimum_trips_validity
     end
   end
 

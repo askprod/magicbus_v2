@@ -13,6 +13,26 @@ class TripsController < ApplicationController
     end
   end
 
+  def show
+    if current_user.admin
+      @trip = Trip.find(params[:id])
+      respond_to do |format|
+        format.pdf do
+          render pdf: "Trip #{@trip.id}",
+          page_size: 'A4',
+          template: "trips/trip_info_pdf.html.erb",
+          layout: "trip_pdf_layout.html.erb",
+          lowquality: true,
+          zoom: 1,
+          dpi: 72,
+          margin: {top: 10, bottom: 10, left: 10, right: 10}
+        end
+      end
+    else
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
   def add_to_cart
     #For js render
     @ajax_trip = Trip.find(params[:trip_id]).id

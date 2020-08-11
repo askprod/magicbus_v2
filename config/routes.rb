@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :trips, :path => 'travel', only: [:index] do
+    resources :trips, :path => 'travel', only: [:index, :show] do
       post 'add_to_cart', on: :collection
       post 'remove_from_cart', on: :collection
     end

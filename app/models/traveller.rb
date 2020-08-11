@@ -79,4 +79,33 @@ class Traveller < ApplicationRecord
         self.errors.add(:base, :max_travellers_per_cart)
       end
     end
+
+    # Rails admin virtual fields
+    def created_by
+      if self.cart.present?
+        self.cart.user
+      else
+        self.order.user
+      end
+    end
+
+    def is_booked?
+      if self.order.present? && self.order.payment_status == true
+        return true
+      else
+        return false
+      end
+    end
+
+    def full_name
+      "#{self.first_name} #{self.last_name}"
+    end
+
+    def stringify_nationality
+      JSON.parse(File.read("app/assets/json/nationalities_en.json")).select{|k, v| k== "#{self.nationality}"}.values.first
+    end
+
+    def stringify_gender
+      JSON.parse(File.read("app/assets/json/gender_en.json")).select{|k, v| k== "#{self.gender}"}.values.first
+    end
 end
