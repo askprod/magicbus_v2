@@ -14,6 +14,7 @@ class NewsletterController < ApplicationController
         else 
             begin
                 result = gibbon.lists(list_id).members.create(body: {email_address: email, status: "subscribed"})
+                SlackNotifier::USERS.ping "#{email} has just subscribed to the newsletter."
                 respond_to do |format|
                     format.js
                     flash.now[:notice] = "Your have been successfully subscribed to the newsletter"
@@ -38,6 +39,7 @@ class NewsletterController < ApplicationController
         begin
             gibbon.lists(list_id).members.create(body: {email_address: email, status: "subscribed"})
             flash[:notice] = "Your have been successfully subscribed to the newsletter"
+            SlackNotifier::USERS.ping "💌😇 #{email} has just subscribed to the newsletter. 😇💌"
             current_user.update_columns(newsletter: true)
             redirect_to root_path
         rescue Gibbon::MailChimpError => e
@@ -55,6 +57,7 @@ class NewsletterController < ApplicationController
             gibbon.lists(list_id).members(email).delete
             flash[:notice] = "Your have been successfully unsubscribed from the newsletter"
             current_user.update_columns(newsletter: false)
+            SlackNotifier::USERS.ping "💌😔 #{current_user.email} has just unsubscribed from the newsletter. 😔💌"
             redirect_to root_path
         rescue Gibbon::MailChimpError => e
             flash[:alert] = "Something went wrong"

@@ -21,6 +21,7 @@ class User < ApplicationRecord
   scope :admin, -> {where(admin: true)}
 
   before_save :capitalize_names
+  after_create :notify_slack
 
   def capitalize_names
     self.first_name = first_name.camelcase
@@ -67,5 +68,9 @@ class User < ApplicationRecord
 
   def rails_admin_name
     "#{first_name} #{last_name}"
+  end
+
+  def notify_slack
+    SlackNotifier::USERS.ping "🥳 A new user has joined us: #{email}. Welcome to #{first_name} #{last_name}! 🥳"
   end
 end

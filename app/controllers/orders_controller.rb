@@ -111,6 +111,7 @@ class OrdersController < ApplicationController
       if @order.save
 
         UserMailer.send_invoice_email(@order).deliver_later
+        SlackNotifier::ORDERS.ping "💰🥳 Order #{@order.name}, from user #{@order.user.email} has just been paid, for a total of #{@order.total_price}€. 🥳💰"
         
         @order.travellers.each do |traveller|
           UserMailer.send_traveller_booked_email(@order, traveller).deliver_later

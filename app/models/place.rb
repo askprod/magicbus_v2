@@ -15,6 +15,7 @@ class Place < ApplicationRecord
     validate :spot_limit, on: [:create]
 
     before_save :capitalize_attributes
+    after_create :notify_slack
 
     def spot_limit
         unless self.is_a_visitor?
@@ -57,5 +58,9 @@ class Place < ApplicationRecord
         unless string.blank?
           string.split(/(?<=[?.!])/).map(&:capitalize).join(" ")
         end
+    end
+
+    def notify_slack
+        SlackNotifier::SPOTS.ping "User #{self.user.email} has just shared a spot."
     end
 end

@@ -45,6 +45,8 @@ class Cart < ApplicationRecord
         self.update_attribute(:number_of_travellers, 1)
         self.update_attribute(:expires_at, nil)
         self.trips.delete_all
+
+        SlackNotifier::CARTS.ping "🛒 #{self.user.email}'s cart has been emptied. 🛒"
     end
 
     def update_expiration_time(obj)

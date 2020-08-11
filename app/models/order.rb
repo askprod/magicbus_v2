@@ -9,9 +9,11 @@ class Order < ApplicationRecord
     has_many :trips, through: :order_trips
 
     after_create :set_total_price
-    before_save :empty_cart
+    after_create :empty_cart
     after_create :set_order_name 
     after_create :set_expiration_time
+    after_create :notify_slack_create
+    after_destroy :notify_slack_destroy
 
     validates_acceptance_of :correct_information, :allow_nil => false, :message => "have not been accepted", :on => :create
     validates :travellers, presence: true
@@ -65,5 +67,13 @@ class Order < ApplicationRecord
         else
             self.total_price
         end
+    end
+
+    def notify_slack_create
+        SlackNotifier::ORDERS.ping "🚌🥰 Order #{name}, from user #{self.user.email}, with #{self.travellers.count} travellers, and #{self.trips.count} trips, for a total of #{total_price}€ has been created. 🥰🚌"
+    end
+
+    def notify_slack_destroy
+        SlackNotifier::ORDERS.ping "🚌😔 Order #{name}, from user #{self.user.email} has been deleted. 😔🚌"
     end
 end
