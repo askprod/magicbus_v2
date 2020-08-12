@@ -129,3 +129,4 @@ gem "jquery-slick-rails", "~> 1.9"
 
 gem 'slack-notifier'
 
+gem "sitemap_generator", "~> 6.1"
