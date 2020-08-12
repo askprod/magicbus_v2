@@ -1,1 +1,20 @@
-# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+
+Disallow: /admin/
+Disallow: /stripe/
+Disallow: /users/
+Disallow: /user/
+Disallow: /travel/add_to_cart/
+Disallow: /travel/remove_from_cart/
+Disallow: /travel/sort-trips-country/
+Disallow: /travel/sort-trips-date/
+Disallow: /travel/sort-trips-theme/
+Disallow: /carts/change-traveller-quantity/
+Disallow: /orders/new_payment/
+Disallow: /orders/promo_code/
+Disallow: /newsletter/
+
+Noindex: /admin/
+
+Sitemap: https://www.magicbusworld.com/sitemap.xml
+Host: https://www.magicbusworld.com
