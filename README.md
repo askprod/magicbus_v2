@@ -1,24 +1,25 @@
-# README
+The official repository for MagicBus
+https://www.magicbusworld.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I am currently writting an article on the development on the website that you can visit here:
+http://paultrindinh.herokuapp.com/blog/magicbus-website
 
-Things you may want to cover:
+Ruby 2.6.3
 
-* Ruby version
+Rails 5.2
 
-* System dependencies
+Hosted on Heroku with an OVH DNS
 
-* Configuration
+Active Storage plugged to Google Cloud Service (bucket)
 
-* Database creation
+ActionText for easy text editing on the fly
 
-* Database initialization
+rails_admin pour the admin dashboard
 
-* How to run the test suite
+Devise for user accounts
 
-* Services (job queues, cache servers, search engines, etc.)
+Redis/SideKiq for CRON jobs
 
-* Deployment instructions
+and many other things!
 
-* ...
+
