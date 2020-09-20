@@ -30,6 +30,7 @@
 //= require_tree .
 
 $(document).on("click", "#delete_warning_cookie", function(){
+  $('#warning-form').fadeOut();
   Cookies.set('warning_accepted', 'true');
 });
 
