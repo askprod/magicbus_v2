@@ -23,7 +23,7 @@ class Cart < ApplicationRecord
     def can_add_a_traveller
         unless self.trips.empty?
             self.trips.each do |trip|
-                if trip.remaining_seats_count < self.number_of_travellers
+                if (trip.remaining_seats_count + trip.seats_available) - self.number_of_travellers <= 0
                     self.errors.add(:base, :one_trip_is_full)
                 end
             end

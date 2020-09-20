@@ -58,6 +58,24 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'WarningMessage' do
+    navigation_label "Views"
+    label "Home Warning"
+    label_plural "Home Warning"
+    weight -4
+
+    list do
+      field :description
+    end
+
+    edit do
+      field :title_fr
+      field :title_en
+      field :content_fr
+      field :content_en
+    end
+  end
+
   config.model 'Help' do
     navigation_label "Views"
     label "Help FAQ"
@@ -191,6 +209,7 @@ RailsAdmin.config do |config|
       field :season
       field :week
       field :price
+      field :seats_available
       field :crossed_out_price
       field :departure_date
       field :departure_location do

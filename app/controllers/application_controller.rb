@@ -58,4 +58,15 @@ class ApplicationController < ActionController::Base
         end
         return total
     end
+
+    def warning_content
+        WarningMessage.first.content
+    end
+    helper_method :warning_content
+    
+    def warning_title
+    WarningMessage.first.title
+    end
+    helper_method :warning_title
+    
 end

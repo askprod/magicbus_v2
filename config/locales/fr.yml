@@ -178,6 +178,10 @@ fr:
     book_trip: Reserver ce Voyage
     or_word: OU
     per_traveller: par voyageur
+    sold_out: COMPLET
+    sold_out_message: N'hésitez pas à revenir plus tard
+    reservation_over: RESERVATIONS TERMINEES
+    reservation_over_message: "Sauf réservation de groupe, contactez-nous directement: hello@magicbusworld.com"
   travellers: 
     add_traveller: Ajouter un Voyageur
     traveller: Voyageur

@@ -178,6 +178,10 @@ en:
     book_trip: Book this Trip
     or_word: OR
     per_traveller: per traveller
+    sold_out: SOLD OUT
+    sold_out_message: Please come back later
+    reservation_over: RESERVATIONS OVER
+    reservation_over_message: "Except for group reservations. Contact us directly: hello@magicbusworld.com"
   travellers: 
     add_traveller: Add a Traveller
     traveller: Traveller

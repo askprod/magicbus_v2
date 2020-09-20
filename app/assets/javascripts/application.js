@@ -29,6 +29,10 @@
 //= require jquery.slick
 //= require_tree .
 
+$(document).on("click", "#delete_warning_cookie", function(){
+  Cookies.set('warning_accepted', 'true');
+});
+
 // Petite croix pour cacher fênetres AJAX de connection/inscription/edit
 $(document).on("click", "#close-button", function(){
   $('#login-form').fadeOut();

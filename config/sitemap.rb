@@ -8,9 +8,9 @@ SitemapGenerator::Sitemap.create do
     add "fr/story"
     add "fr/faq"
 
-    add "en/discover"
-    add "en/travel"
-    add "en/share"
-    add "en/story"
-    add "en/faq"
+    add "discover"
+    add "travel"
+    add "share"
+    add "story"
+    add "faq"
 end

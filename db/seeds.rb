@@ -29,6 +29,7 @@ when "development"
     Home.create!(description: "Attach a video file to show it on the home page")
     Help.create!
     Discover.create!(description: "The quote on Discover page")
+    WarningMessage.create!(description: "Warning message that appears on everypage until accepted")
 
     admin = User.new(first_name: "Lilly", last_name: "Admin", email:"admin@magicbus.com", password:"adminpassword123*", terms_and_conditions: true, admin: true, newsletter: false)
     admin.skip_confirmation!
@@ -64,6 +65,7 @@ when "production"
     Home.create!(description: "Attach a video file to show it on the home page")
     Help.create!
     Discover.create!(description: "The quote on Discover page")
+    WarningMessage.create!(description: "Warning message that appears on everypage until accepted")
 
     Theme.create!(name_en: "Mountain", name_fr: "Montagne")
     Theme.create!(name_en: "Sea", name_fr: "Mer")

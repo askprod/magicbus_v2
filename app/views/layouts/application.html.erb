@@ -34,6 +34,10 @@
 
   <body>
 
+    <% if !cookies[:warning_accepted] %>
+      <%= render "layouts/warning_message" %>
+    <% end %>
+    
     <div id="login-form"></div>
 
     <%= render "layouts/navbar" %>
