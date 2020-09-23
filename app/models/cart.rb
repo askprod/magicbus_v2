@@ -54,7 +54,11 @@ class Cart < ApplicationRecord
     end
 
     def is_full?
-        return true if self.number_of_travellers == MAX_TRAVELLERS_PER_CART
+        if self.number_of_travellers == MAX_TRAVELLERS_PER_CART
+            return true
+        else
+            return false
+        end
     end
 
     def update_slug

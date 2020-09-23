@@ -4,8 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+default: 
+  user: user_one
+  number_of_travellers: 1
+
+no_user: {}
+
+full:
+  user: user_one
+  number_of_travellers: 8

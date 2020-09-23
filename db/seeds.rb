@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 case Rails.env
+
 when "development"
 
     FoodRestriction.create!(name_en: "Sesame", name_fr: "Sésame", approved_status: true)
