@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :places, dependent: :destroy
   has_many :coupon_users, dependent: :destroy
   has_many :coupons, through: :coupon_users
+  has_many :trip_quotations
 
   validates_inclusion_of :newsletter, in: [true, false]
   validates_acceptance_of :terms_and_conditions, :allow_nil => false, :on => :create

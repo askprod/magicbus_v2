@@ -6,10 +6,17 @@ class TripsController < ApplicationController
     @cart_items = CartTrip.where(cart_id: @cart.id)
     @countries_list = Trip.all.pluck(:departure_location).map{|v|v['country']}.uniq.prepend("All")
     @thematics_list = Theme.all.select{|v| v.trips.count > 0 == true}.map{|v| v}
+    @private_trips = PrivateTrip.all
+    @product_trips = ProductTrip.all
 
     if active_season
       @active_season = Season.where(status: true).first
       @trips = Season.find_by(status: true).trips.order(:week)
+    end
+
+    if params[:flash_booking]
+      puts "***" * 10000
+      flash.now[:notice] = "Paiement will be available soon. Please contact us for now."
     end
   end
 

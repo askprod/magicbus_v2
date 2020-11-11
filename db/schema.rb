@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_154310) do
+ActiveRecord::Schema.define(version: 2020_11_03_130233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,19 @@ ActiveRecord::Schema.define(version: 2020_09_20_154310) do
     t.index ["user_id"], name: "index_places_on_user_id"
   end
 
+  create_table "private_trips", force: :cascade do |t|
+    t.integer "number_of_days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_trips", force: :cascade do |t|
+    t.integer "number_of_days"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "restriction_travellers", force: :cascade do |t|
     t.bigint "traveller_id"
     t.bigint "food_restriction_id"
@@ -225,6 +238,21 @@ ActiveRecord::Schema.define(version: 2020_09_20_154310) do
     t.index ["order_id"], name: "index_travellers_on_order_id"
   end
 
+  create_table "trip_quotations", force: :cascade do |t|
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone_number"
+    t.date "arrival_date"
+    t.date "departure_date"
+    t.integer "selected_trip"
+    t.index ["user_id"], name: "index_trip_quotations_on_user_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.jsonb "arrival_location"
     t.jsonb "departure_location"
@@ -270,5 +298,6 @@ ActiveRecord::Schema.define(version: 2020_09_20_154310) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "orders", "coupons"
   add_foreign_key "places", "users"
+  add_foreign_key "trip_quotations", "users"
   add_foreign_key "trips", "seasons"
 end

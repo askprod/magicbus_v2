@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       post "change-traveller-quantity", to: "carts#change_traveller_quantity"
     end
 
+    resources :trip_quotations, only: [:new, :create]
     resources :travellers, only: [:new, :create, :edit, :update, :destroy]
     resources :places, :path => 'share', only: [:index, :new, :create, :edit, :update, :destroy]
 

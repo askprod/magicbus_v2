@@ -1,0 +1,18 @@
+<div id="trip-product-<%= trip.id %>-content">
+    <div class="image-container-travel">
+        <%= image_tag(trip.picture, class: "trip-picture") %>
+        <div class="text-block-week adventpro w-100 h-75">
+            <h5 class="text-center"><%= trip.name %></h5>
+            <p><%= trip.description %></p>
+            <h2 class="dincondensed float-left mx-4"><%= trip.number_of_days %> DAYS</h2>    
+            <h2 class="dincondensed float-right mx-4"><%= trip.price %>€</h2>    
+        </div>
+        <%= link_to t("travel.book"), trips_path(flash_booking: true), class: "btn btn-stylised btn-details adventpro" %>  
+    </div>
+</div>
+
+
+
+
+
+

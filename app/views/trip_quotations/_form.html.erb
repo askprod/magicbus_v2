@@ -1,0 +1,106 @@
+<div class="card login-form text-center">
+
+<h1 class="card-header adventpro yellow text-center display-5">Demander un devis</h1>
+
+    <div class="card-body">
+        
+        <div id="close-button">
+        </div>
+
+        <%= form_for @trip_quotation, url: trip_quotations_path, remote: true do |f| %>
+
+            <% if @trip %>
+                <div class="form-group text-center">
+                    <%= f.label :selected_trip, "Selected Trip", class: "small" %><br />
+                    <input placeholder="<%= @trip.name.to_plain_text %>", class="form-control", readonly="readonly">
+                    <%= f.hidden_field :selected_trip, value: @trip.id %>
+                </div>
+            <% end %>
+
+            <div class="form-group text-center">
+                <div class="form-row">
+                    <div class="col">
+                        <%= f.label :firs_name, "First Name", class: "small" %><br />
+                        <%= f.text_field :first_name, value: current_user.first_name, class: "form-control" %>
+                    </div>
+                    <div class="col">
+                        <%= f.label :last_name, "Last Name", class: "small" %><br />
+                        <%= f.text_field :last_name, value: current_user.last_name, class: "form-control" %>
+                    </div>
+                    <div class="col">
+                        <%= f.label :email, "Email", class: "small" %><br />
+                        <%= f.text_field :email, value: current_user.email, class: "form-control" %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <div class="form-row">
+                    <% if @trip && @trip.number_of_days %>
+                    <div class="col">
+                        <%= f.label :departure_date, "Départ souhaité (arrivée #{@trip.number_of_days} jours après)", class: "small" %><br />
+                        <div class="form-group">
+                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                <%= f.text_field :departure_date, class: "form-control datetimepicker-input", "data-target" => "#datetimepicker1" %>
+                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                    <div class="col">
+                        <%= f.label t("travellers.phone"), class: "small" %>
+                        <br>
+                            <div class="d-flex flex-row">
+                                <%= f.telephone_field :phone_number, class: "form-control" %>
+                                <span class="input-group-text" id="validation-status"><%= fa_icon "circle" %></span>
+                            </div>
+                        <%= f.hidden_field :phone_validation, value: "" %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <%= f.label :message, "Commentaire", class: "small" %><br />
+                <%= f.text_area :message, size: 150, class: "form-control" %>
+            </div>
+            
+            <div class="actions mt-3">
+                <%= f.submit "Submit", class: "btn btn-lg btn-stylised btn-block adventpro" %>
+            </div>
+        <% end %>
+
+    </div>
+</div>
+
+<script>
+$("#trip_quotation_phone_number").intlTelInput({
+    initialCountry: "FR",
+    formatOnInit: true,
+    separateDialCode: false,
+});
+
+$("#trip_quotation_phone_number").change(function() {
+  var telInput = $("#trip_quotation_phone_number");
+  var validInput = $("#validation-status");
+  var hiddenInput = $("#trip_quotation_phone_validation");
+  if ($.trim(telInput.val())) {
+    if (telInput.intlTelInput("isValidNumber")) {
+      validInput.html("<%= escape_javascript(fa_icon "check", class:"text-success") %>");
+      hiddenInput.val("valid");
+    } else {
+      validInput.html("<%= escape_javascript(fa_icon "times", class:"text-danger") %>");
+      hiddenInput.val("invalid");
+    }
+  }
+});
+
+$(document).ready(function(){
+  $('#datetimepicker1').datetimepicker({
+    format: 'DD-MM-YYYY',
+    allowInputToggle: true,
+    viewMode: 'years',
+  });
+});
+</script>

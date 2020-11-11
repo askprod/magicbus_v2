@@ -1,0 +1,2 @@
+module TripQuotationsHelper
+end

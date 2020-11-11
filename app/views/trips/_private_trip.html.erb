@@ -1,0 +1,14 @@
+<div id="trip-private-<%= trip.id %>-content">
+    <div class="image-container-travel">
+        <%= image_tag(trip.picture, class: "trip-picture") %>
+        <div class="text-block-week adventpro w-100 h-75">
+            <h5 class="text-center"><%= trip.name %></h5>
+            <p><%= trip.description %></p>
+        </div>
+        <% if user_signed_in? %>
+            <%= link_to t("travel.devis"), new_trip_quotation_path(trip: trip.id), class: "btn btn-stylised btn-details adventpro", method: :get, remote: true %>  
+        <% else %>
+            <%= link_to t("travel.devis"), new_user_session_path, class: "btn btn-stylised btn-details adventpro", remote: true %>  
+        <% end %>
+    </div>
+</div>

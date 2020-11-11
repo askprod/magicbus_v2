@@ -38,6 +38,10 @@
   src: font-url('MarkerFelt.ttf')
 }
 
+body {
+  overflow-x: hidden;
+}
+
 $cookies-eu-background-color: rgb(87, 87, 87);
 $cookies-eu-border-color: rgb(87, 87, 87);
 $cookies-eu-button-background-color: rgb(233, 213, 32);
@@ -476,13 +480,13 @@ p {
 }
 
 #login-form {
-    position: fixed;
-    top: 0;
-    z-index: 6;
-    display: none;
-    background: rgba(51, 51, 51, 0.507);
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 6;
+  display: none;
+  background: rgba(51, 51, 51, 0.507);
+  width: 100%;
+  height: 100%;
 }
 
 #warning-form {
@@ -498,7 +502,7 @@ p {
     border-radius: 10px;
     min-width: 70%;
     max-height: 85%;
-    overflow: scroll;
+    overflow: auto;
     position: fixed;
     top: 52%;
     left: 50%;
@@ -511,7 +515,7 @@ p {
   border-radius: 10px;
   min-width: 35%;
   max-height: 85%;
-  overflow: scroll;
+  overflow: auto;
   position: fixed;
   top: 52%;
   left: 50%;
@@ -532,7 +536,7 @@ p {
     border-radius: 10px;
     min-width: 30%;
     max-height: 85%;
-    overflow: scroll;
+    overflow: auto;
     position: fixed;
     top: 55%;
     left: 50%;
@@ -1267,7 +1271,7 @@ div#card-errors {
   .login-form {
     border-radius: 10px;
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
     position: fixed;
     top: 53%;
     left: 50%;
@@ -1277,7 +1281,7 @@ div#card-errors {
   .login-form-small {
     border-radius: 10px;
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
     position: fixed;
     top: 53%;
     left: 50%;
@@ -1458,4 +1462,10 @@ sup {
 }
 .crossed-out:after {
   transform: rotate(-20deg);
+}
+
+.card-img {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
 }

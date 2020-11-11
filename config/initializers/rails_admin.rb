@@ -250,6 +250,65 @@ RailsAdmin.config do |config|
 
   end
 
+  config.model "PrivateTrip" do
+    navigation_label "Travels"
+    label "Private Trips"
+
+    list do
+      field :name
+      field :description
+    end
+
+    edit do
+      field :name_fr
+      field :name_en
+      field :description_fr
+      field :description_en
+      field :number_of_days
+      field :picture
+    end
+  end
+
+  config.model "ProductTrip" do
+    navigation_label "Travels"
+    label "Product Trips"
+
+    list do
+      field :name
+      field :description
+      field :number_of_days
+      field :price
+    end
+  end
+
+  config.model "TripQuotation" do
+    navigation_label "Users"
+    label "Quotations"
+
+    list do 
+      field :user
+      field :message
+      field :created_at
+    end
+
+    show do
+      field :user
+      field :selected_trip do
+        pretty_value do
+          path = bindings[:view].show_path(model_name: 'private_trip', id: value)
+          bindings[:view].link_to(PrivateTrip.find(value).name, path)
+        end
+      end
+      field :first_name
+      field :last_name
+      field :email
+      field :phone_number
+      field :departure_date
+      field :arrival_date
+      field :message
+    end
+  end
+
   config.model 'Traveller' do
     parent User
 
