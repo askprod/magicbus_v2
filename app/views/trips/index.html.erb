@@ -12,7 +12,17 @@
         <h1 class="first-title text-center"><%= t('travel.travel_with_magicbus') %></h1>
     </div>
 
+    <div class="blackline"></div>
+
+
 <section class="mb-5">
+    <div class="container w-75 p-5 bg-light shadow-sm text-center border rounded">
+        <h1 class="first-title">Les MagicGifts sont arrivés!</h1>
+        <h5 class="mb-4">Tu trouveras dans notre boutique éphémère tous les MagicPass à offrir à Noël</h5>
+        <%= link_to "VOIR LA BOUTIQUE", "https://magicbus-shop.myshopify.com", target: "_blank", class: "btn btn-stylised adventpro p-3"%>
+</section>
+
+<section class="mb-5 d-none">
     <div class="container w-75">
         <div class="row">
             <div class="col-sm-12 col-md-4 my-2">
@@ -49,9 +59,9 @@
     
 </section>
 
-<div class="blackline"></div>
+<div class="blackline d-none"></div>
 
-<section id="produits" class="my-5">
+<section id="produits" class="my-5 d-none">
     <div class="container">
         <h1 class="first-title text-center"><%= t("travel.products") %></h1>
     </div> 
@@ -82,9 +92,9 @@
     <% end %>
 </section>
 
-<div class="blackline"></div>
+<div class="blackline d-none"></div>
 
-<section id="privatisation" class="my-5">
+<section id="privatisation" class="my-5 d-none">
     <div class="container">
         <h1 class="first-title text-center"><%= t("travel.privatisation") %></h1>
     </div>
