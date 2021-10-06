@@ -118,7 +118,7 @@ gem 'mailjet'
 
 gem 'i18n-js'
 
-gem "sidekiq", "~> 6.1"
+gem "sidekiq", "~> 6.2"
 
 gem "redis", "~> 4.2"
 
